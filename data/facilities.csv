@@ -1,0 +1,7 @@
+facility_id,facility_name,facility_type,district,capacity_mgd,avg_flow_mgd,built_year,last_upgrade_year,condition,lat,lon
+FAC-001,Marden Water Treatment Plant,Water Treatment,North End,36.0,22.5,1962,2018,Fair,43.648,-116.198
+FAC-002,Columbia Water Treatment Plant,Water Treatment,East Bench,6.0,4.2,2005,2024,Good,43.595,-116.148
+FAC-003,Lander Street Water Renewal Facility,Wastewater Treatment,Downtown,15.0,12.5,1950,2024,Poor,43.601,-116.224
+FAC-004,West Boise Water Renewal Facility,Wastewater Treatment,West Boise,40.0,18.0,1978,2022,Fair,43.61,-116.31
+FAC-005,Southeast Pump Station,Pump Station,Southeast,8.0,5.5,1988,2020,Fair,43.555,-116.18
+FAC-006,North End Pressure Zone Station,Pump Station,North End,4.0,2.8,1975,2019,Fair,43.658,-116.205

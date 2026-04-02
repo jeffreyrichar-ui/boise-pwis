@@ -1,258 +1,243 @@
 """
 tests/test_data_quality.py
 ===========================
-Data contract tests — validate that the synthetic datasets and
-any real data drop-ins conform to the documented schema requirements.
-
-These tests serve a dual purpose:
-  1. CI gate: catch regressions in the data generator
-  2. Production onboarding: when real data is substituted, these tests
-     will surface schema mismatches before they corrupt model outputs
+Data contract tests — validate that the synthetic datasets conform to
+the documented schema requirements for the utility pipe system.
 """
-
-import sys
-from pathlib import Path
-
-import pandas as pd
 import pytest
+import pandas as pd
+import numpy as np
+from pathlib import Path
 
 DATA_DIR = Path(__file__).parent.parent / "data"
 
 
-@pytest.fixture(scope="module")
-def roads():
-    return pd.read_csv(DATA_DIR / "road_segments.csv")
+# ─── HELPERS ──────────────────────────────────────────────────────────────────
+
+def load_csv(name: str) -> pd.DataFrame:
+    path = DATA_DIR / name
+    assert path.exists(), f"Missing dataset: {name}"
+    return pd.read_csv(path)
 
 
-@pytest.fixture(scope="module")
-def work_orders():
-    return pd.read_csv(DATA_DIR / "work_orders.csv")
+# ─── PIPE SEGMENTS ───────────────────────────────────────────────────────────
 
+class TestPipeSegments:
+    @pytest.fixture(autouse=True)
+    def load(self):
+        self.df = load_csv("pipe_segments.csv")
 
-@pytest.fixture(scope="module")
-def complaints():
-    return pd.read_csv(DATA_DIR / "complaints.csv")
+    def test_not_empty(self):
+        assert len(self.df) > 0
 
+    def test_required_columns(self):
+        required = [
+            "segment_id", "system_type", "corridor_name", "district",
+            "pipe_material", "diameter_inches", "length_ft", "condition_score",
+            "breaks_last_5yr", "criticality_class", "estimated_replacement_cost_usd",
+            "lat", "lon",
+        ]
+        for col in required:
+            assert col in self.df.columns, f"Missing column: {col}"
 
-@pytest.fixture(scope="module")
-def budget():
-    return pd.read_csv(DATA_DIR / "budget_actuals.csv")
+    def test_unique_segment_ids(self):
+        assert self.df["segment_id"].is_unique
 
+    def test_system_types_valid(self):
+        valid = {"Water", "Sewer", "Stormwater"}
+        actual = set(self.df["system_type"].unique())
+        assert actual.issubset(valid), f"Invalid system types: {actual - valid}"
 
-@pytest.fixture(scope="module")
-def bridges():
-    return pd.read_csv(DATA_DIR / "bridge_inspections.csv")
+    def test_condition_score_range(self):
+        assert self.df["condition_score"].min() >= 1
+        assert self.df["condition_score"].max() <= 100
 
+    def test_breaks_non_negative(self):
+        assert (self.df["breaks_last_5yr"] >= 0).all()
 
-@pytest.fixture(scope="module")
-def traffic():
-    return pd.read_csv(DATA_DIR / "traffic_counts.csv")
+    def test_diameter_positive(self):
+        assert (self.df["diameter_inches"] > 0).all()
 
+    def test_length_positive(self):
+        assert (self.df["length_ft"] > 0).all()
 
-# ─── ROAD SEGMENTS ────────────────────────────────────────────────────────────
+    def test_cost_positive(self):
+        assert (self.df["estimated_replacement_cost_usd"] > 0).all()
 
+    def test_districts_valid(self):
+        valid = {"North End", "Downtown", "East Bench", "Southeast", "Southwest", "West Boise"}
+        actual = set(self.df["district"].unique())
+        assert actual.issubset(valid), f"Invalid districts: {actual - valid}"
 
-class TestRoadSegments:
-    REQUIRED_COLUMNS = [
-        "segment_id", "street_name", "district", "road_type", "surface_type",
-        "condition_index", "paser_rating", "install_year", "asset_age_years",
-        "length_miles", "num_lanes", "daily_traffic_aadt", "lat", "lon",
-        "last_inspection_date", "estimated_repair_cost_usd",
-    ]
-    VALID_ROAD_TYPES     = {"Arterial", "Collector", "Local", "Highway"}
-    VALID_SURFACE_TYPES  = {"Asphalt", "Concrete", "Chip Seal"}
-    VALID_DISTRICTS      = {
-        "North End", "Downtown", "East Bench", "Southeast", "Southwest", "West Boise"
-    }
+    def test_lat_lon_boise_range(self):
+        assert self.df["lat"].between(43.50, 43.75).all(), "Latitude outside Boise range"
+        assert self.df["lon"].between(-116.40, -116.10).all(), "Longitude outside Boise range"
 
-    def test_all_required_columns_present(self, roads):
-        missing = [c for c in self.REQUIRED_COLUMNS if c not in roads.columns]
-        assert not missing, f"Missing columns: {missing}"
+    def test_minimum_segment_count(self):
+        assert len(self.df) >= 100, "Expected at least 100 pipe segments"
 
-    def test_segment_ids_are_unique(self, roads):
-        dupes = roads[roads["segment_id"].duplicated()]["segment_id"].tolist()
-        assert not dupes, f"Duplicate segment_ids: {dupes[:5]}"
-
-    def test_segment_ids_not_null(self, roads):
-        assert roads["segment_id"].notna().all()
-
-    def test_condition_index_in_valid_range(self, roads):
-        bad = roads[~roads["condition_index"].between(1, 100)]
-        assert len(bad) == 0, (
-            f"{len(bad)} segments have condition_index outside [1, 100]: "
-            f"{bad['condition_index'].describe()}"
-        )
-
-    def test_paser_rating_in_valid_range(self, roads):
-        bad = roads[~roads["paser_rating"].between(1, 10)]
-        assert len(bad) == 0
-
-    def test_road_types_are_canonical(self, roads):
-        bad = set(roads["road_type"].unique()) - self.VALID_ROAD_TYPES
-        assert not bad, f"Non-canonical road types found: {bad}"
-
-    def test_surface_types_are_canonical(self, roads):
-        bad = set(roads["surface_type"].unique()) - self.VALID_SURFACE_TYPES
-        assert not bad, f"Non-canonical surface types: {bad}"
-
-    def test_districts_are_canonical(self, roads):
-        bad = set(roads["district"].unique()) - self.VALID_DISTRICTS
-        assert not bad, f"Non-canonical districts: {bad}"
-
-    def test_lat_within_boise_bounds(self, roads):
-        bad = roads[~roads["lat"].between(43.5, 43.8)]
-        assert len(bad) == 0, f"{len(bad)} segments have lat outside Boise bounds"
-
-    def test_lon_within_boise_bounds(self, roads):
-        bad = roads[~roads["lon"].between(-116.4, -116.0)]
-        assert len(bad) == 0, f"{len(bad)} segments have lon outside Boise bounds"
-
-    def test_length_miles_positive(self, roads):
-        assert (roads["length_miles"] > 0).all()
-
-    def test_aadt_non_negative(self, roads):
-        assert (roads["daily_traffic_aadt"] >= 0).all()
-
-    def test_install_year_plausible(self, roads):
-        bad = roads[~roads["install_year"].between(1900, 2026)]
-        assert len(bad) == 0
-
-    def test_repair_cost_positive(self, roads):
-        assert (roads["estimated_repair_cost_usd"] > 0).all()
-
-    def test_minimum_expected_row_count(self, roads):
-        assert len(roads) >= 50, f"Only {len(roads)} segments; expected at least 50"
-
-    def test_all_districts_represented(self, roads):
-        """Every canonical district must have at least one segment."""
-        present = set(roads["district"].unique())
-        missing = self.VALID_DISTRICTS - present
-        assert not missing, f"Districts with no segments: {missing}"
+    def test_all_three_systems_present(self):
+        systems = set(self.df["system_type"].unique())
+        assert "Water" in systems
+        assert "Sewer" in systems
+        assert "Stormwater" in systems
 
 
 # ─── WORK ORDERS ──────────────────────────────────────────────────────────────
 
-
 class TestWorkOrders:
-    VALID_STATUSES    = {"Open", "In Progress", "Completed", "Deferred"}
-    VALID_PRIORITIES  = {"Critical", "High", "Medium", "Low"}
+    @pytest.fixture(autouse=True)
+    def load(self):
+        self.df = load_csv("work_orders.csv")
 
-    def test_work_order_ids_unique(self, work_orders):
-        dupes = work_orders[work_orders["work_order_id"].duplicated()]
-        assert len(dupes) == 0, f"Duplicate work_order_ids: {len(dupes)}"
+    def test_not_empty(self):
+        assert len(self.df) > 0
 
-    def test_statuses_are_canonical(self, work_orders):
-        bad = set(work_orders["status"].unique()) - self.VALID_STATUSES
-        assert not bad, f"Non-canonical statuses: {bad}"
+    def test_required_columns(self):
+        required = ["work_order_id", "segment_id", "system_type", "work_order_type", "status"]
+        for col in required:
+            assert col in self.df.columns
 
-    def test_priorities_are_canonical(self, work_orders):
-        bad = set(work_orders["priority"].unique()) - self.VALID_PRIORITIES
-        assert not bad, f"Non-canonical priorities: {bad}"
+    def test_unique_work_order_ids(self):
+        assert self.df["work_order_id"].is_unique
 
-    def test_completed_date_after_created_date(self, work_orders):
-        """Completed work orders must have completed_date >= created_date."""
-        completed = work_orders[work_orders["status"] == "Completed"].copy()
-        completed["created_date"]   = pd.to_datetime(completed["created_date"])
-        completed["completed_date"] = pd.to_datetime(completed["completed_date"])
-        bad = completed[completed["completed_date"] < completed["created_date"]]
-        assert len(bad) == 0, (
-            f"{len(bad)} work orders have completed_date before created_date"
+    def test_segment_ids_reference_pipes(self):
+        pipes = load_csv("pipe_segments.csv")
+        valid_ids = set(pipes["segment_id"])
+        wo_ids = set(self.df["segment_id"])
+        orphans = wo_ids - valid_ids
+        assert len(orphans) == 0, f"Orphan segment_ids in work orders: {list(orphans)[:5]}"
+
+
+# ─── SERVICE REQUESTS ────────────────────────────────────────────────────────
+
+class TestServiceRequests:
+    @pytest.fixture(autouse=True)
+    def load(self):
+        self.df = load_csv("service_requests.csv")
+
+    def test_not_empty(self):
+        assert len(self.df) > 0
+
+    def test_required_columns(self):
+        required = ["request_id", "segment_id", "system_type", "request_type", "severity"]
+        for col in required:
+            assert col in self.df.columns
+
+    def test_unique_request_ids(self):
+        assert self.df["request_id"].is_unique
+
+    def test_severity_valid(self):
+        valid = {"Critical", "High", "Medium", "Low"}
+        actual = set(self.df["severity"].dropna().unique())
+        assert actual.issubset(valid), f"Invalid severities: {actual - valid}"
+
+
+# ─── FACILITIES ──────────────────────────────────────────────────────────────
+
+class TestFacilities:
+    @pytest.fixture(autouse=True)
+    def load(self):
+        self.df = load_csv("facilities.csv")
+
+    def test_not_empty(self):
+        assert len(self.df) > 0
+
+    def test_required_columns(self):
+        required = ["facility_id", "facility_name", "facility_type", "capacity_mgd"]
+        for col in required:
+            assert col in self.df.columns
+
+    def test_capacity_positive(self):
+        assert (self.df["capacity_mgd"] > 0).all()
+
+
+# ─── FLOW MONITORING ─────────────────────────────────────────────────────────
+
+class TestFlowMonitoring:
+    @pytest.fixture(autouse=True)
+    def load(self):
+        self.df = load_csv("flow_monitoring.csv")
+
+    def test_not_empty(self):
+        assert len(self.df) > 0
+
+    def test_required_columns(self):
+        required = ["monitor_id", "segment_id", "system_type", "avg_flow_pct", "peak_flow_pct"]
+        for col in required:
+            assert col in self.df.columns
+
+    def test_flow_percentages_in_range(self):
+        assert self.df["avg_flow_pct"].between(0, 200).all(), "avg_flow_pct out of range"
+        assert self.df["peak_flow_pct"].between(0, 300).all(), "peak_flow_pct out of range"
+
+
+# ─── BUDGET CIP ──────────────────────────────────────────────────────────────
+
+class TestBudgetCIP:
+    @pytest.fixture(autouse=True)
+    def load(self):
+        self.df = load_csv("budget_cip.csv")
+
+    def test_not_empty(self):
+        assert len(self.df) > 0
+
+    def test_required_columns(self):
+        required = ["fiscal_year", "district", "total_cip_budget_usd"]
+        for col in required:
+            assert col in self.df.columns
+
+    def test_budget_positive(self):
+        assert (self.df["total_cip_budget_usd"] > 0).all()
+
+    def test_budget_percentages_sum(self):
+        """Water + sewer + stormwater budget percentages should sum to ~100%."""
+        total = (
+            self.df["water_budget_pct"]
+            + self.df["sewer_budget_pct"]
+            + self.df["stormwater_budget_pct"]
         )
+        assert total.between(98, 102).all(), "Budget percentages don't sum to ~100%"
 
-    def test_segment_ids_reference_valid_segments(self, work_orders, roads):
-        valid_segs = set(roads["segment_id"])
-        orphaned = set(work_orders["segment_id"]) - valid_segs
-        assert not orphaned, (
-            f"Work orders reference {len(orphaned)} unknown segment_ids: "
-            f"{list(orphaned)[:5]}"
+
+# ─── WEATHER EVENTS ──────────────────────────────────────────────────────────
+
+class TestWeatherEvents:
+    @pytest.fixture(autouse=True)
+    def load(self):
+        self.df = load_csv("weather_events.csv")
+
+    def test_not_empty(self):
+        assert len(self.df) > 0
+
+    def test_has_date(self):
+        assert "event_date" in self.df.columns or "date" in self.df.columns
+
+
+# ─── CROSS-DATASET INTEGRITY ─────────────────────────────────────────────────
+
+class TestCrossDatasetIntegrity:
+    def test_service_requests_reference_valid_pipes(self):
+        pipes = load_csv("pipe_segments.csv")
+        srs = load_csv("service_requests.csv")
+        valid_ids = set(pipes["segment_id"])
+        sr_ids = set(srs["segment_id"].dropna())
+        orphans = sr_ids - valid_ids
+        assert len(orphans) == 0, f"Orphan segment_ids in service requests: {list(orphans)[:5]}"
+
+    def test_flow_monitoring_references_valid_pipes(self):
+        pipes = load_csv("pipe_segments.csv")
+        flow = load_csv("flow_monitoring.csv")
+        valid_ids = set(pipes["segment_id"])
+        flow_ids = set(flow["segment_id"].dropna())
+        orphans = flow_ids - valid_ids
+        assert len(orphans) == 0, f"Orphan segment_ids in flow monitoring: {list(orphans)[:5]}"
+
+    def test_all_districts_consistent(self):
+        pipes = load_csv("pipe_segments.csv")
+        budget = load_csv("budget_cip.csv")
+        pipe_districts = set(pipes["district"].unique())
+        budget_districts = set(budget["district"].unique())
+        assert pipe_districts == budget_districts, (
+            f"District mismatch: pipes={pipe_districts}, budget={budget_districts}"
         )
-
-
-# ─── COMPLAINTS ───────────────────────────────────────────────────────────────
-
-
-class TestComplaints:
-    VALID_SEVERITIES = {"Low", "Medium", "High", "Critical"}
-    VALID_STATUSES   = {"Resolved", "Pending", "In Review"}
-
-    def test_complaint_ids_unique(self, complaints):
-        dupes = complaints[complaints["complaint_id"].duplicated()]
-        assert len(dupes) == 0
-
-    def test_severity_values_canonical(self, complaints):
-        bad = set(complaints["severity_reported"].unique()) - self.VALID_SEVERITIES
-        assert not bad, f"Non-canonical severities: {bad}"
-
-    def test_resolution_status_canonical(self, complaints):
-        bad = set(complaints["resolution_status"].unique()) - self.VALID_STATUSES
-        assert not bad, f"Non-canonical resolution statuses: {bad}"
-
-    def test_resolved_date_after_submitted(self, complaints):
-        resolved = complaints[complaints["resolution_status"] == "Resolved"].copy()
-        resolved = resolved.dropna(subset=["resolved_date"])
-        resolved["submitted_date"] = pd.to_datetime(resolved["submitted_date"])
-        resolved["resolved_date"]  = pd.to_datetime(resolved["resolved_date"])
-        bad = resolved[resolved["resolved_date"] < resolved["submitted_date"]]
-        assert len(bad) == 0, (
-            f"{len(bad)} complaints have resolved_date before submitted_date"
-        )
-
-    def test_segment_ids_reference_valid_segments(self, complaints, roads):
-        valid_segs = set(roads["segment_id"])
-        orphaned = set(complaints["segment_id"]) - valid_segs
-        assert not orphaned, (
-            f"Complaints reference {len(orphaned)} unknown segment_ids"
-        )
-
-
-# ─── BUDGET ───────────────────────────────────────────────────────────────────
-
-
-class TestBudget:
-    def test_budget_pct_columns_sum_to_100_or_less(self, budget):
-        pct_sum = budget["preventive_pct"] + budget["reactive_pct"] + budget["capital_pct"]
-        bad = budget[pct_sum > 101]  # 1% tolerance for rounding
-        assert len(bad) == 0, (
-            f"{len(bad)} rows have pct columns summing > 100%: {pct_sum[pct_sum > 101].values}"
-        )
-
-    def test_satisfaction_score_in_range(self, budget):
-        bad = budget[~budget["citizen_satisfaction_score"].between(0, 5)]
-        assert len(bad) == 0
-
-    def test_allocated_budget_positive(self, budget):
-        assert (budget["allocated_budget_usd"] > 0).all()
-
-
-# ─── BRIDGES ──────────────────────────────────────────────────────────────────
-
-
-class TestBridges:
-    VALID_CONDITIONS = {"Good", "Fair", "Poor", "Critical"}
-
-    def test_bridge_ids_unique(self, bridges):
-        assert not bridges["bridge_id"].duplicated().any()
-
-    def test_deck_condition_canonical(self, bridges):
-        bad = set(bridges["deck_condition"].unique()) - self.VALID_CONDITIONS
-        assert not bad, f"Non-canonical deck conditions: {bad}"
-
-    def test_sufficiency_rating_in_range(self, bridges):
-        bad = bridges[~bridges["sufficiency_rating"].between(0, 100)]
-        assert len(bad) == 0
-
-
-# ─── TRAFFIC ──────────────────────────────────────────────────────────────────
-
-
-class TestTraffic:
-    def test_month_in_valid_range(self, traffic):
-        bad = traffic[~traffic["month"].between(1, 12)]
-        assert len(bad) == 0
-
-    def test_aadt_positive(self, traffic):
-        assert (traffic["aadt"] > 0).all()
-
-    def test_congestion_index_bounded(self, traffic):
-        bad = traffic[~traffic["congestion_index"].between(0, 1)]
-        assert len(bad) == 0

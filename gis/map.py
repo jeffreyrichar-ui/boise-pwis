@@ -1,19 +1,19 @@
 """
-PWIS GIS Visualization Layer
-==============================
-Generates interactive Folium maps for the Boise Public Works Intelligence System.
+PWIS GIS Visualization Layer — Utility Pipe Network
+=====================================================
+Generates interactive Folium maps for the Boise utility infrastructure system.
 
 Maps produced:
-  1. Infrastructure Condition Map — heatmap by condition index
+  1. Pipe Condition Map — color-coded by condition score
   2. Priority Score Map — color-coded by PWIS priority tier
-  3. Complaint Density Map — heatmap of citizen complaint clusters
+  3. Service Request Heatmap — density of citizen service requests
   4. Combined Executive Map — all layers, toggle-able
 
 Design decisions:
   - Folium over ArcGIS/QGIS: free, Python-native, embeds in Streamlit and HTML
-  - CircleMarkers over Choropleth: no polygon boundary data available for segments;
-    point representation is accurate and fast
-  - Color-blind accessible palette: Okabe-Ito safe colors for tier classification
+  - CircleMarkers over Choropleth: no polygon boundary data for pipe routes;
+    point representation is accurate for segment midpoints
+  - Color-blind accessible palette: Okabe-Ito safe colors
 """
 
 import pandas as pd
@@ -50,6 +50,12 @@ TIER_COLORS = {
     "Low":      "#2CA02C",
 }
 
+SYSTEM_COLORS = {
+    "Water":      "#1F77B4",   # Blue
+    "Sewer":      "#8C564B",   # Brown
+    "Stormwater": "#17BECF",   # Teal
+}
+
 DISTRICT_COLORS = {
     "North End":   "#1F77B4",
     "Downtown":    "#FF7F0E",
@@ -72,8 +78,12 @@ def tier_to_color(tier: str) -> str:
     return TIER_COLORS.get(str(tier), "#999999")
 
 
+def system_to_color(system_type: str) -> str:
+    return SYSTEM_COLORS.get(str(system_type), "#999999")
+
+
 def condition_to_radius(ci: float) -> int:
-    """Worse condition → larger marker (more visible urgency)"""
+    """Worse condition = larger marker (more visible urgency)"""
     if ci < 25:   return 12
     elif ci < 45: return 9
     elif ci < 60: return 7
@@ -83,32 +93,34 @@ def condition_to_radius(ci: float) -> int:
 
 # ─── TOOLTIP BUILDERS ─────────────────────────────────────────────────────────
 
-def segment_tooltip(row) -> str:
+def pipe_tooltip(row) -> str:
     return f"""
-    <div style='font-family: Arial; font-size: 13px; min-width: 220px;'>
-        <b style='font-size:14px'>{row.get('street_name','Unknown')}</b><br>
+    <div style='font-family: Arial; font-size: 13px; min-width: 240px;'>
+        <b style='font-size:14px'>{row.get('corridor_name','Unknown')}</b><br>
         <hr style='margin:4px 0'>
         <b>Segment:</b> {row.get('segment_id','—')}<br>
+        <b>System:</b> {row.get('system_type','—')}<br>
         <b>District:</b> {row.get('district','—')}<br>
-        <b>Road Type:</b> {row.get('road_type','—')}<br>
-        <b>Condition Index:</b> {row.get('condition_index','—')}/100<br>
-        <b>PASER Rating:</b> {row.get('paser_rating','—')}/10<br>
-        <b>Daily Traffic:</b> {int(row.get('daily_traffic_aadt',0)):,} AADT<br>
-        <b>Repair Cost:</b> ${int(row.get('estimated_repair_cost_usd',0)):,}<br>
+        <b>Material:</b> {row.get('pipe_material','—')}<br>
+        <b>Diameter:</b> {int(row.get('diameter_inches',0))}"<br>
+        <b>Condition:</b> {row.get('condition_score','—')}/100<br>
+        <b>Breaks (5yr):</b> {int(row.get('breaks_last_5yr',0))}<br>
+        <b>Replacement Cost:</b> ${int(row.get('estimated_replacement_cost_usd',0)):,}<br>
     </div>
     """
 
 
 def priority_tooltip(row) -> str:
     return f"""
-    <div style='font-family: Arial; font-size: 13px; min-width: 260px;'>
-        <b style='font-size:14px'>{row.get('street_name','Unknown')}</b><br>
+    <div style='font-family: Arial; font-size: 13px; min-width: 280px;'>
+        <b style='font-size:14px'>{row.get('corridor_name','Unknown')}</b><br>
         <hr style='margin:4px 0'>
         <b>Priority Score:</b> {row.get('priority_score','—')}/100<br>
         <b>Tier:</b> <span style='color:{tier_to_color(str(row.get("priority_tier","Low")))}'><b>{row.get('priority_tier','—')}</b></span><br>
+        <b>System:</b> {row.get('system_type','—')}<br>
         <b>District Rank:</b> #{int(row.get('district_rank',0))} in {row.get('district','—')}<br>
-        <b>Condition:</b> {row.get('condition_index','—')}/100<br>
-        <b>Complaints (2yr):</b> {int(row.get('raw_complaint_count',0))}<br>
+        <b>Condition:</b> {row.get('condition_score','—')}/100<br>
+        <b>Material:</b> {row.get('pipe_material','—')}<br>
         <b>Recommended Action:</b><br>
         <i>{row.get('recommended_action','—')}</i><br>
         <b>Confidence:</b> {int(float(row.get('score_confidence',0))*100)}%<br>
@@ -116,9 +128,9 @@ def priority_tooltip(row) -> str:
     """
 
 
-# ─── MAP 1: CONDITION MAP ─────────────────────────────────────────────────────
+# ─── MAP 1: PIPE CONDITION MAP ──────────────────────────────────────────────
 
-def build_condition_map(roads: pd.DataFrame) -> folium.Map:
+def build_condition_map(pipes: pd.DataFrame) -> folium.Map:
     m = folium.Map(
         location=BOISE_CENTER,
         zoom_start=DEFAULT_ZOOM,
@@ -127,12 +139,11 @@ def build_condition_map(roads: pd.DataFrame) -> folium.Map:
     Fullscreen().add_to(m)
     MiniMap(toggle_display=True).add_to(m)
 
-    # Add legend
     legend_html = """
     <div style="position: fixed; bottom: 50px; left: 50px; z-index: 1000;
          background: white; padding: 12px; border-radius: 8px;
          border: 2px solid #ccc; font-family: Arial; font-size: 13px;">
-        <b>Road Condition Index</b><br>
+        <b>Pipe Condition Score</b><br>
         <i class="fa fa-circle" style="color:#D62728"></i> Critical (0–24)<br>
         <i class="fa fa-circle" style="color:#FF7F0E"></i> Poor (25–44)<br>
         <i class="fa fa-circle" style="color:#BCBD22"></i> Fair (45–59)<br>
@@ -142,10 +153,10 @@ def build_condition_map(roads: pd.DataFrame) -> folium.Map:
     """
     m.get_root().html.add_child(folium.Element(legend_html))
 
-    for _, row in roads.iterrows():
+    for _, row in pipes.iterrows():
         if pd.isna(row["lat"]) or pd.isna(row["lon"]):
             continue
-        ci = row["condition_index"]
+        ci = row["condition_score"]
         folium.CircleMarker(
             location=[row["lat"], row["lon"]],
             radius=condition_to_radius(ci),
@@ -153,13 +164,13 @@ def build_condition_map(roads: pd.DataFrame) -> folium.Map:
             fill=True,
             fill_color=condition_to_color(ci),
             fill_opacity=0.75,
-            tooltip=folium.Tooltip(segment_tooltip(row), max_width=300),
+            tooltip=folium.Tooltip(pipe_tooltip(row), max_width=300),
         ).add_to(m)
 
     return m
 
 
-# ─── MAP 2: PRIORITY SCORE MAP ────────────────────────────────────────────────
+# ─── MAP 2: PRIORITY SCORE MAP ──────────────────────────────────────────────
 
 def build_priority_map(priority_scores: pd.DataFrame) -> folium.Map:
     m = folium.Map(
@@ -168,7 +179,6 @@ def build_priority_map(priority_scores: pd.DataFrame) -> folium.Map:
         tiles="CartoDB dark_matter",
     )
     Fullscreen().add_to(m)
-    MiniMap(toggle_display=True, tile_layer="CartoDB positron")
 
     legend_html = """
     <div style="position: fixed; bottom: 50px; left: 50px; z-index: 1000;
@@ -204,9 +214,9 @@ def build_priority_map(priority_scores: pd.DataFrame) -> folium.Map:
     return m
 
 
-# ─── MAP 3: COMPLAINT HEATMAP ─────────────────────────────────────────────────
+# ─── MAP 3: SERVICE REQUEST HEATMAP ─────────────────────────────────────────
 
-def build_complaint_heatmap(complaints: pd.DataFrame) -> folium.Map:
+def build_service_request_heatmap(service_requests: pd.DataFrame) -> folium.Map:
     m = folium.Map(
         location=BOISE_CENTER,
         zoom_start=DEFAULT_ZOOM,
@@ -216,13 +226,13 @@ def build_complaint_heatmap(complaints: pd.DataFrame) -> folium.Map:
 
     severity_weights = {"Critical": 1.0, "High": 0.75, "Medium": 0.5, "Low": 0.25}
     heat_data = []
-    for _, row in complaints.dropna(subset=["lat", "lon"]).iterrows():
-        w = severity_weights.get(row.get("severity_reported", "Low"), 0.25)
+    for _, row in service_requests.dropna(subset=["lat", "lon"]).iterrows():
+        w = severity_weights.get(row.get("severity", "Low"), 0.25)
         heat_data.append([row["lat"], row["lon"], w])
 
     HeatMap(
         heat_data,
-        name="Complaint Density",
+        name="Service Request Density",
         min_opacity=0.3,
         radius=18,
         blur=15,
@@ -233,7 +243,7 @@ def build_complaint_heatmap(complaints: pd.DataFrame) -> folium.Map:
     <div style="position: fixed; top: 80px; left: 50px; z-index: 1000;
          background: white; padding: 10px; border-radius: 8px;
          border: 2px solid #ccc; font-family: Arial; font-size: 14px;">
-        <b>Citizen Complaint Heatmap</b><br>
+        <b>Service Request Heatmap</b><br>
         <small>Weighted by reported severity</small>
     </div>
     """
@@ -241,24 +251,20 @@ def build_complaint_heatmap(complaints: pd.DataFrame) -> folium.Map:
     return m
 
 
-# ─── MAP 4: COMBINED EXECUTIVE MAP ────────────────────────────────────────────
+# ─── MAP 4: COMBINED EXECUTIVE MAP ──────────────────────────────────────────
 
 def build_executive_map(
-    roads: pd.DataFrame,
+    pipes: pd.DataFrame,
     priority_scores: pd.DataFrame,
-    complaints: pd.DataFrame,
+    service_requests: pd.DataFrame,
 ) -> folium.Map:
-    """
-    Multi-layer executive map with toggleable layers.
-    Designed for Director-level briefings and Council presentations.
-    """
+    """Multi-layer executive map with toggleable layers."""
     m = folium.Map(
         location=BOISE_CENTER,
         zoom_start=12,
         tiles=None,
     )
 
-    # Basemaps
     folium.TileLayer("CartoDB positron", name="Light Basemap", control=True).add_to(m)
     folium.TileLayer("CartoDB dark_matter", name="Dark Basemap", control=True).add_to(m)
     folium.TileLayer("OpenStreetMap", name="Street Map", control=True).add_to(m)
@@ -266,22 +272,22 @@ def build_executive_map(
     Fullscreen().add_to(m)
     MiniMap(toggle_display=True).add_to(m)
 
-    # ── Layer 1: Condition (toggle off by default) ──
-    condition_layer = folium.FeatureGroup(name="Road Condition Index", show=False)
-    for _, row in roads.iterrows():
+    # Layer 1: Condition (off by default)
+    condition_layer = folium.FeatureGroup(name="Pipe Condition Score", show=False)
+    for _, row in pipes.iterrows():
         if pd.isna(row["lat"]) or pd.isna(row["lon"]):
             continue
         folium.CircleMarker(
             location=[row["lat"], row["lon"]],
-            radius=condition_to_radius(row["condition_index"]),
-            color=condition_to_color(row["condition_index"]),
-            fill=True, fill_color=condition_to_color(row["condition_index"]),
+            radius=condition_to_radius(row["condition_score"]),
+            color=condition_to_color(row["condition_score"]),
+            fill=True, fill_color=condition_to_color(row["condition_score"]),
             fill_opacity=0.7,
-            tooltip=folium.Tooltip(segment_tooltip(row), max_width=300),
+            tooltip=folium.Tooltip(pipe_tooltip(row), max_width=300),
         ).add_to(condition_layer)
     condition_layer.add_to(m)
 
-    # ── Layer 2: Priority Scores (show by default) ──
+    # Layer 2: Priority Scores (on by default)
     priority_layer = folium.FeatureGroup(name="Priority Scores (PWIS Model)", show=True)
     for _, row in priority_scores.iterrows():
         if pd.isna(row["lat"]) or pd.isna(row["lon"]):
@@ -298,17 +304,17 @@ def build_executive_map(
         ).add_to(priority_layer)
     priority_layer.add_to(m)
 
-    # ── Layer 3: Complaint Heatmap ──
-    complaint_layer = folium.FeatureGroup(name="Complaint Heatmap", show=False)
+    # Layer 3: Service Request Heatmap
+    sr_layer = folium.FeatureGroup(name="Service Request Heatmap", show=False)
     severity_weights = {"Critical": 1.0, "High": 0.75, "Medium": 0.5, "Low": 0.25}
     heat_data = [
-        [r["lat"], r["lon"], severity_weights.get(r.get("severity_reported", "Low"), 0.25)]
-        for _, r in complaints.dropna(subset=["lat", "lon"]).iterrows()
+        [r["lat"], r["lon"], severity_weights.get(r.get("severity", "Low"), 0.25)]
+        for _, r in service_requests.dropna(subset=["lat", "lon"]).iterrows()
     ]
-    HeatMap(heat_data, min_opacity=0.3, radius=18, blur=15).add_to(complaint_layer)
-    complaint_layer.add_to(m)
+    HeatMap(heat_data, min_opacity=0.3, radius=18, blur=15).add_to(sr_layer)
+    sr_layer.add_to(m)
 
-    # ── Layer 4: High-Priority Clusters ──
+    # Layer 4: High-Priority Clusters
     high_priority = priority_scores[
         priority_scores["priority_tier"].astype(str).isin(["Critical", "High"])
     ]
@@ -327,18 +333,16 @@ def build_executive_map(
         ).add_to(cluster)
     cluster_layer.add_to(m)
 
-    # Layer control
     folium.LayerControl(position="topright", collapsed=False).add_to(m)
 
-    # Title card
     title_html = """
     <div style="position: fixed; top: 80px; left: 50px; z-index: 1000;
          background: rgba(255,255,255,0.95); padding: 14px 18px;
          border-radius: 10px; border: 2px solid #1F77B4;
          font-family: Arial; max-width: 280px; box-shadow: 2px 2px 8px rgba(0,0,0,0.2);">
         <b style="font-size:16px; color:#1F77B4">PWIS Executive Map</b><br>
-        <small>City of Boise — Public Works<br>
-        Infrastructure Priority Intelligence<br>
+        <small>City of Boise — Utility Infrastructure<br>
+        Water / Sewer / Stormwater Priority Intelligence<br>
         <i>Toggle layers using control (top right)</i></small>
     </div>
     """
@@ -351,23 +355,22 @@ def build_executive_map(
 
 if __name__ == "__main__":
     print("Loading datasets...")
-    roads      = pd.read_csv(DATA_DIR / "road_segments.csv")
-    complaints = pd.read_csv(DATA_DIR / "complaints.csv")
+    pipes            = pd.read_csv(DATA_DIR / "pipe_segments.csv")
+    service_requests = pd.read_csv(DATA_DIR / "service_requests.csv")
 
     if (DATA_DIR / "priority_scores.csv").exists():
         priority_scores = pd.read_csv(DATA_DIR / "priority_scores.csv")
-        # Merge lat/lon back in if not present
         if "lat" not in priority_scores.columns:
             priority_scores = priority_scores.merge(
-                roads[["segment_id", "lat", "lon"]], on="segment_id", how="left"
+                pipes[["segment_id", "lat", "lon"]], on="segment_id", how="left"
             )
     else:
         print("Warning: priority_scores.csv not found. Run models/prioritization.py first.")
-        priority_scores = roads.copy()
+        priority_scores = pipes.copy()
 
     print("Building maps...")
 
-    m1 = build_condition_map(roads)
+    m1 = build_condition_map(pipes)
     m1.save(str(DOCS_DIR / "map_condition.html"))
     print("  ✓ Condition map → docs/map_condition.html")
 
@@ -375,18 +378,12 @@ if __name__ == "__main__":
     m2.save(str(DOCS_DIR / "map_priority.html"))
     print("  ✓ Priority map  → docs/map_priority.html")
 
-    m3 = build_complaint_heatmap(complaints)
-    m3.save(str(DOCS_DIR / "map_complaints.html"))
-    print("  ✓ Complaint map → docs/map_complaints.html")
+    m3 = build_service_request_heatmap(service_requests)
+    m3.save(str(DOCS_DIR / "map_service_requests.html"))
+    print("  ✓ Service request map → docs/map_service_requests.html")
 
-    m4 = build_executive_map(roads, priority_scores, complaints)
+    m4 = build_executive_map(pipes, priority_scores, service_requests)
     m4.save(str(DOCS_DIR / "map_executive.html"))
     print("  ✓ Executive map → docs/map_executive.html")
 
     print("\n✓ All GIS maps generated. Open HTML files in browser to view.")
-    print("\nMap inventory:")
-    for f in ["map_condition.html", "map_priority.html",
-              "map_complaints.html", "map_executive.html"]:
-        path = DOCS_DIR / f
-        size_kb = path.stat().st_size // 1024
-        print(f"  {f}: {size_kb} KB")

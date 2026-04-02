@@ -1,26 +1,23 @@
 """
-PWIS Synthetic Data Generator
-==============================
-Generates realistic synthetic datasets for the Boise Public Works Intelligence System.
+PWIS Synthetic Data Generator — Water / Sewer / Stormwater
+============================================================
+Generates realistic synthetic datasets for the Boise Public Works
+Water & Sewer Intelligence System (WSIS).
 
-Geography: Real Boise, Idaho streets anchored to their actual locations.
-  - Street names match real Boise roads
-  - Districts reflect Boise's actual neighborhood geography
-  - Road types match ACHD (Ada County Highway District) functional classifications
-  - Coordinates are derived from each street's real lat/lon corridor with
-    per-block random offsets (±0.002 deg ~ ±200m) to simulate individual segments
-
-District bounding boxes (approximate WGS-84):
-  North End     : 43.626–43.680 N, 116.230–116.170 W  (foothills, historic tree-lined streets)
-  Downtown      : 43.600–43.626 N, 116.220–116.175 W  (grid, Capitol area, mixed arterial/local)
-  East Bench    : 43.580–43.626 N, 116.175–116.100 W  (bench above river, Warm Springs corridor)
-  Southeast     : 43.540–43.595 N, 116.200–116.100 W  (Vista corridor, airport approach)
-  Southwest     : 43.540–43.600 N, 116.330–116.200 W  (Five Mile / Cole / Overland suburbs)
-  West Boise    : 43.600–43.655 N, 116.360–116.230 W  (Fairview/Ustick/Chinden west corridors)
+Grounded in real Boise infrastructure:
+  - 900+ miles of water distribution pipe (83 active wells, 2 WTPs)
+  - 1,000+ miles of sanitary sewer pipe (2 water renewal facilities)
+  - Stormwater collection across 6 drainage basins
+  - Pipe materials: ductile iron, PVC, cast iron, HDPE, asbestos cement,
+    concrete, vitrified clay, corrugated metal
+  - Service districts: West Boise, Bench, Northwest, Downtown/Central,
+    North End, Southeast
 
 Sources:
-  ACHD Master Street Map 2018 (cityofboise.org)
-  City of Boise GIS Open Data Portal (opendata.cityofboise.org)
+  City of Boise Public Works — Water / Sewer / Stormwater divisions
+  Boise Open Data Portal (opendata.cityofboise.org)
+  West Boise Water Renewal Facility capacity planning (2024)
+  Lander Street Facility Improvement Plan ($265M, 2024-2029)
 """
 
 import pandas as pd
@@ -34,363 +31,444 @@ random.seed(42)
 
 BASE_DIR = Path(__file__).parent
 
-# ─── REAL BOISE STREET CATALOG ────────────────────────────────────────────────
-# Each entry: (street_name, road_type, district, anchor_lat, anchor_lon,
-#              orientation, base_aadt_low, base_aadt_high)
-# orientation: 'EW' = east-west (lat fixed, lon varies per segment)
-#              'NS' = north-south (lon fixed, lat varies per segment)
-#              'DIAG' = diagonal/curved (both vary)
-# AADT ranges sourced from ACHD traffic counts and KTVB Boise traffic data
+# ─── BOISE SERVICE DISTRICTS ─────────────────────────────────────────────────
+# Mapped to real sewer/water service boundaries
+# (lat_min, lat_max, lon_min, lon_max)
+SERVICE_DISTRICTS = {
+    "North End":   (43.626, 43.680, -116.230, -116.170),
+    "Downtown":    (43.600, 43.626, -116.220, -116.175),
+    "East Bench":  (43.580, 43.626, -116.175, -116.100),
+    "Southeast":   (43.540, 43.595, -116.200, -116.100),
+    "Southwest":   (43.540, 43.600, -116.330, -116.200),
+    "West Boise":  (43.600, 43.655, -116.360, -116.230),
+}
 
-STREET_CATALOG = [
-    # ── HIGHWAYS ──────────────────────────────────────────────────────────────
-    # I-84 runs E-W through south Boise / Southeast / Southwest
-    ("I-84 EB",         "Highway", "Southeast",  43.543, -116.175, "EW",  45000, 68000),
-    ("I-84 WB",         "Highway", "Southwest",  43.543, -116.260, "EW",  45000, 68000),
-    ("I-184 (Connector)","Highway","Downtown",   43.609, -116.214, "EW",  22000, 38000),
-    ("State St / Hwy 44","Highway","West Boise",  43.637, -116.280, "EW",  18000, 32000),
-    ("Chinden Blvd / Hwy 20", "Highway", "West Boise", 43.653, -116.310, "EW", 20000, 42000),
+DISTRICTS = list(SERVICE_DISTRICTS.keys())
 
-    # ── MAJOR E-W ARTERIALS ───────────────────────────────────────────────────
-    # Chinden (east of Eagle Rd, entering Garden City / North End)
-    ("Chinden Blvd",    "Arterial","North End",   43.653, -116.210, "EW",  14000, 28000),
-    # McMillan – West Boise suburban corridor
-    ("McMillan Rd",     "Arterial","West Boise",  43.643, -116.310, "EW",  10000, 22000),
-    # Ustick – major cross-town arterial
-    ("Ustick Rd",       "Arterial","West Boise",  43.633, -116.300, "EW",  12000, 26000),
-    # Fairview – busiest cross-town arterial
-    ("Fairview Ave",    "Arterial","West Boise",  43.616, -116.295, "EW",  18000, 38000),
-    ("Fairview Ave",    "Arterial","Downtown",    43.616, -116.200, "EW",  16000, 34000),
-    # Franklin – mid-Boise E-W
-    ("Franklin Rd",     "Arterial","West Boise",  43.607, -116.290, "EW",   9000, 20000),
-    ("Franklin Rd",     "Arterial","Southwest",   43.607, -116.245, "EW",   8000, 18000),
-    # Overland – south Boise cross-town
-    ("Overland Rd",     "Arterial","Southwest",   43.588, -116.270, "EW",  14000, 30000),
-    ("Overland Rd",     "Arterial","Southeast",   43.588, -116.195, "EW",  12000, 26000),
-    # Victory – suburban south corridor
-    ("Victory Rd",      "Arterial","Southwest",   43.570, -116.280, "EW",   7000, 16000),
-    ("Victory Rd",      "Arterial","Southeast",   43.570, -116.195, "EW",   6000, 14000),
-    # Amity – far south Boise
-    ("Amity Rd",        "Arterial","Southwest",   43.553, -116.275, "EW",   5000, 12000),
-    # Warm Springs – East Bench signature road
-    ("Warm Springs Ave","Arterial","East Bench",  43.608, -116.165, "EW",   9000, 18000),
-    # Federal Way – East Bench / Southeast connector
-    ("Federal Way",     "Arterial","East Bench",  43.597, -116.158, "EW",   8000, 16000),
-    # Emerald – inner Boise collector/arterial
-    ("Emerald St",      "Arterial","Downtown",    43.614, -116.202, "EW",   7000, 15000),
-    ("Emerald St",      "Arterial","Southeast",   43.614, -116.190, "EW",   6000, 13000),
-    # Gowen – southeast / airport area
-    ("Gowen Rd",        "Arterial","Southeast",   43.543, -116.158, "EW",   5000, 11000),
+# ─── PIPE MATERIALS BY SYSTEM AND ERA ────────────────────────────────────────
+# Based on real Boise utility materials documented by City of Boise PW
+WATER_MATERIALS = {
+    "Cast Iron":       {"era": (1920, 1970), "pct": 0.15, "fail_rate": "high"},
+    "Ductile Iron":    {"era": (1965, 2010), "pct": 0.35, "fail_rate": "medium"},
+    "PVC":             {"era": (1975, 2026), "pct": 0.30, "fail_rate": "low"},
+    "HDPE":            {"era": (2000, 2026), "pct": 0.10, "fail_rate": "low"},
+    "Asbestos Cement": {"era": (1950, 1980), "pct": 0.08, "fail_rate": "high"},
+    "Galvanized Steel":{"era": (1930, 1965), "pct": 0.02, "fail_rate": "high"},
+}
 
-    # ── MAJOR N-S ARTERIALS ───────────────────────────────────────────────────
-    # Eagle Rd – far west
-    ("Eagle Rd",        "Arterial","West Boise",  43.625, -116.354, "NS",  16000, 32000),
-    # Cloverdale – west Boise N-S
-    ("Cloverdale Rd",   "Arterial","West Boise",  43.620, -116.336, "NS",  12000, 24000),
-    # Ten Mile – suburban west
-    ("Ten Mile Rd",     "Arterial","West Boise",  43.615, -116.316, "NS",  10000, 22000),
-    # Five Mile – SW/West Boise corridor
-    ("Five Mile Rd",    "Arterial","West Boise",  43.618, -116.295, "NS",  11000, 23000),
-    ("Five Mile Rd",    "Arterial","Southwest",   43.575, -116.295, "NS",   9000, 19000),
-    # Maple Grove – inner west
-    ("Maple Grove Rd",  "Arterial","West Boise",  43.620, -116.276, "NS",  10000, 21000),
-    ("Maple Grove Rd",  "Arterial","Southwest",   43.575, -116.276, "NS",   8000, 17000),
-    # Cole Rd – central N-S spine
-    ("Cole Rd",         "Arterial","West Boise",  43.625, -116.256, "NS",  14000, 28000),
-    ("Cole Rd",         "Arterial","Southwest",   43.572, -116.256, "NS",  11000, 22000),
-    # Orchard St – inner SE/SW
-    ("Orchard St",      "Arterial","Southwest",   43.585, -116.232, "NS",   9000, 18000),
-    ("Orchard St",      "Arterial","Southeast",   43.565, -116.232, "NS",   7000, 15000),
-    # Vista Ave – SE signature arterial
-    ("Vista Ave",       "Arterial","Southeast",   43.575, -116.207, "NS",  10000, 20000),
-    # Broadway Ave – east Downtown / SE
-    ("Broadway Ave",    "Arterial","Downtown",    43.612, -116.188, "NS",  12000, 24000),
-    ("Broadway Ave",    "Arterial","Southeast",   43.568, -116.188, "NS",  10000, 20000),
-    # Curtis Rd – collector-level N-S
-    ("Curtis Rd",       "Collector","Southwest",  43.580, -116.222, "NS",   5000, 11000),
-    # Milwaukee St – SE collector
-    ("Milwaukee St",    "Collector","Southeast",  43.565, -116.210, "NS",   4000,  9000),
+SEWER_MATERIALS = {
+    "Vitrified Clay":  {"era": (1920, 1975), "pct": 0.20, "fail_rate": "high"},
+    "PVC":             {"era": (1975, 2026), "pct": 0.35, "fail_rate": "low"},
+    "Concrete":        {"era": (1940, 1990), "pct": 0.20, "fail_rate": "medium"},
+    "Ductile Iron":    {"era": (1970, 2010), "pct": 0.15, "fail_rate": "medium"},
+    "HDPE":            {"era": (2005, 2026), "pct": 0.05, "fail_rate": "low"},
+    "Orangeburg":      {"era": (1945, 1972), "pct": 0.05, "fail_rate": "high"},
+}
 
-    # ── COLLECTORS: NORTH END ─────────────────────────────────────────────────
-    ("Harrison Blvd",   "Collector","North End",  43.643, -116.200, "NS",   4000,  9000),
-    ("Hill Rd",         "Collector","North End",  43.660, -116.215, "EW",   3000,  7000),
-    ("Bogus Basin Rd",  "Collector","North End",  43.665, -116.195, "DIAG", 2000,  5000),
+STORMWATER_MATERIALS = {
+    "Corrugated Metal":{"era": (1950, 1990), "pct": 0.25, "fail_rate": "high"},
+    "Concrete":        {"era": (1940, 2010), "pct": 0.35, "fail_rate": "medium"},
+    "PVC":             {"era": (1985, 2026), "pct": 0.20, "fail_rate": "low"},
+    "HDPE":            {"era": (2000, 2026), "pct": 0.10, "fail_rate": "low"},
+    "Reinforced Concrete Box": {"era": (1960, 2020), "pct": 0.10, "fail_rate": "medium"},
+}
 
-    # ── COLLECTORS: DOWNTOWN ──────────────────────────────────────────────────
-    ("Capitol Blvd",    "Collector","Downtown",   43.611, -116.201, "NS",   6000, 12000),
-    ("Front St",        "Arterial", "Downtown",   43.606, -116.205, "EW",  10000, 20000),
-    ("Myrtle St",       "Collector","Downtown",   43.607, -116.200, "EW",   5000, 10000),
-    ("Bannock St",      "Collector","Downtown",   43.613, -116.200, "EW",   4000,  8000),
-    ("Jefferson St",    "Collector","Downtown",   43.616, -116.201, "EW",   3500,  7000),
-    ("Main St",         "Collector","Downtown",   43.615, -116.200, "EW",   5000, 10000),
+# Pipe diameters by system (inches)
+WATER_DIAMETERS   = [4, 6, 8, 10, 12, 16, 20, 24, 30, 36]
+SEWER_DIAMETERS   = [6, 8, 10, 12, 15, 18, 21, 24, 30, 36, 42, 48]
+STORM_DIAMETERS   = [12, 15, 18, 24, 30, 36, 42, 48, 60, 72]
 
-    # ── LOCAL: NORTH END ──────────────────────────────────────────────────────
-    ("Fort St",         "Local",    "North End",  43.638, -116.205, "EW",    800,  2500),
-    ("Eastman St",      "Local",    "North End",  43.641, -116.203, "EW",    600,  2000),
-    ("15th St",         "Local",    "North End",  43.645, -116.208, "NS",    500,  1800),
-    ("Lemp St",         "Local",    "North End",  43.648, -116.202, "EW",    400,  1500),
-    ("Northview St",    "Local",    "North End",  43.650, -116.198, "EW",    300,  1200),
+# ─── REAL BOISE CORRIDOR CATALOG ─────────────────────────────────────────────
+# Each corridor represents a real Boise street where pipe infrastructure
+# runs.  Water, sewer, and stormwater are co-located along these corridors.
+# (corridor_name, district, anchor_lat, anchor_lon, orientation,
+#  has_water, has_sewer, has_storm, corridor_age_era)
 
-    # ── LOCAL: DOWNTOWN ───────────────────────────────────────────────────────
-    ("Idaho St",        "Local",    "Downtown",   43.614, -116.202, "EW",   2000,  5000),
-    ("8th St",          "Local",    "Downtown",   43.613, -116.197, "NS",   1500,  4000),
-    ("9th St",          "Local",    "Downtown",   43.613, -116.199, "NS",   1500,  4000),
-    ("11th St",         "Local",    "Downtown",   43.613, -116.202, "NS",   1200,  3500),
+CORRIDOR_CATALOG = [
+    # ── DOWNTOWN (oldest infrastructure, 1920s-1960s) ────────────────────────
+    ("Main St",          "Downtown",  43.615, -116.200, "EW",  True, True, True,  "old"),
+    ("Capitol Blvd",     "Downtown",  43.611, -116.201, "NS",  True, True, True,  "old"),
+    ("Front St",         "Downtown",  43.606, -116.205, "EW",  True, True, True,  "old"),
+    ("Bannock St",       "Downtown",  43.613, -116.200, "EW",  True, True, True,  "old"),
+    ("Idaho St",         "Downtown",  43.614, -116.202, "EW",  True, True, False, "old"),
+    ("Myrtle St",        "Downtown",  43.607, -116.200, "EW",  True, True, True,  "old"),
+    ("8th St",           "Downtown",  43.613, -116.197, "NS",  True, True, False, "old"),
+    ("9th St",           "Downtown",  43.613, -116.199, "NS",  True, True, False, "old"),
+    ("Jefferson St",     "Downtown",  43.616, -116.201, "EW",  True, True, True,  "old"),
+    ("Fairview Ave",     "Downtown",  43.616, -116.200, "EW",  True, True, True,  "mid"),
+    ("Broadway Ave",     "Downtown",  43.612, -116.188, "NS",  True, True, True,  "mid"),
+    ("I-184 Corridor",   "Downtown",  43.609, -116.214, "EW",  False,False,True,  "mid"),
 
-    # ── LOCAL: EAST BENCH ─────────────────────────────────────────────────────
-    ("Parkcenter Blvd", "Collector","East Bench", 43.597, -116.178, "NS",   4000,  9000),
-    ("Shaw Mountain Rd","Collector","East Bench", 43.605, -116.155, "DIAG", 2000,  5000),
-    ("Boise Ave",       "Collector","East Bench", 43.600, -116.172, "EW",   3000,  7000),
-    ("Cassia St",       "Local",    "East Bench", 43.603, -116.168, "EW",    800,  2500),
-    ("Latah St",        "Local",    "East Bench", 43.598, -116.165, "EW",    600,  2000),
+    # ── NORTH END (historic, mix of old and mid-era) ─────────────────────────
+    ("Harrison Blvd",    "North End", 43.643, -116.200, "NS",  True, True, True,  "old"),
+    ("Fort St",          "North End", 43.638, -116.205, "EW",  True, True, False, "old"),
+    ("Hill Rd",          "North End", 43.660, -116.215, "EW",  True, True, True,  "old"),
+    ("15th St",          "North End", 43.645, -116.208, "NS",  True, True, False, "old"),
+    ("Bogus Basin Rd",   "North End", 43.665, -116.195, "DIAG",True, True, False, "mid"),
+    ("Eastman St",       "North End", 43.641, -116.203, "EW",  True, True, False, "old"),
 
-    # ── LOCAL: SOUTHEAST ──────────────────────────────────────────────────────
-    ("Protest Rd",      "Local",    "Southeast",  43.555, -116.178, "NS",    400,  1500),
-    ("Gekeler Ln",      "Local",    "Southeast",  43.558, -116.193, "NS",    500,  1800),
-    ("Rose Hill St",    "Local",    "Southeast",  43.562, -116.185, "EW",    400,  1400),
-    ("Eisenman Rd",     "Collector","Southeast",  43.550, -116.170, "NS",   2000,  5000),
+    # ── EAST BENCH (mid-era, bench above river) ──────────────────────────────
+    ("Warm Springs Ave", "East Bench",43.608, -116.165, "EW",  True, True, True,  "old"),
+    ("Federal Way",      "East Bench",43.597, -116.158, "EW",  True, True, True,  "mid"),
+    ("Parkcenter Blvd",  "East Bench",43.597, -116.178, "NS",  True, True, True,  "mid"),
+    ("Boise Ave",        "East Bench",43.600, -116.172, "EW",  True, True, True,  "mid"),
+    ("Shaw Mountain Rd", "East Bench",43.605, -116.155, "DIAG",True, True, False, "mid"),
 
-    # ── LOCAL: SOUTHWEST ──────────────────────────────────────────────────────
-    ("Linden St",       "Local",    "Southwest",  43.578, -116.252, "EW",    400,  1500),
-    ("Targee St",       "Local",    "Southwest",  43.572, -116.246, "EW",    350,  1300),
-    ("Hillcrest Ave",   "Local",    "Southwest",  43.583, -116.238, "EW",    500,  1800),
+    # ── SOUTHEAST (Vista/Broadway corridor, mixed era) ───────────────────────
+    ("Vista Ave",        "Southeast", 43.575, -116.207, "NS",  True, True, True,  "mid"),
+    ("Broadway Ave",     "Southeast", 43.568, -116.188, "NS",  True, True, True,  "mid"),
+    ("Overland Rd",      "Southeast", 43.588, -116.195, "EW",  True, True, True,  "mid"),
+    ("Milwaukee St",     "Southeast", 43.565, -116.210, "NS",  True, True, True,  "mid"),
+    ("Gowen Rd",         "Southeast", 43.543, -116.158, "EW",  True, True, True,  "new"),
+    ("Eisenman Rd",      "Southeast", 43.550, -116.170, "NS",  True, True, True,  "new"),
+    ("Victory Rd",       "Southeast", 43.570, -116.195, "EW",  True, True, True,  "mid"),
 
-    # ── LOCAL: WEST BOISE ─────────────────────────────────────────────────────
-    ("Lake Harbour Ln", "Local",    "West Boise", 43.635, -116.285, "EW",    400,  1500),
-    ("Bergeson St",     "Local",    "West Boise", 43.628, -116.270, "EW",    300,  1200),
-    ("Biscayne Dr",     "Local",    "West Boise", 43.622, -116.315, "EW",    350,  1300),
+    # ── SOUTHWEST (suburban, mostly mid-to-new) ──────────────────────────────
+    ("Five Mile Rd",     "Southwest", 43.575, -116.295, "NS",  True, True, True,  "mid"),
+    ("Maple Grove Rd",   "Southwest", 43.575, -116.276, "NS",  True, True, True,  "mid"),
+    ("Cole Rd",          "Southwest", 43.572, -116.256, "NS",  True, True, True,  "mid"),
+    ("Overland Rd",      "Southwest", 43.588, -116.270, "EW",  True, True, True,  "mid"),
+    ("Orchard St",       "Southwest", 43.585, -116.232, "NS",  True, True, True,  "mid"),
+    ("Curtis Rd",        "Southwest", 43.580, -116.222, "NS",  True, True, False, "mid"),
+    ("Victory Rd",       "Southwest", 43.570, -116.280, "EW",  True, True, True,  "mid"),
+    ("Amity Rd",         "Southwest", 43.553, -116.275, "EW",  True, True, True,  "new"),
+
+    # ── WEST BOISE (newest growth, mostly new) ───────────────────────────────
+    ("Fairview Ave",     "West Boise",43.616, -116.295, "EW",  True, True, True,  "mid"),
+    ("Ustick Rd",        "West Boise",43.633, -116.300, "EW",  True, True, True,  "mid"),
+    ("McMillan Rd",      "West Boise",43.643, -116.310, "EW",  True, True, True,  "new"),
+    ("Chinden Blvd",     "West Boise",43.653, -116.310, "EW",  True, True, True,  "mid"),
+    ("State St",         "West Boise",43.637, -116.280, "EW",  True, True, True,  "mid"),
+    ("Eagle Rd",         "West Boise",43.625, -116.354, "NS",  True, True, True,  "new"),
+    ("Cloverdale Rd",    "West Boise",43.620, -116.336, "NS",  True, True, True,  "new"),
+    ("Ten Mile Rd",      "West Boise",43.615, -116.316, "NS",  True, True, True,  "new"),
+    ("Cole Rd",          "West Boise",43.625, -116.256, "NS",  True, True, True,  "mid"),
+    ("Franklin Rd",      "West Boise",43.607, -116.290, "EW",  True, True, True,  "mid"),
 ]
 
-# ACHD functional class → typical PASER condition distribution
-ROAD_CONDITION_PROFILE = {
-    "Highway":   {"mean": 72, "std": 14},
-    "Arterial":  {"mean": 62, "std": 18},
-    "Collector": {"mean": 54, "std": 20},
-    "Local":     {"mean": 46, "std": 22},
-}
-
-SURFACE_BY_TYPE = {
-    "Highway":   ["Asphalt", "Concrete", "Asphalt"],      # Concrete rare on highways
-    "Arterial":  ["Asphalt", "Asphalt", "Concrete"],
-    "Collector": ["Asphalt", "Asphalt", "Chip Seal"],
-    "Local":     ["Asphalt", "Chip Seal", "Chip Seal"],
-}
-
-COMPLAINT_TYPES  = ["Pothole", "Crack", "Flooding", "Sign Damage", "Debris",
-                    "Pavement Failure", "Sidewalk"]
-WO_STATUSES      = ["Open", "In Progress", "Completed", "Deferred"]
-WO_TYPES         = ["Pothole Repair", "Crack Seal", "Resurfacing", "Emergency Repair",
-                    "Striping", "Drainage Repair", "Sign Replacement"]
-WEATHER_EVENTS   = ["Light Rain", "Heavy Rain", "Snow", "Ice Storm", "Freeze-Thaw"]
-DISTRICTS        = ["North End", "Downtown", "East Bench", "Southeast", "Southwest", "West Boise"]
-
-# District bounding boxes: (lat_min, lat_max, lon_min, lon_max)
-DISTRICT_BOUNDS = {
-    "North End":  (43.626, 43.680, -116.230, -116.170),
-    "Downtown":   (43.600, 43.626, -116.220, -116.175),
-    "East Bench": (43.580, 43.626, -116.175, -116.100),
-    "Southeast":  (43.540, 43.595, -116.200, -116.100),
-    "Southwest":  (43.540, 43.600, -116.330, -116.200),
-    "West Boise": (43.600, 43.655, -116.360, -116.230),
+ERA_INSTALL_RANGE = {
+    "old": (1925, 1970),
+    "mid": (1965, 2000),
+    "new": (1995, 2022),
 }
 
 
-# ─── 1. ROAD SEGMENTS ─────────────────────────────────────────────────────────
-def generate_road_segments(n=300):
-    """
-    Generate synthetic road segments using real Boise street anchors.
-    Each entry in STREET_CATALOG can produce multiple segments (blocks).
-    Coordinates are offset from the street's anchor lat/lon to simulate
-    individual block-level segments along the corridor.
-    """
+def _pick_material(materials_dict, install_year):
+    """Pick a pipe material consistent with the install year."""
+    eligible = [
+        (m, d) for m, d in materials_dict.items()
+        if d["era"][0] <= install_year <= d["era"][1]
+    ]
+    if not eligible:
+        eligible = list(materials_dict.items())
+    weights = [d["pct"] for _, d in eligible]
+    total = sum(weights)
+    weights = [w / total for w in weights]
+    idx = np.random.choice(len(eligible), p=weights)
+    return eligible[idx][0]
+
+
+def _coord_offset(anchor_lat, anchor_lon, orientation, district):
+    if orientation == "EW":
+        lat = anchor_lat + random.uniform(-0.003, 0.003)
+        lon = anchor_lon + random.uniform(-0.040, 0.040)
+    elif orientation == "NS":
+        lat = anchor_lat + random.uniform(-0.040, 0.040)
+        lon = anchor_lon + random.uniform(-0.003, 0.003)
+    else:
+        lat = anchor_lat + random.uniform(-0.020, 0.020)
+        lon = anchor_lon + random.uniform(-0.020, 0.020)
+    db = SERVICE_DISTRICTS[district]
+    lat = float(np.clip(lat, db[0], db[1]))
+    lon = float(np.clip(lon, db[2], db[3]))
+    return round(lat, 6), round(lon, 6)
+
+
+def _condition_from_material_and_age(material, materials_dict, age):
+    fail_rate = materials_dict.get(material, {}).get("fail_rate", "medium")
+    base = {"high": 38, "medium": 55, "low": 72}[fail_rate]
+    age_penalty = age * {"high": 0.6, "medium": 0.35, "low": 0.15}[fail_rate]
+    ci = int(np.clip(np.random.normal(base - age_penalty * 0.3, 15), 5, 100))
+    return ci
+
+
+# ─── 1. PIPE SEGMENTS ────────────────────────────────────────────────────────
+def generate_pipe_segments(n=500):
+    """Generate water, sewer, and stormwater pipe segments along real Boise corridors."""
     segments = []
     seg_id = 1
 
-    # Distribute n segments across catalog entries proportionally
-    weights = []
-    for entry in STREET_CATALOG:
-        rt = entry[1]
-        # Highways and arterials get more segments (longer roads)
-        w = {"Highway": 5, "Arterial": 4, "Collector": 2, "Local": 1}[rt]
-        weights.append(w)
-    total_w = sum(weights)
-    counts = [max(1, round(n * w / total_w)) for w in weights]
+    # Target mix: ~40% water, ~40% sewer, ~20% stormwater
+    system_weights = {"Water": 0.40, "Sewer": 0.40, "Stormwater": 0.20}
 
-    # Trim/pad to exactly n
-    while sum(counts) > n:
-        counts[counts.index(max(counts))] -= 1
-    while sum(counts) < n:
-        counts[counts.index(min(counts))] += 1
+    for _ in range(n):
+        # Pick system type
+        system = np.random.choice(list(system_weights.keys()),
+                                   p=list(system_weights.values()))
 
-    for entry, count in zip(STREET_CATALOG, counts):
-        street_name, road_type, district, anchor_lat, anchor_lon, orientation, aadt_lo, aadt_hi = entry
-        profile = ROAD_CONDITION_PROFILE[road_type]
+        # Pick corridor that has this system
+        valid = [c for c in CORRIDOR_CATALOG if
+                 (system == "Water" and c[5]) or
+                 (system == "Sewer" and c[6]) or
+                 (system == "Stormwater" and c[7])]
+        corridor = random.choice(valid)
+        name, district, a_lat, a_lon, orient, _, _, _, era = corridor
 
-        for _ in range(count):
-            # Offset lat/lon along the street's corridor
-            if orientation == "EW":
-                lat = anchor_lat + random.uniform(-0.003, 0.003)
-                lon = anchor_lon + random.uniform(-0.040, 0.040)
-            elif orientation == "NS":
-                lat = anchor_lat + random.uniform(-0.040, 0.040)
-                lon = anchor_lon + random.uniform(-0.003, 0.003)
-            else:  # DIAG
-                lat = anchor_lat + random.uniform(-0.020, 0.020)
-                lon = anchor_lon + random.uniform(-0.020, 0.020)
+        # Install year from era
+        yr_lo, yr_hi = ERA_INSTALL_RANGE[era]
+        install_year = random.randint(yr_lo, yr_hi)
+        age = 2026 - install_year
 
-            # Clip to district bounds
-            db = DISTRICT_BOUNDS[district]
-            lat = float(np.clip(lat, db[0], db[1]))
-            lon = float(np.clip(lon, db[2], db[3]))
+        # Material
+        mat_dict = {"Water": WATER_MATERIALS, "Sewer": SEWER_MATERIALS,
+                    "Stormwater": STORMWATER_MATERIALS}[system]
+        material = _pick_material(mat_dict, install_year)
 
-            condition = int(np.clip(np.random.normal(profile["mean"], profile["std"]), 5, 100))
-            install_year = random.randint(1970, 2022)
-            age = 2026 - install_year
-            length_miles = {
-                "Highway":   round(random.uniform(0.5, 3.0), 2),
-                "Arterial":  round(random.uniform(0.3, 2.0), 2),
-                "Collector": round(random.uniform(0.2, 1.2), 2),
-                "Local":     round(random.uniform(0.1, 0.6), 2),
-            }[road_type]
+        # Diameter
+        diam_list = {"Water": WATER_DIAMETERS, "Sewer": SEWER_DIAMETERS,
+                     "Stormwater": STORM_DIAMETERS}[system]
+        diameter = random.choice(diam_list)
 
-            daily_traffic = random.randint(aadt_lo, aadt_hi)
-            num_lanes = {
-                "Highway":   random.choice([4, 6, 8]),
-                "Arterial":  random.choice([4, 6]),
-                "Collector": random.choice([2, 4]),
-                "Local":     2,
-            }[road_type]
+        # Length
+        length_ft = random.randint(200, 2500)
 
-            cost_per_mile = {
-                "Highway":   random.uniform(80000, 200000),
-                "Arterial":  random.uniform(50000, 120000),
-                "Collector": random.uniform(25000, 70000),
-                "Local":     random.uniform(10000, 40000),
-            }[road_type]
+        # Condition
+        condition = _condition_from_material_and_age(material, mat_dict, age)
 
-            segments.append({
-                "segment_id":                f"SEG-{str(seg_id).zfill(4)}",
-                "street_name":               street_name,
-                "district":                  district,
-                "road_type":                 road_type,
-                "surface_type":              random.choice(SURFACE_BY_TYPE[road_type]),
-                "condition_index":           condition,
-                "paser_rating":              max(1, min(10, round(condition / 10))),
-                "install_year":              install_year,
-                "asset_age_years":           age,
-                "length_miles":              length_miles,
-                "lane_width_ft":             random.choice([11, 12]),
-                "num_lanes":                 num_lanes,
-                "daily_traffic_aadt":        daily_traffic,
-                "lat":                       round(lat, 6),
-                "lon":                       round(lon, 6),
-                "last_inspection_date":      (
-                    datetime(2026, 1, 1) - timedelta(days=random.randint(30, 900))
-                ).strftime("%Y-%m-%d"),
-                "last_treatment_year":       random.randint(2014, 2025),
-                "estimated_repair_cost_usd": int(length_miles * cost_per_mile),
-            })
-            seg_id += 1
+        # Coordinates
+        lat, lon = _coord_offset(a_lat, a_lon, orient, district)
 
-    return pd.DataFrame(segments).head(n)
+        # Depth
+        depth_ft = {"Water": round(random.uniform(3, 7), 1),
+                    "Sewer": round(random.uniform(5, 25), 1),
+                    "Stormwater": round(random.uniform(3, 15), 1)}[system]
+
+        # Estimated replacement cost
+        cost_per_ft = {
+            "Water":      random.uniform(80, 350),
+            "Sewer":      random.uniform(100, 500),
+            "Stormwater": random.uniform(60, 250),
+        }[system]
+        # Larger diameter = more expensive
+        diam_mult = 1.0 + (diameter - 12) * 0.03
+        replacement_cost = int(length_ft * cost_per_ft * max(diam_mult, 0.5))
+
+        # Break / failure history (higher for old high-fail materials)
+        fail_rate = mat_dict.get(material, {}).get("fail_rate", "medium")
+        break_base = {"high": 3.5, "medium": 1.2, "low": 0.3}[fail_rate]
+        breaks_5yr = max(0, int(np.random.poisson(break_base * (age / 50))))
+
+        # Capacity utilization (sewer/storm only)
+        if system in ("Sewer", "Stormwater"):
+            capacity_pct = round(np.clip(np.random.normal(
+                {"old": 78, "mid": 60, "new": 40}[era], 18), 5, 100), 1)
+        else:
+            capacity_pct = None
+
+        # Criticality: proximity to hospital, school, major intersection
+        criticality = random.choice(["Critical", "High", "Medium", "Low"])
+        if system == "Water" and diameter >= 16:
+            criticality = random.choice(["Critical", "Critical", "High"])
+        if system == "Sewer" and diameter >= 24:
+            criticality = random.choice(["Critical", "High", "High"])
+
+        segments.append({
+            "segment_id":               f"PIPE-{str(seg_id).zfill(4)}",
+            "system_type":              system,
+            "corridor_name":            name,
+            "district":                 district,
+            "pipe_material":            material,
+            "diameter_inches":          diameter,
+            "length_ft":                length_ft,
+            "depth_ft":                 depth_ft,
+            "install_year":             install_year,
+            "asset_age_years":          age,
+            "condition_score":          condition,
+            "breaks_last_5yr":          breaks_5yr,
+            "capacity_utilization_pct": capacity_pct,
+            "criticality_class":        criticality,
+            "estimated_replacement_cost_usd": replacement_cost,
+            "last_inspection_date":     (
+                datetime(2026, 1, 1) - timedelta(days=random.randint(30, 1200))
+            ).strftime("%Y-%m-%d"),
+            "inspection_method":        random.choice(
+                {"Water": ["Acoustic Leak Detection", "Visual", "Pressure Test", "Ultrasonic"],
+                 "Sewer": ["CCTV", "Smoke Test", "Manhole Inspection", "Flow Monitoring"],
+                 "Stormwater": ["CCTV", "Visual", "Flow Monitoring", "Dye Test"]}[system]),
+            "lat":                      lat,
+            "lon":                      lon,
+        })
+        seg_id += 1
+
+    return pd.DataFrame(segments)
 
 
 # ─── 2. WORK ORDERS ───────────────────────────────────────────────────────────
-def generate_work_orders(segments_df, n=500):
+WO_TYPES_BY_SYSTEM = {
+    "Water": ["Main Break Repair", "Valve Replacement", "Hydrant Repair",
+              "Service Line Repair", "Leak Repair", "Main Flush"],
+    "Sewer": ["Line Clearing", "Root Removal", "Manhole Repair",
+              "CCTV Inspection", "Pipe Lining (CIPP)", "Bypass Pumping"],
+    "Stormwater": ["Catch Basin Cleaning", "Pipe Repair", "Culvert Clearing",
+                   "Detention Pond Maintenance", "Outfall Repair"],
+}
+
+def generate_work_orders(segments_df, n=600):
     wos = []
     for i in range(n):
         seg = segments_df.sample(1).iloc[0]
+        system = seg["system_type"]
         created = datetime(2024, 1, 1) + timedelta(days=random.randint(0, 730))
-        status = random.choice(WO_STATUSES)
+        status = random.choice(["Open", "In Progress", "Completed", "Deferred"])
         completed_date = None
         actual_hours = None
         actual_cost = None
         if status == "Completed":
-            completed_date = (created + timedelta(days=random.randint(1, 90))).strftime("%Y-%m-%d")
-            actual_hours = round(random.uniform(2, 90), 1)
-            actual_cost = random.randint(400, 110000)
+            completed_date = (created + timedelta(days=random.randint(1, 120))).strftime("%Y-%m-%d")
+            actual_hours = round(random.uniform(2, 120), 1)
+            actual_cost = random.randint(500, 250000)
 
         wos.append({
             "work_order_id":       f"WO-{str(i+1).zfill(5)}",
             "segment_id":          seg["segment_id"],
+            "system_type":         system,
             "district":            seg["district"],
-            "work_order_type":     random.choice(WO_TYPES),
+            "work_order_type":     random.choice(WO_TYPES_BY_SYSTEM[system]),
             "status":              status,
-            "priority":            random.choice(["Critical", "High", "Medium", "Low"]),
+            "priority":            random.choice(["Emergency", "Urgent", "Routine", "Scheduled"]),
             "created_date":        created.strftime("%Y-%m-%d"),
             "completed_date":      completed_date,
-            "crew_assigned":       f"Crew-{random.randint(1, 8)}",
-            "estimated_hours":     round(random.uniform(2, 80), 1),
+            "crew_assigned":       f"Crew-{system[0]}{random.randint(1, 6)}",
+            "estimated_hours":     round(random.uniform(2, 100), 1),
             "actual_hours":        actual_hours,
-            "estimated_cost_usd":  random.randint(500, 95000),
+            "estimated_cost_usd":  random.randint(500, 200000),
             "actual_cost_usd":     actual_cost,
-            "source":              random.choice(["Inspection", "311 Complaint",
-                                                   "Crew Report", "Scheduled PM"]),
+            "source":              random.choice(["SCADA Alert", "Inspection", "Citizen Report",
+                                                   "Scheduled PM", "Emergency Call"]),
             "lat":                 seg["lat"] + random.uniform(-0.001, 0.001),
             "lon":                 seg["lon"] + random.uniform(-0.001, 0.001),
         })
     return pd.DataFrame(wos)
 
 
-# ─── 3. CITIZEN COMPLAINTS ────────────────────────────────────────────────────
-def generate_complaints(segments_df, n=800):
-    complaints = []
+# ─── 3. SERVICE REQUESTS (replaces complaints) ───────────────────────────────
+REQUEST_TYPES = {
+    "Water": ["Low Pressure", "Discolored Water", "Water Main Break",
+              "Leak Report", "Hydrant Issue", "No Water"],
+    "Sewer": ["Sewer Backup", "Manhole Overflow", "Odor Complaint",
+              "Slow Drain", "Root Intrusion Report"],
+    "Stormwater": ["Street Flooding", "Clogged Drain", "Erosion Report",
+                   "Standing Water", "Culvert Blockage"],
+}
+
+def generate_service_requests(segments_df, n=900):
+    requests = []
     for i in range(n):
-        # 60% of complaints come from segments in poor condition
+        # Weight toward worse-condition segments
         if random.random() < 0.6:
-            pool = segments_df[segments_df["condition_index"] < 50]
+            pool = segments_df[segments_df["condition_score"] < 50]
             seg = pool.sample(1).iloc[0] if len(pool) > 0 else segments_df.sample(1).iloc[0]
         else:
             seg = segments_df.sample(1).iloc[0]
 
+        system = seg["system_type"]
         submitted = datetime(2024, 1, 1) + timedelta(days=random.randint(0, 730))
         resolved_date = None
-        if random.random() > 0.4:
-            resolved_date = (submitted + timedelta(days=random.randint(1, 60))).strftime("%Y-%m-%d")
+        if random.random() > 0.35:
+            resolved_date = (submitted + timedelta(days=random.randint(1, 45))).strftime("%Y-%m-%d")
 
-        complaints.append({
-            "complaint_id":        f"CMP-{str(i+1).zfill(5)}",
+        requests.append({
+            "request_id":          f"SR-{str(i+1).zfill(5)}",
             "segment_id":          seg["segment_id"],
+            "system_type":         system,
             "district":            seg["district"],
-            "complaint_type":      random.choice(COMPLAINT_TYPES),
+            "request_type":        random.choice(REQUEST_TYPES[system]),
             "submitted_date":      submitted.strftime("%Y-%m-%d"),
             "resolved_date":       resolved_date,
             "resolution_status":   random.choice(["Resolved", "Pending", "In Review"]),
-            "severity_reported":   random.choice(["Low", "Medium", "High", "Critical"]),
-            "channel":             random.choice(["311 App", "Phone", "Web Form", "Email"]),
+            "severity":            random.choice(["Low", "Medium", "High", "Critical"]),
+            "channel":             random.choice(["311 App", "Phone", "Web Form", "SCADA"]),
             "lat":                 seg["lat"] + random.uniform(-0.002, 0.002),
             "lon":                 seg["lon"] + random.uniform(-0.002, 0.002),
         })
-    return pd.DataFrame(complaints)
+    return pd.DataFrame(requests)
 
 
-# ─── 4. TRAFFIC COUNTS ────────────────────────────────────────────────────────
-def generate_traffic(segments_df):
+# ─── 4. TREATMENT FACILITIES ─────────────────────────────────────────────────
+def generate_facilities():
+    """Real Boise water/sewer treatment facilities with actual capacity data."""
+    return pd.DataFrame([
+        {"facility_id": "FAC-001", "facility_name": "Marden Water Treatment Plant",
+         "facility_type": "Water Treatment", "district": "North End",
+         "capacity_mgd": 36.0, "avg_flow_mgd": 22.5, "built_year": 1962,
+         "last_upgrade_year": 2018,
+         "condition": "Fair", "lat": 43.648, "lon": -116.198},
+        {"facility_id": "FAC-002", "facility_name": "Columbia Water Treatment Plant",
+         "facility_type": "Water Treatment", "district": "East Bench",
+         "capacity_mgd": 6.0, "avg_flow_mgd": 4.2, "built_year": 2005,
+         "last_upgrade_year": 2024,
+         "condition": "Good", "lat": 43.595, "lon": -116.148},
+        {"facility_id": "FAC-003", "facility_name": "Lander Street Water Renewal Facility",
+         "facility_type": "Wastewater Treatment", "district": "Downtown",
+         "capacity_mgd": 15.0, "avg_flow_mgd": 12.5, "built_year": 1950,
+         "last_upgrade_year": 2024,
+         "condition": "Poor", "lat": 43.601, "lon": -116.224},
+        {"facility_id": "FAC-004", "facility_name": "West Boise Water Renewal Facility",
+         "facility_type": "Wastewater Treatment", "district": "West Boise",
+         "capacity_mgd": 40.0, "avg_flow_mgd": 18.0, "built_year": 1978,
+         "last_upgrade_year": 2022,
+         "condition": "Fair", "lat": 43.610, "lon": -116.310},
+        {"facility_id": "FAC-005", "facility_name": "Southeast Pump Station",
+         "facility_type": "Pump Station", "district": "Southeast",
+         "capacity_mgd": 8.0, "avg_flow_mgd": 5.5, "built_year": 1988,
+         "last_upgrade_year": 2020,
+         "condition": "Fair", "lat": 43.555, "lon": -116.180},
+        {"facility_id": "FAC-006", "facility_name": "North End Pressure Zone Station",
+         "facility_type": "Pump Station", "district": "North End",
+         "capacity_mgd": 4.0, "avg_flow_mgd": 2.8, "built_year": 1975,
+         "last_upgrade_year": 2019,
+         "condition": "Fair", "lat": 43.658, "lon": -116.205},
+    ])
+
+
+# ─── 5. FLOW MONITORING ──────────────────────────────────────────────────────
+def generate_flow_data(segments_df):
+    """Monthly flow/pressure monitoring for a subset of instrumented pipes."""
+    instrumented = segments_df[
+        segments_df["system_type"].isin(["Sewer", "Stormwater"])
+    ].sample(min(80, len(segments_df)), random_state=42)
+
     records = []
-    for _, seg in segments_df.iterrows():
+    for _, seg in instrumented.iterrows():
         for month in range(1, 13):
-            # Boise traffic peaks in summer; winter dip from weather
-            seasonal = 1.0 + 0.15 * np.sin((month - 7) * np.pi / 6)
-            aadt = int(seg["daily_traffic_aadt"] * seasonal * random.uniform(0.92, 1.08))
+            # Sewer flow is higher in winter (less evaporation, more infiltration)
+            # Stormwater peaks in spring (snowmelt) and fall (rain)
+            if seg["system_type"] == "Sewer":
+                seasonal = 1.0 + 0.12 * np.cos((month - 1) * np.pi / 6)
+            else:
+                seasonal = 1.0 + 0.3 * (1 if month in (3,4,5,10,11) else 0)
+            cap = seg["capacity_utilization_pct"] or 50
+            flow_pct = round(cap * seasonal * random.uniform(0.85, 1.15), 1)
             records.append({
-                "traffic_id":         f"TRF-{seg['segment_id']}-2025-{str(month).zfill(2)}",
-                "segment_id":         seg["segment_id"],
-                "year":               2025,
-                "month":              month,
-                "aadt":               aadt,
-                "heavy_vehicle_pct":  round(random.uniform(3, 25), 1),
-                "peak_hour_volume":   int(aadt * random.uniform(0.08, 0.12)),
-                "congestion_index":   round(random.uniform(0.1, 0.9), 2),
+                "monitor_id":   f"MON-{seg['segment_id']}-2025-{str(month).zfill(2)}",
+                "segment_id":   seg["segment_id"],
+                "system_type":  seg["system_type"],
+                "year":         2025,
+                "month":        month,
+                "avg_flow_pct": round(min(flow_pct, 120), 1),
+                "peak_flow_pct":round(min(flow_pct * random.uniform(1.2, 1.8), 150), 1),
+                "inflow_infiltration_flag": flow_pct > 85,
             })
     return pd.DataFrame(records)
 
 
-# ─── 5. WEATHER EVENTS ────────────────────────────────────────────────────────
+# ─── 6. WEATHER EVENTS ────────────────────────────────────────────────────────
 def generate_weather(n=150):
     events = []
     for i in range(n):
         event_date = datetime(2023, 1, 1) + timedelta(days=random.randint(0, 1095))
-        event_type = random.choice(WEATHER_EVENTS)
+        event_type = random.choice(["Heavy Rain", "Snow", "Freeze-Thaw",
+                                     "Ice Storm", "Thunderstorm", "Rapid Snowmelt"])
         is_frozen = event_type in ("Ice Storm", "Snow", "Freeze-Thaw")
         events.append({
             "weather_event_id":       f"WX-{str(i+1).zfill(4)}",
@@ -398,124 +476,85 @@ def generate_weather(n=150):
             "event_type":             event_type,
             "duration_hours":         round(random.uniform(1, 72), 1),
             "precipitation_inches":   round(random.uniform(0.1, 4.5), 2)
-                                       if ("Rain" in event_type or "Snow" in event_type) else 0,
-            "min_temp_f":             round(random.uniform(10, 32), 1)
+                                       if event_type in ("Heavy Rain", "Snow", "Thunderstorm", "Rapid Snowmelt") else 0,
+            "min_temp_f":             round(random.uniform(5, 28), 1)
                                        if is_frozen else round(random.uniform(32, 65), 1),
             "district_affected":      random.choice(DISTRICTS + ["All"]),
-            "estimated_damage_usd":   random.randint(0, 250000),
-            "work_orders_triggered":  random.randint(0, 45),
+            "estimated_damage_usd":   random.randint(0, 500000),
+            "sewer_overflows_reported": random.randint(0, 12) if event_type in ("Heavy Rain", "Thunderstorm", "Rapid Snowmelt") else 0,
+            "water_main_breaks":      random.randint(0, 5) if is_frozen else 0,
         })
     return pd.DataFrame(events)
 
 
-# ─── 6. BRIDGE INSPECTIONS ────────────────────────────────────────────────────
-# Real Boise-area bridges crossing the Boise River and major drainages
-BOISE_BRIDGES = [
-    ("Broadway Bridge",      "Downtown",  43.604, -116.188),
-    ("Capitol Blvd Bridge",  "Downtown",  43.604, -116.201),
-    ("Americana Blvd Bridge","Downtown",  43.604, -116.212),
-    ("Veterans Memorial Br", "West Boise",43.604, -116.225),
-    ("Glenwood Bridge",      "West Boise",43.635, -116.233),
-    ("Eagle Road Bridge",    "West Boise",43.604, -116.354),
-    ("Cole Rd Bridge",       "Southwest", 43.585, -116.256),
-    ("Orchard St Bridge",    "Southeast", 43.580, -116.232),
-    ("Warm Springs Bridge",  "East Bench",43.604, -116.153),
-    ("Federal Way Bridge",   "East Bench",43.590, -116.160),
-    ("Milwaukee St Bridge",  "Southeast", 43.568, -116.210),
-    ("Five Mile Crossing",   "Southwest", 43.580, -116.295),
-    ("Maple Grove Crossing", "Southwest", 43.575, -116.276),
-    ("Cloverdale Overpass",  "West Boise",43.615, -116.336),
-    ("Ustick Rd Overpass",   "West Boise",43.633, -116.310),
-]
-
-def generate_bridges():
-    bridges = []
-    for i, (name, district, lat, lon) in enumerate(BOISE_BRIDGES):
-        bridges.append({
-            "bridge_id":                  f"BRG-{str(i+1).zfill(3)}",
-            "bridge_name":                name,
-            "district":                   district,
-            "built_year":                 random.randint(1955, 2018),
-            "deck_condition":             random.choice(["Good", "Fair", "Poor", "Critical"]),
-            "superstructure_condition":   random.choice(["Good", "Fair", "Poor"]),
-            "substructure_condition":     random.choice(["Good", "Fair", "Poor"]),
-            "sufficiency_rating":         round(random.uniform(20, 100), 1),
-            "daily_traffic_aadt":         random.randint(500, 45000),
-            "last_inspection_date":       (
-                datetime(2026, 1, 1) - timedelta(days=random.randint(30, 730))
-            ).strftime("%Y-%m-%d"),
-            "estimated_repair_cost_usd":  random.randint(50000, 5000000),
-            "lat":                        round(lat + random.uniform(-0.001, 0.001), 6),
-            "lon":                        round(lon + random.uniform(-0.001, 0.001), 6),
-        })
-    return pd.DataFrame(bridges)
-
-
-# ─── 7. BUDGET / FISCAL TABLE ─────────────────────────────────────────────────
+# ─── 7. CIP BUDGET ───────────────────────────────────────────────────────────
 def generate_budget():
     records = []
     for year in [2022, 2023, 2024, 2025, 2026]:
         for district in DISTRICTS:
-            raw = np.array([
-                random.uniform(0.30, 0.55),
-                random.uniform(0.30, 0.50),
-                random.uniform(0.05, 0.20),
-            ])
-            pcts = [round(x, 1) for x in (raw / raw.sum() * 100)]
+            # Water, sewer, stormwater budget split
+            total_budget = random.randint(1_200_000, 6_500_000)
+            water_pct  = round(random.uniform(0.30, 0.45), 2)
+            sewer_pct  = round(random.uniform(0.30, 0.45), 2)
+            storm_pct  = round(1 - water_pct - sewer_pct, 2)
+
             records.append({
                 "fiscal_year":              year,
                 "district":                 district,
-                "allocated_budget_usd":     random.randint(800000, 4500000),
-                "spent_budget_usd":         random.randint(600000, 4200000),
-                "preventive_pct":           pcts[0],
-                "reactive_pct":             pcts[1],
-                "capital_pct":              pcts[2],
-                "num_projects_completed":   random.randint(5, 40),
-                "citizen_satisfaction_score": round(random.uniform(2.5, 4.8), 1),
+                "total_cip_budget_usd":     total_budget,
+                "water_budget_pct":         round(water_pct * 100, 1),
+                "sewer_budget_pct":         round(sewer_pct * 100, 1),
+                "stormwater_budget_pct":    round(storm_pct * 100, 1),
+                "spent_budget_usd":         random.randint(int(total_budget * 0.6),
+                                                           int(total_budget * 1.05)),
+                "projects_completed":       random.randint(3, 30),
+                "pipe_miles_replaced":      round(random.uniform(0.2, 4.5), 1),
+                "citizen_satisfaction":     round(random.uniform(2.5, 4.8), 1),
             })
     return pd.DataFrame(records)
 
 
 # ─── GENERATE ALL & SAVE ──────────────────────────────────────────────────────
-print("Generating road segments...")
-roads = generate_road_segments(300)
-roads.to_csv(BASE_DIR / "road_segments.csv", index=False)
-print(f"  → {len(roads)} road segments saved")
-print(f"  Districts: {roads['district'].value_counts().to_dict()}")
-print(f"  Road types: {roads['road_type'].value_counts().to_dict()}")
+print("Generating pipe segments (water / sewer / stormwater)...")
+pipes = generate_pipe_segments(500)
+pipes.to_csv(BASE_DIR / "pipe_segments.csv", index=False)
+print(f"  -> {len(pipes)} pipe segments saved")
+print(f"  Systems: {pipes['system_type'].value_counts().to_dict()}")
+print(f"  Districts: {pipes['district'].value_counts().to_dict()}")
 
 print("Generating work orders...")
-work_orders = generate_work_orders(roads, 500)
+work_orders = generate_work_orders(pipes, 600)
 work_orders.to_csv(BASE_DIR / "work_orders.csv", index=False)
-print(f"  → {len(work_orders)} work orders saved")
+print(f"  -> {len(work_orders)} work orders saved")
 
-print("Generating complaints...")
-complaints = generate_complaints(roads, 800)
-complaints.to_csv(BASE_DIR / "complaints.csv", index=False)
-print(f"  → {len(complaints)} complaints saved")
+print("Generating service requests...")
+requests = generate_service_requests(pipes, 900)
+requests.to_csv(BASE_DIR / "service_requests.csv", index=False)
+print(f"  -> {len(requests)} service requests saved")
 
-print("Generating traffic counts...")
-traffic = generate_traffic(roads)
-traffic.to_csv(BASE_DIR / "traffic_counts.csv", index=False)
-print(f"  → {len(traffic)} traffic records saved")
+print("Generating treatment facilities...")
+facilities = generate_facilities()
+facilities.to_csv(BASE_DIR / "facilities.csv", index=False)
+print(f"  -> {len(facilities)} facilities saved")
+
+print("Generating flow monitoring data...")
+flow = generate_flow_data(pipes)
+flow.to_csv(BASE_DIR / "flow_monitoring.csv", index=False)
+print(f"  -> {len(flow)} flow records saved")
 
 print("Generating weather events...")
 weather = generate_weather(150)
 weather.to_csv(BASE_DIR / "weather_events.csv", index=False)
-print(f"  → {len(weather)} weather events saved")
+print(f"  -> {len(weather)} weather events saved")
 
-print("Generating bridge inspections...")
-bridges = generate_bridges()
-bridges.to_csv(BASE_DIR / "bridge_inspections.csv", index=False)
-print(f"  → {len(bridges)} bridges saved")
-
-print("Generating budget data...")
+print("Generating CIP budget data...")
 budget = generate_budget()
-budget.to_csv(BASE_DIR / "budget_actuals.csv", index=False)
-print(f"  → {len(budget)} budget records saved")
+budget.to_csv(BASE_DIR / "budget_cip.csv", index=False)
+print(f"  -> {len(budget)} budget records saved")
 
 print("\n✓ All datasets generated successfully.")
-print("\nSample — Road Segments:")
-print(roads[["segment_id","street_name","district","road_type",
-             "condition_index","daily_traffic_aadt","lat","lon"]].head(10).to_string(index=False))
+print("\nSample — Pipe Segments:")
+print(pipes[["segment_id","system_type","corridor_name","district",
+             "pipe_material","diameter_inches","condition_score",
+             "breaks_last_5yr","estimated_replacement_cost_usd"]].head(10).to_string(index=False))
 

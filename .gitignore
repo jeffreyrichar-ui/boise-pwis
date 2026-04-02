@@ -40,3 +40,10 @@ secrets.json
 # Large generated outputs (keep schema, not bulk exports)
 data/priority_scores.csv
 data/deferral_analysis.csv
+
+# Old road-focused files (replaced by utility system)
+data/road_segments.csv
+data/complaints.csv
+data/bridge_inspections.csv
+data/traffic_counts.csv
+data/budget_actuals.csv

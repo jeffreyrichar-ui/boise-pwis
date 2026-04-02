@@ -112,37 +112,41 @@ jobs:
 
           errors = []
 
-          # road_segments
-          df = pd.read_csv("data/road_segments.csv")
-          if not (df["condition_index"].between(1, 100)).all():
-              errors.append("road_segments: condition_index out of range [1,100]")
+          # pipe_segments
+          df = pd.read_csv("data/pipe_segments.csv")
+          if not (df["condition_score"].between(1, 100)).all():
+              errors.append("pipe_segments: condition_score out of range [1,100]")
           if df["segment_id"].duplicated().any():
-              errors.append("road_segments: duplicate segment_ids found")
+              errors.append("pipe_segments: duplicate segment_ids found")
           if not df["segment_id"].notna().all():
-              errors.append("road_segments: null segment_ids found")
-          required_cols = ["segment_id","street_name","district","road_type",
-                           "condition_index","daily_traffic_aadt","lat","lon"]
+              errors.append("pipe_segments: null segment_ids found")
+          required_cols = ["segment_id","system_type","corridor_name","district",
+                           "pipe_material","condition_score","lat","lon"]
           missing = [c for c in required_cols if c not in df.columns]
           if missing:
-              errors.append(f"road_segments: missing columns {missing}")
+              errors.append(f"pipe_segments: missing columns {missing}")
+          valid_systems = {"Water", "Sewer", "Stormwater"}
+          bad_sys = set(df["system_type"].unique()) - valid_systems
+          if bad_sys:
+              errors.append(f"pipe_segments: unexpected system_type values {bad_sys}")
 
           # work_orders
           df = pd.read_csv("data/work_orders.csv")
           if df["work_order_id"].duplicated().any():
               errors.append("work_orders: duplicate work_order_ids found")
 
-          # complaints
-          df = pd.read_csv("data/complaints.csv")
+          # service_requests
+          df = pd.read_csv("data/service_requests.csv")
           valid_severity = {"Low", "Medium", "High", "Critical"}
-          bad = set(df["severity_reported"].unique()) - valid_severity
+          bad = set(df["severity"].unique()) - valid_severity
           if bad:
-              errors.append(f"complaints: unexpected severity values {bad}")
+              errors.append(f"service_requests: unexpected severity values {bad}")
 
-          # budget
-          df = pd.read_csv("data/budget_actuals.csv")
-          pct_sum = df["preventive_pct"] + df["reactive_pct"] + df["capital_pct"]
-          if (pct_sum > 101).any():
-              errors.append("budget: pct columns sum > 100 in some rows")
+          # budget_cip
+          df = pd.read_csv("data/budget_cip.csv")
+          pct_sum = df["water_budget_pct"] + df["sewer_budget_pct"] + df["stormwater_budget_pct"]
+          if (pct_sum > 102).any():
+              errors.append("budget_cip: system pct columns sum > 100 in some rows")
 
           if errors:
               print("DATA QUALITY FAILURES:")
@@ -194,7 +198,7 @@ jobs:
               "data/deferral_analysis.csv",
               "docs/map_condition.html",
               "docs/map_priority.html",
-              "docs/map_complaints.html",
+              "docs/map_service_requests.html",
               "docs/map_executive.html",
           ]
           missing = [f for f in required if not Path(f).exists()]

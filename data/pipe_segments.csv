@@ -1,0 +1,501 @@
+segment_id,system_type,corridor_name,district,pipe_material,diameter_inches,length_ft,depth_ft,install_year,asset_age_years,condition_score,breaks_last_5yr,capacity_utilization_pct,criticality_class,estimated_replacement_cost_usd,last_inspection_date,inspection_method,lat,lon
+PIPE-0001,Water,Chinden Blvd,West Boise,Asbestos Cement,4,1326,3.4,1972,54,37,2,,High,241290,2023-02-02,Acoustic Leak Detection,43.651469,-116.338837
+PIPE-0002,Stormwater,Cloverdale Rd,West Boise,PVC,60,1918,12.7,2001,25,93,0,31.5,Medium,419045,2025-05-07,CCTV,43.6,-116.335464
+PIPE-0003,Water,Overland Rd,Southeast,Ductile Iron,16,1608,5.9,1971,55,57,1,,High,328142,2024-11-04,Acoustic Leak Detection,43.588622,-116.17043
+PIPE-0004,Sewer,Front St,Downtown,Vitrified Clay,12,1385,12.6,1967,59,12,4,83.7,Medium,228610,2025-07-09,Smoke Test,43.608911,-116.176575
+PIPE-0005,Sewer,Curtis Rd,Southwest,Concrete,10,2093,16.1,1980,46,52,0,50.7,Critical,807429,2024-02-25,Flow Monitoring,43.570356,-116.219063
+PIPE-0006,Water,Warm Springs Ave,East Bench,Cast Iron,10,1488,6.5,1929,97,11,4,,Low,164629,2023-09-07,Pressure Test,43.606276,-116.165061
+PIPE-0007,Stormwater,Boise Ave,East Bench,Corrugated Metal,60,2221,12.5,1973,53,24,4,73.3,Low,718090,2022-12-15,Flow Monitoring,43.597545,-116.175
+PIPE-0008,Water,Victory Rd,Southwest,Cast Iron,6,2399,4.4,1965,61,29,2,,High,159098,2023-01-28,Acoustic Leak Detection,43.571505,-116.258512
+PIPE-0009,Water,Chinden Blvd,West Boise,PVC,30,1014,5.2,1984,42,49,0,,Critical,125165,2024-07-30,Acoustic Leak Detection,43.650917,-116.288999
+PIPE-0010,Water,Bogus Basin Rd,North End,Ductile Iron,6,2190,5.1,1970,56,35,0,,Low,602758,2024-09-25,Visual,43.677641,-116.175881
+PIPE-0011,Stormwater,Gowen Rd,Southeast,HDPE,36,1994,3.3,2007,19,79,0,56.0,Critical,210466,2024-08-21,CCTV,43.545398,-116.161881
+PIPE-0012,Sewer,Front St,Downtown,Vitrified Clay,8,2305,7.6,1946,80,11,4,72.4,Low,586346,2024-11-08,CCTV,43.604428,-116.191482
+PIPE-0013,Water,8th St,Downtown,Ductile Iron,20,1651,5.9,1967,59,61,1,,Critical,218180,2024-11-05,Visual,43.606886,-116.197198
+PIPE-0014,Sewer,Curtis Rd,Southwest,Ductile Iron,10,1928,6.5,1993,33,55,1,100.0,Critical,252208,2025-05-25,Smoke Test,43.554679,-116.222224
+PIPE-0015,Sewer,Broadway Ave,Downtown,PVC,24,2171,12.6,1991,35,56,0,61.6,High,1221262,2022-10-21,Flow Monitoring,43.6,-116.188594
+PIPE-0016,Water,Fairview Ave,Downtown,PVC,12,1091,5.2,1977,49,65,1,,High,259361,2025-08-08,Acoustic Leak Detection,43.618812,-116.193666
+PIPE-0017,Sewer,Harrison Blvd,North End,Vitrified Clay,36,478,22.8,1929,97,8,11,69.0,High,285908,2024-10-10,Manhole Inspection,43.657017,-116.201589
+PIPE-0018,Water,Bogus Basin Rd,North End,Ductile Iron,20,736,4.3,1981,45,54,0,,High,185938,2024-09-22,Pressure Test,43.671868,-116.203
+PIPE-0019,Sewer,Jefferson St,Downtown,Vitrified Clay,8,1200,19.1,1947,79,27,4,100.0,Medium,381839,2025-05-04,Smoke Test,43.615217,-116.22
+PIPE-0020,Water,Eastman St,North End,Galvanized Steel,6,2466,3.8,1932,94,23,5,,Critical,627436,2025-05-27,Ultrasonic,43.638933,-116.220459
+PIPE-0021,Sewer,Warm Springs Ave,East Bench,Vitrified Clay,6,1566,19.8,1927,99,17,8,83.4,High,133378,2022-11-11,CCTV,43.609627,-116.154031
+PIPE-0022,Sewer,Broadway Ave,Southeast,PVC,10,1960,20.9,2000,26,57,0,61.4,Critical,339058,2023-12-09,Flow Monitoring,43.54,-116.18915
+PIPE-0023,Water,McMillan Rd,West Boise,PVC,8,1169,6.2,2018,8,73,0,,High,286881,2024-06-04,Visual,43.645188,-116.271904
+PIPE-0024,Water,Ten Mile Rd,West Boise,Ductile Iron,20,358,6.3,1998,28,44,0,,Critical,130842,2024-01-30,Pressure Test,43.643687,-116.317665
+PIPE-0025,Sewer,Idaho St,Downtown,Vitrified Clay,18,2286,23.8,1942,84,9,6,100.0,Medium,462421,2025-09-15,CCTV,43.613398,-116.175
+PIPE-0026,Sewer,Ustick Rd,West Boise,Ductile Iron,18,1484,23.0,1992,34,71,0,100.0,High,480547,2023-11-18,Flow Monitoring,43.632618,-116.261261
+PIPE-0027,Water,Idaho St,Downtown,Asbestos Cement,16,1485,6.6,1967,59,31,7,,Critical,279532,2023-10-18,Visual,43.61498,-116.22
+PIPE-0028,Water,McMillan Rd,West Boise,HDPE,12,1863,4.1,2013,13,83,0,,High,478363,2023-01-21,Ultrasonic,43.643288,-116.349968
+PIPE-0029,Water,Broadway Ave,Downtown,Cast Iron,12,2311,3.4,1970,56,30,4,,Critical,378572,2024-07-19,Ultrasonic,43.625108,-116.187284
+PIPE-0030,Water,McMillan Rd,West Boise,PVC,6,2065,3.8,2022,4,53,0,,Critical,247011,2023-07-16,Visual,43.642487,-116.299619
+PIPE-0031,Stormwater,Warm Springs Ave,East Bench,Concrete,60,2102,12.6,1969,57,36,1,80.6,Low,887993,2023-02-03,Dye Test,43.605301,-116.175
+PIPE-0032,Water,Victory Rd,Southwest,PVC,8,2144,6.4,1993,33,83,0,,Medium,397798,2024-08-09,Pressure Test,43.5697,-116.259858
+PIPE-0033,Sewer,Shaw Mountain Rd,East Bench,Concrete,30,530,19.1,1985,41,47,1,71.3,High,258771,2023-09-27,CCTV,43.590535,-116.16575
+PIPE-0034,Water,Amity Rd,Southwest,Ductile Iron,24,224,4.6,2007,19,40,1,,Critical,68641,2024-09-09,Pressure Test,43.555656,-116.291111
+PIPE-0035,Stormwater,Victory Rd,Southwest,Reinforced Concrete Box,12,1792,8.6,1996,30,48,0,72.9,Low,116701,2022-10-04,CCTV,43.569017,-116.265669
+PIPE-0036,Stormwater,Jefferson St,Downtown,Concrete,42,755,8.5,1966,60,41,2,92.0,Low,161910,2024-07-04,CCTV,43.618201,-116.22
+PIPE-0037,Water,Maple Grove Rd,Southwest,Ductile Iron,30,413,5.6,1966,60,51,1,,High,180402,2025-01-24,Visual,43.6,-116.2769
+PIPE-0038,Sewer,Jefferson St,Downtown,Orangeburg,42,668,20.3,1955,71,30,7,87.3,High,506626,2025-04-25,CCTV,43.616384,-116.22
+PIPE-0039,Stormwater,Gowen Rd,Southeast,Reinforced Concrete Box,42,1824,5.9,2013,13,61,0,65.9,Critical,658495,2022-09-30,CCTV,43.545649,-116.182134
+PIPE-0040,Sewer,Vista Ave,Southeast,Ductile Iron,21,1717,13.4,1999,27,52,2,46.1,Low,533972,2025-01-23,Flow Monitoring,43.540517,-116.2
+PIPE-0041,Sewer,Harrison Blvd,North End,Vitrified Clay,42,1306,14.3,1958,68,22,4,61.9,High,568046,2023-05-24,Smoke Test,43.652273,-116.197482
+PIPE-0042,Sewer,Five Mile Rd,Southwest,Concrete,18,317,12.1,1989,37,46,0,46.9,Critical,126605,2023-01-09,Smoke Test,43.574545,-116.29605
+PIPE-0043,Water,Myrtle St,Downtown,Cast Iron,20,2201,4.9,1940,86,25,9,,Critical,231045,2023-11-08,Ultrasonic,43.607331,-116.22
+PIPE-0044,Water,Victory Rd,Southwest,PVC,16,1942,4.4,1998,28,78,0,,Critical,309389,2024-09-15,Ultrasonic,43.57298,-116.275969
+PIPE-0045,Water,Warm Springs Ave,East Bench,Cast Iron,30,1359,4.2,1962,64,39,7,,High,567510,2024-04-13,Visual,43.610883,-116.13839
+PIPE-0046,Sewer,Chinden Blvd,West Boise,PVC,8,250,8.7,1996,30,59,0,37.0,Low,64040,2023-03-01,CCTV,43.653444,-116.312448
+PIPE-0047,Water,Amity Rd,Southwest,PVC,4,821,4.2,2015,11,78,0,,High,178701,2022-12-28,Ultrasonic,43.550895,-116.269973
+PIPE-0048,Water,Victory Rd,Southeast,Ductile Iron,12,1956,5.4,1993,33,63,1,,High,266216,2024-07-29,Visual,43.568832,-116.185318
+PIPE-0049,Sewer,Victory Rd,Southwest,Vitrified Clay,10,210,5.7,1969,57,50,1,83.8,High,87614,2024-06-09,Smoke Test,43.569451,-116.26485
+PIPE-0050,Sewer,Eisenman Rd,Southeast,PVC,30,1120,6.4,1998,28,76,0,56.4,High,689200,2025-03-23,Flow Monitoring,43.561811,-116.16755
+PIPE-0051,Water,Ten Mile Rd,West Boise,PVC,20,1315,3.3,2004,22,72,1,,High,272353,2024-05-30,Acoustic Leak Detection,43.615038,-116.316037
+PIPE-0052,Water,Harrison Blvd,North End,Asbestos Cement,30,2011,5.3,1955,71,19,7,,Critical,324049,2024-01-27,Ultrasonic,43.676286,-116.201911
+PIPE-0053,Water,Ten Mile Rd,West Boise,Ductile Iron,12,1840,4.8,2010,16,57,0,,Critical,629187,2022-11-17,Ultrasonic,43.640085,-116.315699
+PIPE-0054,Water,Gowen Rd,Southeast,PVC,10,2323,5.5,1996,30,61,0,,Low,498497,2025-03-29,Acoustic Leak Detection,43.542171,-116.137485
+PIPE-0055,Stormwater,Franklin Rd,West Boise,Corrugated Metal,18,1472,14.0,1980,46,35,5,47.5,Low,378843,2024-04-14,Flow Monitoring,43.607305,-116.28582
+PIPE-0056,Sewer,Gowen Rd,Southeast,PVC,24,2134,23.4,2021,5,71,0,42.1,High,1293269,2023-01-28,Manhole Inspection,43.541462,-116.153899
+PIPE-0057,Sewer,Main St,Downtown,Vitrified Clay,48,1422,22.3,1943,83,46,8,70.1,High,689087,2024-02-12,Smoke Test,43.617025,-116.193606
+PIPE-0058,Stormwater,Vista Ave,Southeast,Corrugated Metal,24,1882,7.6,1989,37,36,4,57.7,Low,630551,2025-09-18,Visual,43.54,-116.2
+PIPE-0059,Water,Overland Rd,Southwest,PVC,6,2003,3.1,1986,40,81,1,,Medium,561537,2024-01-09,Ultrasonic,43.585598,-116.237165
+PIPE-0060,Sewer,State St,West Boise,Vitrified Clay,18,2385,20.2,1970,56,37,4,67.4,Medium,358452,2024-08-24,CCTV,43.63628,-116.294667
+PIPE-0061,Sewer,Eisenman Rd,Southeast,PVC,42,611,5.9,1998,28,62,0,32.2,High,290151,2024-11-29,Smoke Test,43.545494,-116.168836
+PIPE-0062,Stormwater,Warm Springs Ave,East Bench,PVC,72,1766,8.5,1930,96,70,0,51.9,Low,305516,2024-04-22,Visual,43.608718,-116.175
+PIPE-0063,Stormwater,Myrtle St,Downtown,Concrete,36,1425,5.4,1953,73,26,3,83.6,Medium,257524,2024-04-06,Flow Monitoring,43.607834,-116.206055
+PIPE-0064,Sewer,Capitol Blvd,Downtown,Orangeburg,21,1324,24.5,1967,59,49,2,65.7,High,728308,2023-12-12,Smoke Test,43.6,-116.19881
+PIPE-0065,Water,Chinden Blvd,West Boise,Ductile Iron,36,1226,5.6,1977,49,49,2,,Critical,683054,2023-11-16,Visual,43.654067,-116.292326
+PIPE-0066,Stormwater,Jefferson St,Downtown,Concrete,36,1901,9.4,1943,83,56,2,70.8,Low,355825,2024-04-07,Flow Monitoring,43.614054,-116.22
+PIPE-0067,Stormwater,Broadway Ave,Downtown,Concrete,15,776,7.8,1994,32,52,1,77.7,Low,65262,2025-11-04,Flow Monitoring,43.626,-116.189646
+PIPE-0068,Sewer,Curtis Rd,Southwest,Orangeburg,24,1709,21.4,1972,54,62,5,67.3,High,449807,2024-09-05,CCTV,43.593826,-116.220966
+PIPE-0069,Water,Chinden Blvd,West Boise,PVC,12,1872,3.1,1994,32,68,0,,Medium,268437,2022-11-22,Ultrasonic,43.6507,-116.346372
+PIPE-0070,Water,Fairview Ave,West Boise,Ductile Iron,20,605,6.8,1974,52,64,1,,Critical,104024,2023-11-11,Pressure Test,43.618002,-116.285748
+PIPE-0071,Sewer,Bannock St,Downtown,Vitrified Clay,15,977,6.8,1950,76,29,9,100.0,Medium,520151,2024-07-22,Smoke Test,43.615809,-116.175
+PIPE-0072,Stormwater,Ten Mile Rd,West Boise,HDPE,15,2470,4.8,2001,25,88,1,31.6,High,600644,2025-03-11,Flow Monitoring,43.6,-116.317704
+PIPE-0073,Sewer,Harrison Blvd,North End,Vitrified Clay,42,305,16.8,1932,94,19,11,100.0,High,87332,2025-07-25,Flow Monitoring,43.626,-116.200851
+PIPE-0074,Sewer,Victory Rd,Southeast,PVC,30,646,19.5,1988,38,72,0,69.3,Critical,219513,2023-03-28,Flow Monitoring,43.569712,-116.2
+PIPE-0075,Sewer,Eisenman Rd,Southeast,PVC,8,2208,11.4,2016,10,59,0,34.5,Medium,679533,2023-10-14,Manhole Inspection,43.566992,-116.170339
+PIPE-0076,Sewer,Five Mile Rd,Southwest,Ductile Iron,36,1962,18.0,1997,29,69,1,61.2,High,627714,2024-01-08,Flow Monitoring,43.542934,-116.293789
+PIPE-0077,Stormwater,Overland Rd,Southwest,Concrete,15,1480,14.1,1991,35,61,1,84.6,Critical,125367,2023-10-31,Visual,43.587561,-116.256791
+PIPE-0078,Water,Victory Rd,Southwest,Cast Iron,36,2500,4.6,1968,58,43,6,,High,835029,2024-03-03,Pressure Test,43.57037,-116.266399
+PIPE-0079,Sewer,8th St,Downtown,Concrete,30,1071,12.0,1961,65,21,1,77.7,High,348715,2022-10-19,CCTV,43.6,-116.197107
+PIPE-0080,Water,Ustick Rd,West Boise,Ductile Iron,4,938,6.7,1982,44,62,2,,Critical,84603,2025-05-29,Visual,43.63164,-116.279007
+PIPE-0081,Sewer,Overland Rd,Southeast,PVC,24,1596,23.8,1991,35,75,0,43.1,High,352134,2025-06-18,Manhole Inspection,43.585944,-116.2
+PIPE-0082,Water,Victory Rd,Southeast,PVC,24,2010,5.0,1992,34,100,0,,Critical,719261,2024-09-07,Ultrasonic,43.569485,-116.2
+PIPE-0083,Water,Ustick Rd,West Boise,Cast Iron,4,1037,3.5,1968,58,22,2,,Low,64694,2022-12-08,Visual,43.631809,-116.323101
+PIPE-0084,Water,Overland Rd,Southwest,Ductile Iron,16,495,4.7,2000,26,30,0,,Critical,91213,2025-04-11,Ultrasonic,43.587382,-116.250637
+PIPE-0085,Sewer,Capitol Blvd,Downtown,Concrete,10,2084,21.9,1945,81,43,0,87.3,Medium,606464,2024-01-07,Smoke Test,43.626,-116.198481
+PIPE-0086,Water,Shaw Mountain Rd,East Bench,PVC,6,2290,3.8,1975,51,87,1,,Critical,636048,2025-02-06,Pressure Test,43.610329,-116.153776
+PIPE-0087,Water,Fort St,North End,Cast Iron,36,826,3.7,1936,90,10,7,,High,403058,2024-02-24,Visual,43.639561,-116.192559
+PIPE-0088,Water,Victory Rd,Southeast,Ductile Iron,24,2011,5.4,1969,57,57,2,,Critical,559765,2025-06-01,Ultrasonic,43.570788,-116.171294
+PIPE-0089,Water,Five Mile Rd,Southwest,Ductile Iron,4,2042,3.8,2000,26,28,0,,Medium,525456,2025-06-13,Visual,43.6,-116.29457
+PIPE-0090,Water,Front St,Downtown,Cast Iron,24,1999,4.5,1940,86,25,4,,Critical,785973,2024-01-27,Acoustic Leak Detection,43.606144,-116.196216
+PIPE-0091,Sewer,Victory Rd,Southwest,Concrete,15,1232,22.5,1989,37,50,0,86.6,Low,210256,2025-03-13,CCTV,43.571342,-116.267475
+PIPE-0092,Sewer,Parkcenter Blvd,East Bench,PVC,21,1545,19.8,2000,26,64,0,88.5,Medium,703254,2025-10-26,Manhole Inspection,43.622055,-116.175
+PIPE-0093,Water,Parkcenter Blvd,East Bench,Ductile Iron,10,1599,3.9,1976,50,63,2,,Critical,462935,2024-01-13,Visual,43.626,-116.175
+PIPE-0094,Water,Ustick Rd,West Boise,Ductile Iron,8,864,5.5,1989,37,79,0,,Low,69795,2024-04-28,Ultrasonic,43.631085,-116.284572
+PIPE-0095,Water,15th St,North End,Cast Iron,10,1467,6.6,1959,67,17,3,,Low,322699,2023-02-07,Ultrasonic,43.68,-116.206294
+PIPE-0096,Sewer,Broadway Ave,Downtown,Ductile Iron,36,766,12.4,1977,49,36,0,67.0,Critical,403640,2024-05-23,Flow Monitoring,43.626,-116.190687
+PIPE-0097,Stormwater,Chinden Blvd,West Boise,Concrete,42,575,3.3,1974,52,48,0,69.0,Critical,114491,2023-10-27,Visual,43.655,-116.332237
+PIPE-0098,Stormwater,Capitol Blvd,Downtown,Concrete,15,1573,11.4,1945,81,31,2,67.8,Critical,249014,2025-06-23,CCTV,43.626,-116.203174
+PIPE-0099,Sewer,Eastman St,North End,Vitrified Clay,10,2447,20.5,1938,88,7,5,100.0,Low,449399,2025-07-27,CCTV,43.643641,-116.19429
+PIPE-0100,Water,Cole Rd,Southwest,Ductile Iron,4,2310,4.2,1999,27,27,0,,Medium,410949,2025-07-17,Acoustic Leak Detection,43.578004,-116.254689
+PIPE-0101,Water,Overland Rd,Southeast,PVC,4,1784,3.1,1995,31,85,0,,Medium,376779,2025-03-04,Acoustic Leak Detection,43.590886,-116.2
+PIPE-0102,Sewer,Vista Ave,Southeast,Ductile Iron,18,917,14.6,1999,27,43,1,28.1,Critical,418127,2024-04-11,Smoke Test,43.595,-116.2
+PIPE-0103,Stormwater,Front St,Downtown,HDPE,12,1492,6.0,1937,89,52,1,81.1,Critical,190715,2024-01-23,Flow Monitoring,43.6086,-116.203769
+PIPE-0104,Water,9th St,Downtown,Cast Iron,20,1838,4.5,1948,78,25,6,,High,488486,2023-07-17,Acoustic Leak Detection,43.626,-116.196632
+PIPE-0105,Water,Eisenman Rd,Southeast,HDPE,8,2434,4.3,2014,12,75,0,,Low,586391,2025-09-07,Pressure Test,43.54,-116.172384
+PIPE-0106,Stormwater,Victory Rd,Southwest,Concrete,12,507,4.9,1982,44,81,2,26.3,Low,95740,2025-09-22,Visual,43.571027,-116.287503
+PIPE-0107,Sewer,Idaho St,Downtown,Concrete,42,1700,8.1,1940,86,40,2,94.1,High,896569,2023-11-12,Flow Monitoring,43.613173,-116.175
+PIPE-0108,Sewer,Boise Ave,East Bench,PVC,12,664,23.3,1982,44,71,1,44.3,Medium,253392,2023-03-03,Smoke Test,43.597155,-116.175
+PIPE-0109,Sewer,9th St,Downtown,Vitrified Clay,8,2051,21.2,1933,93,15,7,100.0,Medium,662636,2024-03-28,Smoke Test,43.6,-116.19772
+PIPE-0110,Stormwater,Warm Springs Ave,East Bench,Concrete,60,1118,3.3,1948,78,52,1,100.0,High,580216,2025-06-09,CCTV,43.605728,-116.175
+PIPE-0111,Water,Parkcenter Blvd,East Bench,Ductile Iron,24,2353,5.3,1990,36,44,2,,High,320086,2024-11-25,Visual,43.589864,-116.175
+PIPE-0112,Sewer,Eisenman Rd,Southeast,PVC,6,708,23.7,2011,15,59,0,17.6,Critical,178556,2024-07-07,Smoke Test,43.551448,-116.171175
+PIPE-0113,Stormwater,Cloverdale Rd,West Boise,PVC,18,1440,10.0,2003,23,57,1,5.0,Medium,393161,2022-10-05,CCTV,43.629154,-116.338439
+PIPE-0114,Sewer,Capitol Blvd,Downtown,Vitrified Clay,6,1284,17.8,1930,96,17,14,78.8,Low,227283,2024-07-19,Flow Monitoring,43.62309,-116.199398
+PIPE-0115,Stormwater,Gowen Rd,Southeast,HDPE,15,445,4.7,2009,17,72,0,59.7,Medium,120158,2023-09-08,Visual,43.540948,-116.16475
+PIPE-0116,Water,Broadway Ave,Southeast,Ductile Iron,30,634,4.1,1997,29,68,0,,Critical,154613,2024-02-01,Pressure Test,43.553529,-116.188201
+PIPE-0117,Water,Fort St,North End,Cast Iron,24,2308,5.0,1935,91,12,8,,Critical,638612,2024-05-05,Ultrasonic,43.637801,-116.174674
+PIPE-0118,Water,Ustick Rd,West Boise,Ductile Iron,12,2398,3.5,1995,31,63,0,,High,452930,2023-11-21,Pressure Test,43.630049,-116.3314
+PIPE-0119,Sewer,Idaho St,Downtown,Concrete,30,2044,18.6,1949,77,44,0,59.7,High,810741,2023-11-15,Smoke Test,43.615586,-116.219622
+PIPE-0120,Stormwater,Federal Way,East Bench,Concrete,42,2248,9.2,1997,29,59,0,100.0,Medium,369708,2025-01-04,Dye Test,43.594242,-116.175
+PIPE-0121,Water,McMillan Rd,West Boise,PVC,12,1577,5.0,2018,8,72,0,,Low,133243,2024-03-12,Acoustic Leak Detection,43.643044,-116.309223
+PIPE-0122,Stormwater,Franklin Rd,West Boise,Concrete,30,1132,10.4,1995,31,90,0,40.1,Critical,330069,2025-04-21,Visual,43.608328,-116.283318
+PIPE-0123,Sewer,Capitol Blvd,Downtown,Concrete,18,1915,20.5,1953,73,7,2,97.6,High,891078,2023-01-05,Smoke Test,43.6,-116.199857
+PIPE-0124,Water,Victory Rd,Southwest,PVC,24,2352,4.8,1985,41,67,0,,High,839614,2023-03-17,Visual,43.569261,-116.243465
+PIPE-0125,Sewer,Bogus Basin Rd,North End,PVC,30,1422,10.8,1982,44,77,0,68.7,High,496700,2025-03-28,Flow Monitoring,43.653995,-116.176084
+PIPE-0126,Sewer,Milwaukee St,Southeast,PVC,10,1389,23.5,1987,39,58,0,73.0,Medium,242323,2022-10-08,Manhole Inspection,43.54,-116.2
+PIPE-0127,Water,Jefferson St,Downtown,Cast Iron,36,1180,5.1,1931,95,5,5,,Critical,388853,2022-11-01,Visual,43.614455,-116.187413
+PIPE-0128,Sewer,Gowen Rd,Southeast,PVC,24,2155,10.7,2015,11,66,0,60.9,Critical,1057782,2023-07-31,Smoke Test,43.543903,-116.137527
+PIPE-0129,Water,Front St,Downtown,Cast Iron,24,963,6.7,1950,76,5,6,,Critical,305613,2022-11-16,Ultrasonic,43.60862,-116.175
+PIPE-0130,Sewer,Jefferson St,Downtown,Vitrified Clay,24,1317,14.2,1957,69,52,5,77.3,Critical,706860,2023-08-25,Flow Monitoring,43.614157,-116.22
+PIPE-0131,Stormwater,Chinden Blvd,West Boise,PVC,15,1841,6.0,1985,41,86,0,98.8,Medium,407787,2024-03-24,CCTV,43.654016,-116.335218
+PIPE-0132,Water,Eastman St,North End,Cast Iron,16,1167,4.2,1966,60,37,5,,High,420451,2024-04-07,Pressure Test,43.638373,-116.23
+PIPE-0133,Stormwater,Boise Ave,East Bench,Corrugated Metal,18,2158,9.6,1979,47,5,4,69.9,High,474090,2024-07-14,CCTV,43.597919,-116.152181
+PIPE-0134,Water,Orchard St,Southwest,PVC,30,1681,3.2,1993,33,74,0,,Critical,607394,2024-10-08,Ultrasonic,43.551248,-116.231615
+PIPE-0135,Sewer,Myrtle St,Downtown,Vitrified Clay,24,427,6.2,1957,69,40,4,87.3,High,226081,2024-09-12,CCTV,43.606721,-116.19894
+PIPE-0136,Water,Front St,Downtown,Asbestos Cement,16,461,6.6,1952,74,13,5,,Critical,81327,2023-10-11,Ultrasonic,43.606247,-116.22
+PIPE-0137,Sewer,Overland Rd,Southeast,PVC,8,2408,24.9,1989,37,77,0,63.3,Critical,1041486,2024-03-31,Flow Monitoring,43.585798,-116.166177
+PIPE-0138,Water,Cloverdale Rd,West Boise,PVC,30,1937,4.0,2018,8,80,0,,High,993633,2025-10-31,Visual,43.622555,-116.33406
+PIPE-0139,Sewer,Hill Rd,North End,Vitrified Clay,8,337,9.9,1929,97,5,5,66.7,Critical,93684,2025-02-19,Manhole Inspection,43.659679,-116.201238
+PIPE-0140,Water,15th St,North End,Asbestos Cement,16,1513,6.9,1961,65,53,5,,High,261456,2023-07-12,Ultrasonic,43.626,-116.205742
+PIPE-0141,Stormwater,Bannock St,Downtown,Concrete,42,2348,12.1,1947,79,45,1,89.2,High,522584,2023-04-29,CCTV,43.611912,-116.206694
+PIPE-0142,Stormwater,Cloverdale Rd,West Boise,PVC,42,2482,3.9,2008,18,79,0,59.5,High,762878,2025-08-19,Flow Monitoring,43.622399,-116.336669
+PIPE-0143,Stormwater,Cole Rd,Southwest,Corrugated Metal,15,970,5.5,1967,59,5,5,59.0,High,246043,2024-11-08,CCTV,43.596372,-116.255474
+PIPE-0144,Sewer,Maple Grove Rd,Southwest,Ductile Iron,48,1037,10.7,1980,46,56,4,56.2,High,481797,2025-05-15,Flow Monitoring,43.566731,-116.277564
+PIPE-0145,Water,Boise Ave,East Bench,PVC,16,1481,3.9,1978,48,71,0,,Critical,551333,2024-01-27,Visual,43.599484,-116.166998
+PIPE-0146,Water,Overland Rd,Southeast,Ductile Iron,24,2455,4.0,1980,46,43,1,,Critical,845576,2025-02-19,Ultrasonic,43.588928,-116.180212
+PIPE-0147,Sewer,Harrison Blvd,North End,Vitrified Clay,42,440,21.4,1959,67,32,6,43.3,High,129577,2025-01-27,CCTV,43.644916,-116.197966
+PIPE-0148,Stormwater,Parkcenter Blvd,East Bench,Concrete,48,1728,10.9,1997,29,53,3,79.2,Critical,496559,2022-12-14,Flow Monitoring,43.58,-116.175
+PIPE-0149,Sewer,Curtis Rd,Southwest,PVC,6,2257,23.2,1983,43,100,2,53.5,Medium,295302,2023-12-08,Manhole Inspection,43.6,-116.220956
+PIPE-0150,Sewer,Milwaukee St,Southeast,Concrete,18,1863,11.0,1970,56,36,0,74.3,Critical,1091849,2025-05-25,Flow Monitoring,43.56172,-116.2
+PIPE-0151,Water,Overland Rd,Southeast,Ductile Iron,30,2149,3.7,1989,37,36,0,,High,965639,2025-09-06,Visual,43.585337,-116.2
+PIPE-0152,Water,Hill Rd,North End,Asbestos Cement,36,2147,5.7,1969,57,16,5,,Critical,951606,2025-02-10,Ultrasonic,43.658627,-116.181067
+PIPE-0153,Water,Idaho St,Downtown,Cast Iron,8,1184,5.7,1944,82,57,7,,Critical,291457,2023-02-11,Pressure Test,43.6144,-116.175
+PIPE-0154,Water,Bannock St,Downtown,Cast Iron,20,1150,6.1,1931,95,10,8,,Critical,411914,2024-08-22,Pressure Test,43.615032,-116.212753
+PIPE-0155,Water,Victory Rd,Southwest,PVC,20,960,3.3,1989,37,57,1,,High,324430,2023-09-27,Pressure Test,43.571078,-116.267146
+PIPE-0156,Water,Broadway Ave,Southeast,Ductile Iron,6,221,6.0,1971,55,56,2,,Critical,35585,2025-10-10,Acoustic Leak Detection,43.595,-116.188332
+PIPE-0157,Stormwater,Five Mile Rd,Southwest,Concrete,15,1528,11.7,2000,26,60,1,79.5,High,176746,2023-10-15,Visual,43.6,-116.297926
+PIPE-0158,Sewer,Jefferson St,Downtown,Vitrified Clay,15,1299,13.4,1942,84,36,4,60.9,Low,284144,2024-10-28,Flow Monitoring,43.615959,-116.22
+PIPE-0159,Stormwater,Fairview Ave,Downtown,Concrete,30,227,7.0,1973,53,87,2,50.4,High,78063,2024-03-27,Flow Monitoring,43.618693,-116.213423
+PIPE-0160,Sewer,Ustick Rd,West Boise,PVC,24,1486,19.7,1977,49,73,0,65.5,High,834231,2023-11-16,CCTV,43.631066,-116.308141
+PIPE-0161,Stormwater,Ten Mile Rd,West Boise,Reinforced Concrete Box,72,2434,14.3,2001,25,64,1,49.1,Critical,1485328,2023-08-18,Dye Test,43.6,-116.314394
+PIPE-0162,Sewer,Jefferson St,Downtown,Concrete,15,1191,12.5,1965,61,46,2,80.6,Low,432164,2022-11-15,CCTV,43.614516,-116.22
+PIPE-0163,Stormwater,Maple Grove Rd,Southwest,PVC,72,548,10.4,1999,27,67,0,60.1,Medium,280613,2023-07-05,CCTV,43.54375,-116.277511
+PIPE-0164,Sewer,Main St,Downtown,Vitrified Clay,15,1109,16.5,1931,95,5,10,91.4,High,494327,2023-12-27,CCTV,43.615064,-116.198496
+PIPE-0165,Stormwater,Ustick Rd,West Boise,Concrete,30,1903,7.2,1971,55,46,1,52.7,Medium,466003,2023-04-02,CCTV,43.635523,-116.333132
+PIPE-0166,Sewer,Victory Rd,Southeast,PVC,18,475,22.0,1993,33,63,3,62.3,High,92898,2023-01-11,Smoke Test,43.568802,-116.170185
+PIPE-0167,Water,Victory Rd,Southwest,PVC,16,2493,6.2,1975,51,67,1,,Critical,718906,2023-07-07,Ultrasonic,43.569558,-116.283036
+PIPE-0168,Sewer,Main St,Downtown,Vitrified Clay,12,1042,16.5,1970,56,5,5,98.2,Critical,256662,2024-06-13,Flow Monitoring,43.61367,-116.183699
+PIPE-0169,Water,Orchard St,Southwest,PVC,36,1791,4.4,1985,41,89,0,,High,923260,2025-03-03,Pressure Test,43.593905,-116.231478
+PIPE-0170,Sewer,9th St,Downtown,Concrete,15,679,13.4,1940,86,73,1,58.7,High,129002,2022-10-23,Smoke Test,43.6,-116.197839
+PIPE-0171,Stormwater,McMillan Rd,West Boise,Concrete,18,966,3.1,2004,22,49,0,46.3,Low,277136,2023-08-18,Dye Test,43.641887,-116.31392
+PIPE-0172,Water,Gowen Rd,Southeast,PVC,24,2201,6.2,2017,9,85,0,,High,421188,2023-01-21,Acoustic Leak Detection,43.541004,-116.152768
+PIPE-0173,Stormwater,Ten Mile Rd,West Boise,Concrete,30,2424,11.6,1998,28,46,3,51.6,High,296617,2024-04-02,CCTV,43.640863,-116.316799
+PIPE-0174,Water,Victory Rd,Southeast,Ductile Iron,16,556,6.1,1981,45,70,3,,Critical,148667,2025-02-20,Visual,43.569634,-116.155483
+PIPE-0175,Water,Hill Rd,North End,Cast Iron,36,1636,3.7,1928,98,10,4,,Critical,660254,2023-08-13,Acoustic Leak Detection,43.660194,-116.207251
+PIPE-0176,Sewer,Warm Springs Ave,East Bench,Vitrified Clay,10,743,20.2,1966,60,54,1,74.9,Low,231156,2023-10-26,Flow Monitoring,43.606498,-116.148088
+PIPE-0177,Sewer,Idaho St,Downtown,Concrete,8,1850,12.4,1965,61,38,1,84.7,Critical,164410,2023-05-09,Manhole Inspection,43.614094,-116.219742
+PIPE-0178,Water,Idaho St,Downtown,Cast Iron,20,1092,5.0,1959,67,33,3,,High,308424,2025-08-25,Acoustic Leak Detection,43.616809,-116.176012
+PIPE-0179,Sewer,8th St,Downtown,Concrete,24,266,5.0,1965,61,56,0,100.0,Critical,135817,2024-05-20,CCTV,43.6,-116.194854
+PIPE-0180,Water,State St,West Boise,Ductile Iron,12,537,3.7,1988,38,47,0,,Critical,144372,2025-11-30,Visual,43.636231,-116.247696
+PIPE-0181,Water,Maple Grove Rd,Southwest,Ductile Iron,8,1126,3.0,1969,57,38,0,,High,309443,2023-10-10,Acoustic Leak Detection,43.576556,-116.27633
+PIPE-0182,Sewer,Franklin Rd,West Boise,Ductile Iron,8,1483,21.3,1971,55,40,0,70.3,Critical,483980,2024-12-31,Flow Monitoring,43.606205,-116.30606
+PIPE-0183,Water,Vista Ave,Southeast,PVC,8,1886,3.9,1978,48,97,1,,Low,187962,2024-02-27,Visual,43.584286,-116.2
+PIPE-0184,Stormwater,Vista Ave,Southeast,Corrugated Metal,15,1216,11.3,1982,44,35,3,56.4,High,155491,2023-09-22,Flow Monitoring,43.579272,-116.2
+PIPE-0185,Sewer,State St,West Boise,Concrete,12,2227,6.4,1968,58,68,1,41.4,Low,544366,2022-09-25,Flow Monitoring,43.636315,-116.300713
+PIPE-0186,Sewer,Broadway Ave,Southeast,PVC,42,907,5.3,1999,27,62,0,91.1,High,199783,2024-04-25,Flow Monitoring,43.589018,-116.185273
+PIPE-0187,Water,Eisenman Rd,Southeast,HDPE,20,537,3.6,2017,9,78,1,,Critical,218841,2025-07-20,Pressure Test,43.561243,-116.169774
+PIPE-0188,Water,Ten Mile Rd,West Boise,PVC,10,437,3.5,2008,18,67,0,,Critical,106737,2025-02-24,Acoustic Leak Detection,43.6,-116.313452
+PIPE-0189,Sewer,Broadway Ave,Downtown,Ductile Iron,18,2342,12.4,1996,30,26,0,37.9,Critical,1086560,2024-01-16,Flow Monitoring,43.613378,-116.186065
+PIPE-0190,Stormwater,Overland Rd,Southeast,Concrete,15,1277,7.3,1998,28,30,1,90.3,Medium,180756,2025-05-06,CCTV,43.589274,-116.188868
+PIPE-0191,Sewer,15th St,North End,Concrete,6,380,12.3,1957,69,40,2,92.4,Low,150857,2024-08-30,Manhole Inspection,43.673695,-116.210926
+PIPE-0192,Water,Bogus Basin Rd,North End,PVC,16,1311,3.5,1991,35,73,0,,Critical,205946,2023-04-25,Pressure Test,43.67804,-116.192139
+PIPE-0193,Sewer,Parkcenter Blvd,East Bench,PVC,8,2465,20.7,1985,41,77,0,64.7,High,536463,2022-11-09,Smoke Test,43.59354,-116.175
+PIPE-0194,Water,Fairview Ave,Downtown,Galvanized Steel,20,297,6.4,1965,61,31,5,,Critical,29607,2024-10-08,Visual,43.614398,-116.212286
+PIPE-0195,Sewer,Gowen Rd,Southeast,PVC,6,783,22.9,2010,16,66,0,16.7,Critical,159870,2025-05-21,Smoke Test,43.54427,-116.190558
+PIPE-0196,Sewer,Chinden Blvd,West Boise,PVC,8,455,10.2,1990,36,87,1,61.4,Medium,152268,2023-05-20,Manhole Inspection,43.65261,-116.272863
+PIPE-0197,Water,15th St,North End,Cast Iron,10,757,3.6,1929,97,5,6,,High,135028,2023-05-22,Pressure Test,43.667395,-116.207492
+PIPE-0198,Sewer,Five Mile Rd,Southwest,Concrete,8,570,18.9,1981,45,68,3,58.4,High,115928,2023-12-05,Flow Monitoring,43.547609,-116.293884
+PIPE-0199,Water,Overland Rd,Southwest,Ductile Iron,12,1265,6.8,1968,58,49,1,,High,289093,2025-03-29,Acoustic Leak Detection,43.589921,-116.296091
+PIPE-0200,Water,Bannock St,Downtown,Cast Iron,8,1011,5.5,1939,87,12,4,,Critical,133346,2024-10-24,Ultrasonic,43.614942,-116.210221
+PIPE-0201,Stormwater,I-184 Corridor,Downtown,Reinforced Concrete Box,36,701,12.9,1970,56,62,1,66.2,High,228858,2023-12-09,Visual,43.606256,-116.21712
+PIPE-0202,Sewer,Harrison Blvd,North End,Concrete,15,2026,9.9,1942,84,62,2,59.3,Medium,707277,2023-10-10,Smoke Test,43.673674,-116.202792
+PIPE-0203,Water,Gowen Rd,Southeast,PVC,30,1220,6.2,2001,25,86,0,,Critical,332472,2024-05-28,Visual,43.543785,-116.133827
+PIPE-0204,Sewer,Capitol Blvd,Downtown,Concrete,36,1097,21.2,1945,81,44,5,97.9,Critical,629441,2024-07-13,Smoke Test,43.6,-116.199136
+PIPE-0205,Water,Warm Springs Ave,East Bench,Asbestos Cement,4,1098,4.6,1959,67,43,5,,Medium,105897,2025-10-06,Pressure Test,43.608454,-116.126387
+PIPE-0206,Stormwater,Ten Mile Rd,West Boise,PVC,18,971,5.1,2013,13,76,0,47.6,Critical,199727,2022-12-20,Dye Test,43.641936,-116.314138
+PIPE-0207,Sewer,Main St,Downtown,Concrete,36,1025,21.0,1946,80,21,4,61.2,Critical,280466,2022-12-21,Manhole Inspection,43.616839,-116.212739
+PIPE-0208,Stormwater,Myrtle St,Downtown,Concrete,42,613,8.2,1948,78,44,1,78.3,Medium,140094,2024-09-01,Visual,43.606019,-116.214192
+PIPE-0209,Water,Overland Rd,Southeast,PVC,12,721,5.8,1984,42,55,0,,Medium,207737,2024-09-06,Acoustic Leak Detection,43.586066,-116.2
+PIPE-0210,Water,Cole Rd,Southwest,Ductile Iron,16,518,3.7,1974,52,17,0,,Critical,157467,2024-06-07,Visual,43.55104,-116.253106
+PIPE-0211,Sewer,Bogus Basin Rd,North End,Concrete,18,1251,13.8,1969,57,38,2,100.0,Medium,392084,2022-11-10,Flow Monitoring,43.676481,-116.186183
+PIPE-0212,Sewer,8th St,Downtown,Vitrified Clay,36,1123,10.9,1955,71,7,8,50.4,Critical,250485,2025-07-02,CCTV,43.6,-116.199558
+PIPE-0213,Water,Shaw Mountain Rd,East Bench,Ductile Iron,4,1966,6.6,1995,31,63,0,,Medium,202456,2024-05-05,Pressure Test,43.622698,-116.1684
+PIPE-0214,Stormwater,Vista Ave,Southeast,Corrugated Metal,12,1809,8.1,1971,55,32,3,44.3,High,314840,2025-05-18,CCTV,43.580742,-116.2
+PIPE-0215,Water,Hill Rd,North End,Cast Iron,12,535,6.1,1935,91,6,6,,Medium,81079,2023-10-13,Pressure Test,43.659841,-116.23
+PIPE-0216,Water,Harrison Blvd,North End,Asbestos Cement,4,1278,6.3,1953,73,26,5,,Low,260348,2024-08-24,Acoustic Leak Detection,43.638179,-116.20142
+PIPE-0217,Stormwater,Cole Rd,Southwest,PVC,42,2393,6.6,1998,28,50,0,68.5,High,302803,2025-03-31,Dye Test,43.586965,-116.253382
+PIPE-0218,Sewer,Harrison Blvd,North End,Vitrified Clay,12,989,13.7,1935,91,23,8,65.1,Critical,428873,2025-06-07,Flow Monitoring,43.626,-116.20046
+PIPE-0219,Stormwater,Cloverdale Rd,West Boise,Concrete,60,1535,11.4,2007,19,66,1,25.0,High,304795,2025-02-02,CCTV,43.64853,-116.335882
+PIPE-0220,Sewer,8th St,Downtown,Vitrified Clay,8,1371,10.3,1961,65,58,4,100.0,Low,348936,2025-02-11,Flow Monitoring,43.626,-116.194719
+PIPE-0221,Sewer,Front St,Downtown,Vitrified Clay,18,1173,12.4,1950,76,48,6,100.0,Critical,310572,2024-08-23,Smoke Test,43.603296,-116.206983
+PIPE-0222,Sewer,Parkcenter Blvd,East Bench,Ductile Iron,18,1303,13.8,1993,33,43,0,65.4,Medium,451704,2025-08-09,Smoke Test,43.615304,-116.175
+PIPE-0223,Sewer,Idaho St,Downtown,Vitrified Clay,48,2275,16.4,1944,82,15,3,58.2,High,853135,2025-08-21,Manhole Inspection,43.61342,-116.179559
+PIPE-0224,Water,Cole Rd,West Boise,Ductile Iron,12,1708,5.5,1977,49,39,1,,Low,308406,2022-10-30,Pressure Test,43.650881,-116.255969
+PIPE-0225,Stormwater,Five Mile Rd,Southwest,Corrugated Metal,30,570,14.6,1975,51,44,4,62.0,Medium,165695,2023-08-17,CCTV,43.557806,-116.295681
+PIPE-0226,Stormwater,Main St,Downtown,Concrete,18,909,6.7,1955,71,72,1,85.5,Low,150728,2023-12-19,Dye Test,43.615607,-116.22
+PIPE-0227,Sewer,Eastman St,North End,Vitrified Clay,24,1437,7.0,1938,88,30,5,61.4,High,854650,2025-04-25,Flow Monitoring,43.642063,-116.177055
+PIPE-0228,Sewer,Idaho St,Downtown,Concrete,15,1531,22.8,1946,80,30,5,72.3,Low,677845,2024-02-17,Smoke Test,43.616169,-116.22
+PIPE-0229,Water,Franklin Rd,West Boise,Ductile Iron,24,1410,4.6,1966,60,50,2,,High,449584,2022-12-04,Ultrasonic,43.605557,-116.296515
+PIPE-0230,Water,Eagle Rd,West Boise,Ductile Iron,30,1429,6.5,2006,20,50,0,,High,252074,2024-01-15,Acoustic Leak Detection,43.652634,-116.351956
+PIPE-0231,Water,15th St,North End,Galvanized Steel,10,1457,4.5,1947,79,5,10,,Critical,153120,2023-04-10,Visual,43.638638,-116.205679
+PIPE-0232,Stormwater,Chinden Blvd,West Boise,Concrete,42,2370,5.4,1972,54,56,4,56.9,Low,1045857,2025-02-12,Flow Monitoring,43.65179,-116.345675
+PIPE-0233,Water,Cole Rd,West Boise,PVC,6,2197,4.3,1976,50,58,0,,High,245970,2023-03-06,Acoustic Leak Detection,43.61161,-116.25308
+PIPE-0234,Stormwater,I-184 Corridor,Downtown,PVC,42,1852,11.8,1992,34,67,1,63.6,High,717135,2025-10-27,CCTV,43.608574,-116.215808
+PIPE-0235,Sewer,Chinden Blvd,West Boise,Concrete,12,1610,11.1,1980,46,40,1,69.5,Medium,771810,2023-06-28,Smoke Test,43.651873,-116.341783
+PIPE-0236,Water,Shaw Mountain Rd,East Bench,Ductile Iron,16,971,6.2,1996,30,59,0,,Critical,376192,2023-11-13,Acoustic Leak Detection,43.591595,-116.138724
+PIPE-0237,Water,Overland Rd,Southeast,Ductile Iron,30,399,3.4,1981,45,51,1,,Critical,68366,2025-01-23,Visual,43.588564,-116.2
+PIPE-0238,Sewer,Ten Mile Rd,West Boise,PVC,42,238,10.4,2016,10,94,0,61.9,High,195468,2025-04-13,CCTV,43.6,-116.31503
+PIPE-0239,Water,Cole Rd,Southwest,PVC,36,1018,6.9,1977,49,59,1,,Critical,215894,2024-08-09,Acoustic Leak Detection,43.594237,-116.254011
+PIPE-0240,Sewer,Main St,Downtown,Orangeburg,8,652,6.8,1967,59,26,2,67.0,High,80622,2023-05-12,Manhole Inspection,43.617011,-116.186478
+PIPE-0241,Sewer,Eastman St,North End,Vitrified Clay,6,608,12.2,1954,72,20,8,75.7,Critical,72969,2025-11-13,Smoke Test,43.642879,-116.173069
+PIPE-0242,Water,Eagle Rd,West Boise,PVC,8,1546,5.5,2015,11,86,0,,Low,408198,2024-05-25,Ultrasonic,43.613602,-116.354374
+PIPE-0243,Stormwater,Ustick Rd,West Boise,PVC,18,663,4.2,1991,35,61,0,13.4,Low,131510,2024-11-26,Dye Test,43.630795,-116.281887
+PIPE-0244,Water,Vista Ave,Southeast,Ductile Iron,8,2178,4.6,1966,60,50,0,,High,315947,2024-01-10,Acoustic Leak Detection,43.595,-116.2
+PIPE-0245,Water,Eisenman Rd,Southeast,PVC,10,2173,4.5,2016,10,54,1,,High,708183,2023-02-01,Ultrasonic,43.54,-116.168942
+PIPE-0246,Stormwater,McMillan Rd,West Boise,PVC,18,506,9.1,2022,4,73,0,22.5,Critical,128521,2023-05-07,Dye Test,43.644509,-116.324349
+PIPE-0247,Stormwater,Ten Mile Rd,West Boise,Concrete,15,2241,4.2,2009,17,35,0,39.3,Critical,146640,2024-03-19,Visual,43.610765,-116.318288
+PIPE-0248,Sewer,State St,West Boise,PVC,18,1688,11.6,1994,32,49,0,31.0,Low,770171,2025-04-13,CCTV,43.638952,-116.254673
+PIPE-0249,Sewer,Eagle Rd,West Boise,Ductile Iron,6,1598,16.0,2002,24,69,0,19.8,Low,601128,2025-04-27,Manhole Inspection,43.613411,-116.353198
+PIPE-0250,Water,McMillan Rd,West Boise,PVC,10,694,4.8,2001,25,100,0,,Critical,71170,2023-05-25,Ultrasonic,43.645581,-116.318568
+PIPE-0251,Stormwater,Cole Rd,West Boise,PVC,18,2243,10.0,1997,29,61,0,60.6,High,616517,2025-03-15,CCTV,43.6,-116.254583
+PIPE-0252,Water,Overland Rd,Southeast,PVC,30,1775,5.8,1985,41,58,0,,Critical,471725,2023-01-18,Pressure Test,43.587512,-116.186281
+PIPE-0253,Sewer,Ten Mile Rd,West Boise,PVC,18,2467,10.8,2012,14,74,0,31.8,High,1433796,2023-02-05,Manhole Inspection,43.625607,-116.317795
+PIPE-0254,Water,Cole Rd,West Boise,Ductile Iron,16,2167,5.8,1972,54,29,1,,High,544030,2025-04-28,Acoustic Leak Detection,43.631625,-116.253344
+PIPE-0255,Sewer,Overland Rd,Southeast,Vitrified Clay,6,431,10.7,1974,52,14,1,81.3,Critical,132970,2023-11-29,Flow Monitoring,43.586199,-116.174985
+PIPE-0256,Water,8th St,Downtown,Cast Iron,30,1118,4.0,1964,62,37,4,,Critical,271450,2024-03-02,Acoustic Leak Detection,43.626,-116.196632
+PIPE-0257,Water,Main St,Downtown,Cast Iron,10,2014,5.8,1941,85,26,6,,High,430856,2024-04-09,Ultrasonic,43.61698,-116.175
+PIPE-0258,Stormwater,Warm Springs Ave,East Bench,Concrete,15,965,6.3,1968,58,35,3,71.4,Critical,232188,2024-01-26,Dye Test,43.610775,-116.146194
+PIPE-0259,Stormwater,Harrison Blvd,North End,Corrugated Metal,18,1521,6.6,1927,99,7,7,83.5,Medium,132539,2022-12-22,Visual,43.65075,-116.198358
+PIPE-0260,Water,Harrison Blvd,North End,Asbestos Cement,6,2269,4.6,1958,68,37,10,,Low,482076,2022-10-10,Acoustic Leak Detection,43.626,-116.199742
+PIPE-0261,Sewer,9th St,Downtown,Orangeburg,18,2025,9.9,1967,59,25,7,76.5,Critical,603465,2023-10-04,Manhole Inspection,43.6,-116.198146
+PIPE-0262,Sewer,Curtis Rd,Southwest,PVC,6,2317,13.9,1983,43,97,1,71.2,Critical,336298,2024-12-25,CCTV,43.6,-116.22275
+PIPE-0263,Sewer,Chinden Blvd,West Boise,Vitrified Clay,12,1073,15.8,1969,57,23,3,59.6,Critical,440018,2025-01-22,CCTV,43.655,-116.316063
+PIPE-0264,Sewer,Five Mile Rd,Southwest,Ductile Iron,6,558,6.4,1986,40,54,2,34.8,Low,120362,2023-06-30,Manhole Inspection,43.54086,-116.296932
+PIPE-0265,Water,Capitol Blvd,Downtown,Cast Iron,6,2390,3.3,1949,77,22,3,,Medium,605632,2024-03-25,Acoustic Leak Detection,43.6,-116.199678
+PIPE-0266,Stormwater,Milwaukee St,Southeast,Concrete,42,1818,12.0,1993,33,51,0,51.8,High,400845,2024-04-01,Flow Monitoring,43.59077,-116.2
+PIPE-0267,Stormwater,Main St,Downtown,Reinforced Concrete Box,60,779,14.4,1960,66,35,1,88.6,Medium,440356,2024-09-25,Dye Test,43.612739,-116.22
+PIPE-0268,Sewer,State St,West Boise,PVC,10,859,7.3,1997,29,75,0,32.5,Low,98312,2022-11-03,CCTV,43.635104,-116.270649
+PIPE-0269,Sewer,Federal Way,East Bench,Vitrified Clay,15,602,12.1,1969,57,46,3,87.8,High,140458,2024-02-21,Flow Monitoring,43.595185,-116.151552
+PIPE-0270,Sewer,Victory Rd,Southeast,Concrete,36,1452,21.2,1986,40,80,2,59.9,High,562638,2023-11-27,Smoke Test,43.571161,-116.2
+PIPE-0271,Water,Cloverdale Rd,West Boise,PVC,16,2165,4.2,2018,8,91,0,,High,591140,2024-10-26,Pressure Test,43.617028,-116.336848
+PIPE-0272,Sewer,Franklin Rd,West Boise,Concrete,48,508,21.3,1969,57,50,1,86.6,High,195588,2022-11-23,Flow Monitoring,43.609353,-116.262033
+PIPE-0273,Water,State St,West Boise,Ductile Iron,16,1807,5.9,1974,52,48,4,,High,440815,2024-12-28,Visual,43.63534,-116.258228
+PIPE-0274,Sewer,Victory Rd,Southeast,Concrete,10,798,9.4,1975,51,47,1,80.7,High,185860,2023-01-07,Manhole Inspection,43.571416,-116.19632
+PIPE-0275,Water,Overland Rd,Southeast,PVC,24,390,3.4,1995,31,66,0,,Critical,81598,2023-10-19,Pressure Test,43.585239,-116.183118
+PIPE-0276,Water,Fairview Ave,West Boise,Ductile Iron,30,1230,5.1,1969,57,51,2,,Critical,400533,2024-12-28,Visual,43.615258,-116.262421
+PIPE-0277,Sewer,Idaho St,Downtown,Concrete,42,1350,19.3,1957,69,21,1,74.5,High,1088763,2023-03-28,Flow Monitoring,43.612269,-116.22
+PIPE-0278,Sewer,Hill Rd,North End,Vitrified Clay,10,1883,8.2,1962,64,47,4,67.2,Medium,582173,2024-11-29,Flow Monitoring,43.657135,-116.23
+PIPE-0279,Sewer,Ustick Rd,West Boise,Vitrified Clay,48,1361,14.4,1966,60,34,4,42.4,High,748220,2023-01-21,Manhole Inspection,43.635684,-116.322673
+PIPE-0280,Water,Broadway Ave,Downtown,PVC,24,481,3.4,1986,40,56,0,,Critical,141414,2023-04-03,Acoustic Leak Detection,43.6,-116.188687
+PIPE-0281,Water,Curtis Rd,Southwest,PVC,6,581,5.4,1997,29,93,0,,Medium,137787,2025-09-05,Ultrasonic,43.578579,-116.224218
+PIPE-0282,Sewer,15th St,North End,Vitrified Clay,21,1635,18.9,1955,71,21,3,46.3,Critical,603948,2024-05-01,Flow Monitoring,43.652124,-116.206552
+PIPE-0283,Stormwater,Broadway Ave,Southeast,Corrugated Metal,12,229,11.3,1977,49,13,4,31.9,Medium,20474,2024-06-15,Dye Test,43.574239,-116.190293
+PIPE-0284,Sewer,Amity Rd,Southwest,HDPE,36,1328,16.0,2006,20,63,0,20.0,High,739239,2023-12-28,Flow Monitoring,43.555951,-116.283204
+PIPE-0285,Sewer,Jefferson St,Downtown,Concrete,8,1141,9.3,1967,59,57,2,64.8,Critical,321537,2025-01-07,Flow Monitoring,43.61568,-116.185055
+PIPE-0286,Stormwater,Main St,Downtown,Concrete,18,2131,4.0,1930,96,32,1,85.7,Medium,621214,2025-08-07,Visual,43.617555,-116.20517
+PIPE-0287,Water,Chinden Blvd,West Boise,PVC,24,243,6.2,1996,30,81,0,,High,79932,2025-09-20,Pressure Test,43.65121,-116.297449
+PIPE-0288,Water,Bogus Basin Rd,North End,Ductile Iron,8,555,4.4,1965,61,29,4,,Critical,107345,2022-11-03,Pressure Test,43.68,-116.183813
+PIPE-0289,Sewer,Franklin Rd,West Boise,PVC,36,1625,24.3,2000,26,69,0,85.2,High,284700,2025-07-07,Manhole Inspection,43.606085,-116.264759
+PIPE-0290,Sewer,Shaw Mountain Rd,East Bench,Vitrified Clay,30,1255,18.9,1972,54,29,3,80.9,High,788516,2023-05-04,CCTV,43.620045,-116.142474
+PIPE-0291,Sewer,Maple Grove Rd,Southwest,Vitrified Clay,15,476,19.0,1972,54,16,7,58.9,Medium,125164,2024-07-12,Manhole Inspection,43.565614,-116.274268
+PIPE-0292,Stormwater,Jefferson St,Downtown,Concrete,36,511,9.9,1950,76,35,1,96.7,High,208082,2023-02-15,Visual,43.616327,-116.22
+PIPE-0293,Water,Bogus Basin Rd,North End,PVC,12,1046,6.3,1980,46,77,1,,Low,117536,2025-11-19,Acoustic Leak Detection,43.654168,-116.181602
+PIPE-0294,Sewer,Maple Grove Rd,Southwest,PVC,36,1491,22.4,1988,38,75,0,84.6,High,1196099,2025-03-15,CCTV,43.574387,-116.273088
+PIPE-0295,Sewer,Orchard St,Southwest,PVC,24,2414,20.5,1992,34,71,0,75.3,Critical,1008819,2024-09-27,Flow Monitoring,43.547605,-116.232916
+PIPE-0296,Sewer,Fairview Ave,West Boise,Ductile Iron,18,1681,9.7,1971,55,61,1,52.3,High,488693,2023-07-28,Manhole Inspection,43.616677,-116.314224
+PIPE-0297,Stormwater,Maple Grove Rd,Southwest,Corrugated Metal,30,2046,4.2,1990,36,23,3,50.7,Low,447802,2024-10-27,Visual,43.549391,-116.278213
+PIPE-0298,Sewer,Fairview Ave,Downtown,PVC,6,923,17.6,1995,31,73,0,64.3,Critical,223007,2023-09-09,CCTV,43.615529,-116.22
+PIPE-0299,Stormwater,Hill Rd,North End,Concrete,24,1241,7.3,1928,98,28,2,85.7,Critical,183908,2023-08-12,CCTV,43.659859,-116.204611
+PIPE-0300,Water,Vista Ave,Southeast,PVC,36,2405,4.4,1977,49,96,1,,Critical,1153540,2025-02-09,Visual,43.548963,-116.2
+PIPE-0301,Sewer,Chinden Blvd,West Boise,PVC,21,1857,9.6,1986,40,73,1,92.5,Medium,488160,2023-06-05,Manhole Inspection,43.655,-116.344292
+PIPE-0302,Water,Fairview Ave,West Boise,Ductile Iron,24,1895,3.5,1998,28,57,1,,Critical,723797,2025-05-21,Acoustic Leak Detection,43.614004,-116.266663
+PIPE-0303,Water,Maple Grove Rd,Southwest,PVC,4,307,7.0,2000,26,63,0,,High,23976,2024-07-14,Pressure Test,43.596675,-116.275856
+PIPE-0304,Sewer,Victory Rd,Southeast,Ductile Iron,10,2357,22.2,1973,53,64,0,49.8,Medium,1085617,2022-11-05,Flow Monitoring,43.572031,-116.2
+PIPE-0305,Water,Jefferson St,Downtown,Ductile Iron,30,925,6.0,1969,57,42,3,,High,360031,2024-08-24,Acoustic Leak Detection,43.616545,-116.204477
+PIPE-0306,Stormwater,Amity Rd,Southwest,PVC,36,1888,13.2,2004,22,71,0,42.4,Low,199973,2023-03-31,Flow Monitoring,43.551559,-116.290714
+PIPE-0307,Sewer,Main St,Downtown,Vitrified Clay,15,1147,22.6,1952,74,17,5,81.6,Low,482557,2024-09-07,Manhole Inspection,43.616781,-116.196143
+PIPE-0308,Sewer,Myrtle St,Downtown,Concrete,42,1181,18.9,1952,74,32,0,65.8,Critical,701841,2024-11-24,Smoke Test,43.6071,-116.176003
+PIPE-0309,Water,Federal Way,East Bench,Ductile Iron,24,2054,3.8,1972,54,60,1,,Critical,626965,2023-06-19,Acoustic Leak Detection,43.595633,-116.14818
+PIPE-0310,Stormwater,Boise Ave,East Bench,Concrete,18,260,15.0,1970,56,59,1,29.3,High,37658,2025-08-10,Flow Monitoring,43.599961,-116.175
+PIPE-0311,Stormwater,Overland Rd,Southwest,Concrete,60,2125,3.2,1969,57,14,2,50.4,Low,690183,2024-07-14,CCTV,43.58609,-116.238344
+PIPE-0312,Sewer,Fort St,North End,Orangeburg,48,584,18.6,1954,72,23,6,94.0,High,427175,2023-03-23,Manhole Inspection,43.638127,-116.17
+PIPE-0313,Water,Fort St,North End,Cast Iron,4,1092,4.7,1948,78,16,3,,Critical,197411,2023-04-04,Visual,43.64084,-116.226123
+PIPE-0314,Water,Broadway Ave,Southeast,Cast Iron,10,845,4.4,1970,56,5,4,,Critical,76422,2025-03-20,Ultrasonic,43.567994,-116.186884
+PIPE-0315,Stormwater,Boise Ave,East Bench,PVC,60,1622,7.3,1985,41,65,0,76.2,Low,602388,2022-10-15,Flow Monitoring,43.601833,-116.175
+PIPE-0316,Water,Curtis Rd,Southwest,Ductile Iron,10,964,4.9,1996,30,55,0,,Low,283040,2024-04-06,Pressure Test,43.58349,-116.223058
+PIPE-0317,Sewer,Curtis Rd,Southwest,PVC,24,202,22.7,1988,38,71,0,80.9,High,95624,2022-11-25,Flow Monitoring,43.6,-116.221964
+PIPE-0318,Stormwater,Federal Way,East Bench,PVC,48,2458,4.2,1998,28,74,0,71.6,High,1217738,2025-09-29,Visual,43.594925,-116.175
+PIPE-0319,Stormwater,Fairview Ave,Downtown,PVC,24,604,10.5,1996,30,30,0,72.2,Critical,83735,2025-11-06,Visual,43.613191,-116.18866
+PIPE-0320,Sewer,State St,West Boise,Ductile Iron,8,2117,23.8,1996,30,65,0,64.1,Medium,714209,2022-12-15,CCTV,43.638806,-116.315144
+PIPE-0321,Sewer,Franklin Rd,West Boise,Concrete,15,519,19.5,1969,57,73,0,73.4,High,175639,2022-10-16,Flow Monitoring,43.609668,-116.253153
+PIPE-0322,Sewer,8th St,Downtown,Vitrified Clay,36,1666,7.1,1965,61,23,6,34.8,High,865034,2024-02-26,Manhole Inspection,43.626,-116.195785
+PIPE-0323,Water,Broadway Ave,Southeast,Ductile Iron,20,1524,3.9,1991,35,42,0,,Critical,280826,2025-09-23,Pressure Test,43.576673,-116.187621
+PIPE-0324,Water,Ustick Rd,West Boise,Asbestos Cement,30,753,4.2,1966,60,26,4,,High,99564,2023-01-20,Visual,43.63596,-116.315853
+PIPE-0325,Water,8th St,Downtown,Cast Iron,24,1656,6.6,1927,99,15,8,,High,362781,2025-06-27,Pressure Test,43.6,-116.19841
+PIPE-0326,Water,Maple Grove Rd,Southwest,PVC,24,590,5.9,1976,50,58,1,,Critical,76307,2025-03-31,Visual,43.582618,-116.277198
+PIPE-0327,Sewer,State St,West Boise,Orangeburg,42,1766,16.3,1965,61,21,6,48.2,High,541155,2023-02-03,CCTV,43.634325,-116.278049
+PIPE-0328,Stormwater,Boise Ave,East Bench,Reinforced Concrete Box,30,1815,9.6,1992,34,44,0,62.6,High,398450,2025-03-01,Dye Test,43.597888,-116.175
+PIPE-0329,Water,Victory Rd,Southwest,PVC,24,1819,5.5,1977,49,59,0,,Critical,245760,2023-08-08,Ultrasonic,43.570913,-116.304312
+PIPE-0330,Sewer,Broadway Ave,Southeast,PVC,12,1513,8.4,1987,39,75,0,87.4,Low,637152,2025-09-02,Smoke Test,43.555562,-116.187068
+PIPE-0331,Water,Fort St,North End,Cast Iron,16,838,3.4,1968,58,20,6,,Critical,309928,2025-04-19,Pressure Test,43.639546,-116.176779
+PIPE-0332,Sewer,Victory Rd,Southeast,Ductile Iron,6,1559,15.5,1995,31,66,1,65.2,Critical,501085,2023-10-23,CCTV,43.568254,-116.19196
+PIPE-0333,Stormwater,Broadway Ave,Southeast,Corrugated Metal,12,1363,14.3,1975,51,11,0,62.0,Medium,253472,2025-04-26,CCTV,43.544056,-116.186821
+PIPE-0334,Sewer,Federal Way,East Bench,PVC,12,1759,14.7,1989,37,100,0,51.3,Critical,315828,2025-09-12,Smoke Test,43.597051,-116.141225
+PIPE-0335,Water,Orchard St,Southwest,PVC,16,2206,4.4,1984,42,89,0,,High,355228,2024-06-23,Ultrasonic,43.576472,-116.234058
+PIPE-0336,Stormwater,Capitol Blvd,Downtown,Concrete,30,1123,7.6,1960,66,35,2,96.0,High,309306,2023-08-01,Visual,43.6,-116.198617
+PIPE-0337,Sewer,Amity Rd,Southwest,Ductile Iron,21,1479,9.1,1999,27,42,3,54.3,Medium,788977,2022-12-26,Smoke Test,43.555458,-116.288657
+PIPE-0338,Water,Eisenman Rd,Southeast,PVC,8,847,6.8,2019,7,45,0,,Low,236653,2023-08-13,Pressure Test,43.54,-116.169656
+PIPE-0339,Sewer,Victory Rd,Southeast,PVC,10,969,17.2,1982,44,66,0,38.1,Critical,175217,2023-11-28,CCTV,43.567641,-116.2
+PIPE-0340,Stormwater,Ustick Rd,West Boise,Corrugated Metal,60,2120,4.7,1973,53,48,1,85.1,Critical,1061781,2024-05-29,Dye Test,43.634272,-116.310083
+PIPE-0341,Sewer,15th St,North End,Vitrified Clay,12,1037,22.3,1967,59,41,5,100.0,Low,293489,2025-09-08,Flow Monitoring,43.626,-116.205437
+PIPE-0342,Sewer,Franklin Rd,West Boise,PVC,21,2396,15.4,1985,41,78,0,60.1,Low,355919,2025-09-13,Flow Monitoring,43.607151,-116.259937
+PIPE-0343,Water,Orchard St,Southwest,Cast Iron,10,1392,6.1,1968,58,11,2,,High,208693,2023-04-28,Ultrasonic,43.580164,-116.229694
+PIPE-0344,Water,Myrtle St,Downtown,Asbestos Cement,6,936,5.8,1957,69,20,7,,High,154838,2023-05-16,Acoustic Leak Detection,43.608672,-116.175
+PIPE-0345,Stormwater,Broadway Ave,Southeast,Concrete,18,706,11.5,1985,41,27,1,39.7,High,146866,2023-10-19,Dye Test,43.54,-116.186763
+PIPE-0346,Sewer,Front St,Downtown,Vitrified Clay,18,814,6.0,1935,91,31,4,87.0,High,465262,2025-04-06,Smoke Test,43.603973,-116.22
+PIPE-0347,Water,Fort St,North End,Cast Iron,36,1236,5.0,1925,101,20,9,,Critical,453322,2023-06-12,Acoustic Leak Detection,43.635073,-116.20519
+PIPE-0348,Sewer,Ustick Rd,West Boise,Concrete,12,2441,9.2,1965,61,56,0,51.6,Critical,584882,2024-03-31,Manhole Inspection,43.631669,-116.289709
+PIPE-0349,Sewer,Myrtle St,Downtown,Vitrified Clay,8,1907,18.2,1928,98,18,8,66.0,Medium,545185,2025-09-20,CCTV,43.609962,-116.22
+PIPE-0350,Stormwater,Gowen Rd,Southeast,Reinforced Concrete Box,36,1752,8.6,2005,21,65,0,46.8,Low,369295,2022-12-24,Visual,43.544922,-116.137325
+PIPE-0351,Sewer,Ten Mile Rd,West Boise,Ductile Iron,36,438,24.7,2001,25,51,1,23.7,High,356758,2024-02-23,Manhole Inspection,43.6,-116.314622
+PIPE-0352,Sewer,Orchard St,Southwest,PVC,10,2233,8.6,1987,39,60,0,100.0,Critical,1032094,2023-04-25,CCTV,43.586576,-116.231209
+PIPE-0353,Stormwater,Parkcenter Blvd,East Bench,Reinforced Concrete Box,42,386,5.4,1991,35,47,0,69.4,Medium,86890,2025-11-20,CCTV,43.583703,-116.175
+PIPE-0354,Sewer,Cloverdale Rd,West Boise,HDPE,18,1822,8.5,2005,21,80,0,61.0,Critical,793311,2025-02-27,Flow Monitoring,43.637952,-116.335304
+PIPE-0355,Stormwater,Harrison Blvd,North End,Corrugated Metal,48,2399,3.7,1965,61,23,5,100.0,Critical,942384,2024-10-02,Flow Monitoring,43.674674,-116.200225
+PIPE-0356,Sewer,Vista Ave,Southeast,Concrete,10,1348,15.7,1969,57,45,0,42.5,Medium,221684,2024-02-27,CCTV,43.595,-116.2
+PIPE-0357,Stormwater,Overland Rd,Southeast,Concrete,15,2235,9.3,1991,35,30,0,50.4,High,163477,2025-05-27,Dye Test,43.590262,-116.2
+PIPE-0358,Water,Overland Rd,Southwest,Ductile Iron,24,2248,4.9,1966,60,61,2,,Critical,514788,2025-09-19,Ultrasonic,43.585924,-116.282791
+PIPE-0359,Sewer,Overland Rd,Southeast,Ductile Iron,8,216,22.4,1998,28,69,2,72.7,Medium,26847,2025-10-17,Manhole Inspection,43.586866,-116.2
+PIPE-0360,Sewer,Chinden Blvd,West Boise,PVC,18,1021,13.8,1978,48,45,0,30.6,Critical,252346,2024-10-05,Manhole Inspection,43.651155,-116.327868
+PIPE-0361,Water,Victory Rd,Southwest,Ductile Iron,12,779,5.3,1985,41,22,0,,Critical,249985,2023-04-13,Acoustic Leak Detection,43.57266,-116.25568
+PIPE-0362,Sewer,8th St,Downtown,Concrete,6,552,16.9,1949,77,50,1,75.1,High,156851,2022-12-06,CCTV,43.607117,-116.198926
+PIPE-0363,Water,Five Mile Rd,Southwest,Ductile Iron,6,2118,5.6,1973,53,38,1,,Medium,583223,2023-11-19,Ultrasonic,43.542781,-116.296138
+PIPE-0364,Stormwater,Warm Springs Ave,East Bench,Concrete,36,1530,8.5,1969,57,44,1,89.4,High,460118,2023-01-27,CCTV,43.60772,-116.175
+PIPE-0365,Sewer,Milwaukee St,Southeast,Orangeburg,18,2477,13.0,1971,55,5,4,81.7,Low,932917,2025-07-20,Manhole Inspection,43.576956,-116.2
+PIPE-0366,Sewer,Hill Rd,North End,Concrete,36,1965,15.9,1969,57,52,0,69.2,Critical,443287,2023-04-29,Manhole Inspection,43.661706,-116.220172
+PIPE-0367,Sewer,Victory Rd,Southwest,Ductile Iron,24,921,18.7,1971,55,52,1,84.7,Critical,289295,2024-09-13,Smoke Test,43.568848,-116.287537
+PIPE-0368,Sewer,Fairview Ave,West Boise,Vitrified Clay,10,811,13.9,1965,61,5,2,59.5,Medium,167634,2023-06-26,Manhole Inspection,43.615718,-116.31168
+PIPE-0369,Sewer,Myrtle St,Downtown,Vitrified Clay,6,2290,12.4,1962,64,26,2,77.8,Medium,716083,2025-04-22,Manhole Inspection,43.606425,-116.22
+PIPE-0370,Water,Capitol Blvd,Downtown,Cast Iron,20,1814,4.6,1940,86,9,5,,Critical,285265,2025-01-21,Pressure Test,43.621017,-116.199729
+PIPE-0371,Stormwater,I-184 Corridor,Downtown,Concrete,12,493,14.7,1973,53,66,3,58.8,Low,105072,2023-07-15,Visual,43.60989,-116.22
+PIPE-0372,Water,Five Mile Rd,Southwest,PVC,20,2461,3.9,1997,29,100,0,,Critical,654584,2022-11-10,Pressure Test,43.6,-116.295692
+PIPE-0373,Water,Front St,Downtown,Cast Iron,36,2179,4.9,1927,99,34,8,,Critical,1039846,2023-01-09,Acoustic Leak Detection,43.607229,-116.22
+PIPE-0374,Water,Orchard St,Southwest,Asbestos Cement,10,2135,5.7,1970,56,46,4,,Critical,474631,2023-04-17,Ultrasonic,43.595453,-116.231018
+PIPE-0375,Water,Overland Rd,Southwest,Ductile Iron,36,1557,6.2,1995,31,44,2,,Critical,881539,2023-04-08,Visual,43.587526,-116.233153
+PIPE-0376,Sewer,Amity Rd,Southwest,PVC,42,1395,6.7,1996,30,92,1,57.5,High,559625,2024-06-24,CCTV,43.554853,-116.265055
+PIPE-0377,Water,9th St,Downtown,Cast Iron,8,819,3.7,1963,63,50,6,,Critical,92842,2025-02-08,Visual,43.625732,-116.199781
+PIPE-0378,Stormwater,McMillan Rd,West Boise,PVC,42,1769,11.8,2019,7,63,0,37.1,Critical,684124,2025-08-17,Visual,43.641428,-116.314785
+PIPE-0379,Sewer,Five Mile Rd,Southwest,PVC,24,1434,9.7,1990,36,47,0,39.6,Critical,399896,2024-04-20,Flow Monitoring,43.573101,-116.29231
+PIPE-0380,Water,Overland Rd,Southeast,Ductile Iron,30,368,4.4,1985,41,12,1,,Critical,145113,2023-09-23,Ultrasonic,43.585584,-116.192497
+PIPE-0381,Water,Cloverdale Rd,West Boise,PVC,10,998,7.0,2018,8,68,1,,Critical,77196,2023-06-03,Pressure Test,43.621596,-116.334934
+PIPE-0382,Sewer,15th St,North End,Vitrified Clay,15,990,16.9,1943,83,33,3,90.9,Critical,366628,2025-06-09,Smoke Test,43.626,-116.207284
+PIPE-0383,Sewer,Overland Rd,Southeast,Ductile Iron,8,954,17.8,1976,50,44,0,49.7,Medium,227336,2024-06-23,Smoke Test,43.58652,-116.197644
+PIPE-0384,Water,Idaho St,Downtown,Cast Iron,4,1767,4.0,1942,84,5,1,,Low,132596,2024-12-02,Ultrasonic,43.613332,-116.175
+PIPE-0385,Water,8th St,Downtown,Cast Iron,30,1966,6.7,1934,92,25,8,,Critical,301820,2023-02-17,Visual,43.6,-116.19614
+PIPE-0386,Water,State St,West Boise,Cast Iron,4,1799,6.6,1965,61,25,7,,Critical,456351,2022-11-22,Visual,43.635599,-116.263996
+PIPE-0387,Stormwater,Main St,Downtown,Concrete,48,696,7.8,1949,77,22,1,71.2,Medium,111799,2025-06-21,Dye Test,43.615403,-116.175
+PIPE-0388,Sewer,Federal Way,East Bench,Concrete,10,2471,18.9,1977,49,45,1,69.0,Low,566062,2024-11-09,Smoke Test,43.594236,-116.167267
+PIPE-0389,Water,Front St,Downtown,Cast Iron,4,1176,5.2,1937,89,39,7,,Critical,272818,2024-01-08,Acoustic Leak Detection,43.605935,-116.22
+PIPE-0390,Water,Shaw Mountain Rd,East Bench,Cast Iron,20,684,5.1,1967,59,14,4,,Critical,190727,2025-02-16,Ultrasonic,43.593467,-116.148846
+PIPE-0391,Sewer,State St,West Boise,Vitrified Clay,24,387,17.7,1966,60,58,5,56.4,Critical,73114,2025-04-13,Flow Monitoring,43.635456,-116.268097
+PIPE-0392,Water,Ustick Rd,West Boise,Ductile Iron,6,1030,6.9,1979,47,31,4,,High,290103,2025-08-31,Visual,43.632557,-116.275078
+PIPE-0393,Stormwater,Victory Rd,Southeast,Corrugated Metal,15,1321,8.3,1969,57,5,3,68.3,Low,113742,2025-01-13,CCTV,43.567847,-116.2
+PIPE-0394,Stormwater,McMillan Rd,West Boise,Concrete,12,229,8.0,1997,29,58,1,40.3,High,43864,2025-02-12,Flow Monitoring,43.641076,-116.342869
+PIPE-0395,Sewer,Orchard St,Southwest,Ductile Iron,21,1179,8.6,1993,33,62,1,36.7,Medium,525378,2023-07-29,CCTV,43.6,-116.231337
+PIPE-0396,Sewer,Victory Rd,Southwest,Concrete,12,681,22.3,1980,46,45,0,60.0,High,194552,2024-05-15,CCTV,43.57292,-116.241857
+PIPE-0397,Water,Fort St,North End,Galvanized Steel,8,2143,6.7,1932,94,30,6,,Low,257585,2025-09-05,Acoustic Leak Detection,43.637985,-116.23
+PIPE-0398,Sewer,Bannock St,Downtown,Concrete,10,847,22.9,1959,67,28,0,64.4,Medium,183431,2024-08-18,CCTV,43.614713,-116.201195
+PIPE-0399,Stormwater,Eisenman Rd,Southeast,Reinforced Concrete Box,15,1171,8.7,2002,24,28,0,28.3,Low,111733,2024-12-03,Dye Test,43.56902,-116.167781
+PIPE-0400,Water,Broadway Ave,Southeast,Ductile Iron,24,995,3.8,1973,53,69,3,,Critical,130050,2024-12-17,Pressure Test,43.578562,-116.185147
+PIPE-0401,Sewer,15th St,North End,Vitrified Clay,36,842,8.4,1943,83,5,4,94.1,Critical,194918,2023-04-08,Flow Monitoring,43.668164,-116.207172
+PIPE-0402,Sewer,Warm Springs Ave,East Bench,Vitrified Clay,48,1953,16.6,1925,101,23,12,74.6,High,648284,2025-09-03,CCTV,43.609417,-116.175
+PIPE-0403,Sewer,Maple Grove Rd,Southwest,PVC,6,1943,21.4,1997,29,48,0,59.8,Low,515251,2024-09-12,Smoke Test,43.57749,-116.276124
+PIPE-0404,Water,Vista Ave,Southeast,Ductile Iron,10,571,3.6,1983,43,44,0,,High,127523,2023-08-25,Visual,43.54,-116.2
+PIPE-0405,Water,Broadway Ave,Southeast,PVC,4,489,5.1,1994,32,77,0,,High,99775,2025-06-20,Pressure Test,43.55879,-116.186855
+PIPE-0406,Sewer,Bannock St,Downtown,Concrete,42,1690,17.4,1957,69,40,3,95.2,Critical,1038810,2024-01-17,Smoke Test,43.615328,-116.22
+PIPE-0407,Stormwater,Eagle Rd,West Boise,PVC,48,1059,9.0,1998,28,62,0,10.0,Low,288192,2023-03-13,CCTV,43.645254,-116.352435
+PIPE-0408,Water,Maple Grove Rd,Southwest,PVC,30,1397,5.7,1999,27,60,1,,Critical,685096,2023-09-24,Visual,43.571158,-116.276791
+PIPE-0409,Water,Federal Way,East Bench,Ductile Iron,6,874,5.0,1969,57,49,0,,High,178714,2023-04-07,Pressure Test,43.595656,-116.142233
+PIPE-0410,Water,Gowen Rd,Southeast,PVC,4,1394,6.2,2009,17,89,0,,Medium,180832,2023-03-13,Ultrasonic,43.541134,-116.196237
+PIPE-0411,Sewer,Five Mile Rd,Southwest,PVC,36,740,9.5,1984,42,82,0,75.5,High,557747,2024-12-27,Smoke Test,43.6,-116.296161
+PIPE-0412,Water,Cole Rd,West Boise,Ductile Iron,12,946,5.8,1999,27,60,4,,High,136445,2023-06-14,Pressure Test,43.655,-116.253964
+PIPE-0413,Sewer,Broadway Ave,Southeast,Concrete,12,342,14.0,1976,50,51,1,45.5,Low,50819,2025-02-08,Flow Monitoring,43.581244,-116.185132
+PIPE-0414,Sewer,Boise Ave,East Bench,Concrete,6,2437,14.5,1974,52,59,1,32.9,High,983734,2022-10-02,Flow Monitoring,43.602854,-116.175
+PIPE-0415,Sewer,Shaw Mountain Rd,East Bench,Vitrified Clay,48,2161,11.2,1972,54,58,10,100.0,High,1251325,2024-10-29,Smoke Test,43.621007,-116.169423
+PIPE-0416,Stormwater,Overland Rd,Southeast,Corrugated Metal,12,542,9.1,1977,49,9,8,38.0,Critical,94830,2023-11-24,Dye Test,43.58823,-116.199363
+PIPE-0417,Sewer,Fairview Ave,Downtown,Ductile Iron,18,1781,24.6,1992,34,47,1,58.7,Low,822014,2023-06-10,Manhole Inspection,43.615237,-116.217228
+PIPE-0418,Sewer,Broadway Ave,Downtown,Ductile Iron,48,1896,9.2,1992,34,28,2,53.6,Critical,1950762,2025-11-19,Flow Monitoring,43.6,-116.187477
+PIPE-0419,Stormwater,Overland Rd,Southeast,Concrete,18,2476,13.0,1991,35,78,1,60.7,Medium,632052,2024-03-20,Dye Test,43.587773,-116.189567
+PIPE-0420,Stormwater,Cloverdale Rd,West Boise,HDPE,48,1119,13.0,2018,8,56,0,35.0,Low,534422,2024-11-30,Dye Test,43.6,-116.338985
+PIPE-0421,Water,Ten Mile Rd,West Boise,PVC,10,316,7.0,2015,11,81,0,,Low,70365,2025-04-02,Pressure Test,43.6,-116.317337
+PIPE-0422,Sewer,Overland Rd,Southwest,Vitrified Clay,15,867,18.9,1966,60,21,4,53.4,Medium,231027,2025-08-25,Manhole Inspection,43.58849,-116.298309
+PIPE-0423,Sewer,Federal Way,East Bench,PVC,42,514,6.9,1998,28,72,0,82.5,High,438471,2023-11-21,CCTV,43.597083,-116.136685
+PIPE-0424,Water,Curtis Rd,Southwest,PVC,8,252,6.1,1987,39,47,0,,High,27502,2022-10-15,Acoustic Leak Detection,43.550956,-116.223311
+PIPE-0425,Water,Gowen Rd,Southeast,PVC,6,677,4.9,2009,17,63,0,,Medium,166875,2024-12-15,Pressure Test,43.544913,-116.124127
+PIPE-0426,Water,Capitol Blvd,Downtown,Cast Iron,10,727,3.9,1932,94,5,8,,Critical,69174,2025-10-25,Ultrasonic,43.626,-116.203146
+PIPE-0427,Water,Eisenman Rd,Southeast,Ductile Iron,10,641,5.4,1996,30,57,0,,Critical,55244,2025-03-24,Visual,43.54,-116.169041
+PIPE-0428,Sewer,Fairview Ave,West Boise,PVC,10,1639,10.5,1977,49,69,1,87.2,High,681056,2023-02-02,CCTV,43.613176,-116.323355
+PIPE-0429,Sewer,8th St,Downtown,Vitrified Clay,6,2366,23.0,1962,64,17,3,46.5,Low,270596,2023-11-13,Smoke Test,43.6,-116.198851
+PIPE-0430,Water,Victory Rd,Southeast,Ductile Iron,8,1653,5.1,1971,55,47,2,,Low,239805,2023-11-24,Pressure Test,43.572888,-116.2
+PIPE-0431,Water,Victory Rd,Southwest,Asbestos Cement,6,1543,4.8,1967,59,19,4,,Low,388554,2024-11-11,Acoustic Leak Detection,43.569962,-116.289218
+PIPE-0432,Stormwater,Ustick Rd,West Boise,Corrugated Metal,18,252,10.9,1988,38,27,4,78.3,Critical,40476,2024-12-22,CCTV,43.635992,-116.300668
+PIPE-0433,Stormwater,Maple Grove Rd,Southwest,Corrugated Metal,36,1020,11.7,1977,49,33,4,90.0,Medium,299238,2023-09-05,Flow Monitoring,43.582597,-116.273056
+PIPE-0434,Sewer,Maple Grove Rd,Southwest,PVC,24,2294,10.0,1990,36,81,0,32.4,Critical,479966,2023-02-16,CCTV,43.557311,-116.274392
+PIPE-0435,Sewer,Harrison Blvd,North End,Orangeburg,36,1539,6.5,1949,77,31,5,77.6,High,1104077,2023-02-03,Manhole Inspection,43.626,-116.199268
+PIPE-0436,Water,Curtis Rd,Southwest,PVC,30,2438,7.0,1986,40,67,1,,Critical,756652,2024-12-05,Pressure Test,43.541414,-116.220416
+PIPE-0437,Water,Cole Rd,West Boise,Ductile Iron,24,1964,4.9,1975,51,75,1,,High,689719,2025-01-16,Acoustic Leak Detection,43.6,-116.254706
+PIPE-0438,Sewer,Milwaukee St,Southeast,PVC,24,1747,11.4,1981,45,90,0,66.5,High,1032987,2024-01-04,Flow Monitoring,43.574355,-116.2
+PIPE-0439,Water,8th St,Downtown,Cast Iron,16,1663,4.0,1952,74,33,3,,Critical,191721,2024-12-20,Acoustic Leak Detection,43.605954,-116.199661
+PIPE-0440,Sewer,Curtis Rd,Southwest,Concrete,6,2087,13.4,1985,41,74,0,77.9,Low,186355,2024-02-11,CCTV,43.592621,-116.222465
+PIPE-0441,Stormwater,McMillan Rd,West Boise,PVC,24,1576,6.6,1998,28,78,1,48.5,Critical,387378,2022-12-01,Visual,43.64298,-116.285083
+PIPE-0442,Water,Federal Way,East Bench,PVC,4,1417,3.9,1981,45,83,0,,Critical,331616,2022-09-29,Ultrasonic,43.599977,-116.165838
+PIPE-0443,Water,Eisenman Rd,Southeast,Ductile Iron,16,514,6.2,2001,25,65,1,,High,77153,2022-11-07,Visual,43.562123,-116.171189
+PIPE-0444,Sewer,Capitol Blvd,Downtown,Vitrified Clay,48,2314,24.2,1965,61,39,6,73.1,High,2285583,2025-08-02,Smoke Test,43.626,-116.200539
+PIPE-0445,Sewer,Broadway Ave,Southeast,PVC,10,1184,13.7,1994,32,62,0,75.5,Low,139978,2024-06-04,Manhole Inspection,43.540038,-116.186888
+PIPE-0446,Water,State St,West Boise,Ductile Iron,12,1167,3.8,1975,51,39,2,,Critical,239612,2024-10-15,Visual,43.636435,-116.310915
+PIPE-0447,Sewer,Warm Springs Ave,East Bench,Vitrified Clay,6,1258,17.9,1933,93,21,4,87.8,Critical,425924,2024-02-29,Manhole Inspection,43.609738,-116.175
+PIPE-0448,Stormwater,Myrtle St,Downtown,Concrete,36,569,9.9,1951,75,31,1,59.9,Medium,182231,2023-02-20,CCTV,43.606381,-116.175
+PIPE-0449,Water,Bogus Basin Rd,North End,Ductile Iron,16,1548,6.2,1972,54,32,1,,Critical,240753,2023-08-19,Pressure Test,43.678293,-116.185511
+PIPE-0450,Water,Fairview Ave,West Boise,Ductile Iron,24,2385,4.3,1968,58,38,3,,Critical,1103132,2023-11-10,Pressure Test,43.615248,-116.259103
+PIPE-0451,Sewer,Capitol Blvd,Downtown,Orangeburg,36,342,18.8,1966,60,42,4,84.6,High,188878,2025-03-28,Smoke Test,43.626,-116.200027
+PIPE-0452,Sewer,Victory Rd,Southeast,Ductile Iron,6,1809,23.7,1989,37,46,2,40.1,Low,658274,2024-02-22,Flow Monitoring,43.572565,-116.161566
+PIPE-0453,Sewer,Front St,Downtown,Vitrified Clay,8,2213,19.3,1942,84,28,4,95.6,Critical,836932,2023-12-13,Flow Monitoring,43.605827,-116.211963
+PIPE-0454,Sewer,Ustick Rd,West Boise,PVC,48,1538,17.8,2000,26,84,0,54.9,High,494049,2025-06-17,CCTV,43.63272,-116.337812
+PIPE-0455,Water,Broadway Ave,Downtown,Ductile Iron,30,732,6.2,1980,46,56,0,,Critical,313943,2024-10-22,Acoustic Leak Detection,43.626,-116.186885
+PIPE-0456,Sewer,Gowen Rd,Southeast,PVC,10,1811,9.5,2006,20,50,0,29.8,Critical,610872,2023-04-30,Smoke Test,43.545258,-116.122419
+PIPE-0457,Stormwater,Broadway Ave,Southeast,Concrete,12,1842,5.0,1975,51,18,1,85.4,Low,294552,2023-02-24,CCTV,43.57744,-116.187398
+PIPE-0458,Sewer,15th St,North End,Ductile Iron,12,980,19.9,1970,56,49,2,54.7,Medium,178989,2024-11-10,Flow Monitoring,43.68,-116.20612
+PIPE-0459,Sewer,Harrison Blvd,North End,Vitrified Clay,10,317,23.1,1951,75,10,4,82.6,High,84407,2024-02-09,Flow Monitoring,43.626215,-116.201429
+PIPE-0460,Stormwater,Parkcenter Blvd,East Bench,Corrugated Metal,42,1249,8.7,1989,37,5,0,64.7,Critical,444838,2025-11-22,Flow Monitoring,43.58,-116.175
+PIPE-0461,Sewer,Overland Rd,Southwest,PVC,15,1816,5.8,1989,37,100,0,40.0,Low,588162,2025-03-07,CCTV,43.589028,-116.299421
+PIPE-0462,Sewer,Boise Ave,East Bench,PVC,21,780,15.0,1998,28,89,0,62.4,Medium,241941,2024-06-10,Manhole Inspection,43.598562,-116.175
+PIPE-0463,Stormwater,Victory Rd,Southwest,Concrete,36,2212,12.6,1975,51,66,1,48.7,Critical,394440,2023-04-14,Flow Monitoring,43.571582,-116.307899
+PIPE-0464,Stormwater,Hill Rd,North End,Reinforced Concrete Box,48,1987,14.9,1970,56,37,3,76.9,High,336312,2025-03-24,Flow Monitoring,43.657696,-116.183386
+PIPE-0465,Water,Myrtle St,Downtown,Cast Iron,12,939,6.3,1938,88,34,4,,High,128968,2023-08-03,Acoustic Leak Detection,43.60901,-116.180005
+PIPE-0466,Stormwater,Vista Ave,Southeast,Concrete,15,1546,10.1,1996,30,18,2,48.6,Critical,150343,2023-05-05,Dye Test,43.54,-116.2
+PIPE-0467,Water,Five Mile Rd,Southwest,Ductile Iron,36,223,5.5,1982,44,32,1,,Critical,134227,2025-08-25,Pressure Test,43.561354,-116.297737
+PIPE-0468,Sewer,Boise Ave,East Bench,Concrete,48,489,10.1,1968,58,58,1,39.5,Critical,264010,2023-09-29,Flow Monitoring,43.600283,-116.163817
+PIPE-0469,Stormwater,Milwaukee St,Southeast,Concrete,15,1422,11.2,1974,52,38,3,61.5,High,338035,2023-03-06,Dye Test,43.564268,-116.2
+PIPE-0470,Stormwater,Cole Rd,Southwest,Concrete,30,1932,10.6,1995,31,57,1,44.5,High,728710,2025-01-19,Dye Test,43.54,-116.256465
+PIPE-0471,Water,Orchard St,Southwest,Ductile Iron,6,1390,6.2,1998,28,56,2,,Low,301778,2024-04-06,Acoustic Leak Detection,43.582458,-116.234525
+PIPE-0472,Sewer,Victory Rd,Southwest,Orangeburg,6,2302,18.2,1969,57,34,5,48.7,Critical,381197,2025-04-13,Flow Monitoring,43.567646,-116.286007
+PIPE-0473,Water,Harrison Blvd,North End,Cast Iron,20,385,4.2,1936,90,6,6,,Critical,124587,2024-11-18,Acoustic Leak Detection,43.626,-116.197739
+PIPE-0474,Stormwater,Franklin Rd,West Boise,Concrete,15,1976,8.7,1981,45,40,1,75.4,Low,524465,2024-03-22,Flow Monitoring,43.607206,-116.329532
+PIPE-0475,Stormwater,Overland Rd,Southwest,Concrete,15,712,5.3,1984,42,32,0,43.9,High,67968,2023-06-24,Visual,43.585811,-116.294736
+PIPE-0476,Sewer,Myrtle St,Downtown,Vitrified Clay,24,806,8.0,1944,82,5,7,89.1,Critical,316347,2024-04-08,Flow Monitoring,43.606844,-116.22
+PIPE-0477,Sewer,Bannock St,Downtown,Vitrified Clay,6,620,22.0,1946,80,18,6,86.8,Low,163563,2023-09-06,Flow Monitoring,43.613782,-116.182953
+PIPE-0478,Stormwater,Chinden Blvd,West Boise,Reinforced Concrete Box,24,448,13.7,1996,30,56,0,65.7,Medium,93835,2023-05-29,Dye Test,43.65317,-116.31624
+PIPE-0479,Sewer,Capitol Blvd,Downtown,Vitrified Clay,15,987,16.8,1935,91,39,6,63.4,Low,474851,2025-03-09,Manhole Inspection,43.608539,-116.201371
+PIPE-0480,Water,Franklin Rd,West Boise,Ductile Iron,20,1675,6.4,1989,37,56,0,,Critical,586334,2023-03-01,Acoustic Leak Detection,43.608776,-116.26602
+PIPE-0481,Sewer,Gowen Rd,Southeast,PVC,15,1161,22.6,2010,16,92,0,51.2,Critical,545653,2025-07-25,Manhole Inspection,43.541257,-116.194236
+PIPE-0482,Sewer,Eisenman Rd,Southeast,PVC,36,1128,11.8,1998,28,90,0,59.3,High,875177,2023-01-12,CCTV,43.54,-116.171655
+PIPE-0483,Sewer,Cole Rd,West Boise,Concrete,24,2072,20.6,1968,58,79,4,45.3,Critical,396614,2025-04-05,Smoke Test,43.655,-116.254465
+PIPE-0484,Water,Broadway Ave,Southeast,PVC,12,2008,6.5,1975,51,92,2,,Low,604756,2025-11-19,Visual,43.588957,-116.18801
+PIPE-0485,Sewer,Maple Grove Rd,Southwest,PVC,15,2268,13.3,1986,40,86,0,69.9,High,992018,2025-02-23,Flow Monitoring,43.548701,-116.277404
+PIPE-0486,Sewer,Gowen Rd,Southeast,PVC,24,2314,7.9,2008,18,100,0,30.9,High,1502576,2024-12-31,Flow Monitoring,43.544768,-116.169058
+PIPE-0487,Water,Bannock St,Downtown,Galvanized Steel,4,818,5.5,1950,76,24,7,,Medium,136981,2024-02-29,Pressure Test,43.615415,-116.22
+PIPE-0488,Sewer,Main St,Downtown,Vitrified Clay,30,801,15.9,1942,84,5,3,87.4,Critical,467497,2024-03-25,CCTV,43.616202,-116.204305
+PIPE-0489,Sewer,Front St,Downtown,Concrete,18,1797,24.8,1959,67,67,4,82.3,High,680061,2025-10-16,CCTV,43.607351,-116.185796
+PIPE-0490,Water,Curtis Rd,Southwest,PVC,10,1444,3.4,1981,45,52,0,,Critical,338372,2023-05-28,Pressure Test,43.598121,-116.219078
+PIPE-0491,Sewer,Amity Rd,Southwest,PVC,6,2056,16.6,2018,8,59,0,37.3,High,617397,2023-12-16,Manhole Inspection,43.552034,-116.296112
+PIPE-0492,Stormwater,Milwaukee St,Southeast,Reinforced Concrete Box,42,2328,12.3,1973,53,32,2,71.2,Low,623147,2025-06-18,CCTV,43.584001,-116.2
+PIPE-0493,Sewer,Bannock St,Downtown,Vitrified Clay,10,2150,13.1,1952,74,29,4,79.3,Low,907036,2023-06-15,Flow Monitoring,43.611289,-116.22
+PIPE-0494,Stormwater,Orchard St,Southwest,Concrete,18,2271,13.4,1975,51,46,0,46.6,High,401799,2022-10-15,Flow Monitoring,43.55517,-116.230733
+PIPE-0495,Water,9th St,Downtown,Cast Iron,20,651,3.2,1963,63,5,2,,Critical,280576,2023-07-23,Acoustic Leak Detection,43.6,-116.198569
+PIPE-0496,Stormwater,Gowen Rd,Southeast,HDPE,24,949,13.4,2004,22,67,1,55.7,Medium,216175,2023-10-22,Dye Test,43.544915,-116.158897
+PIPE-0497,Water,Franklin Rd,West Boise,Ductile Iron,8,2267,5.7,1973,53,39,0,,Low,207705,2024-08-13,Ultrasonic,43.607819,-116.269066
+PIPE-0498,Water,Shaw Mountain Rd,East Bench,Ductile Iron,4,2014,6.5,1999,27,72,0,,Critical,451481,2022-10-14,Acoustic Leak Detection,43.614437,-116.149163
+PIPE-0499,Water,Fort St,North End,Asbestos Cement,30,416,6.0,1964,62,9,3,,Critical,165111,2024-07-18,Ultrasonic,43.640744,-116.20326
+PIPE-0500,Water,Myrtle St,Downtown,Cast Iron,36,1512,6.4,1959,67,34,4,,Critical,499408,2025-04-12,Acoustic Leak Detection,43.606411,-116.22

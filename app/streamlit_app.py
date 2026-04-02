@@ -1,7 +1,7 @@
 """
-PWIS Executive Dashboard
-========================
-Streamlit application for the Boise Public Works Intelligence System.
+PWIS Utility Executive Dashboard
+==================================
+Streamlit application for the Boise water/sewer/stormwater intelligence system.
 
 To run:
     cd boise-pwis
@@ -12,14 +12,6 @@ Architecture:
   - All heavy computation deferred to models/ modules
   - Folium maps embedded via st.components.v1.html
   - Session state for scenario parameter persistence
-
-Non-technical stakeholder notes:
-  - All weight sliders include plain-English descriptions of what each
-    factor means in plain terms, not model terminology.
-  - Policy presets let directors apply named strategies without adjusting
-    individual sliders.
-  - Score confidence warnings appear automatically when data quality is low.
-  - KPI cards include target benchmarks so raw numbers have context.
 """
 
 import sys
@@ -39,13 +31,13 @@ from models.prioritization import PWISPrioritizationModel, DEFAULT_WEIGHTS
 from models.scenario_engine import PWISScenarioEngine
 from gis.map import (
     build_condition_map, build_priority_map,
-    build_complaint_heatmap, build_executive_map,
+    build_service_request_heatmap, build_executive_map,
 )
 
 # ─── PAGE CONFIG ──────────────────────────────────────────────────────────────
 st.set_page_config(
-    page_title="PWIS — Boise Public Works Intelligence",
-    page_icon="🏗️",
+    page_title="PWIS — Boise Utility Intelligence",
+    page_icon="🔧",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -60,81 +52,64 @@ COLORS = {
     "Medium":   "#BCBD22",
     "Low":      "#2CA02C",
     "primary":  "#1F77B4",
+    "Water":    "#1F77B4",
+    "Sewer":    "#8C564B",
+    "Stormwater": "#17BECF",
 }
 
 # ─── POLICY PRESETS ───────────────────────────────────────────────────────────
-# Named weight configurations aligned to recognizable policy positions.
-# Each preset includes a plain-English description and a use-case note
-# so non-technical users understand what they are choosing.
-
 POLICY_PRESETS = {
     "Balanced (Default)": {
         "weights": DEFAULT_WEIGHTS,
         "description": (
-            "Standard PWIS baseline: condition drives most decisions, with traffic, "
-            "complaints, cost, and equity as secondary factors. "
-            "Recommended for routine annual capital planning."
+            "Standard PWIS baseline: condition drives most decisions, with break "
+            "history, capacity stress, criticality, material risk, and age as "
+            "secondary factors. Recommended for routine CIP planning."
         ),
     },
     "Condition-First (Engineering)": {
         "weights": {
-            "condition_severity": 0.50,
-            "traffic_impact":     0.20,
-            "complaint_pressure": 0.10,
-            "cost_efficiency":    0.12,
-            "equity_modifier":    0.08,
+            "condition_severity": 0.45,
+            "break_history":      0.15,
+            "capacity_stress":    0.12,
+            "criticality":        0.12,
+            "material_risk":      0.10,
+            "age_factor":         0.06,
         },
         "description": (
-            "Maximizes weight on physical road condition. "
-            "Use when the primary goal is reducing structural failures and "
-            "meeting FHWA condition reporting requirements. "
-            "Least sensitive to public complaint patterns."
+            "Maximizes weight on physical pipe condition from CCTV/acoustic inspection. "
+            "Use when the primary goal is reducing structural failures and meeting "
+            "EPA/DEQ compliance requirements."
         ),
     },
-    "Complaint-Responsive (Community)": {
+    "Break-History-Responsive (Reactive)": {
         "weights": {
-            "condition_severity": 0.25,
-            "traffic_impact":     0.20,
-            "complaint_pressure": 0.35,
-            "cost_efficiency":    0.12,
-            "equity_modifier":    0.08,
+            "condition_severity": 0.20,
+            "break_history":      0.35,
+            "capacity_stress":    0.15,
+            "criticality":        0.15,
+            "material_risk":      0.10,
+            "age_factor":         0.05,
         },
         "description": (
-            "Elevates citizen complaint data in the priority score. "
-            "Use when the goal is improving public-facing responsiveness and "
-            "demonstrating that 311 feedback drives decisions. "
-            "May prioritize high-visibility corridors over structurally worse but "
-            "quieter roads."
+            "Prioritizes pipes with recent break history. Use when the goal is "
+            "reducing emergency repair costs and repeat failures. May prioritize "
+            "older pipes with documented breaks over newer pipes in poor condition."
         ),
     },
-    "Budget-Efficient (Fiscal)": {
+    "Capacity-Focused (Hydraulic)": {
         "weights": {
-            "condition_severity": 0.30,
-            "traffic_impact":     0.25,
-            "complaint_pressure": 0.10,
-            "cost_efficiency":    0.28,
-            "equity_modifier":    0.07,
+            "condition_severity": 0.20,
+            "break_history":      0.15,
+            "capacity_stress":    0.30,
+            "criticality":        0.15,
+            "material_risk":      0.10,
+            "age_factor":         0.10,
         },
         "description": (
-            "Maximizes the maintenance value per dollar spent. "
-            "Use when operating under budget pressure and the goal is to treat "
-            "the most lane-miles possible within available funding. "
-            "May defer expensive rehabilitation in favor of lower-cost preservation."
-        ),
-    },
-    "Equity-Focused (Title VI)": {
-        "weights": {
-            "condition_severity": 0.30,
-            "traffic_impact":     0.20,
-            "complaint_pressure": 0.15,
-            "cost_efficiency":    0.10,
-            "equity_modifier":    0.25,
-        },
-        "description": (
-            "Strengthens the equity modifier to address historically under-maintained "
-            "districts. Use when preparing for HUD/FHWA Title VI reviews or when "
-            "the Director has identified equity as a strategic priority. "
-            "Will shift more budget toward lower-income districts."
+            "Emphasizes hydraulic capacity for wet-weather resilience. "
+            "Use when SSO reduction, stormwater flooding, or fire flow "
+            "adequacy is the strategic priority."
         ),
     },
     "Custom": {
@@ -143,892 +118,413 @@ POLICY_PRESETS = {
     },
 }
 
-# ─── DATA LOADING (cached) ────────────────────────────────────────────────────
+# ─── KPI BENCHMARKS ──────────────────────────────────────────────────────────
+KPI_BENCHMARKS = {
+    "avg_condition": {"target": 60, "unit": "/100", "label": "Avg Pipe Condition"},
+    "critical_pct":  {"target": 5,  "unit": "%",    "label": "Critical Pipes"},
+    "avg_age":       {"target": 40, "unit": "yr",   "label": "Avg Asset Age"},
+    "break_rate":    {"target": 1.0,"unit": "/yr",  "label": "Avg Breaks (5yr)"},
+}
+
+
+# ─── DATA LOADING ────────────────────────────────────────────────────────────
 @st.cache_data
 def load_data():
-    roads       = pd.read_csv(DATA_DIR / "road_segments.csv")
-    complaints  = pd.read_csv(DATA_DIR / "complaints.csv")
-    work_orders = pd.read_csv(DATA_DIR / "work_orders.csv")
-    budget      = pd.read_csv(DATA_DIR / "budget_actuals.csv")
-    weather     = pd.read_csv(DATA_DIR / "weather_events.csv")
-    bridges     = pd.read_csv(DATA_DIR / "bridge_inspections.csv")
-    return roads, complaints, work_orders, budget, weather, bridges
+    pipes            = pd.read_csv(DATA_DIR / "pipe_segments.csv")
+    service_requests = pd.read_csv(DATA_DIR / "service_requests.csv")
+    work_orders      = pd.read_csv(DATA_DIR / "work_orders.csv")
+    facilities       = pd.read_csv(DATA_DIR / "facilities.csv")
+    flow_monitoring  = pd.read_csv(DATA_DIR / "flow_monitoring.csv")
+    budget_cip       = pd.read_csv(DATA_DIR / "budget_cip.csv")
+    weather          = pd.read_csv(DATA_DIR / "weather_events.csv")
+    return pipes, service_requests, work_orders, facilities, flow_monitoring, budget_cip, weather
 
 @st.cache_data
 def run_model(weights_tuple):
     weights = dict(zip(
-        ["condition_severity", "traffic_impact", "complaint_pressure",
-         "cost_efficiency", "equity_modifier"],
+        ["condition_severity", "break_history", "capacity_stress",
+         "criticality", "material_risk", "age_factor"],
         weights_tuple
     ))
-    roads, complaints, work_orders, _, _, _ = load_data()
+    pipes, service_requests, work_orders, _, _, _, _ = load_data()
     model = PWISPrioritizationModel(weights)
-    return model.score(roads, complaints, work_orders)
+    return model.score(pipes, service_requests, work_orders)
 
-# ─── SIDEBAR ──────────────────────────────────────────────────────────────────
+
+# ─── CONFIDENCE BANNER ───────────────────────────────────────────────────────
+def render_confidence_banner(scores: pd.DataFrame):
+    low_conf = (scores["score_confidence"] < 0.7).sum()
+    total = len(scores)
+    pct = low_conf / total * 100
+
+    if pct > 20:
+        st.warning(
+            f"**Data Quality Alert:** {low_conf} of {total} pipes ({pct:.0f}%) have "
+            f"score confidence below 70%. Scores for these pipes are based on "
+            f"incomplete or stale inspection data. Re-inspection recommended "
+            f"before committing capital to these segments."
+        )
+    elif pct > 5:
+        st.info(
+            f"{low_conf} pipes ({pct:.0f}%) have reduced confidence scores. "
+            f"Check the 'Confidence' column in the priority table for details."
+        )
+
+
+# ─── SIDEBAR ─────────────────────────────────────────────────────────────────
 def render_sidebar():
-    st.sidebar.image(
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Boise_Idaho_City_Seal.svg/200px-Boise_Idaho_City_Seal.svg.png",
-        width=80
-    )
-    st.sidebar.title("🏗️ PWIS Controls")
-    st.sidebar.caption("Boise Public Works Intelligence System")
+    st.sidebar.title("🔧 PWIS Controls")
+    st.sidebar.caption("Boise Utility Infrastructure Intelligence")
 
-    # ── Policy Preset Selector ──────────────────────────────────────────────
-    st.sidebar.header("🎛️ Prioritization Policy")
+    # System filter
+    st.sidebar.header("System Filter")
+    system_filter = st.sidebar.multiselect(
+        "Show system types",
+        options=["Water", "Sewer", "Stormwater"],
+        default=["Water", "Sewer", "Stormwater"],
+    )
+
+    # Policy preset
+    st.sidebar.header("Prioritization Policy")
     preset_name = st.sidebar.selectbox(
         "Select a policy preset",
         options=list(POLICY_PRESETS.keys()),
         index=0,
-        help="Presets reflect different policy priorities. Switch between them to see how rankings shift.",
     )
 
     preset = POLICY_PRESETS[preset_name]
     st.sidebar.info(preset["description"])
-
     preset_weights = preset["weights"]
 
-    # ── Weight Sliders (visible for Custom, collapsed for presets) ──────────
     show_sliders = (preset_name == "Custom") or st.sidebar.checkbox(
         "Manually override weights", value=False
     )
 
     if show_sliders:
         st.sidebar.markdown("**Adjust individual weights** (must sum to 1.0):")
-        st.sidebar.caption(
-            "Each weight controls how much that factor influences the priority score. "
-            "Higher weight = that factor matters more in the ranking."
-        )
+        w_condition   = st.sidebar.slider("Condition Severity", 0.0, 1.0, preset_weights["condition_severity"], 0.01)
+        w_breaks      = st.sidebar.slider("Break History",      0.0, 1.0, preset_weights["break_history"],      0.01)
+        w_capacity    = st.sidebar.slider("Capacity Stress",    0.0, 1.0, preset_weights["capacity_stress"],    0.01)
+        w_criticality = st.sidebar.slider("Criticality",        0.0, 1.0, preset_weights["criticality"],        0.01)
+        w_material    = st.sidebar.slider("Material Risk",      0.0, 1.0, preset_weights["material_risk"],      0.01)
+        w_age         = st.sidebar.slider("Age Factor",         0.0, 1.0, preset_weights["age_factor"],         0.01)
 
-        w1 = st.sidebar.slider(
-            "Road Condition (physical state of pavement)",
-            0.05, 0.60, float(preset_weights["condition_severity"]), 0.05,
-            help="How heavily should the physical condition of the road drive priority? "
-                 "Higher values prioritize the worst-condition roads regardless of traffic or complaints.",
-        )
-        w2 = st.sidebar.slider(
-            "Traffic Volume (how many people use this road)",
-            0.05, 0.50, float(preset_weights["traffic_impact"]), 0.05,
-            help="How much should daily traffic count influence priority? "
-                 "Higher values prioritize busy arterials and highways over quiet local streets.",
-        )
-        w3 = st.sidebar.slider(
-            "Citizen Complaints (311 reports and severity)",
-            0.05, 0.50, float(preset_weights["complaint_pressure"]), 0.05,
-            help="How much should resident complaints influence the score? "
-                 "Higher values prioritize roads where residents are actively reporting problems.",
-        )
-        w4 = st.sidebar.slider(
-            "Cost Efficiency (maintenance value per dollar)",
-            0.02, 0.30, float(preset_weights["cost_efficiency"]), 0.02,
-            help="How much should we prioritize repairs that give the most lane-miles "
-                 "of improvement per budget dollar? Higher values favor cost-effective preservation.",
-        )
-        w5 = st.sidebar.slider(
-            "Equity (correcting historical underinvestment)",
-            0.02, 0.20, float(preset_weights["equity_modifier"]), 0.02,
-            help="A small boost for districts whose roads are below the citywide average. "
-                 "This corrects for systematic underinvestment — it is documented and disclosed.",
-        )
+        total = w_condition + w_breaks + w_capacity + w_criticality + w_material + w_age
+        if abs(total - 1.0) > 0.02:
+            st.sidebar.error(f"Weights sum to {total:.2f} — must equal 1.0")
 
-        total = w1 + w2 + w3 + w4 + w5
-        if abs(total - 1.0) > 0.01:
-            st.sidebar.warning(
-                f"⚠️ Weights sum to {total:.2f} — must equal 1.0. "
-                "Normalizing automatically."
-            )
-            norm = total
-            w1, w2, w3, w4, w5 = w1/norm, w2/norm, w3/norm, w4/norm, w5/norm
-        else:
-            st.sidebar.success(f"✓ Weights sum to {total:.2f}")
+        weights_tuple = (w_condition, w_breaks, w_capacity, w_criticality, w_material, w_age)
     else:
-        # Use preset values directly
-        w1 = float(preset_weights["condition_severity"])
-        w2 = float(preset_weights["traffic_impact"])
-        w3 = float(preset_weights["complaint_pressure"])
-        w4 = float(preset_weights["cost_efficiency"])
-        w5 = float(preset_weights["equity_modifier"])
+        weights_tuple = tuple(preset_weights.values())
 
-    # Display active weight summary for transparency
-    with st.sidebar.expander("Active weights (for audit / reporting)", expanded=False):
-        st.sidebar.write({
-            "Road Condition":     f"{w1:.0%}",
-            "Traffic Volume":     f"{w2:.0%}",
-            "Citizen Complaints": f"{w3:.0%}",
-            "Cost Efficiency":    f"{w4:.0%}",
-            "Equity Modifier":    f"{w5:.0%}",
-        })
-
-    # ── Budget Control ───────────────────────────────────────────────────────
-    st.sidebar.header("💰 Budget Scenario")
-    budget = st.sidebar.number_input(
-        "Annual Maintenance Budget ($)",
-        min_value=500_000, max_value=30_000_000,
-        value=8_000_000, step=500_000, format="%d",
-        help="Total annual road maintenance budget. Adjust to see which segments "
-             "get funded and what percentage of the network is covered.",
-    )
-
-    # ── Spatial Filters ──────────────────────────────────────────────────────
-    st.sidebar.header("🗺️ Filters")
-    roads, _, _, _, _, _ = load_data()
-    districts = ["All"] + sorted(roads["district"].unique().tolist())
-    selected_district = st.sidebar.selectbox(
-        "District",
-        districts,
-        help="Filter to a specific district or view the full network.",
-    )
-    road_types = ["All"] + sorted(roads["road_type"].unique().tolist())
-    selected_road_type = st.sidebar.selectbox(
-        "Road Type",
-        road_types,
-        help="Filter by functional class: Arterial, Collector, Local, or Highway.",
-    )
-
-    return (w1, w2, w3, w4, w5), budget, selected_district, selected_road_type, preset_name
+    return weights_tuple, system_filter
 
 
-# ─── DATA QUALITY BANNER ─────────────────────────────────────────────────────
-def render_confidence_banner(scores: pd.DataFrame):
-    """
-    Displays a warning if average score confidence is low.
-    Low confidence signals that inspection data is stale or fields are missing —
-    operators should re-inspect before making large capital commitments.
-    """
-    if "score_confidence" not in scores.columns:
-        return
+# ─── TAB 1: KPI OVERVIEW ────────────────────────────────────────────────────
+def render_kpi_tab(scores: pd.DataFrame, pipes: pd.DataFrame):
+    st.header("Utility Infrastructure KPIs")
+    render_confidence_banner(scores)
 
-    avg_confidence = scores["score_confidence"].mean()
-    low_conf_count = (scores["score_confidence"] < 0.7).sum()
-    stale_count    = (scores["score_confidence"] < 0.8).sum()
+    col1, col2, col3, col4 = st.columns(4)
 
-    if avg_confidence < 0.70:
-        st.error(
-            f"⚠️ **Data Quality Alert:** {low_conf_count} segments ({low_conf_count/len(scores)*100:.0f}%) "
-            f"have low score confidence (< 0.70). "
-            "This typically indicates missing fields or inspection data older than 2 years. "
-            "**Scores for these segments are indicative only.** "
-            "Field re-inspection is recommended before committing capital."
-        )
-    elif avg_confidence < 0.85:
-        st.warning(
-            f"📋 **Data Quality Note:** {stale_count} segments ({stale_count/len(scores)*100:.0f}%) "
-            f"have score confidence below 0.80 (average: {avg_confidence:.2f}). "
-            "Some inspection data may be stale. Consider scheduling re-inspections "
-            "for the highest-priority segments before finalizing the capital plan."
-        )
-
-
-# ─── KPI CARDS ────────────────────────────────────────────────────────────────
-def render_kpi_cards(scores: pd.DataFrame, budget: float):
-    """
-    Key Performance Indicators with benchmark context.
-
-    Each metric includes a target or reference value so operators understand
-    whether the number is good, acceptable, or requires action — without
-    needing to know the model internals.
-    """
-    tier_counts = scores["priority_tier"].value_counts()
-
-    col1, col2, col3, col4, col5, col6 = st.columns(6)
+    avg_cond = scores["condition_score"].mean()
+    critical_pct = (scores["priority_tier"].astype(str) == "Critical").mean() * 100
+    avg_age = scores["asset_age_years"].mean()
+    avg_breaks = scores["breaks_last_5yr"].mean()
 
     with col1:
-        st.metric(
-            "Total Segments",
-            len(scores),
-            help="Total road segments in the current analysis.",
-        )
-
+        delta = avg_cond - KPI_BENCHMARKS["avg_condition"]["target"]
+        st.metric("Avg Pipe Condition", f"{avg_cond:.0f}/100",
+                  delta=f"{delta:+.0f} vs target {KPI_BENCHMARKS['avg_condition']['target']}")
     with col2:
-        avg_ci = scores["condition_index"].mean()
-        delta_vs_target = avg_ci - 65  # Target: citywide average CI >= 65 (APWA benchmark)
-        st.metric(
-            "Avg Condition Index",
-            f"{avg_ci:.0f} / 100",
-            delta=f"{delta_vs_target:+.0f} vs. target (65)",
-            delta_color="normal",
-            help=(
-                "Average road condition across the network. "
-                "Target: 65+ (APWA benchmark for well-maintained mid-size cities). "
-                "Below 60 indicates a network entering reactive maintenance mode."
-            ),
-        )
-
+        delta = critical_pct - KPI_BENCHMARKS["critical_pct"]["target"]
+        st.metric("Critical Pipes", f"{critical_pct:.1f}%",
+                  delta=f"{delta:+.1f}% vs target {KPI_BENCHMARKS['critical_pct']['target']}%",
+                  delta_color="inverse")
     with col3:
-        critical = tier_counts.get("Critical", 0) + tier_counts.get("High", 0)
-        critical_pct = critical / len(scores) * 100
-        # Benchmark: High/Critical should be < 15% of the network (PWIS-ENG)
-        st.metric(
-            "High/Critical Segments",
-            f"{critical} ({critical_pct:.0f}%)",
-            delta=f"{'⚠️ Above' if critical_pct > 15 else '✓ Within'} 15% benchmark",
-            delta_color="inverse" if critical_pct > 15 else "off",
-            help=(
-                "Count and share of segments in High or Critical priority tiers. "
-                "Benchmark: < 15% of network (typical well-funded city). "
-                "Above 15% signals deferred maintenance backlog."
-            ),
-        )
-
+        delta = avg_age - KPI_BENCHMARKS["avg_age"]["target"]
+        st.metric("Avg Asset Age", f"{avg_age:.0f} yr",
+                  delta=f"{delta:+.0f} yr vs target {KPI_BENCHMARKS['avg_age']['target']}yr",
+                  delta_color="inverse")
     with col4:
-        poor = (scores["condition_index"] < 40).sum()
-        poor_miles = scores[scores["condition_index"] < 40]["length_miles"].sum()
-        st.metric(
-            "Structurally Poor (<40 CI)",
-            f"{poor} segs",
-            delta=f"{poor_miles:.1f} lane-miles",
-            delta_color="inverse",
-            help=(
-                "Segments below CI=40 are at or past the structural failure threshold "
-                "(PASER standard). These require rehabilitation, not just surface treatment. "
-                "Each year of deferral increases repair cost 3-5x."
-            ),
-        )
+        st.metric("Avg Breaks (5yr)", f"{avg_breaks:.1f}",
+                  delta=f"{avg_breaks - KPI_BENCHMARKS['break_rate']['target']:+.1f} vs target",
+                  delta_color="inverse")
 
-    with col5:
-        total_backlog = scores[
-            scores["priority_tier"].astype(str).isin(["Critical", "High"])
-        ]["estimated_repair_cost_usd"].sum()
-        st.metric(
-            "High-Priority Backlog",
-            f"${total_backlog/1e6:.1f}M",
-            help=(
-                "Estimated cost of all Critical + High priority segments. "
-                "This is the minimum investment required to address structural failures "
-                "and prevent further network deterioration. Source: APWA 2023 unit costs."
-            ),
-        )
+    st.divider()
 
-    with col6:
-        roads, complaints, work_orders, _, _, _ = load_data()
-        engine = PWISScenarioEngine(roads, complaints, work_orders)
-        _, s1 = engine.run_budget_scenario(budget)
-        funded_pct = s1.summary_metrics["pct_budget_used"]
-        segments_funded = s1.summary_metrics["segments_funded"]
-        st.metric(
-            "Budget Utilization",
-            f"{funded_pct:.0f}%",
-            delta=f"{segments_funded} of {len(scores)} segments funded",
-            help=(
-                "Percentage of the annual budget committed to funded segments. "
-                "< 90% may indicate the available budget cannot address all priority segments. "
-                "= 100% means the budget is the binding constraint, not crew capacity."
-            ),
-        )
+    # System type breakdown
+    col_left, col_right = st.columns(2)
 
-
-# ─── TAB: OVERVIEW ────────────────────────────────────────────────────────────
-def render_overview(scores: pd.DataFrame, budget_df: pd.DataFrame):
-    st.header("📊 Network Overview")
-
-    col1, col2 = st.columns([1.2, 1])
-
-    with col1:
-        st.subheader("Condition Distribution by District")
-        st.caption(
-            "Each box shows the range of condition scores in that district. "
-            "The red dashed line (CI=40) marks the structural failure threshold — "
-            "segments below this line need rehabilitation, not just surface treatment."
+    with col_left:
+        st.subheader("Priority Tier Distribution")
+        tier_counts = scores["priority_tier"].value_counts().reindex(
+            ["Critical", "High", "Medium", "Low"]
+        ).fillna(0)
+        fig = px.bar(
+            x=tier_counts.index, y=tier_counts.values,
+            color=tier_counts.index,
+            color_discrete_map=COLORS,
+            labels={"x": "Priority Tier", "y": "Pipe Count"},
         )
-        fig = px.box(
-            scores, x="district", y="condition_index",
-            color="road_type",
-            color_discrete_sequence=px.colors.qualitative.Set2,
-            labels={"condition_index": "Condition Index (0-100, higher=better)", "district": "District"},
-        )
-        fig.update_layout(
-            height=400, legend_title="Road Type",
-            plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
-        )
-        fig.add_hline(
-            y=40, line_dash="dash", line_color="red",
-            annotation_text="Structural failure threshold (CI=40)",
-            annotation_position="top right",
-        )
-        fig.add_hline(
-            y=65, line_dash="dot", line_color="green",
-            annotation_text="Network health target (CI=65)",
-            annotation_position="bottom right",
-        )
+        fig.update_layout(showlegend=False, height=350)
         st.plotly_chart(fig, use_container_width=True)
 
-    with col2:
-        st.subheader("Priority Tier Distribution")
-        st.caption(
-            "Critical and High segments require action in the current or next budget cycle. "
-            "Medium segments can be addressed through preventive maintenance. "
-            "Low segments need only routine monitoring."
-        )
-        tier_data = scores["priority_tier"].value_counts().reset_index()
-        tier_data.columns = ["Tier", "Count"]
-        tier_order = ["Critical", "High", "Medium", "Low"]
-        tier_data["Tier"] = pd.Categorical(tier_data["Tier"], categories=tier_order, ordered=True)
-        tier_data = tier_data.sort_values("Tier")
-
-        fig2 = px.bar(
-            tier_data, x="Tier", y="Count",
-            color="Tier",
+    with col_right:
+        st.subheader("System Type Breakdown")
+        sys_counts = scores["system_type"].value_counts()
+        fig = px.pie(
+            values=sys_counts.values, names=sys_counts.index,
+            color=sys_counts.index,
             color_discrete_map=COLORS,
-            text="Count",
         )
-        fig2.update_traces(textposition="outside")
-        fig2.update_layout(
-            height=400, showlegend=False,
-            plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
-        )
-        st.plotly_chart(fig2, use_container_width=True)
+        fig.update_layout(height=350)
+        st.plotly_chart(fig, use_container_width=True)
 
-    # District health matrix
-    st.subheader("District Infrastructure Health Matrix")
-    st.caption(
-        "Red = below the structural failure threshold (CI < 40). "
-        "Orange = at risk (CI 40-65). Green = meets or exceeds the network health target (CI >= 65)."
-    )
+    # District summary
+    st.subheader("District Summary")
     district_summary = (
         scores.groupby("district")
         .agg(
-            avg_condition=("condition_index",  "mean"),
-            avg_priority=("priority_score",    "mean"),
-            poor_count=("condition_index",     lambda x: (x < 40).sum()),
-            total_segments=("segment_id",      "count"),
-            total_lane_miles=("length_miles",  "sum"),
-            total_backlog=("estimated_repair_cost_usd", "sum"),
-            avg_confidence=("score_confidence", "mean"),
+            pipes=("segment_id", "count"),
+            avg_condition=("condition_score", "mean"),
+            critical=("priority_tier", lambda x: (x.astype(str) == "Critical").sum()),
+            avg_priority=("priority_score", "mean"),
+            total_replacement_cost=("estimated_replacement_cost_usd", "sum"),
         )
-        .round(2)
-        .reset_index()
+        .round(1)
+        .sort_values("avg_priority", ascending=False)
     )
-    district_summary["pct_poor"]  = (
-        district_summary["poor_count"] / district_summary["total_segments"] * 100
-    ).round(1)
-    district_summary["backlog_M"] = (district_summary["total_backlog"] / 1e6).round(2)
-
-    def color_condition(val):
-        if val < 40:   return "color: red; font-weight: bold"
-        elif val < 65: return "color: orange"
-        else:          return "color: green"
-
-    def color_confidence(val):
-        if val < 0.70:  return "color: red"
-        elif val < 0.85: return "color: orange"
-        else:            return "color: green"
-
-    display = district_summary[[
-        "district", "avg_condition", "avg_priority", "pct_poor",
-        "total_lane_miles", "backlog_M", "avg_confidence",
-    ]].copy()
-    display.columns = [
-        "District", "Avg CI", "Avg Priority Score", "% Structurally Poor",
-        "Lane Miles", "Backlog ($M)", "Data Confidence",
-    ]
-
-    st.dataframe(
-        display.style
-        .format({
-            "Avg CI":              "{:.1f}",
-            "Avg Priority Score":  "{:.1f}",
-            "% Structurally Poor": "{:.1f}%",
-            "Lane Miles":          "{:.1f}",
-            "Backlog ($M)":        "${:.2f}M",
-            "Data Confidence":     "{:.2f}",
-        })
-        .applymap(color_condition,  subset=["Avg CI"])
-        .applymap(color_confidence, subset=["Data Confidence"]),
-        use_container_width=True, hide_index=True,
+    district_summary["total_replacement_cost"] = district_summary["total_replacement_cost"].apply(
+        lambda x: f"${x:,.0f}"
     )
-    st.caption(
-        "Data Confidence: 1.0 = all required fields present and inspected within 2 years. "
-        "Below 0.70 = scores are indicative only; field re-inspection recommended."
-    )
+    st.dataframe(district_summary, use_container_width=True)
 
 
-# ─── TAB: PRIORITIZATION TABLE ───────────────────────────────────────────────
-def render_priority_table(scores: pd.DataFrame, district_filter: str, type_filter: str):
-    st.header("🎯 Prioritized Segments")
+# ─── TAB 2: PRIORITY TABLE ──────────────────────────────────────────────────
+def render_priority_tab(scores: pd.DataFrame):
+    st.header("Pipe Priority Rankings")
+
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        tier_filter = st.multiselect("Filter by tier", ["Critical", "High", "Medium", "Low"],
+                                     default=["Critical", "High"])
+    with col2:
+        district_filter = st.multiselect("Filter by district", scores["district"].unique().tolist())
+    with col3:
+        material_filter = st.multiselect("Filter by material", scores["pipe_material"].unique().tolist())
 
     filtered = scores.copy()
-    if district_filter != "All":
-        filtered = filtered[filtered["district"] == district_filter]
-    if type_filter != "All":
-        filtered = filtered[filtered["road_type"] == type_filter]
-
-    col1, col2 = st.columns([2, 1])
-    with col1:
-        tier_filter = st.multiselect(
-            "Filter by Tier",
-            options=["Critical", "High", "Medium", "Low"],
-            default=["Critical", "High"],
-            help="Critical = immediate action required. High = address this budget cycle. "
-                 "Medium = preventive treatment window open. Low = routine monitoring only.",
-        )
-    with col2:
-        top_n = st.slider(
-            "Show top N segments", 10, len(filtered), min(50, len(filtered))
-        )
-
     if tier_filter:
         filtered = filtered[filtered["priority_tier"].astype(str).isin(tier_filter)]
-
-    # Low confidence rows get a visual flag
-    if "score_confidence" in filtered.columns:
-        low_conf_count = (filtered["score_confidence"] < 0.7).sum()
-        if low_conf_count > 0:
-            st.warning(
-                f"⚠️ {low_conf_count} segment(s) in this view have data confidence < 0.70. "
-                "Check the 'Data Confidence' column — these scores are based on stale or "
-                "incomplete inspection data."
-            )
+    if district_filter:
+        filtered = filtered[filtered["district"].isin(district_filter)]
+    if material_filter:
+        filtered = filtered[filtered["pipe_material"].isin(material_filter)]
 
     display_cols = [
-        "segment_id", "street_name", "district", "road_type",
-        "condition_index", "daily_traffic_aadt", "priority_score",
-        "priority_tier", "district_rank", "score_confidence",
-        "raw_complaint_count", "recommended_action", "estimated_repair_cost_usd",
+        "segment_id", "system_type", "corridor_name", "district",
+        "pipe_material", "diameter_inches", "condition_score",
+        "breaks_last_5yr", "priority_score", "priority_tier",
+        "score_confidence", "recommended_action",
     ]
     display_cols = [c for c in display_cols if c in filtered.columns]
-    display = filtered[display_cols].head(top_n).copy()
 
-    display["estimated_repair_cost_usd"] = display["estimated_repair_cost_usd"].apply(
-        lambda x: f"${int(x):,}" if pd.notna(x) else "-"
+    st.dataframe(
+        filtered[display_cols].head(100),
+        use_container_width=True,
+        height=500,
     )
-    display["daily_traffic_aadt"] = display["daily_traffic_aadt"].apply(
-        lambda x: f"{int(x):,}" if pd.notna(x) else "-"
-    )
-
-    def color_tier(val):
-        colors_map = {
-            "Critical": "background-color:#ffcccc",
-            "High":     "background-color:#ffe5cc",
-            "Medium":   "background-color:#fffacc",
-            "Low":      "background-color:#ccffcc",
-        }
-        return colors_map.get(str(val), "")
-
-    def color_confidence(val):
-        try:
-            v = float(val)
-            if v < 0.70:   return "color: red; font-weight: bold"
-            elif v < 0.85: return "color: orange"
-            return ""
-        except (ValueError, TypeError):
-            return ""
-
-    style = display.style.applymap(color_tier, subset=["priority_tier"])
-    if "score_confidence" in display.columns:
-        style = style.applymap(color_confidence, subset=["score_confidence"])
-
-    st.dataframe(style, use_container_width=True, hide_index=True)
-    st.caption(
-        f"Showing {len(display)} of {len(filtered)} filtered segments  |  "
-        "Confidence: 0.70+ = reliable  |  < 0.70 = re-inspect before committing capital"
-    )
-
-    # Score component breakdown
-    if len(filtered) > 0:
-        st.subheader("Score Component Breakdown — Top 20")
-        st.caption(
-            "Stacked bars show which factors are driving each segment's priority score. "
-            "A segment dominated by 'Condition' has poor pavement — objective and hard to dispute. "
-            "A segment dominated by 'Complaints' has high citizen pressure — may reflect equity or visibility."
-        )
-        top20 = filtered.head(20)
-        component_cols = [
-            c for c in [
-                "score_condition", "score_traffic", "score_complaints",
-                "score_cost_eff", "score_equity",
-            ]
-            if c in top20.columns
-        ]
-        component_labels = {
-            "score_condition":  "Road Condition",
-            "score_traffic":    "Traffic Volume",
-            "score_complaints": "Citizen Complaints",
-            "score_cost_eff":   "Cost Efficiency",
-            "score_equity":     "Equity Modifier",
-        }
-        if component_cols:
-            melt = top20[["street_name"] + component_cols].melt(
-                id_vars="street_name", var_name="Component", value_name="Score"
-            )
-            melt["Component"] = melt["Component"].map(component_labels).fillna(melt["Component"])
-            fig = px.bar(
-                melt, x="Score", y="street_name", color="Component",
-                orientation="h", barmode="stack",
-                color_discrete_sequence=px.colors.qualitative.Set1,
-                labels={"street_name": "Segment", "Score": "Component Score (0-100)"},
-            )
-            fig.update_layout(
-                height=520,
-                yaxis={"categoryorder": "total ascending"},
-                plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
-            )
-            st.plotly_chart(fig, use_container_width=True)
+    st.caption(f"Showing {min(100, len(filtered))} of {len(filtered)} filtered pipes")
 
 
-# ─── TAB: GIS MAP ────────────────────────────────────────────────────────────
-def render_map_tab(scores: pd.DataFrame, roads: pd.DataFrame, complaints: pd.DataFrame):
-    st.header("🗺️ GIS Infrastructure Map")
-    st.caption(
-        "Interactive map of the Boise road network. "
-        "Click any segment marker for detailed condition and priority information. "
-        "Use the map type selector to switch between views."
-    )
+# ─── TAB 3: GIS MAP ─────────────────────────────────────────────────────────
+def render_map_tab(scores: pd.DataFrame, pipes: pd.DataFrame, service_requests: pd.DataFrame):
+    st.header("Infrastructure Map")
+
     map_type = st.radio(
-        "Select Map View",
-        ["Priority Scores", "Condition Index", "Complaint Heatmap"],
+        "Select map view",
+        ["Executive (Multi-Layer)", "Pipe Condition", "Priority Scores", "Service Request Heatmap"],
         horizontal=True,
-        help=(
-            "Priority Scores: overall model output. "
-            "Condition Index: raw physical condition only. "
-            "Complaint Heatmap: density of 311 complaints by location."
-        ),
     )
 
-    if "lat" not in scores.columns:
-        scores = scores.merge(roads[["segment_id", "lat", "lon"]], on="segment_id", how="left")
+    if map_type == "Executive (Multi-Layer)":
+        m = build_executive_map(pipes, scores, service_requests)
+    elif map_type == "Pipe Condition":
+        m = build_condition_map(pipes)
+    elif map_type == "Priority Scores":
+        m = build_priority_map(scores)
+    else:
+        m = build_service_request_heatmap(service_requests)
 
-    with st.spinner("Rendering map..."):
-        if map_type == "Priority Scores":
-            m = build_priority_map(scores)
-        elif map_type == "Condition Index":
-            m = build_condition_map(roads)
-        else:
-            m = build_complaint_heatmap(complaints)
-
-    st_folium(m, width=None, height=550, returned_objects=[])
+    st_folium(m, width=None, height=600, returned_objects=[])
 
 
-# ─── TAB: SCENARIO SIMULATION ────────────────────────────────────────────────
-def render_scenarios(scores: pd.DataFrame, budget: float, weights_tuple: tuple):
-    st.header("⚙️ Scenario Simulation")
-    st.caption(
-        "Scenario analysis answers 'what if' questions about budget, policy weights, "
-        "and the cost of deferring maintenance. All cost figures are APWA 2023 benchmarks "
-        "adjusted for Boise metro (±25%). Confirm against bid history before presenting to Council."
+# ─── TAB 4: SCENARIOS ───────────────────────────────────────────────────────
+def render_scenario_tab(pipes, service_requests, work_orders):
+    st.header("What-If Scenario Analysis")
+
+    scenario_type = st.selectbox(
+        "Select scenario",
+        ["CIP Budget Allocation", "Deferral Cost Analysis", "Budget Coverage Curve"],
     )
 
-    roads, complaints, work_orders, _, _, _ = load_data()
-    engine = PWISScenarioEngine(roads, complaints, work_orders)
+    engine = PWISScenarioEngine(pipes, service_requests, work_orders)
 
-    tab_a, tab_b, tab_c = st.tabs([
-        "💰 Budget Coverage", "⚖️ Weight Sensitivity", "📈 Deferral Cost"
-    ])
-
-    with tab_a:
-        st.subheader("What does each budget level actually buy?")
-        st.caption(
-            "Each bar shows how many segments would be funded at that annual budget level. "
-            "The chart also shows diminishing returns: the last million dollars buys fewer "
-            "lane-miles than the first million because the highest-priority segments are "
-            "addressed first."
-        )
-        coverage = engine.run_coverage_analysis(
-            budget_levels=[2e6, 4e6, 6e6, 8e6, 10e6, 12e6, 15e6, 20e6]
-        )
-
+    if scenario_type == "CIP Budget Allocation":
         col1, col2 = st.columns(2)
         with col1:
+            budget = st.slider("Annual CIP Budget ($M)", 5, 100, 15, 5) * 1_000_000
+        with col2:
+            sys_filter = st.selectbox("System Filter", ["All", "Water", "Sewer", "Stormwater"])
+
+        sys_val = None if sys_filter == "All" else sys_filter
+        funded_df, result = engine.run_budget_scenario(budget, system_filter=sys_val)
+
+        m = result.summary_metrics
+        col1, col2, col3, col4 = st.columns(4)
+        col1.metric("Segments Funded", m["segments_funded"])
+        col2.metric("Budget Utilized", f"${m['budget_utilized']:,.0f}")
+        col3.metric("Pipe Feet Treated", f"{m['pipe_feet_treated']:,}")
+        col4.metric("Critical Unfunded", m["critical_segments_unfunded"])
+
+        funded_only = funded_df[funded_df["funded_this_cycle"]].copy()
+        if len(funded_only) > 0:
             fig = px.bar(
-                coverage, x="budget_millions", y="segments_funded",
-                labels={"budget_millions": "Annual Budget ($M)", "segments_funded": "Segments Funded"},
-                color="segments_funded", color_continuous_scale="Blues",
-                text="segments_funded",
-            )
-            fig.update_traces(textposition="outside")
-            fig.update_layout(
-                title="Segments Funded by Budget Level",
-                plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
+                funded_only.head(30),
+                x="segment_id", y="treatment_cost",
+                color="priority_tier",
+                color_discrete_map=COLORS,
+                title="Top 30 Funded Segments by Treatment Cost",
             )
             st.plotly_chart(fig, use_container_width=True)
 
-        with col2:
-            fig2 = px.line(
-                coverage, x="budget_millions", y="lane_miles_treated",
-                markers=True,
-                labels={
-                    "budget_millions":    "Annual Budget ($M)",
-                    "lane_miles_treated": "Lane Miles Treated",
-                },
-            )
-            fig2.update_layout(
-                title="Lane Miles Treated vs. Budget",
-                plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
-            )
-            st.plotly_chart(fig2, use_container_width=True)
-
-        display_cols = [
-            "budget_millions", "segments_funded", "critical_funded", "critical_unfunded",
-            "lane_miles_treated", "marginal_lane_miles", "pct_budget_used", "budget_per_lane_mile",
-        ]
-        display_cols = [c for c in display_cols if c in coverage.columns]
-        st.dataframe(
-            coverage[display_cols].style.format({
-                "budget_millions":       "${:.1f}M",
-                "lane_miles_treated":    "{:.1f}",
-                "marginal_lane_miles":   "{:.1f}",
-                "pct_budget_used":       "{:.1f}%",
-                "budget_per_lane_mile":  "${:,.0f}",
-            }),
-            use_container_width=True, hide_index=True,
-        )
-        st.caption(
-            "'Marginal Lane Miles' = additional lane-miles gained by each budget increment. "
-            "Declining marginal returns indicate the high-priority backlog is being addressed."
-        )
-
-    with tab_b:
-        st.subheader("How sensitive are the rankings to policy weight choices?")
-        st.caption(
-            "This analysis re-runs the model with your current weight configuration and "
-            "compares rankings to the Balanced (Default) baseline. "
-            "High top-10 stability (> 80%) means the most critical segments are consistently "
-            "identified regardless of weight assumptions — a strong result for Council defensibility."
-        )
-
-        current_weights = dict(zip(
-            ["condition_severity", "traffic_impact", "complaint_pressure",
-             "cost_efficiency", "equity_modifier"],
-            weights_tuple,
-        ))
-
-        try:
-            comparison_df, stats = engine.run_weight_scenario(current_weights, "Your Config")
-
-            col1, col2, col3, col4 = st.columns(4)
-            col1.metric(
-                "Top-10 Stability",
-                f"{stats['top10_stability'] * 100:.0f}%",
-                help=(
-                    "Percentage of baseline top-10 segments that remain in the top 10 "
-                    "under your weight configuration. "
-                    "80%+ = rankings are robust to weight assumptions."
-                ),
-            )
-            col2.metric(
-                "Avg Rank Shift",
-                stats["avg_rank_shift"],
-                help="Average number of positions each segment moves relative to the baseline.",
-            )
-            col3.metric(
-                "Tier Changes",
-                stats["tier_changes"],
-                help="Segments that moved to a different priority tier (e.g., Medium to High).",
-            )
-            col4.metric(
-                "Rose to High/Critical",
-                stats.get("segments_rose_to_high_critical", 0),
-                help="Segments that moved UP from Low/Medium to High/Critical with your weights.",
-            )
-
-            st.subheader("Biggest Rank Movers")
-            st.caption(
-                "Segments with the largest rank shifts indicate where your weight choices "
-                "most diverge from the baseline. Investigate these segments — if they are "
-                "moving up due to complaints but have high condition scores, that is worth discussing."
-            )
-            top_movers = comparison_df.nlargest(15, "rank_shift")[
-                ["segment_id", "street_name", "district", "base_score",
-                 "priority_score", "base_rank", "alt_rank", "rank_shift", "tier_changed"]
-            ].copy()
-            top_movers.columns = [
-                "ID", "Street", "District", "Baseline Score",
-                "New Score", "Baseline Rank", "New Rank", "Rank Shift", "Tier Changed",
-            ]
-            st.dataframe(top_movers, use_container_width=True, hide_index=True)
-
-        except ValueError as e:
-            st.error(f"Cannot run weight sensitivity: {e}")
-
-    with tab_c:
-        st.subheader("What does it cost to defer maintenance on the highest-priority segments?")
-        st.caption(
-            "Each year of deferral increases repair costs — not because prices rise, but because "
-            "deterioration accelerates and surface treatment becomes rehabilitation becomes emergency repair. "
-            "This analysis covers High and Critical segments only (the strongest case for immediate action)."
-        )
-
-        deferral_years = st.slider(
-            "Deferral horizon (years)", 1, 10, 5,
-            help="How many years to model deferral. Longer horizons show greater cost compounding.",
-        )
-
-        deferral_df = engine.run_deferral_scenario(years=deferral_years)
+    elif scenario_type == "Deferral Cost Analysis":
+        years = st.slider("Deferral Horizon (years)", 1, 10, 5)
+        deferral_df = engine.run_deferral_scenario(years=years)
 
         if len(deferral_df) > 0:
-            today  = deferral_df[deferral_df["year_deferred"] == 0]
-            future = deferral_df[deferral_df["year_deferred"] == deferral_years]
-
-            col1, col2, col3, col4 = st.columns(4)
-            total_today    = today["current_cost"].sum()
-            total_deferred = future["projected_cost"].sum()
-            premium_pct    = (total_deferred / max(total_today, 1) - 1) * 100
-            total_low      = future["low_bound_projected"].sum() if "low_bound_projected" in future.columns else total_deferred
-            total_high     = future["high_bound_projected"].sum() if "high_bound_projected" in future.columns else total_deferred
-
-            col1.metric(
-                "Estimated Cost Today",
-                f"${total_today:,.0f}",
-                help="Sum of current estimated repair costs for all High/Critical segments.",
+            year_summary = (
+                deferral_df.groupby("year_deferred")
+                .agg(
+                    total_projected_cost=("projected_cost", "sum"),
+                    total_additional_cost=("additional_cost", "sum"),
+                    pipes_critical=("projected_tier", lambda x: (x == "Critical").sum()),
+                )
+                .reset_index()
             )
-            col2.metric(
-                f"Projected Cost at Year {deferral_years}",
-                f"${total_deferred:,.0f}",
-                help=f"Projected cost if all High/Critical repairs are deferred {deferral_years} years.",
-            )
-            col3.metric(
-                "Deferral Premium",
-                f"+{premium_pct:.0f}%",
-                delta_color="inverse",
-                help="Percentage cost increase from deferral. Source: APWA 2023 lifecycle cost curves.",
-            )
-            col4.metric(
-                "Uncertainty Range",
-                f"${total_low:,.0f} – ${total_high:,.0f}",
-                help=(
-                    "Low and high bounds based on published APWA deferral cost multiplier ranges. "
-                    "Central estimate uses midpoint values."
-                ),
-            )
-
-            st.info(
-                f"**Interpretation:** Deferring maintenance on the {today['segment_id'].nunique()} "
-                f"High/Critical segments for {deferral_years} years is estimated to cost "
-                f"${total_deferred - total_today:,.0f} MORE than acting now — "
-                f"a {premium_pct:.0f}% cost premium. "
-                "This is the core financial argument for proactive infrastructure investment."
-            )
-
-            # Cost trajectory chart
-            trajectory = deferral_df.groupby("projected_year").agg(
-                total_cost=("projected_cost", "sum"),
-                low_cost=("low_bound_projected", "sum") if "low_bound_projected" in deferral_df.columns else ("projected_cost", "sum"),
-                high_cost=("high_bound_projected", "sum") if "high_bound_projected" in deferral_df.columns else ("projected_cost", "sum"),
-            ).reset_index()
 
             fig = go.Figure()
             fig.add_trace(go.Scatter(
-                x=trajectory["projected_year"], y=trajectory["high_cost"],
-                fill=None, mode="lines", line_color="rgba(214, 39, 40, 0.2)",
-                name="Upper bound",
-            ))
-            fig.add_trace(go.Scatter(
-                x=trajectory["projected_year"], y=trajectory["low_cost"],
-                fill="tonexty", mode="lines",
-                fillcolor="rgba(214, 39, 40, 0.1)",
-                line_color="rgba(214, 39, 40, 0.2)",
-                name="Lower bound",
-            ))
-            fig.add_trace(go.Scatter(
-                x=trajectory["projected_year"], y=trajectory["total_cost"],
-                mode="lines+markers", line_color="#D62728",
-                name="Central estimate",
+                x=year_summary["year_deferred"],
+                y=year_summary["total_projected_cost"],
+                mode="lines+markers",
+                name="Projected Total Cost",
+                line=dict(color=COLORS["Critical"], width=3),
             ))
             fig.update_layout(
-                title="Projected Repair Cost if Maintenance is Deferred (High/Critical Segments Only)",
-                xaxis_title="Year",
-                yaxis_title="Estimated Repair Cost ($)",
+                title=f"Deferral Cost Curve ({years}-Year Horizon)",
+                xaxis_title="Years Deferred",
+                yaxis_title="Projected Cost ($)",
                 yaxis_tickformat="$,.0f",
-                plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
-                height=380,
             )
             st.plotly_chart(fig, use_container_width=True)
-            st.caption(
-                "Shaded band = uncertainty range based on APWA published deferral cost multiplier intervals. "
-                "Central line = midpoint estimate. Source: APWA 2023, FHWA Pavement Preservation Compendium Vol. II."
-            )
-        else:
-            st.info("No High/Critical segments found for deferral analysis.")
 
+            st.subheader("Cost Summary")
+            year_n = deferral_df[deferral_df["year_deferred"] == years]
+            col1, col2, col3 = st.columns(3)
+            col1.metric("Cost if Funded Today", f"${year_n['current_cost'].sum():,.0f}")
+            col2.metric(f"Cost at Year {years}", f"${year_n['projected_cost'].sum():,.0f}")
+            col3.metric("Additional Cost", f"${year_n['additional_cost'].sum():,.0f}")
 
-# ─── MAIN APP ─────────────────────────────────────────────────────────────────
-def main():
-    weights_tuple, budget, district_filter, type_filter, preset_name = render_sidebar()
+    elif scenario_type == "Budget Coverage Curve":
+        coverage = engine.run_coverage_analysis()
 
-    st.title("🏗️ Boise Public Works Intelligence System")
-    st.caption(
-        "Director of Analytics & Strategy | City of Boise | "
-        "Infrastructure Investment Prioritization Platform"
-    )
-
-    # Active policy label
-    if preset_name != "Custom":
-        st.info(
-            f"**Active policy preset: {preset_name}** — "
-            f"{POLICY_PRESETS[preset_name]['description'][:120]}..."
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(
+            x=coverage["budget_millions"],
+            y=coverage["pipe_feet_treated"],
+            mode="lines+markers",
+            name="Pipe Feet Treated",
+            line=dict(color=COLORS["primary"], width=3),
+        ))
+        fig.update_layout(
+            title="Budget Coverage Curve: What Does $X Buy?",
+            xaxis_title="Annual CIP Budget ($M)",
+            yaxis_title="Pipe Feet Treated",
+            yaxis_tickformat=",",
         )
+        st.plotly_chart(fig, use_container_width=True)
 
-    # Normalize weights
-    total = sum(weights_tuple)
-    if total > 0:
-        weights_tuple = tuple(w / total for w in weights_tuple)
+        st.dataframe(coverage, use_container_width=True)
 
-    # Load data
-    roads, complaints, work_orders, budget_df, weather, bridges = load_data()
 
-    # Run model
-    with st.spinner("Running prioritization model..."):
-        scores = run_model(weights_tuple)
+# ─── TAB 5: RAW DATA ────────────────────────────────────────────────────────
+def render_data_tab():
+    st.header("Raw Data Explorer")
 
-    # Merge lat/lon if needed
-    if "lat" not in scores.columns:
-        scores = scores.merge(roads[["segment_id", "lat", "lon"]], on="segment_id", how="left")
+    pipes, service_requests, work_orders, facilities, flow_monitoring, budget_cip, weather = load_data()
 
-    # Data quality banner (appears before KPIs if confidence is low)
-    render_confidence_banner(scores)
-
-    # KPIs
-    st.subheader("Key Performance Indicators")
-    render_kpi_cards(scores, budget)
-
-    st.divider()
-
-    # Main tabs
-    tab_overview, tab_priority, tab_map, tab_scenario, tab_raw = st.tabs([
-        "📊 Overview", "🎯 Priority Table", "🗺️ GIS Map",
-        "⚙️ Scenarios", "📂 Raw Data",
+    dataset = st.selectbox("Select dataset", [
+        "Pipe Segments", "Service Requests", "Work Orders",
+        "Facilities", "Flow Monitoring", "CIP Budget", "Weather Events",
     ])
 
-    with tab_overview:
-        render_overview(scores, budget_df)
+    data_map = {
+        "Pipe Segments":     pipes,
+        "Service Requests":  service_requests,
+        "Work Orders":       work_orders,
+        "Facilities":        facilities,
+        "Flow Monitoring":   flow_monitoring,
+        "CIP Budget":        budget_cip,
+        "Weather Events":    weather,
+    }
 
-    with tab_priority:
-        render_priority_table(scores, district_filter, type_filter)
+    df = data_map[dataset]
+    st.write(f"**{len(df)} rows, {len(df.columns)} columns**")
+    st.dataframe(df, use_container_width=True, height=500)
 
-    with tab_map:
-        render_map_tab(scores, roads, complaints)
-
-    with tab_scenario:
-        render_scenarios(scores, budget, weights_tuple)
-
-    with tab_raw:
-        st.header("📂 Raw Data Explorer")
-        st.caption("Direct access to all underlying datasets for audit and verification.")
-        dataset = st.selectbox("Dataset", [
-            "Road Segments", "Work Orders", "Complaints",
-            "Budget Actuals", "Weather Events", "Bridges", "Priority Scores",
-        ])
-        data_map = {
-            "Road Segments":   roads,
-            "Work Orders":     work_orders,
-            "Complaints":      complaints,
-            "Budget Actuals":  budget_df,
-            "Weather Events":  weather,
-            "Bridges":         bridges,
-            "Priority Scores": scores,
-        }
-        df_show = data_map[dataset]
-        st.dataframe(df_show, use_container_width=True, hide_index=True)
-        st.caption(f"{len(df_show):,} records  |  {len(df_show.columns)} columns")
-
-    # Footer
-    st.divider()
-    st.caption(
-        "PWIS v1.0 | City of Boise Public Works | "
-        "Data: Synthetic (production-ready schema) | "
-        "Model: PWIS Weighted Prioritization v1.0 | "
-        "Cost benchmarks: APWA 2023 (Boise metro adjusted) | "
-        "All scores are advisory — final decisions remain with the Director."
+    csv = df.to_csv(index=False)
+    st.download_button(
+        f"Download {dataset} CSV",
+        csv, f"{dataset.lower().replace(' ', '_')}.csv",
+        "text/csv",
     )
+
+
+# ─── MAIN APP ────────────────────────────────────────────────────────────────
+def main():
+    weights_tuple, system_filter = render_sidebar()
+    scores = run_model(weights_tuple)
+
+    # Apply system filter
+    if system_filter and len(system_filter) < 3:
+        scores = scores[scores["system_type"].isin(system_filter)].copy()
+
+    pipes, service_requests, work_orders, _, _, _, _ = load_data()
+
+    if system_filter and len(system_filter) < 3:
+        pipes = pipes[pipes["system_type"].isin(system_filter)].copy()
+        service_requests = service_requests[service_requests["system_type"].isin(system_filter)].copy()
+
+    st.title("Boise Utility Infrastructure Intelligence")
+    st.caption("Water | Sewer | Stormwater — Public Works Intelligence System (PWIS)")
+
+    tab1, tab2, tab3, tab4, tab5 = st.tabs([
+        "📊 KPI Overview", "📋 Priority Table", "🗺️ Infrastructure Map",
+        "🔮 Scenarios", "📁 Raw Data",
+    ])
+
+    with tab1:
+        render_kpi_tab(scores, pipes)
+    with tab2:
+        render_priority_tab(scores)
+    with tab3:
+        render_map_tab(scores, pipes, service_requests)
+    with tab4:
+        render_scenario_tab(pipes, service_requests, work_orders)
+    with tab5:
+        render_data_tab()
 
 
 if __name__ == "__main__":
