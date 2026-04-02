@@ -1,0 +1,48 @@
+bridge_id,bridge_name,district,built_year,deck_condition,superstructure_condition,substructure_condition,sufficiency_rating,daily_traffic_aadt,last_inspection_date,estimated_repair_cost_usd,lat,lon
+BRG-001,Bridge at Milwaukee & Jackson Slough,Southeast,1960,Critical,Poor,Good,45.5,5481,2025-09-21,1541752,43.569987,-116.205039
+BRG-002,Bridge at Milwaukee & Hulls Gulch,West Boise,1980,Fair,Good,Fair,84.0,12796,2024-04-23,1976328,43.651229,-116.11781
+BRG-003,Bridge at Chinden & Dry Creek,East Bench,1991,Poor,Good,Fair,46.5,4174,2024-09-06,4929499,43.595616,-116.288038
+BRG-004,Bridge at Ustick & Jackson Slough,Downtown,1959,Fair,Fair,Good,51.7,17871,2024-10-06,4481874,43.654095,-116.181822
+BRG-005,Bridge at Orchard & Boise River,Southwest,1958,Fair,Poor,Good,44.4,43258,2025-09-27,2759468,43.645211,-116.200238
+BRG-006,Bridge at Chinden & Dry Creek,North End,1961,Fair,Good,Fair,51.3,24422,2025-03-24,1931316,43.677663,-116.275322
+BRG-007,Bridge at State & Boise River,East Bench,2016,Poor,Poor,Fair,35.5,3969,2025-11-30,4895586,43.658356,-116.122064
+BRG-008,Bridge at Ustick & Hulls Gulch,East Bench,1984,Critical,Fair,Good,71.2,10115,2025-08-26,3929077,43.561287,-116.107335
+BRG-009,Bridge at Fairview & Hulls Gulch,North End,1969,Fair,Fair,Poor,76.0,41289,2025-06-12,4678828,43.667823,-116.136372
+BRG-010,Bridge at State & Five Mile Creek,West Boise,2015,Good,Fair,Poor,87.2,35828,2024-11-14,3243394,43.623502,-116.220117
+BRG-011,Bridge at Meridian & Hulls Gulch,East Bench,1959,Poor,Poor,Good,59.5,16015,2024-05-05,2054707,43.563663,-116.165682
+BRG-012,Bridge at Chinden & Dry Creek,West Boise,2001,Good,Fair,Poor,81.5,12899,2025-03-24,667704,43.618575,-116.273386
+BRG-013,Bridge at Milwaukee & Dry Creek,West Boise,2018,Good,Poor,Poor,77.1,17388,2025-01-29,412055,43.606285,-116.165074
+BRG-014,Bridge at Fairview & Dry Creek,Downtown,1997,Fair,Fair,Fair,21.7,33101,2024-11-06,3142638,43.560805,-116.262589
+BRG-015,Bridge at Overland & Boise River,Southeast,1996,Critical,Good,Poor,95.3,12446,2024-08-29,978278,43.629716,-116.139869
+BRG-016,Bridge at Milwaukee & Boise River,Downtown,2004,Good,Good,Poor,54.9,1808,2025-08-04,271371,43.678783,-116.125047
+BRG-017,Bridge at State & Hulls Gulch,North End,1963,Poor,Poor,Good,85.2,4906,2024-02-02,3970444,43.565875,-116.128081
+BRG-018,Bridge at Overland & Hulls Gulch,West Boise,2006,Fair,Poor,Good,47.6,44299,2024-01-20,4444647,43.61542,-116.138878
+BRG-019,Bridge at Cole & Boise River,North End,1990,Critical,Good,Poor,50.9,8983,2025-08-22,932324,43.62758,-116.226103
+BRG-020,Bridge at Meridian & Hulls Gulch,East Bench,2010,Good,Fair,Fair,36.2,21336,2024-04-03,3086818,43.606841,-116.144405
+BRG-021,Bridge at Ustick & Jackson Slough,Downtown,1974,Good,Fair,Good,97.7,24643,2024-10-18,2064592,43.662658,-116.159547
+BRG-022,Bridge at Meridian & Hulls Gulch,East Bench,1977,Poor,Good,Good,59.7,7436,2024-09-24,3967275,43.649641,-116.126558
+BRG-023,Bridge at Eagle & Hulls Gulch,West Boise,2015,Fair,Fair,Poor,29.7,9066,2025-08-09,4160957,43.647233,-116.262329
+BRG-024,Bridge at Cole & Dry Creek,Southeast,2012,Fair,Fair,Poor,94.3,44190,2024-01-08,2844181,43.638553,-116.252483
+BRG-025,Bridge at Eagle & Five Mile Creek,East Bench,2004,Critical,Good,Good,48.1,2865,2025-09-11,1728954,43.56739,-116.236407
+BRG-026,Bridge at Fairview & Hulls Gulch,West Boise,1970,Fair,Fair,Fair,29.0,6335,2024-04-29,3575133,43.67546,-116.193457
+BRG-027,Bridge at State & Dry Creek,Downtown,1959,Fair,Poor,Good,39.6,36879,2024-07-31,4720872,43.58601,-116.249394
+BRG-028,Bridge at Milwaukee & Jackson Slough,Downtown,2016,Poor,Good,Good,46.4,22224,2025-06-03,3602790,43.642746,-116.308282
+BRG-029,Bridge at Meridian & Dry Creek,Southwest,2017,Poor,Fair,Poor,29.9,12709,2024-05-10,1372410,43.608388,-116.132011
+BRG-030,Bridge at Meridian & Five Mile Creek,East Bench,2002,Good,Fair,Good,65.6,11326,2025-07-25,1202971,43.629481,-116.301805
+BRG-031,Bridge at Cole & Jackson Slough,Southeast,1997,Good,Good,Poor,72.1,29295,2024-11-15,515407,43.597952,-116.107604
+BRG-032,Bridge at Cole & Hulls Gulch,Southwest,1965,Critical,Fair,Good,25.9,8727,2024-01-17,2577220,43.585402,-116.179037
+BRG-033,Bridge at State & Dry Creek,Downtown,1964,Good,Poor,Fair,59.6,2574,2024-04-10,1230466,43.667992,-116.218926
+BRG-034,Bridge at Chinden & Jackson Slough,East Bench,1959,Fair,Fair,Poor,76.1,24955,2024-08-28,3005630,43.679017,-116.27898
+BRG-035,Bridge at Meridian & Dry Creek,Downtown,1980,Good,Fair,Poor,50.2,30686,2025-11-28,4419241,43.624453,-116.248607
+BRG-036,Bridge at Milwaukee & Jackson Slough,East Bench,1984,Poor,Fair,Good,24.8,4920,2025-11-16,2565256,43.577509,-116.212907
+BRG-037,Bridge at Meridian & Hulls Gulch,East Bench,1979,Poor,Fair,Poor,32.0,591,2025-08-15,4450424,43.655964,-116.208915
+BRG-038,Bridge at Meridian & Hulls Gulch,Southwest,1969,Fair,Good,Poor,66.9,24729,2024-08-30,2742403,43.585216,-116.252529
+BRG-039,Bridge at Eagle & Boise River,North End,1966,Poor,Poor,Fair,23.0,12863,2025-01-30,3892448,43.604332,-116.308294
+BRG-040,Bridge at Ustick & Hulls Gulch,East Bench,1975,Critical,Good,Fair,86.6,22410,2025-01-05,2430958,43.609947,-116.284213
+BRG-041,Bridge at Overland & Boise River,Downtown,1998,Poor,Fair,Poor,76.7,11616,2025-07-08,2146804,43.628354,-116.319127
+BRG-042,Bridge at Ustick & Hulls Gulch,Downtown,1992,Fair,Fair,Fair,50.6,4567,2024-03-03,2906496,43.659984,-116.262979
+BRG-043,Bridge at Chinden & Boise River,Southeast,1961,Fair,Poor,Poor,88.3,5545,2025-10-11,3753544,43.629371,-116.149766
+BRG-044,Bridge at Ustick & Hulls Gulch,Downtown,1998,Fair,Good,Fair,70.6,6097,2025-06-04,53817,43.669516,-116.283599
+BRG-045,Bridge at Ustick & Hulls Gulch,East Bench,2006,Good,Fair,Poor,23.3,40304,2024-12-22,3708461,43.590371,-116.1374
+BRG-046,Bridge at Eagle & Dry Creek,East Bench,1970,Fair,Good,Poor,35.8,26194,2024-11-29,153457,43.576857,-116.24508
+BRG-047,Bridge at Meridian & Boise River,East Bench,2010,Poor,Poor,Good,55.1,40648,2025-08-23,3180715,43.647243,-116.199263
