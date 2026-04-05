@@ -85,7 +85,8 @@ STORM_DIAMETERS   = [12, 15, 18, 24, 30, 36, 42, 48, 60, 72]
 #  has_water, has_sewer, has_storm, corridor_age_era)
 
 CORRIDOR_CATALOG = [
-    # ── DOWNTOWN (oldest infrastructure, 1920s-1960s) ────────────────────────
+    # ── DOWNTOWN (oldest infrastructure, 1860s-1950s) ────────────────────────
+    # Boise's original townsite platted 1863; centralized water 1890
     ("Main St",          "Downtown",  43.615, -116.200, "EW",  True, True, True,  "old"),
     ("Capitol Blvd",     "Downtown",  43.611, -116.201, "NS",  True, True, True,  "old"),
     ("Front St",         "Downtown",  43.606, -116.205, "EW",  True, True, True,  "old"),
@@ -95,26 +96,29 @@ CORRIDOR_CATALOG = [
     ("8th St",           "Downtown",  43.613, -116.197, "NS",  True, True, False, "old"),
     ("9th St",           "Downtown",  43.613, -116.199, "NS",  True, True, False, "old"),
     ("Jefferson St",     "Downtown",  43.616, -116.201, "EW",  True, True, True,  "old"),
-    ("Fairview Ave",     "Downtown",  43.616, -116.200, "EW",  True, True, True,  "mid"),
+    ("Fairview Ave",     "Downtown",  43.616, -116.200, "EW",  True, True, True,  "old"),
     ("Broadway Ave",     "Downtown",  43.612, -116.188, "NS",  True, True, True,  "mid"),
     ("I-184 Corridor",   "Downtown",  43.609, -116.214, "EW",  False,False,True,  "mid"),
 
-    # ── NORTH END (historic, mix of old and mid-era) ─────────────────────────
+    # ── NORTH END (1878-1950s, Boise's first residential neighborhood) ──────
+    # Platted 1878; building boom 1891-1916; historic district
     ("Harrison Blvd",    "North End", 43.643, -116.200, "NS",  True, True, True,  "old"),
     ("Fort St",          "North End", 43.638, -116.205, "EW",  True, True, False, "old"),
     ("Hill Rd",          "North End", 43.660, -116.215, "EW",  True, True, True,  "old"),
     ("15th St",          "North End", 43.645, -116.208, "NS",  True, True, False, "old"),
-    ("Bogus Basin Rd",   "North End", 43.665, -116.195, "DIAG",True, True, False, "mid"),
+    ("Bogus Basin Rd",   "North End", 43.665, -116.195, "DIAG",True, True, False, "old"),
     ("Eastman St",       "North End", 43.641, -116.203, "EW",  True, True, False, "old"),
 
-    # ── EAST BENCH (mid-era, bench above river) ──────────────────────────────
+    # ── EAST BENCH (1930s-1960s, post-WWII boom on the bench) ───────────────
+    # Ridenbaugh Canal enabled development; major growth 1950s-1960s
     ("Warm Springs Ave", "East Bench",43.608, -116.165, "EW",  True, True, True,  "old"),
     ("Federal Way",      "East Bench",43.597, -116.158, "EW",  True, True, True,  "mid"),
     ("Parkcenter Blvd",  "East Bench",43.597, -116.178, "NS",  True, True, True,  "mid"),
     ("Boise Ave",        "East Bench",43.600, -116.172, "EW",  True, True, True,  "mid"),
     ("Shaw Mountain Rd", "East Bench",43.605, -116.155, "DIAG",True, True, False, "mid"),
 
-    # ── SOUTHEAST (Vista/Broadway corridor, mixed era) ───────────────────────
+    # ── SOUTHEAST (1890s original S. Boise + 1960s-1970s expansion) ─────────
+    # Original South Boise platted 1890; annexed 1913; bulk development 1970s
     ("Vista Ave",        "Southeast", 43.575, -116.207, "NS",  True, True, True,  "mid"),
     ("Broadway Ave",     "Southeast", 43.568, -116.188, "NS",  True, True, True,  "mid"),
     ("Overland Rd",      "Southeast", 43.588, -116.195, "EW",  True, True, True,  "mid"),
@@ -123,7 +127,8 @@ CORRIDOR_CATALOG = [
     ("Eisenman Rd",      "Southeast", 43.550, -116.170, "NS",  True, True, True,  "new"),
     ("Victory Rd",       "Southeast", 43.570, -116.195, "EW",  True, True, True,  "mid"),
 
-    # ── SOUTHWEST (suburban, mostly mid-to-new) ──────────────────────────────
+    # ── SOUTHWEST (1960s-1980s suburban expansion) ───────────────────────────
+    # Scattered development 1960s-1970s; ranch homes; moratorium in 1980s
     ("Five Mile Rd",     "Southwest", 43.575, -116.295, "NS",  True, True, True,  "mid"),
     ("Maple Grove Rd",   "Southwest", 43.575, -116.276, "NS",  True, True, True,  "mid"),
     ("Cole Rd",          "Southwest", 43.572, -116.256, "NS",  True, True, True,  "mid"),
@@ -133,34 +138,44 @@ CORRIDOR_CATALOG = [
     ("Victory Rd",       "Southwest", 43.570, -116.280, "EW",  True, True, True,  "mid"),
     ("Amity Rd",         "Southwest", 43.553, -116.275, "EW",  True, True, True,  "new"),
 
-    # ── WEST BOISE (newest growth, mostly new) ───────────────────────────────
-    ("Fairview Ave",     "West Boise",43.616, -116.295, "EW",  True, True, True,  "mid"),
-    ("Ustick Rd",        "West Boise",43.633, -116.300, "EW",  True, True, True,  "mid"),
+    # ── WEST BOISE (1970s-present, newest growth area) ───────────────────────
+    # Primarily 1970s ranch homes; Ten Mile master-planned 2006; rapid growth
+    ("Fairview Ave",     "West Boise",43.616, -116.295, "EW",  True, True, True,  "new"),
+    ("Ustick Rd",        "West Boise",43.633, -116.300, "EW",  True, True, True,  "new"),
     ("McMillan Rd",      "West Boise",43.643, -116.310, "EW",  True, True, True,  "new"),
-    ("Chinden Blvd",     "West Boise",43.653, -116.310, "EW",  True, True, True,  "mid"),
-    ("State St",         "West Boise",43.637, -116.280, "EW",  True, True, True,  "mid"),
+    ("Chinden Blvd",     "West Boise",43.653, -116.310, "EW",  True, True, True,  "new"),
+    ("State St",         "West Boise",43.637, -116.280, "EW",  True, True, True,  "new"),
     ("Eagle Rd",         "West Boise",43.625, -116.354, "NS",  True, True, True,  "new"),
     ("Cloverdale Rd",    "West Boise",43.620, -116.336, "NS",  True, True, True,  "new"),
     ("Ten Mile Rd",      "West Boise",43.615, -116.316, "NS",  True, True, True,  "new"),
-    ("Cole Rd",          "West Boise",43.625, -116.256, "NS",  True, True, True,  "mid"),
-    ("Franklin Rd",      "West Boise",43.607, -116.290, "EW",  True, True, True,  "mid"),
+    ("Cole Rd",          "West Boise",43.625, -116.256, "NS",  True, True, True,  "new"),
+    ("Franklin Rd",      "West Boise",43.607, -116.290, "EW",  True, True, True,  "new"),
 ]
 
+# Era-to-install-year ranges matching real Boise development history
 ERA_INSTALL_RANGE = {
-    "old": (1925, 1970),
-    "mid": (1965, 2000),
-    "new": (1995, 2022),
+    "old": (1925, 1965),   # Downtown core + North End (pre-WWII through early postwar)
+    "mid": (1955, 1990),   # East Bench, Southeast, Southwest (postwar suburban expansion)
+    "new": (1985, 2022),   # West Boise, far Southeast (modern growth)
 }
 
 
 def _pick_material(materials_dict, install_year):
-    """Pick a pipe material consistent with the install year."""
+    """Pick a pipe material consistent with the install year.
+
+    Strictly enforces era constraints — never assigns a material outside
+    its manufacturing/installation era (e.g. no PVC before 1975).
+    """
     eligible = [
         (m, d) for m, d in materials_dict.items()
         if d["era"][0] <= install_year <= d["era"][1]
     ]
     if not eligible:
-        eligible = list(materials_dict.items())
+        # Find the material whose era is closest to install_year
+        closest = min(materials_dict.items(),
+                      key=lambda x: min(abs(install_year - x[1]["era"][0]),
+                                        abs(install_year - x[1]["era"][1])))
+        return closest[0]
     weights = [d["pct"] for _, d in eligible]
     total = sum(weights)
     weights = [w / total for w in weights]
@@ -257,6 +272,12 @@ def generate_pipe_segments(n=500):
         fail_rate = mat_dict.get(material, {}).get("fail_rate", "medium")
         break_base = {"high": 3.5, "medium": 1.2, "low": 0.3}[fail_rate]
         breaks_5yr = max(0, int(np.random.poisson(break_base * (age / 50))))
+        # Very poor condition (< 20) should have at least 1 break
+        if condition < 20 and breaks_5yr == 0:
+            breaks_5yr = random.randint(1, 3)
+        # Excellent condition (> 85) shouldn't have many breaks
+        if condition > 85 and breaks_5yr > 2:
+            breaks_5yr = random.randint(0, 1)
 
         # Capacity utilization (sewer/storm only)
         if system in ("Sewer", "Stormwater"):
@@ -265,12 +286,24 @@ def generate_pipe_segments(n=500):
         else:
             capacity_pct = None
 
-        # Criticality: proximity to hospital, school, major intersection
-        criticality = random.choice(["Critical", "High", "Medium", "Low"])
-        if system == "Water" and diameter >= 16:
-            criticality = random.choice(["Critical", "Critical", "High"])
-        if system == "Sewer" and diameter >= 24:
-            criticality = random.choice(["Critical", "High", "High"])
+        # Criticality: based on diameter, location, and system
+        # Realistic distribution: ~8% Critical, ~18% High, ~40% Medium, ~34% Low
+        crit_roll = random.random()
+        if crit_roll < 0.08:
+            criticality = "Critical"
+        elif crit_roll < 0.26:
+            criticality = "High"
+        elif crit_roll < 0.66:
+            criticality = "Medium"
+        else:
+            criticality = "Low"
+        # Large-diameter transmission/trunk mains bump up one tier
+        if system == "Water" and diameter >= 20:
+            criticality = {"Low": "Medium", "Medium": "High", "High": "Critical", "Critical": "Critical"}[criticality]
+        if system == "Sewer" and diameter >= 30:
+            criticality = {"Low": "Medium", "Medium": "High", "High": "Critical", "Critical": "Critical"}[criticality]
+        if system == "Stormwater" and diameter >= 48:
+            criticality = {"Low": "Medium", "Medium": "High", "High": "Critical", "Critical": "Critical"}[criticality]
 
         segments.append({
             "segment_id":               f"PIPE-{str(seg_id).zfill(4)}",
@@ -488,6 +521,17 @@ def generate_weather(n=150):
 
 
 # ─── 7. CIP BUDGET ───────────────────────────────────────────────────────────
+FUNDING_SOURCES = ["Utility Rates", "Revenue Bonds", "SRF Loan", "EPA Grant", "General Fund"]
+CIP_PROJECT_TYPES = {
+    "Water": ["Water Main Replacement", "Transmission Main Upgrade", "Pressure Zone Expansion",
+              "Well Rehabilitation", "Meter Replacement Program", "Lead Service Line Replacement"],
+    "Sewer": ["Sewer Main Replacement", "I&I Reduction Program", "CIPP Rehabilitation",
+              "Trunk Sewer Upsizing", "Lift Station Upgrade", "WRF Capacity Improvement"],
+    "Stormwater": ["Storm Drain Replacement", "Detention Basin Construction",
+                   "Outfall Rehabilitation", "Green Infrastructure Retrofit",
+                   "Culvert Replacement"],
+}
+
 def generate_budget():
     records = []
     for year in [2022, 2023, 2024, 2025, 2026]:
@@ -502,16 +546,74 @@ def generate_budget():
                 "fiscal_year":              year,
                 "district":                 district,
                 "total_cip_budget_usd":     total_budget,
-                "water_budget_pct":         round(water_pct * 100, 1),
-                "sewer_budget_pct":         round(sewer_pct * 100, 1),
-                "stormwater_budget_pct":    round(storm_pct * 100, 1),
+                "water_budget_usd":         int(total_budget * water_pct),
+                "sewer_budget_usd":         int(total_budget * sewer_pct),
+                "stormwater_budget_usd":    int(total_budget * storm_pct),
+                "funding_source":           random.choice(FUNDING_SOURCES),
                 "spent_budget_usd":         random.randint(int(total_budget * 0.6),
                                                            int(total_budget * 1.05)),
-                "projects_completed":       random.randint(3, 30),
-                "pipe_miles_replaced":      round(random.uniform(0.2, 4.5), 1),
+                "budget_variance_pct":      None,  # filled below
+                "projects_planned":         random.randint(3, 15),
+                "projects_completed":       None,  # filled below
+                "pipe_feet_replaced":       random.randint(1_000, 25_000),
                 "citizen_satisfaction":     round(random.uniform(2.5, 4.8), 1),
             })
+            # Calculate derived fields
+            rec = records[-1]
+            rec["budget_variance_pct"] = round(
+                (rec["spent_budget_usd"] - rec["total_cip_budget_usd"]) / rec["total_cip_budget_usd"] * 100, 1)
+            rec["projects_completed"] = min(rec["projects_planned"],
+                                            max(1, rec["projects_planned"] - random.randint(0, 3)))
+
     return pd.DataFrame(records)
+
+
+def generate_cip_projects(segments_df, budget_df):
+    """Generate individual CIP project line items tied to pipe segments and budgets."""
+    projects = []
+    proj_id = 1
+    for _, budget_row in budget_df.iterrows():
+        year = budget_row["fiscal_year"]
+        district = budget_row["district"]
+        n_projects = budget_row["projects_planned"]
+        remaining_budget = budget_row["total_cip_budget_usd"]
+
+        # Pick worst-condition segments in this district
+        district_pipes = segments_df[segments_df["district"] == district].sort_values("condition_score")
+
+        for i in range(n_projects):
+            if i < len(district_pipes):
+                pipe = district_pipes.iloc[i]
+                seg_id = pipe["segment_id"]
+                system = pipe["system_type"]
+            else:
+                seg_id = None
+                system = random.choice(["Water", "Sewer", "Stormwater"])
+
+            project_cost = random.randint(50_000, min(remaining_budget, 1_500_000)) if remaining_budget > 50_000 else 0
+            remaining_budget -= project_cost
+
+            status = "Completed" if year < 2026 else random.choice(["In Design", "Under Construction", "Bid Phase", "Planned"])
+            if year == 2025 and random.random() < 0.5:
+                status = "Completed"
+
+            projects.append({
+                "project_id":         f"CIP-{str(proj_id).zfill(4)}",
+                "fiscal_year":        year,
+                "district":           district,
+                "system_type":        system,
+                "project_type":       random.choice(CIP_PROJECT_TYPES[system]),
+                "segment_id":         seg_id,
+                "estimated_cost_usd": project_cost,
+                "actual_cost_usd":    int(project_cost * random.uniform(0.85, 1.25)) if status == "Completed" else None,
+                "funding_source":     random.choice(FUNDING_SOURCES),
+                "status":             status,
+                "start_date":         f"{year}-{random.randint(1,12):02d}-01",
+                "pipe_feet_addressed":random.randint(200, 5_000) if seg_id else 0,
+            })
+            proj_id += 1
+
+    return pd.DataFrame(projects)
 
 
 # ─── GENERATE ALL & SAVE ──────────────────────────────────────────────────────
@@ -551,6 +653,13 @@ print("Generating CIP budget data...")
 budget = generate_budget()
 budget.to_csv(BASE_DIR / "budget_cip.csv", index=False)
 print(f"  -> {len(budget)} budget records saved")
+
+print("Generating CIP project line items...")
+cip_projects = generate_cip_projects(pipes, budget)
+cip_projects.to_csv(BASE_DIR / "cip_projects.csv", index=False)
+print(f"  -> {len(cip_projects)} CIP projects saved")
+print(f"  Funding sources: {cip_projects['funding_source'].value_counts().to_dict()}")
+print(f"  Statuses: {cip_projects['status'].value_counts().to_dict()}")
 
 print("\n✓ All datasets generated successfully.")
 print("\nSample — Pipe Segments:")

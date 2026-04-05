@@ -190,14 +190,20 @@ class TestBudgetCIP:
     def test_budget_positive(self):
         assert (self.df["total_cip_budget_usd"] > 0).all()
 
-    def test_budget_percentages_sum(self):
-        """Water + sewer + stormwater budget percentages should sum to ~100%."""
-        total = (
-            self.df["water_budget_pct"]
-            + self.df["sewer_budget_pct"]
-            + self.df["stormwater_budget_pct"]
+    def test_budget_system_splits_sum(self):
+        """Water + sewer + stormwater budget dollars should sum to ~total budget."""
+        total_parts = (
+            self.df["water_budget_usd"]
+            + self.df["sewer_budget_usd"]
+            + self.df["stormwater_budget_usd"]
         )
-        assert total.between(98, 102).all(), "Budget percentages don't sum to ~100%"
+        ratio = total_parts / self.df["total_cip_budget_usd"]
+        assert ratio.between(0.95, 1.05).all(), "System budget splits don't sum to total"
+
+    def test_budget_has_funding_source(self):
+        """Each budget record should have a funding source."""
+        valid_sources = {"Utility Rates", "Revenue Bonds", "SRF Loan", "EPA Grant", "General Fund"}
+        assert self.df["funding_source"].isin(valid_sources).all()
 
 
 # ─── WEATHER EVENTS ──────────────────────────────────────────────────────────
