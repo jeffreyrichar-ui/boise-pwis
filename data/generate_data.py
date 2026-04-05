@@ -45,6 +45,24 @@ SERVICE_DISTRICTS = {
 
 DISTRICTS = list(SERVICE_DISTRICTS.keys())
 
+# ─── SOIL CORROSIVITY BY DISTRICT ───────────────────────────────────────────
+# Based on Boise geology: alluvial river soils downtown/north, bench gravels
+# east, former agricultural clay/loam west and south.
+# Scale: 0.0 (non-corrosive) to 1.0 (highly corrosive)
+# Affects metallic pipe degradation (cast iron, ductile iron, galv. steel)
+SOIL_CORROSIVITY = {
+    "North End":   0.72,  # Alluvial, high moisture near river/canal system
+    "Downtown":    0.78,  # Oldest soils, river-adjacent, disturbed fill
+    "East Bench":  0.45,  # Bench gravels, well-drained, alkaline
+    "Southeast":   0.55,  # Mixed clay/gravel, moderate moisture
+    "Southwest":   0.60,  # Former ag land, irrigation-affected clay soils
+    "West Boise":  0.50,  # Former farmland, mixed but less moisture
+}
+
+# Which materials are affected by soil corrosivity
+METALLIC_MATERIALS = {"Cast Iron", "Ductile Iron", "Galvanized Steel",
+                      "Corrugated Metal"}
+
 # ─── PIPE MATERIALS BY SYSTEM AND ERA ────────────────────────────────────────
 # Based on real Boise utility materials documented by City of Boise PW
 WATER_MATERIALS = {
@@ -199,12 +217,38 @@ def _coord_offset(anchor_lat, anchor_lon, orientation, district):
     return round(lat, 6), round(lon, 6)
 
 
-def _condition_from_material_and_age(material, materials_dict, age):
+def _condition_from_material_age_soil(material, materials_dict, age, district):
+    """Compute condition score driven primarily by install date (age) and material,
+    with soil corrosivity as a modifier for metallic pipes.
+
+    The formula:
+      condition = base_for_material - age_degradation - soil_penalty + noise
+    where:
+      - base_for_material: starting condition based on material durability
+      - age_degradation:   age * material-specific decay rate (the dominant factor)
+      - soil_penalty:      extra degradation for metallic pipes in corrosive soil
+    """
     fail_rate = materials_dict.get(material, {}).get("fail_rate", "medium")
-    base = {"high": 38, "medium": 55, "low": 72}[fail_rate]
-    age_penalty = age * {"high": 0.6, "medium": 0.35, "low": 0.15}[fail_rate]
-    ci = int(np.clip(np.random.normal(base - age_penalty * 0.3, 15), 5, 100))
-    return ci
+
+    # Material sets the baseline and degradation rate
+    # High-fail materials start lower AND degrade faster per year
+    base = {"high": 85, "medium": 90, "low": 95}[fail_rate]
+    annual_decay = {"high": 0.90, "medium": 0.50, "low": 0.25}[fail_rate]
+
+    # Age is the primary driver: older pipe = worse condition
+    age_penalty = age * annual_decay
+
+    # Soil corrosivity adds extra degradation for metallic pipes
+    soil_penalty = 0.0
+    if material in METALLIC_MATERIALS:
+        soil_factor = SOIL_CORROSIVITY.get(district, 0.5)
+        # Up to 15 additional points of degradation in highly corrosive soil
+        soil_penalty = age * 0.20 * soil_factor
+
+    condition = base - age_penalty - soil_penalty
+    # Add some noise (±10 points) for real-world variability
+    condition += np.random.normal(0, 8)
+    return int(np.clip(condition, 5, 100))
 
 
 # ─── 1. PIPE SEGMENTS ────────────────────────────────────────────────────────
@@ -247,11 +291,14 @@ def generate_pipe_segments(n=500):
         # Length
         length_ft = random.randint(200, 2500)
 
-        # Condition
-        condition = _condition_from_material_and_age(material, mat_dict, age)
+        # Condition — driven by install date (age), material, and soil
+        condition = _condition_from_material_age_soil(material, mat_dict, age, district)
 
         # Coordinates
         lat, lon = _coord_offset(a_lat, a_lon, orient, district)
+
+        # Soil corrosivity for this district
+        soil_corrosivity = SOIL_CORROSIVITY[district]
 
         # Depth
         depth_ft = {"Water": round(random.uniform(3, 7), 1),
@@ -268,10 +315,17 @@ def generate_pipe_segments(n=500):
         diam_mult = 1.0 + (diameter - 12) * 0.03
         replacement_cost = int(length_ft * cost_per_ft * max(diam_mult, 0.5))
 
-        # Break / failure history (higher for old high-fail materials)
+        # Break / failure history — driven by age, material, and soil
+        # The same factors that drive condition also drive breaks
         fail_rate = mat_dict.get(material, {}).get("fail_rate", "medium")
-        break_base = {"high": 3.5, "medium": 1.2, "low": 0.3}[fail_rate]
-        breaks_5yr = max(0, int(np.random.poisson(break_base * (age / 50))))
+        break_base = {"high": 3.0, "medium": 1.0, "low": 0.2}[fail_rate]
+        # Age is the primary multiplier
+        age_mult = age / 50.0
+        # Soil adds extra break risk for metallic pipes
+        soil_mult = 1.0
+        if material in METALLIC_MATERIALS:
+            soil_mult = 1.0 + soil_corrosivity * 0.5  # up to 1.4x in worst soil
+        breaks_5yr = max(0, int(np.random.poisson(break_base * age_mult * soil_mult)))
         # Very poor condition (< 20) should have at least 1 break
         if condition < 20 and breaks_5yr == 0:
             breaks_5yr = random.randint(1, 3)
@@ -318,6 +372,7 @@ def generate_pipe_segments(n=500):
             "asset_age_years":          age,
             "condition_score":          condition,
             "breaks_last_5yr":          breaks_5yr,
+            "soil_corrosivity":         soil_corrosivity,
             "capacity_utilization_pct": capacity_pct,
             "criticality_class":        criticality,
             "estimated_replacement_cost_usd": replacement_cost,
