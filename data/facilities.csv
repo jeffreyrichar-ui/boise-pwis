@@ -1,9 +1,12 @@
-facility_id,facility_name,facility_type,district,capacity_mgd,avg_flow_mgd,built_year,last_upgrade_year,condition,lat,lon
-FAC-001,Marden Water Treatment Plant,Water Treatment,North End,36.0,22.5,1962,2018,Fair,43.648,-116.198
-FAC-002,Columbia Water Treatment Plant,Water Treatment,East Bench,6.0,4.2,2005,2024,Good,43.595,-116.148
-FAC-003,Lander Street Water Renewal Facility,Wastewater Treatment,Downtown,15.0,12.5,1950,2024,Poor,43.601,-116.224
-FAC-004,West Boise Water Renewal Facility,Wastewater Treatment,West Boise,40.0,18.0,1978,2022,Fair,43.61,-116.31
-FAC-005,Southeast Pump Station,Pump Station,Southeast,8.0,5.5,1988,2020,Fair,43.555,-116.18
-FAC-006,North End Pressure Zone Station,Pump Station,North End,4.0,2.8,1975,2019,Fair,43.658,-116.205
-FAC-007,West Boise PI Pump Station,PI Pump Station,West Boise,8.0,5.0,2001,2020,Good,43.62,-116.31
-FAC-008,Southwest PI Diversion,PI Pump Station,Southwest,3.5,2.0,2005,2022,Good,43.56,-116.275
+facility_id,facility_name,system_type,facility_type,district,capacity_mgd,avg_flow_mgd,built_year,last_upgrade_year,condition,lat,lon
+FAC-001,Lander Street Water Renewal Facility,Wastewater,Water Renewal Facility,Downtown,17.0,12.5,1950,2024,Poor — $265M rebuild underway (2023-2029),43.601,-116.224
+FAC-002,West Boise Water Renewal Facility,Wastewater,Water Renewal Facility,West Boise,20.0,18.0,1978,2022,Fair,43.61,-116.31
+FAC-003,Southeast Lift Station,Wastewater,Lift Station,Southeast,5.0,3.5,1988,2020,Fair,43.555,-116.18
+FAC-004,Eagle Road Lift Station,Wastewater,Lift Station,West Boise,3.0,2.1,2005,2022,Good,43.625,-116.354
+FAC-005,Amity Lift Station,Wastewater,Lift Station,Southwest,2.5,1.8,2000,2019,Fair,43.553,-116.275
+FAC-006,Geothermal Production Well #1,Geothermal,Production Well,North End,1.8,1.2,1983,2018,"Fair — 400ft depth, 177°F",43.625,-116.192
+FAC-007,Geothermal Production Well #2,Geothermal,Production Well,North End,1.8,1.0,1983,2020,"Fair — 600ft depth, 175°F",43.626,-116.19
+FAC-008,Geothermal Production Well #3 (VA),Geothermal,Production Well,North End,1.8,0.8,1983,2015,"Fair — 800ft depth, 161°F",43.624,-116.188
+FAC-009,Julia Davis Park Injection Well,Geothermal,Injection Well,Downtown,3.0,2.5,1999,2021,"Good — 3,213ft depth, returns water to aquifer",43.604,-116.195
+FAC-010,West Boise PI Pump Station,Pressurized Irrigation,PI Pump Station,West Boise,2.0,1.2,2001,2020,Good,43.635,-116.32
+FAC-011,Southwest PI Diversion,Pressurized Irrigation,PI Pump Station,Southwest,1.0,0.6,2007,2022,Good,43.558,-116.28

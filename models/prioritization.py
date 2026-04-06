@@ -53,13 +53,16 @@ from pathlib import Path
 MODEL_ASSUMPTIONS = {
     "material_risk_factors": {
         "values": {
+            # Wastewater materials
             "Cast Iron":        0.90, "Galvanized Steel": 0.85,
-            "Asbestos Cement":  0.80, "Orangeburg":       0.95,
-            "Vitrified Clay":   0.60, "Corrugated Metal": 0.75,
+            "Orangeburg":       0.95, "Vitrified Clay":   0.65,
             "Concrete":         0.45, "Ductile Iron":     0.30,
             "PVC":              0.15, "HDPE":             0.10,
-            "Reinforced Concrete Box": 0.40,
-            "PVC PR-SDR":      0.12, "PVC C900":         0.15,
+            # Geothermal materials
+            "Steel":            0.50, "Pre-insulated Steel": 0.20,
+            "Transite":         0.70,  # aging concrete pipe, asbestos risk
+            # PI materials
+            "PVC PR-SDR":       0.12, "PVC C900":         0.15,
         },
         "source": "AWWA-2023, Table 5-2: material-specific failure probability factors",
         "rationale": (
@@ -635,7 +638,7 @@ if __name__ == "__main__":
     base = Path(__file__).parent.parent / "data"
 
     print("Loading data...")
-    pipes            = pd.read_csv(base / "pipe_segments.csv")
+    pipes            = pd.read_csv(base / "all_segments.csv")
     service_requests = pd.read_csv(base / "service_requests.csv")
     work_orders      = pd.read_csv(base / "work_orders.csv")
 
@@ -665,7 +668,7 @@ if __name__ == "__main__":
             print(f"  {tier:10s}: {count:4d} segments ({pct:.1f}%)")
 
     print(f"\nSystem Type Breakdown:")
-    for sys_type in ["Water", "Sewer", "Stormwater", "Pressurized Irrigation"]:
+    for sys_type in ["Wastewater", "Geothermal", "Pressurized Irrigation"]:
         subset = results[results["system_type"] == sys_type]
         if len(subset) > 0:
             critical = (subset["priority_tier"] == "Critical").sum()

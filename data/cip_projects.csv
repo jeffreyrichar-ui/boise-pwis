@@ -1,266 +1,242 @@
 project_id,fiscal_year,district,system_type,project_type,segment_id,estimated_cost_usd,actual_cost_usd,funding_source,status,start_date,pipe_feet_addressed
-CIP-0001,2022,North End,Water,Well Rehabilitation,PIPE-2376,1341172,1574985.0,Utility Rates,Completed,2022-08-01,4541
-CIP-0002,2022,North End,Water,Lead Service Line Replacement,PIPE-2053,177598,187473.0,EPA Grant,Completed,2022-10-01,4994
-CIP-0003,2022,North End,Sewer,Lift Station Upgrade,PIPE-2060,719292,629233.0,SRF Loan,Completed,2022-07-01,4621
-CIP-0004,2022,North End,Water,Lead Service Line Replacement,PIPE-2071,90271,100574.0,EPA Grant,Completed,2022-08-01,278
-CIP-0005,2022,Downtown,Stormwater,Culvert Replacement,PIPE-3867,1087003,1221469.0,Revenue Bonds,Completed,2022-07-01,2697
-CIP-0006,2022,Downtown,Water,Water Main Replacement,PIPE-3977,229705,259857.0,Revenue Bonds,Completed,2022-08-01,4079
-CIP-0007,2022,Downtown,Water,Water Main Replacement,PIPE-4000,167170,162422.0,Utility Rates,Completed,2022-02-01,4760
-CIP-0008,2022,Downtown,Water,Well Rehabilitation,PIPE-2133,0,0.0,SRF Loan,Completed,2022-01-01,3006
-CIP-0009,2022,Downtown,Water,Meter Replacement Program,PIPE-1171,0,0.0,Revenue Bonds,Completed,2022-04-01,4239
-CIP-0010,2022,Downtown,Water,Lead Service Line Replacement,PIPE-4027,0,0.0,SRF Loan,Completed,2022-03-01,3692
-CIP-0011,2022,Downtown,Sewer,I&I Reduction Program,PIPE-4032,0,0.0,Utility Rates,Completed,2022-09-01,1447
-CIP-0012,2022,Downtown,Water,Lead Service Line Replacement,PIPE-2137,0,0.0,SRF Loan,Completed,2022-02-01,1400
-CIP-0013,2022,Downtown,Water,Lead Service Line Replacement,PIPE-2141,0,0.0,SRF Loan,Completed,2022-05-01,4952
-CIP-0014,2022,Downtown,Sewer,Sewer Main Replacement,PIPE-3276,0,0.0,SRF Loan,Completed,2022-06-01,3242
-CIP-0015,2022,Downtown,Water,Well Rehabilitation,PIPE-1143,0,0.0,EPA Grant,Completed,2022-05-01,2169
-CIP-0016,2022,Downtown,Water,Transmission Main Upgrade,PIPE-2158,0,0.0,EPA Grant,Completed,2022-08-01,4975
-CIP-0017,2022,Downtown,Water,Transmission Main Upgrade,PIPE-2171,0,0.0,General Fund,Completed,2022-10-01,2317
-CIP-0018,2022,East Bench,Water,Meter Replacement Program,PIPE-3079,268278,245839.0,Utility Rates,Completed,2022-03-01,2553
-CIP-0019,2022,East Bench,Water,Meter Replacement Program,PIPE-0412,121458,139936.0,General Fund,Completed,2022-06-01,1255
-CIP-0020,2022,East Bench,Sewer,CIPP Rehabilitation,PIPE-2075,386936,405971.0,General Fund,Completed,2022-12-01,1156
-CIP-0021,2022,East Bench,Water,Well Rehabilitation,PIPE-2622,1149502,1132585.0,General Fund,Completed,2022-05-01,3498
-CIP-0022,2022,East Bench,Water,Meter Replacement Program,PIPE-2599,632281,546381.0,EPA Grant,Completed,2022-03-01,4054
-CIP-0023,2022,East Bench,Water,Well Rehabilitation,PIPE-2084,116226,120687.0,SRF Loan,Completed,2022-04-01,2179
-CIP-0024,2022,East Bench,Water,Meter Replacement Program,PIPE-3383,58832,53440.0,Utility Rates,Completed,2022-10-01,3696
-CIP-0025,2022,East Bench,Water,Pressure Zone Expansion,PIPE-0853,0,0.0,Utility Rates,Completed,2022-01-01,3082
-CIP-0026,2022,East Bench,Sewer,Sewer Main Replacement,PIPE-4514,0,0.0,Utility Rates,Completed,2022-05-01,2041
-CIP-0027,2022,East Bench,Sewer,Lift Station Upgrade,PIPE-3364,0,0.0,Revenue Bonds,Completed,2022-11-01,1231
-CIP-0028,2022,Southeast,Water,Pressure Zone Expansion,PIPE-4162,383880,359562.0,Revenue Bonds,Completed,2022-08-01,795
-CIP-0029,2022,Southeast,Stormwater,Storm Drain Replacement,PIPE-3583,95896,105595.0,SRF Loan,Completed,2022-08-01,2822
-CIP-0030,2022,Southeast,Water,Pressure Zone Expansion,PIPE-0590,344663,387703.0,Revenue Bonds,Completed,2022-01-01,2324
-CIP-0031,2022,Southeast,Water,Water Main Replacement,PIPE-4223,103668,94674.0,General Fund,Completed,2022-02-01,3696
-CIP-0032,2022,Southeast,Sewer,Trunk Sewer Upsizing,PIPE-4752,710475,782708.0,Revenue Bonds,Completed,2022-04-01,1385
-CIP-0033,2022,Southeast,Water,Well Rehabilitation,PIPE-2452,1055887,991227.0,EPA Grant,Completed,2022-06-01,3529
-CIP-0034,2022,Southeast,Water,Meter Replacement Program,PIPE-2183,258692,293161.0,Utility Rates,Completed,2022-03-01,3209
-CIP-0035,2022,Southeast,Sewer,Sewer Main Replacement,PIPE-2745,65833,73172.0,Revenue Bonds,Completed,2022-08-01,3082
-CIP-0036,2022,Southeast,Water,Transmission Main Upgrade,PIPE-2209,398768,455796.0,General Fund,Completed,2022-03-01,2666
-CIP-0037,2022,Southeast,Water,Lead Service Line Replacement,PIPE-3900,1016733,887364.0,General Fund,Completed,2022-12-01,2481
-CIP-0038,2022,Southwest,Water,Transmission Main Upgrade,PIPE-1108,185712,206510.0,General Fund,Completed,2022-09-01,4022
-CIP-0039,2022,Southwest,Sewer,WRF Capacity Improvement,PIPE-2059,736796,797266.0,General Fund,Completed,2022-07-01,656
-CIP-0040,2022,Southwest,Stormwater,Green Infrastructure Retrofit,PIPE-0834,1345008,1348646.0,EPA Grant,Completed,2022-11-01,4890
-CIP-0041,2022,Southwest,Water,Water Main Replacement,PIPE-2404,451037,531675.0,General Fund,Completed,2022-12-01,1512
-CIP-0042,2022,Southwest,Stormwater,Storm Drain Replacement,PIPE-1294,353682,347518.0,Utility Rates,Completed,2022-06-01,824
-CIP-0043,2022,Southwest,Water,Meter Replacement Program,PIPE-2332,271293,245968.0,General Fund,Completed,2022-10-01,532
-CIP-0044,2022,Southwest,Water,Pressure Zone Expansion,PIPE-2244,61160,59238.0,SRF Loan,Completed,2022-04-01,695
-CIP-0045,2022,Southwest,Water,Well Rehabilitation,PIPE-1847,0,0.0,SRF Loan,Completed,2022-01-01,2513
-CIP-0046,2022,West Boise,Stormwater,Green Infrastructure Retrofit,PIPE-0839,1222561,1148570.0,SRF Loan,Completed,2022-05-01,3401
-CIP-0047,2022,West Boise,Stormwater,Detention Basin Construction,PIPE-4842,689302,783116.0,Utility Rates,Completed,2022-01-01,1490
-CIP-0048,2022,West Boise,Stormwater,Outfall Rehabilitation,PIPE-3766,1453127,1431091.0,Revenue Bonds,Completed,2022-09-01,4594
-CIP-0049,2022,West Boise,Stormwater,Culvert Replacement,PIPE-3510,0,0.0,Revenue Bonds,Completed,2022-03-01,3094
-CIP-0050,2022,West Boise,Stormwater,Culvert Replacement,PIPE-2345,0,0.0,SRF Loan,Completed,2022-04-01,534
-CIP-0051,2022,West Boise,Water,Transmission Main Upgrade,PIPE-2108,0,0.0,General Fund,Completed,2022-11-01,2638
-CIP-0052,2022,West Boise,Stormwater,Storm Drain Replacement,PIPE-3236,0,0.0,SRF Loan,Completed,2022-07-01,4269
-CIP-0053,2022,West Boise,Stormwater,Green Infrastructure Retrofit,PIPE-2013,0,0.0,EPA Grant,Completed,2022-09-01,3284
-CIP-0054,2022,West Boise,Sewer,Lift Station Upgrade,PIPE-3397,0,0.0,SRF Loan,Completed,2022-09-01,1924
-CIP-0055,2022,West Boise,Stormwater,Outfall Rehabilitation,PIPE-1629,0,0.0,EPA Grant,Completed,2022-10-01,2314
-CIP-0056,2022,West Boise,Stormwater,Green Infrastructure Retrofit,PIPE-2147,0,0.0,Revenue Bonds,Completed,2022-04-01,4205
-CIP-0057,2022,West Boise,Water,Water Main Replacement,PIPE-0437,0,0.0,SRF Loan,Completed,2022-07-01,908
-CIP-0058,2022,West Boise,Stormwater,Outfall Rehabilitation,PIPE-4301,0,0.0,EPA Grant,Completed,2022-04-01,1333
-CIP-0059,2023,North End,Water,Lead Service Line Replacement,PIPE-2376,150203,158310.0,Utility Rates,Completed,2023-04-01,2402
-CIP-0060,2023,North End,Water,Transmission Main Upgrade,PIPE-2053,655038,584232.0,Utility Rates,Completed,2023-04-01,1211
-CIP-0061,2023,North End,Sewer,Sewer Main Replacement,PIPE-2060,1119035,1184198.0,Utility Rates,Completed,2023-01-01,2650
-CIP-0062,2023,North End,Water,Transmission Main Upgrade,PIPE-2071,1469449,1434556.0,Utility Rates,Completed,2023-01-01,4331
-CIP-0063,2023,North End,Water,Lead Service Line Replacement,PIPE-2155,141467,140944.0,Utility Rates,Completed,2023-06-01,4747
-CIP-0064,2023,Downtown,Stormwater,Storm Drain Replacement,PIPE-3867,550854,480013.0,SRF Loan,Completed,2023-03-01,3937
-CIP-0065,2023,Downtown,Water,Transmission Main Upgrade,PIPE-3977,1345486,1508825.0,SRF Loan,Completed,2023-02-01,2915
-CIP-0066,2023,Downtown,Water,Well Rehabilitation,PIPE-4000,1439737,1306310.0,EPA Grant,Completed,2023-08-01,4728
-CIP-0067,2023,East Bench,Water,Meter Replacement Program,PIPE-3079,696153,847347.0,Revenue Bonds,Completed,2023-10-01,1863
-CIP-0068,2023,East Bench,Water,Meter Replacement Program,PIPE-0412,1286696,1349504.0,SRF Loan,Completed,2023-05-01,1389
-CIP-0069,2023,East Bench,Sewer,I&I Reduction Program,PIPE-2075,489018,503264.0,Revenue Bonds,Completed,2023-10-01,747
-CIP-0070,2023,East Bench,Water,Water Main Replacement,PIPE-2622,1155604,1302150.0,General Fund,Completed,2023-07-01,2067
-CIP-0071,2023,East Bench,Water,Well Rehabilitation,PIPE-2599,701081,767587.0,Utility Rates,Completed,2023-06-01,933
-CIP-0072,2023,East Bench,Water,Transmission Main Upgrade,PIPE-2084,190726,189801.0,General Fund,Completed,2023-10-01,1529
-CIP-0073,2023,East Bench,Water,Well Rehabilitation,PIPE-3383,646443,616819.0,General Fund,Completed,2023-10-01,2494
-CIP-0074,2023,Southeast,Water,Pressure Zone Expansion,PIPE-4162,748995,718233.0,General Fund,Completed,2023-05-01,2080
-CIP-0075,2023,Southeast,Stormwater,Outfall Rehabilitation,PIPE-3583,353195,417983.0,EPA Grant,Completed,2023-08-01,2008
-CIP-0076,2023,Southeast,Water,Transmission Main Upgrade,PIPE-0590,100022,123447.0,Revenue Bonds,Completed,2023-02-01,1840
-CIP-0077,2023,Southeast,Water,Water Main Replacement,PIPE-4223,50028,42758.0,Utility Rates,Completed,2023-04-01,3856
-CIP-0078,2023,Southeast,Sewer,I&I Reduction Program,PIPE-4752,0,0.0,Utility Rates,Completed,2023-05-01,4109
-CIP-0079,2023,Southeast,Water,Water Main Replacement,PIPE-2452,0,0.0,General Fund,Completed,2023-09-01,4192
-CIP-0080,2023,Southeast,Water,Transmission Main Upgrade,PIPE-2183,0,0.0,Revenue Bonds,Completed,2023-07-01,1334
-CIP-0081,2023,Southeast,Sewer,Sewer Main Replacement,PIPE-2745,0,0.0,General Fund,Completed,2023-09-01,1134
-CIP-0082,2023,Southeast,Water,Well Rehabilitation,PIPE-2209,0,0.0,EPA Grant,Completed,2023-06-01,3495
-CIP-0083,2023,Southeast,Water,Well Rehabilitation,PIPE-3900,0,0.0,SRF Loan,Completed,2023-11-01,3351
-CIP-0084,2023,Southeast,Sewer,CIPP Rehabilitation,PIPE-2052,0,0.0,Utility Rates,Completed,2023-01-01,1685
-CIP-0085,2023,Southeast,Water,Transmission Main Upgrade,PIPE-0619,0,0.0,Utility Rates,Completed,2023-02-01,2180
-CIP-0086,2023,Southwest,Water,Well Rehabilitation,PIPE-1108,685371,829185.0,EPA Grant,Completed,2023-08-01,1134
-CIP-0087,2023,Southwest,Sewer,I&I Reduction Program,PIPE-2059,1291036,1479227.0,SRF Loan,Completed,2023-08-01,4767
-CIP-0088,2023,Southwest,Stormwater,Detention Basin Construction,PIPE-0834,79820,74807.0,Revenue Bonds,Completed,2023-03-01,2041
-CIP-0089,2023,Southwest,Water,Lead Service Line Replacement,PIPE-2404,982854,1007395.0,SRF Loan,Completed,2023-09-01,4221
-CIP-0090,2023,Southwest,Stormwater,Storm Drain Replacement,PIPE-1294,597840,665645.0,SRF Loan,Completed,2023-10-01,986
-CIP-0091,2023,Southwest,Water,Pressure Zone Expansion,PIPE-2332,599755,717366.0,Utility Rates,Completed,2023-08-01,1750
-CIP-0092,2023,Southwest,Water,Pressure Zone Expansion,PIPE-2244,201804,198941.0,EPA Grant,Completed,2023-08-01,4669
-CIP-0093,2023,Southwest,Water,Well Rehabilitation,PIPE-1847,238373,255291.0,SRF Loan,Completed,2023-12-01,1317
-CIP-0094,2023,Southwest,Sewer,WRF Capacity Improvement,PIPE-3973,104370,107129.0,EPA Grant,Completed,2023-07-01,2708
-CIP-0095,2023,Southwest,Sewer,Lift Station Upgrade,PIPE-2275,0,0.0,General Fund,Completed,2023-12-01,4416
-CIP-0096,2023,Southwest,Water,Meter Replacement Program,PIPE-2831,0,0.0,Utility Rates,Completed,2023-05-01,1766
-CIP-0097,2023,Southwest,Sewer,WRF Capacity Improvement,PIPE-0843,0,0.0,SRF Loan,Completed,2023-08-01,4529
-CIP-0098,2023,Southwest,Water,Meter Replacement Program,PIPE-3707,0,0.0,EPA Grant,Completed,2023-11-01,2474
-CIP-0099,2023,West Boise,Stormwater,Culvert Replacement,PIPE-0839,197556,170552.0,Utility Rates,Completed,2023-02-01,2478
-CIP-0100,2023,West Boise,Stormwater,Detention Basin Construction,PIPE-4842,375421,429907.0,SRF Loan,Completed,2023-04-01,4261
-CIP-0101,2023,West Boise,Stormwater,Storm Drain Replacement,PIPE-3766,274953,333797.0,Utility Rates,Completed,2023-08-01,1051
-CIP-0102,2023,West Boise,Stormwater,Culvert Replacement,PIPE-3510,598336,537836.0,EPA Grant,Completed,2023-04-01,572
-CIP-0103,2023,West Boise,Stormwater,Culvert Replacement,PIPE-2345,1079389,1161331.0,Revenue Bonds,Completed,2023-09-01,3716
-CIP-0104,2023,West Boise,Water,Lead Service Line Replacement,PIPE-2108,53562,56086.0,SRF Loan,Completed,2023-10-01,1146
-CIP-0105,2023,West Boise,Stormwater,Outfall Rehabilitation,PIPE-3236,904393,871702.0,EPA Grant,Completed,2023-09-01,2962
-CIP-0106,2023,West Boise,Stormwater,Storm Drain Replacement,PIPE-2013,769791,782044.0,EPA Grant,Completed,2023-09-01,2085
-CIP-0107,2023,West Boise,Sewer,I&I Reduction Program,PIPE-3397,712449,644468.0,SRF Loan,Completed,2023-01-01,2084
-CIP-0108,2023,West Boise,Stormwater,Storm Drain Replacement,PIPE-1629,0,0.0,SRF Loan,Completed,2023-04-01,2105
-CIP-0109,2023,West Boise,Stormwater,Green Infrastructure Retrofit,PIPE-2147,0,0.0,SRF Loan,Completed,2023-05-01,2327
-CIP-0110,2023,West Boise,Water,Lead Service Line Replacement,PIPE-0437,0,0.0,Utility Rates,Completed,2023-06-01,2376
-CIP-0111,2023,West Boise,Stormwater,Detention Basin Construction,PIPE-4301,0,0.0,Utility Rates,Completed,2023-02-01,1421
-CIP-0112,2024,North End,Water,Transmission Main Upgrade,PIPE-2376,1090228,1194303.0,Utility Rates,Completed,2024-04-01,480
-CIP-0113,2024,North End,Water,Lead Service Line Replacement,PIPE-2053,839867,930630.0,SRF Loan,Completed,2024-10-01,1125
-CIP-0114,2024,North End,Sewer,WRF Capacity Improvement,PIPE-2060,662257,574332.0,Utility Rates,Completed,2024-12-01,2885
-CIP-0115,2024,North End,Water,Well Rehabilitation,PIPE-2071,400929,387207.0,General Fund,Completed,2024-11-01,2081
-CIP-0116,2024,North End,Water,Pressure Zone Expansion,PIPE-2155,94613,88208.0,General Fund,Completed,2024-04-01,309
-CIP-0117,2024,Downtown,Stormwater,Storm Drain Replacement,PIPE-3867,414710,460719.0,General Fund,Completed,2024-05-01,2054
-CIP-0118,2024,Downtown,Water,Well Rehabilitation,PIPE-3977,152697,186576.0,SRF Loan,Completed,2024-06-01,3680
-CIP-0119,2024,Downtown,Water,Lead Service Line Replacement,PIPE-4000,580867,584572.0,Revenue Bonds,Completed,2024-07-01,4176
-CIP-0120,2024,Downtown,Water,Meter Replacement Program,PIPE-2133,166362,198798.0,Utility Rates,Completed,2024-05-01,1267
-CIP-0121,2024,Downtown,Water,Water Main Replacement,PIPE-1171,517160,520326.0,Revenue Bonds,Completed,2024-12-01,1106
-CIP-0122,2024,Downtown,Water,Water Main Replacement,PIPE-4027,52807,58053.0,General Fund,Completed,2024-07-01,3763
-CIP-0123,2024,Downtown,Sewer,Lift Station Upgrade,PIPE-4032,1096614,985114.0,Revenue Bonds,Completed,2024-08-01,800
-CIP-0124,2024,East Bench,Water,Well Rehabilitation,PIPE-3079,1498720,1544439.0,General Fund,Completed,2024-06-01,2119
-CIP-0125,2024,East Bench,Water,Water Main Replacement,PIPE-0412,336082,311326.0,General Fund,Completed,2024-02-01,2098
-CIP-0126,2024,East Bench,Sewer,Lift Station Upgrade,PIPE-2075,287350,253226.0,General Fund,Completed,2024-11-01,3356
-CIP-0127,2024,East Bench,Water,Water Main Replacement,PIPE-2622,272849,281043.0,SRF Loan,Completed,2024-04-01,2923
-CIP-0128,2024,East Bench,Water,Pressure Zone Expansion,PIPE-2599,273879,337366.0,Revenue Bonds,Completed,2024-10-01,3461
-CIP-0129,2024,East Bench,Water,Lead Service Line Replacement,PIPE-2084,55574,51868.0,General Fund,Completed,2024-11-01,3330
-CIP-0130,2024,East Bench,Water,Well Rehabilitation,PIPE-3383,50401,54495.0,Utility Rates,Completed,2024-01-01,3868
-CIP-0131,2024,Southeast,Water,Transmission Main Upgrade,PIPE-4162,1233173,1446433.0,Revenue Bonds,Completed,2024-01-01,2509
-CIP-0132,2024,Southeast,Stormwater,Outfall Rehabilitation,PIPE-3583,1143435,1186769.0,Utility Rates,Completed,2024-02-01,4313
-CIP-0133,2024,Southeast,Water,Pressure Zone Expansion,PIPE-0590,265915,235766.0,SRF Loan,Completed,2024-04-01,1993
-CIP-0134,2024,Southeast,Water,Lead Service Line Replacement,PIPE-4223,254375,315784.0,SRF Loan,Completed,2024-05-01,1037
-CIP-0135,2024,Southeast,Sewer,WRF Capacity Improvement,PIPE-4752,187882,213940.0,Utility Rates,Completed,2024-07-01,3565
-CIP-0136,2024,Southeast,Water,Water Main Replacement,PIPE-2452,705239,759432.0,Utility Rates,Completed,2024-02-01,1127
-CIP-0137,2024,Southeast,Water,Pressure Zone Expansion,PIPE-2183,0,0.0,SRF Loan,Completed,2024-06-01,4700
-CIP-0138,2024,Southeast,Sewer,I&I Reduction Program,PIPE-2745,0,0.0,Utility Rates,Completed,2024-10-01,2089
-CIP-0139,2024,Southeast,Water,Lead Service Line Replacement,PIPE-2209,0,0.0,Utility Rates,Completed,2024-06-01,3277
-CIP-0140,2024,Southeast,Water,Lead Service Line Replacement,PIPE-3900,0,0.0,General Fund,Completed,2024-05-01,3566
-CIP-0141,2024,Southeast,Sewer,WRF Capacity Improvement,PIPE-2052,0,0.0,Revenue Bonds,Completed,2024-10-01,2805
-CIP-0142,2024,Southeast,Water,Water Main Replacement,PIPE-0619,0,0.0,Utility Rates,Completed,2024-11-01,2662
-CIP-0143,2024,Southeast,Water,Lead Service Line Replacement,PIPE-3480,0,0.0,SRF Loan,Completed,2024-06-01,2726
-CIP-0144,2024,Southeast,Water,Water Main Replacement,PIPE-0447,0,0.0,Utility Rates,Completed,2024-02-01,1379
-CIP-0145,2024,Southeast,Water,Water Main Replacement,PIPE-1358,0,0.0,Utility Rates,Completed,2024-01-01,3373
-CIP-0146,2024,Southwest,Water,Transmission Main Upgrade,PIPE-1108,1029672,1152727.0,General Fund,Completed,2024-03-01,1892
-CIP-0147,2024,Southwest,Sewer,CIPP Rehabilitation,PIPE-2059,923423,854402.0,Revenue Bonds,Completed,2024-10-01,3482
-CIP-0148,2024,Southwest,Stormwater,Green Infrastructure Retrofit,PIPE-0834,928242,833846.0,Revenue Bonds,Completed,2024-08-01,1816
-CIP-0149,2024,Southwest,Water,Pressure Zone Expansion,PIPE-2404,1307041,1391617.0,SRF Loan,Completed,2024-02-01,353
-CIP-0150,2024,Southwest,Stormwater,Green Infrastructure Retrofit,PIPE-1294,132142,144227.0,Utility Rates,Completed,2024-09-01,1144
-CIP-0151,2024,Southwest,Water,Lead Service Line Replacement,PIPE-2332,0,0.0,EPA Grant,Completed,2024-08-01,2770
-CIP-0152,2024,Southwest,Water,Lead Service Line Replacement,PIPE-2244,0,0.0,SRF Loan,Completed,2024-12-01,3093
-CIP-0153,2024,Southwest,Water,Lead Service Line Replacement,PIPE-1847,0,0.0,SRF Loan,Completed,2024-03-01,4628
-CIP-0154,2024,Southwest,Sewer,I&I Reduction Program,PIPE-3973,0,0.0,EPA Grant,Completed,2024-09-01,2513
-CIP-0155,2024,West Boise,Stormwater,Storm Drain Replacement,PIPE-0839,490940,572818.0,Revenue Bonds,Completed,2024-12-01,1665
-CIP-0156,2024,West Boise,Stormwater,Storm Drain Replacement,PIPE-4842,197147,218782.0,Revenue Bonds,Completed,2024-02-01,4936
-CIP-0157,2024,West Boise,Stormwater,Detention Basin Construction,PIPE-3766,488917,579292.0,EPA Grant,Completed,2024-09-01,3606
-CIP-0158,2024,West Boise,Stormwater,Detention Basin Construction,PIPE-3510,1312360,1293635.0,SRF Loan,Completed,2024-09-01,1286
-CIP-0159,2024,West Boise,Stormwater,Storm Drain Replacement,PIPE-2345,1140183,1184170.0,General Fund,Completed,2024-08-01,779
-CIP-0160,2024,West Boise,Water,Well Rehabilitation,PIPE-2108,1209124,1143845.0,SRF Loan,Completed,2024-12-01,4286
-CIP-0161,2024,West Boise,Stormwater,Detention Basin Construction,PIPE-3236,1168511,1299577.0,General Fund,Completed,2024-04-01,4570
-CIP-0162,2024,West Boise,Stormwater,Outfall Rehabilitation,PIPE-2013,0,0.0,EPA Grant,Completed,2024-08-01,1784
-CIP-0163,2024,West Boise,Sewer,CIPP Rehabilitation,PIPE-3397,0,0.0,EPA Grant,Completed,2024-06-01,4846
-CIP-0164,2024,West Boise,Stormwater,Culvert Replacement,PIPE-1629,0,0.0,SRF Loan,Completed,2024-11-01,4448
-CIP-0165,2025,North End,Water,Well Rehabilitation,PIPE-2376,476803,447105.0,Utility Rates,Completed,2025-10-01,1677
-CIP-0166,2025,North End,Water,Water Main Replacement,PIPE-2053,383613,353275.0,EPA Grant,Completed,2025-09-01,1830
-CIP-0167,2025,North End,Sewer,Trunk Sewer Upsizing,PIPE-2060,1491353,1447726.0,EPA Grant,Completed,2025-05-01,267
-CIP-0168,2025,North End,Water,Transmission Main Upgrade,PIPE-2071,90613,97075.0,Revenue Bonds,Completed,2025-02-01,2938
-CIP-0169,2025,North End,Water,Transmission Main Upgrade,PIPE-2155,50945,51015.0,SRF Loan,Completed,2025-12-01,2255
-CIP-0170,2025,Downtown,Stormwater,Outfall Rehabilitation,PIPE-3867,115082,101882.0,SRF Loan,Completed,2025-04-01,481
-CIP-0171,2025,Downtown,Water,Water Main Replacement,PIPE-3977,1401970,1424813.0,General Fund,Completed,2025-01-01,1044
-CIP-0172,2025,Downtown,Water,Transmission Main Upgrade,PIPE-4000,807662,810817.0,General Fund,Completed,2025-11-01,1360
-CIP-0173,2025,Downtown,Water,Lead Service Line Replacement,PIPE-2133,1274459,1394584.0,SRF Loan,Completed,2025-01-01,2436
-CIP-0174,2025,East Bench,Water,Pressure Zone Expansion,PIPE-3079,708179,748433.0,SRF Loan,Completed,2025-09-01,4493
-CIP-0175,2025,East Bench,Water,Water Main Replacement,PIPE-0412,918172,933477.0,General Fund,Completed,2025-10-01,3411
-CIP-0176,2025,East Bench,Sewer,Lift Station Upgrade,PIPE-2075,1130422,1091325.0,Revenue Bonds,Completed,2025-11-01,904
-CIP-0177,2025,East Bench,Water,Water Main Replacement,PIPE-2622,1254276,1378273.0,Utility Rates,Completed,2025-03-01,2646
-CIP-0178,2025,East Bench,Water,Well Rehabilitation,PIPE-2599,567437,536225.0,SRF Loan,Completed,2025-12-01,3813
-CIP-0179,2025,East Bench,Water,Transmission Main Upgrade,PIPE-2084,70899,77026.0,Revenue Bonds,Completed,2025-12-01,1481
-CIP-0180,2025,East Bench,Water,Water Main Replacement,PIPE-3383,199476,233486.0,Revenue Bonds,Completed,2025-11-01,4890
-CIP-0181,2025,East Bench,Water,Well Rehabilitation,PIPE-0853,65146,78604.0,Utility Rates,Completed,2025-11-01,1157
-CIP-0182,2025,East Bench,Sewer,Lift Station Upgrade,PIPE-4514,0,0.0,Revenue Bonds,Completed,2025-06-01,2553
-CIP-0183,2025,East Bench,Sewer,CIPP Rehabilitation,PIPE-3364,0,0.0,EPA Grant,Completed,2025-08-01,3190
-CIP-0184,2025,East Bench,Water,Well Rehabilitation,PIPE-4552,0,0.0,Utility Rates,Completed,2025-08-01,323
-CIP-0185,2025,East Bench,Water,Transmission Main Upgrade,PIPE-2393,0,0.0,SRF Loan,Completed,2025-11-01,3628
-CIP-0186,2025,East Bench,Sewer,Sewer Main Replacement,PIPE-4550,0,0.0,EPA Grant,Completed,2025-02-01,3238
-CIP-0187,2025,Southeast,Water,Pressure Zone Expansion,PIPE-4162,846324,871435.0,Utility Rates,Completed,2025-07-01,4288
-CIP-0188,2025,Southeast,Stormwater,Detention Basin Construction,PIPE-3583,1275110,1497648.0,SRF Loan,Completed,2025-06-01,3723
-CIP-0189,2025,Southeast,Water,Meter Replacement Program,PIPE-0590,728077,737175.0,Revenue Bonds,Completed,2025-11-01,3946
-CIP-0190,2025,Southeast,Water,Lead Service Line Replacement,PIPE-4223,448710,413659.0,General Fund,Completed,2025-08-01,2138
-CIP-0191,2025,Southwest,Water,Transmission Main Upgrade,PIPE-1108,1353429,1369523.0,EPA Grant,Completed,2025-11-01,1230
-CIP-0192,2025,Southwest,Sewer,I&I Reduction Program,PIPE-2059,444873,410531.0,SRF Loan,Completed,2025-09-01,4170
-CIP-0193,2025,Southwest,Stormwater,Detention Basin Construction,PIPE-0834,137076,163915.0,SRF Loan,Completed,2025-04-01,1338
-CIP-0194,2025,Southwest,Water,Pressure Zone Expansion,PIPE-2404,1372999,1492192.0,Revenue Bonds,Completed,2025-03-01,4567
-CIP-0195,2025,Southwest,Stormwater,Detention Basin Construction,PIPE-1294,0,0.0,Revenue Bonds,Completed,2025-08-01,2889
-CIP-0196,2025,Southwest,Water,Well Rehabilitation,PIPE-2332,0,0.0,Utility Rates,Completed,2025-02-01,3716
-CIP-0197,2025,Southwest,Water,Well Rehabilitation,PIPE-2244,0,0.0,EPA Grant,Completed,2025-02-01,4525
-CIP-0198,2025,Southwest,Water,Lead Service Line Replacement,PIPE-1847,0,0.0,Revenue Bonds,Completed,2025-03-01,1322
-CIP-0199,2025,Southwest,Sewer,CIPP Rehabilitation,PIPE-3973,0,0.0,Revenue Bonds,Completed,2025-05-01,3785
-CIP-0200,2025,Southwest,Sewer,Trunk Sewer Upsizing,PIPE-2275,0,0.0,Revenue Bonds,Completed,2025-10-01,1820
-CIP-0201,2025,Southwest,Water,Transmission Main Upgrade,PIPE-2831,0,0.0,General Fund,Completed,2025-03-01,4345
-CIP-0202,2025,Southwest,Sewer,WRF Capacity Improvement,PIPE-0843,0,0.0,Utility Rates,Completed,2025-06-01,4710
-CIP-0203,2025,Southwest,Water,Lead Service Line Replacement,PIPE-3707,0,0.0,Utility Rates,Completed,2025-07-01,4189
-CIP-0204,2025,Southwest,Water,Meter Replacement Program,PIPE-1790,0,0.0,EPA Grant,Completed,2025-11-01,4932
-CIP-0205,2025,Southwest,Stormwater,Outfall Rehabilitation,PIPE-0123,0,0.0,Utility Rates,Completed,2025-06-01,2267
-CIP-0206,2025,West Boise,Stormwater,Storm Drain Replacement,PIPE-0839,941341,808876.0,Revenue Bonds,Completed,2025-11-01,2791
-CIP-0207,2025,West Boise,Stormwater,Outfall Rehabilitation,PIPE-4842,212341,203635.0,EPA Grant,Completed,2025-02-01,4930
-CIP-0208,2025,West Boise,Stormwater,Storm Drain Replacement,PIPE-3766,910912,797470.0,EPA Grant,Completed,2025-03-01,4430
-CIP-0209,2025,West Boise,Stormwater,Detention Basin Construction,PIPE-3510,293487,285978.0,General Fund,Completed,2025-08-01,4187
-CIP-0210,2025,West Boise,Stormwater,Green Infrastructure Retrofit,PIPE-2345,1348100,1460243.0,General Fund,Completed,2025-01-01,2618
-CIP-0211,2025,West Boise,Water,Transmission Main Upgrade,PIPE-2108,317789,324186.0,Revenue Bonds,Completed,2025-10-01,2256
-CIP-0212,2025,West Boise,Stormwater,Green Infrastructure Retrofit,PIPE-3236,125411,122766.0,EPA Grant,Completed,2025-03-01,1372
-CIP-0213,2025,West Boise,Stormwater,Green Infrastructure Retrofit,PIPE-2013,455082,407380.0,General Fund,Completed,2025-06-01,4063
-CIP-0214,2025,West Boise,Sewer,Trunk Sewer Upsizing,PIPE-3397,768888,895439.0,SRF Loan,Completed,2025-02-01,4385
-CIP-0215,2026,North End,Water,Transmission Main Upgrade,PIPE-2376,1264361,,SRF Loan,Planned,2026-08-01,3687
-CIP-0216,2026,North End,Water,Lead Service Line Replacement,PIPE-2053,381530,,Revenue Bonds,Bid Phase,2026-03-01,1421
-CIP-0217,2026,North End,Sewer,CIPP Rehabilitation,PIPE-2060,1480059,,General Fund,Bid Phase,2026-03-01,3242
-CIP-0218,2026,North End,Water,Lead Service Line Replacement,PIPE-2071,1307212,,SRF Loan,Bid Phase,2026-09-01,4529
-CIP-0219,2026,Downtown,Stormwater,Green Infrastructure Retrofit,PIPE-3867,705095,,Utility Rates,Under Construction,2026-06-01,4925
-CIP-0220,2026,Downtown,Water,Meter Replacement Program,PIPE-3977,548615,,SRF Loan,Bid Phase,2026-11-01,4018
-CIP-0221,2026,Downtown,Water,Lead Service Line Replacement,PIPE-4000,72791,,Utility Rates,In Design,2026-06-01,223
-CIP-0222,2026,Downtown,Water,Pressure Zone Expansion,PIPE-2133,0,,EPA Grant,Under Construction,2026-10-01,2822
-CIP-0223,2026,Downtown,Water,Transmission Main Upgrade,PIPE-1171,0,,Utility Rates,Under Construction,2026-12-01,1844
-CIP-0224,2026,Downtown,Water,Water Main Replacement,PIPE-4027,0,,Utility Rates,Planned,2026-11-01,4609
-CIP-0225,2026,Downtown,Sewer,WRF Capacity Improvement,PIPE-4032,0,,General Fund,In Design,2026-05-01,1654
-CIP-0226,2026,Downtown,Water,Water Main Replacement,PIPE-2137,0,,Revenue Bonds,In Design,2026-10-01,1903
-CIP-0227,2026,Downtown,Water,Meter Replacement Program,PIPE-2141,0,,Utility Rates,In Design,2026-12-01,1803
-CIP-0228,2026,Downtown,Sewer,WRF Capacity Improvement,PIPE-3276,0,,Utility Rates,In Design,2026-06-01,3032
-CIP-0229,2026,East Bench,Water,Pressure Zone Expansion,PIPE-3079,626137,,SRF Loan,Bid Phase,2026-07-01,3571
-CIP-0230,2026,East Bench,Water,Meter Replacement Program,PIPE-0412,669918,,SRF Loan,Planned,2026-10-01,1712
-CIP-0231,2026,East Bench,Sewer,Sewer Main Replacement,PIPE-2075,195481,,General Fund,Under Construction,2026-08-01,4807
-CIP-0232,2026,East Bench,Water,Transmission Main Upgrade,PIPE-2622,0,,General Fund,Planned,2026-12-01,2064
-CIP-0233,2026,East Bench,Water,Water Main Replacement,PIPE-2599,0,,SRF Loan,Bid Phase,2026-08-01,592
-CIP-0234,2026,East Bench,Water,Transmission Main Upgrade,PIPE-2084,0,,Utility Rates,Planned,2026-05-01,3193
-CIP-0235,2026,East Bench,Water,Well Rehabilitation,PIPE-3383,0,,Utility Rates,Planned,2026-11-01,2373
-CIP-0236,2026,East Bench,Water,Meter Replacement Program,PIPE-0853,0,,EPA Grant,Bid Phase,2026-07-01,270
-CIP-0237,2026,East Bench,Sewer,I&I Reduction Program,PIPE-4514,0,,Revenue Bonds,Under Construction,2026-10-01,4919
-CIP-0238,2026,Southeast,Water,Lead Service Line Replacement,PIPE-4162,1298583,,General Fund,In Design,2026-12-01,448
-CIP-0239,2026,Southeast,Stormwater,Outfall Rehabilitation,PIPE-3583,57533,,Utility Rates,Bid Phase,2026-05-01,234
-CIP-0240,2026,Southeast,Water,Meter Replacement Program,PIPE-0590,583394,,Utility Rates,Under Construction,2026-01-01,3406
-CIP-0241,2026,Southeast,Water,Transmission Main Upgrade,PIPE-4223,125753,,Revenue Bonds,Under Construction,2026-03-01,4810
-CIP-0242,2026,Southeast,Sewer,WRF Capacity Improvement,PIPE-4752,1467034,,SRF Loan,In Design,2026-04-01,1700
-CIP-0243,2026,Southeast,Water,Transmission Main Upgrade,PIPE-2452,385544,,Revenue Bonds,Planned,2026-05-01,356
-CIP-0244,2026,Southwest,Water,Lead Service Line Replacement,PIPE-1108,451282,,Utility Rates,Planned,2026-03-01,1436
-CIP-0245,2026,Southwest,Sewer,WRF Capacity Improvement,PIPE-2059,1077325,,Revenue Bonds,Under Construction,2026-05-01,1546
-CIP-0246,2026,Southwest,Stormwater,Storm Drain Replacement,PIPE-0834,663643,,SRF Loan,Planned,2026-12-01,589
-CIP-0247,2026,Southwest,Water,Pressure Zone Expansion,PIPE-2404,417180,,SRF Loan,Bid Phase,2026-03-01,3497
-CIP-0248,2026,Southwest,Stormwater,Detention Basin Construction,PIPE-1294,341860,,Revenue Bonds,Planned,2026-07-01,442
-CIP-0249,2026,Southwest,Water,Pressure Zone Expansion,PIPE-2332,432712,,EPA Grant,Planned,2026-02-01,4600
-CIP-0250,2026,Southwest,Water,Meter Replacement Program,PIPE-2244,52615,,EPA Grant,Bid Phase,2026-02-01,4453
-CIP-0251,2026,Southwest,Water,Transmission Main Upgrade,PIPE-1847,0,,SRF Loan,Under Construction,2026-08-01,4638
-CIP-0252,2026,West Boise,Stormwater,Outfall Rehabilitation,PIPE-0839,853274,,Utility Rates,Bid Phase,2026-04-01,4708
-CIP-0253,2026,West Boise,Stormwater,Culvert Replacement,PIPE-4842,1085814,,Utility Rates,Bid Phase,2026-08-01,1514
-CIP-0254,2026,West Boise,Stormwater,Green Infrastructure Retrofit,PIPE-3766,563655,,General Fund,Under Construction,2026-04-01,1313
-CIP-0255,2026,West Boise,Stormwater,Outfall Rehabilitation,PIPE-3510,681545,,EPA Grant,Bid Phase,2026-11-01,3209
-CIP-0256,2026,West Boise,Stormwater,Storm Drain Replacement,PIPE-2345,347755,,Utility Rates,Bid Phase,2026-03-01,1108
-CIP-0257,2026,West Boise,Water,Pressure Zone Expansion,PIPE-2108,0,,SRF Loan,Planned,2026-06-01,3322
-CIP-0258,2026,West Boise,Stormwater,Green Infrastructure Retrofit,PIPE-3236,0,,Utility Rates,In Design,2026-02-01,2274
-CIP-0259,2026,West Boise,Stormwater,Outfall Rehabilitation,PIPE-2013,0,,SRF Loan,Planned,2026-03-01,4355
-CIP-0260,2026,West Boise,Sewer,CIPP Rehabilitation,PIPE-3397,0,,Revenue Bonds,Planned,2026-05-01,4127
-CIP-0261,2026,West Boise,Stormwater,Culvert Replacement,PIPE-1629,0,,Utility Rates,Under Construction,2026-01-01,637
-CIP-0262,2026,West Boise,Stormwater,Storm Drain Replacement,PIPE-2147,0,,EPA Grant,Planned,2026-04-01,4408
-CIP-0263,2026,West Boise,Water,Well Rehabilitation,PIPE-0437,0,,EPA Grant,In Design,2026-06-01,4126
-CIP-0264,2026,West Boise,Stormwater,Culvert Replacement,PIPE-4301,0,,Utility Rates,In Design,2026-01-01,1283
-CIP-0265,2026,West Boise,Water,Well Rehabilitation,PIPE-3346,0,,SRF Loan,In Design,2026-06-01,822
+CIP-0001,2022,North End,Wastewater,Manhole Rehabilitation,SEW-00008,1176932,1421826.0,Utility Rates,Completed,2022-05-01,520
+CIP-0002,2022,North End,Wastewater,Trunk Sewer Upsizing,SEW-02592,343949,421833.0,Revenue Bonds,Completed,2022-04-01,1792
+CIP-0003,2022,North End,Wastewater,CIPP Rehabilitation,SEW-02571,123346,146750.0,Utility Rates,Completed,2022-04-01,214
+CIP-0004,2022,North End,Wastewater,Lift Station Upgrade,SEW-02556,0,0.0,General Fund,Completed,2022-05-01,978
+CIP-0005,2022,North End,Wastewater,WRF Capacity Improvement,SEW-02541,0,0.0,Utility Rates,Completed,2022-11-01,3031
+CIP-0006,2022,North End,Wastewater,CIPP Rehabilitation,SEW-02539,0,0.0,SRF Loan,Completed,2022-01-01,2034
+CIP-0007,2022,North End,Wastewater,CIPP Rehabilitation,SEW-02537,0,0.0,SRF Loan,Completed,2022-05-01,3460
+CIP-0008,2022,Downtown,Wastewater,Force Main Replacement,SEW-00002,435088,371383.0,SRF Loan,Completed,2022-06-01,1920
+CIP-0009,2022,Downtown,Wastewater,CIPP Rehabilitation,SEW-02208,281136,288873.0,General Fund,Completed,2022-07-01,674
+CIP-0010,2022,Downtown,Wastewater,WRF Capacity Improvement,SEW-02210,1452624,1726680.0,Utility Rates,Completed,2022-07-01,287
+CIP-0011,2022,Downtown,Wastewater,I&I Reduction Program,SEW-02214,576337,560706.0,SRF Loan,Completed,2022-05-01,1298
+CIP-0012,2022,Downtown,Wastewater,Manhole Rehabilitation,SEW-02225,1202825,1272351.0,EPA Grant,Completed,2022-07-01,2171
+CIP-0013,2022,Downtown,Wastewater,Manhole Rehabilitation,SEW-02227,425615,375069.0,EPA Grant,Completed,2022-05-01,1207
+CIP-0014,2022,East Bench,Geothermal,Building Connection Extension,GEO-0248,627564,720449.0,Revenue Bonds,Completed,2022-12-01,3086
+CIP-0015,2022,East Bench,Wastewater,CIPP Rehabilitation,SEW-02722,383585,404075.0,Revenue Bonds,Completed,2022-09-01,3159
+CIP-0016,2022,East Bench,Wastewater,I&I Reduction Program,SEW-01335,358960,446394.0,SRF Loan,Completed,2022-06-01,3803
+CIP-0017,2022,East Bench,Geothermal,Building Connection Extension,GEO-0212,0,0.0,Utility Rates,Completed,2022-09-01,203
+CIP-0018,2022,East Bench,Wastewater,Sewer Main Replacement,SEW-02774,0,0.0,General Fund,Completed,2022-03-01,3444
+CIP-0019,2022,East Bench,Geothermal,Building Connection Extension,GEO-0214,0,0.0,EPA Grant,Completed,2022-07-01,3595
+CIP-0020,2022,East Bench,Geothermal,Building Connection Extension,GEO-0222,0,0.0,EPA Grant,Completed,2022-08-01,1007
+CIP-0021,2022,East Bench,Geothermal,Building Connection Extension,GEO-0044,0,0.0,Utility Rates,Completed,2022-07-01,4149
+CIP-0022,2022,East Bench,Geothermal,BSU Campus Expansion,GEO-0042,0,0.0,EPA Grant,Completed,2022-04-01,1395
+CIP-0023,2022,Southeast,Wastewater,Manhole Rehabilitation,SEW-03786,695485,744738.0,Utility Rates,Completed,2022-07-01,2563
+CIP-0024,2022,Southeast,Wastewater,Sewer Main Replacement,SEW-03999,611120,592099.0,SRF Loan,Completed,2022-11-01,4838
+CIP-0025,2022,Southeast,Wastewater,Force Main Replacement,SEW-00994,1223757,1424152.0,EPA Grant,Completed,2022-12-01,3427
+CIP-0026,2022,Southwest,Wastewater,CIPP Rehabilitation,SEW-00130,1399528,1725051.0,Revenue Bonds,Completed,2022-06-01,383
+CIP-0027,2022,Southwest,Wastewater,Force Main Replacement,SEW-02533,988858,1208297.0,EPA Grant,Completed,2022-02-01,2029
+CIP-0028,2022,Southwest,Wastewater,Lift Station Upgrade,SEW-01031,85873,89137.0,Revenue Bonds,Completed,2022-05-01,2394
+CIP-0029,2022,Southwest,Wastewater,Force Main Replacement,SEW-03148,377232,383416.0,Revenue Bonds,Completed,2022-01-01,393
+CIP-0030,2022,Southwest,Wastewater,I&I Reduction Program,SEW-02625,0,0.0,Utility Rates,Completed,2022-10-01,3877
+CIP-0031,2022,Southwest,Wastewater,CIPP Rehabilitation,SEW-03933,0,0.0,EPA Grant,Completed,2022-11-01,1925
+CIP-0032,2022,Southwest,Wastewater,Lift Station Upgrade,SEW-01104,0,0.0,SRF Loan,Completed,2022-11-01,3656
+CIP-0033,2022,Southwest,Wastewater,Trunk Sewer Upsizing,SEW-03647,0,0.0,Revenue Bonds,Completed,2022-12-01,2010
+CIP-0034,2022,West Boise,Wastewater,Lift Station Upgrade,SEW-02367,950458,1052762.0,Utility Rates,Completed,2022-08-01,866
+CIP-0035,2022,West Boise,Wastewater,Force Main Replacement,SEW-00493,303976,361773.0,EPA Grant,Completed,2022-05-01,2741
+CIP-0036,2022,West Boise,Wastewater,Force Main Replacement,SEW-03747,1414359,1516933.0,EPA Grant,Completed,2022-09-01,1519
+CIP-0037,2022,West Boise,Wastewater,Trunk Sewer Upsizing,SEW-02911,616709,578581.0,EPA Grant,Completed,2022-09-01,2613
+CIP-0038,2023,North End,Wastewater,Manhole Rehabilitation,SEW-00008,1477971,1683656.0,EPA Grant,Completed,2023-02-01,1533
+CIP-0039,2023,North End,Wastewater,Sewer Main Replacement,SEW-02592,553302,583192.0,Revenue Bonds,Completed,2023-09-01,3886
+CIP-0040,2023,North End,Wastewater,Trunk Sewer Upsizing,SEW-02571,52826,45280.0,Utility Rates,Completed,2023-05-01,4959
+CIP-0041,2023,North End,Wastewater,CIPP Rehabilitation,SEW-02556,0,0.0,General Fund,Completed,2023-06-01,781
+CIP-0042,2023,North End,Wastewater,Force Main Replacement,SEW-02541,0,0.0,Utility Rates,Completed,2023-07-01,4734
+CIP-0043,2023,North End,Wastewater,Trunk Sewer Upsizing,SEW-02539,0,0.0,General Fund,Completed,2023-08-01,665
+CIP-0044,2023,Downtown,Wastewater,Force Main Replacement,SEW-00002,1342451,1226582.0,Revenue Bonds,Completed,2023-04-01,1435
+CIP-0045,2023,Downtown,Wastewater,Sewer Main Replacement,SEW-02208,278092,346469.0,SRF Loan,Completed,2023-08-01,4816
+CIP-0046,2023,Downtown,Wastewater,CIPP Rehabilitation,SEW-02210,1049626,950319.0,Utility Rates,Completed,2023-02-01,2979
+CIP-0047,2023,Downtown,Wastewater,WRF Capacity Improvement,SEW-02214,115420,141000.0,General Fund,Completed,2023-09-01,1556
+CIP-0048,2023,Downtown,Wastewater,Force Main Replacement,SEW-02225,50942,56618.0,EPA Grant,Completed,2023-07-01,4255
+CIP-0049,2023,East Bench,Geothermal,Pipeline Replacement,GEO-0248,1071684,1203282.0,General Fund,Completed,2023-01-01,1939
+CIP-0050,2023,East Bench,Wastewater,Trunk Sewer Upsizing,SEW-02722,573061,642426.0,General Fund,Completed,2023-06-01,1244
+CIP-0051,2023,East Bench,Wastewater,CIPP Rehabilitation,SEW-01335,576182,592138.0,Revenue Bonds,Completed,2023-02-01,1402
+CIP-0052,2023,East Bench,Geothermal,Building Connection Extension,GEO-0212,1078414,1178795.0,Utility Rates,Completed,2023-04-01,900
+CIP-0053,2023,East Bench,Wastewater,Lift Station Upgrade,SEW-02774,1004489,865454.0,General Fund,Completed,2023-05-01,2718
+CIP-0054,2023,East Bench,Geothermal,Pipeline Replacement,GEO-0214,0,0.0,EPA Grant,Completed,2023-07-01,1835
+CIP-0055,2023,East Bench,Geothermal,Pipeline Replacement,GEO-0222,0,0.0,EPA Grant,Completed,2023-12-01,1466
+CIP-0056,2023,East Bench,Geothermal,Insulation Upgrade,GEO-0044,0,0.0,EPA Grant,Completed,2023-03-01,3242
+CIP-0057,2023,East Bench,Geothermal,Insulation Upgrade,GEO-0042,0,0.0,Utility Rates,Completed,2023-09-01,3383
+CIP-0058,2023,East Bench,Wastewater,WRF Capacity Improvement,SEW-01145,0,0.0,SRF Loan,Completed,2023-01-01,4848
+CIP-0059,2023,East Bench,Wastewater,Lift Station Upgrade,SEW-02045,0,0.0,SRF Loan,Completed,2023-12-01,1146
+CIP-0060,2023,East Bench,Geothermal,BSU Campus Expansion,GEO-0258,0,0.0,EPA Grant,Completed,2023-06-01,295
+CIP-0061,2023,East Bench,Wastewater,Manhole Rehabilitation,SEW-02715,0,0.0,General Fund,Completed,2023-05-01,861
+CIP-0062,2023,East Bench,Geothermal,Injection Well Maintenance,GEO-0261,0,0.0,EPA Grant,Completed,2023-02-01,2744
+CIP-0063,2023,Southeast,Wastewater,Force Main Replacement,SEW-03786,1372546,1612670.0,SRF Loan,Completed,2023-03-01,1757
+CIP-0064,2023,Southeast,Wastewater,Force Main Replacement,SEW-03999,330575,342687.0,SRF Loan,Completed,2023-01-01,2563
+CIP-0065,2023,Southeast,Wastewater,I&I Reduction Program,SEW-00994,1184832,1042202.0,EPA Grant,Completed,2023-10-01,2109
+CIP-0066,2023,Southwest,Wastewater,Trunk Sewer Upsizing,SEW-00130,745431,665722.0,EPA Grant,Completed,2023-06-01,4452
+CIP-0067,2023,Southwest,Wastewater,Sewer Main Replacement,SEW-02533,404018,385236.0,EPA Grant,Completed,2023-10-01,1114
+CIP-0068,2023,Southwest,Wastewater,WRF Capacity Improvement,SEW-01031,1130604,1070961.0,Utility Rates,Completed,2023-07-01,4726
+CIP-0069,2023,Southwest,Wastewater,Trunk Sewer Upsizing,SEW-03148,115453,121014.0,SRF Loan,Completed,2023-01-01,534
+CIP-0070,2023,Southwest,Wastewater,Lift Station Upgrade,SEW-02625,66420,61271.0,Revenue Bonds,Completed,2023-01-01,2775
+CIP-0071,2023,Southwest,Wastewater,I&I Reduction Program,SEW-03933,51041,53043.0,Utility Rates,Completed,2023-12-01,2692
+CIP-0072,2023,Southwest,Wastewater,WRF Capacity Improvement,SEW-01104,0,0.0,General Fund,Completed,2023-01-01,2759
+CIP-0073,2023,Southwest,Wastewater,CIPP Rehabilitation,SEW-03647,0,0.0,SRF Loan,Completed,2023-05-01,2287
+CIP-0074,2023,Southwest,Wastewater,Manhole Rehabilitation,SEW-04028,0,0.0,General Fund,Completed,2023-04-01,881
+CIP-0075,2023,Southwest,Wastewater,CIPP Rehabilitation,SEW-01399,0,0.0,SRF Loan,Completed,2023-05-01,4981
+CIP-0076,2023,Southwest,Wastewater,Lift Station Upgrade,SEW-00374,0,0.0,Utility Rates,Completed,2023-06-01,4953
+CIP-0077,2023,Southwest,Wastewater,I&I Reduction Program,SEW-00451,0,0.0,EPA Grant,Completed,2023-10-01,3738
+CIP-0078,2023,Southwest,Wastewater,Trunk Sewer Upsizing,SEW-00818,0,0.0,EPA Grant,Completed,2023-10-01,4562
+CIP-0079,2023,West Boise,Wastewater,Lift Station Upgrade,SEW-02367,60647,63760.0,Revenue Bonds,Completed,2023-07-01,2033
+CIP-0080,2023,West Boise,Wastewater,CIPP Rehabilitation,SEW-00493,1486739,1654611.0,EPA Grant,Completed,2023-12-01,4984
+CIP-0081,2023,West Boise,Wastewater,Manhole Rehabilitation,SEW-03747,64950,76473.0,Revenue Bonds,Completed,2023-02-01,3513
+CIP-0082,2023,West Boise,Wastewater,Lift Station Upgrade,SEW-02911,0,0.0,Revenue Bonds,Completed,2023-08-01,362
+CIP-0083,2023,West Boise,Wastewater,CIPP Rehabilitation,SEW-01212,0,0.0,Revenue Bonds,Completed,2023-01-01,1274
+CIP-0084,2023,West Boise,Wastewater,Force Main Replacement,SEW-03395,0,0.0,Utility Rates,Completed,2023-11-01,4756
+CIP-0085,2023,West Boise,Wastewater,Sewer Main Replacement,SEW-02649,0,0.0,EPA Grant,Completed,2023-07-01,852
+CIP-0086,2023,West Boise,Wastewater,I&I Reduction Program,SEW-00719,0,0.0,General Fund,Completed,2023-06-01,1156
+CIP-0087,2023,West Boise,Wastewater,CIPP Rehabilitation,SEW-00992,0,0.0,Utility Rates,Completed,2023-08-01,1744
+CIP-0088,2024,North End,Wastewater,Trunk Sewer Upsizing,SEW-00008,1085930,1292614.0,General Fund,Completed,2024-08-01,1287
+CIP-0089,2024,North End,Wastewater,Trunk Sewer Upsizing,SEW-02592,145360,181695.0,Utility Rates,Completed,2024-02-01,2313
+CIP-0090,2024,North End,Wastewater,Lift Station Upgrade,SEW-02571,176210,151993.0,SRF Loan,Completed,2024-02-01,4014
+CIP-0091,2024,Downtown,Wastewater,Lift Station Upgrade,SEW-00002,819551,937356.0,SRF Loan,Completed,2024-06-01,4063
+CIP-0092,2024,Downtown,Wastewater,Lift Station Upgrade,SEW-02208,160064,140173.0,Utility Rates,Completed,2024-01-01,4444
+CIP-0093,2024,Downtown,Wastewater,Manhole Rehabilitation,SEW-02210,119345,139341.0,Revenue Bonds,Completed,2024-05-01,2131
+CIP-0094,2024,Downtown,Wastewater,Force Main Replacement,SEW-02214,418976,376632.0,Utility Rates,Completed,2024-11-01,2036
+CIP-0095,2024,Downtown,Wastewater,CIPP Rehabilitation,SEW-02225,142867,122515.0,Revenue Bonds,Completed,2024-10-01,1361
+CIP-0096,2024,Downtown,Wastewater,Trunk Sewer Upsizing,SEW-02227,1238841,1272609.0,EPA Grant,Completed,2024-07-01,507
+CIP-0097,2024,Downtown,Wastewater,Force Main Replacement,SEW-02257,191159,166579.0,Utility Rates,Completed,2024-03-01,204
+CIP-0098,2024,Downtown,Wastewater,Trunk Sewer Upsizing,SEW-02261,152593,159180.0,Revenue Bonds,Completed,2024-10-01,2994
+CIP-0099,2024,Downtown,Wastewater,Sewer Main Replacement,SEW-02265,88746,96925.0,SRF Loan,Completed,2024-10-01,2006
+CIP-0100,2024,East Bench,Geothermal,BSU Campus Expansion,GEO-0248,1234906,1482953.0,SRF Loan,Completed,2024-11-01,1386
+CIP-0101,2024,East Bench,Wastewater,I&I Reduction Program,SEW-02722,384881,392708.0,General Fund,Completed,2024-02-01,4269
+CIP-0102,2024,East Bench,Wastewater,CIPP Rehabilitation,SEW-01335,314379,392681.0,General Fund,Completed,2024-06-01,2222
+CIP-0103,2024,East Bench,Geothermal,Well Rehabilitation,GEO-0212,287071,269509.0,Revenue Bonds,Completed,2024-12-01,2735
+CIP-0104,2024,East Bench,Wastewater,Trunk Sewer Upsizing,SEW-02774,151927,144888.0,EPA Grant,Completed,2024-01-01,1413
+CIP-0105,2024,East Bench,Geothermal,Pipeline Replacement,GEO-0214,0,0.0,Utility Rates,Completed,2024-05-01,4027
+CIP-0106,2024,East Bench,Geothermal,Well Rehabilitation,GEO-0222,0,0.0,Revenue Bonds,Completed,2024-09-01,3029
+CIP-0107,2024,East Bench,Geothermal,Building Connection Extension,GEO-0044,0,0.0,SRF Loan,Completed,2024-04-01,1748
+CIP-0108,2024,East Bench,Geothermal,Injection Well Maintenance,GEO-0042,0,0.0,EPA Grant,Completed,2024-03-01,616
+CIP-0109,2024,East Bench,Wastewater,I&I Reduction Program,SEW-01145,0,0.0,Revenue Bonds,Completed,2024-07-01,4985
+CIP-0110,2024,East Bench,Wastewater,WRF Capacity Improvement,SEW-02045,0,0.0,General Fund,Completed,2024-05-01,4303
+CIP-0111,2024,East Bench,Geothermal,Building Connection Extension,GEO-0258,0,0.0,EPA Grant,Completed,2024-10-01,4667
+CIP-0112,2024,Southeast,Wastewater,CIPP Rehabilitation,SEW-03786,1350101,1465170.0,SRF Loan,Completed,2024-09-01,1088
+CIP-0113,2024,Southeast,Wastewater,I&I Reduction Program,SEW-03999,963963,1089511.0,EPA Grant,Completed,2024-03-01,878
+CIP-0114,2024,Southeast,Wastewater,Trunk Sewer Upsizing,SEW-00994,1302639,1350433.0,General Fund,Completed,2024-11-01,4192
+CIP-0115,2024,Southeast,Wastewater,I&I Reduction Program,SEW-01293,628405,566600.0,Revenue Bonds,Completed,2024-12-01,906
+CIP-0116,2024,Southeast,Wastewater,Force Main Replacement,SEW-00250,0,0.0,Utility Rates,Completed,2024-05-01,3968
+CIP-0117,2024,Southeast,Wastewater,Manhole Rehabilitation,SEW-04111,0,0.0,EPA Grant,Completed,2024-07-01,1676
+CIP-0118,2024,Southeast,Wastewater,WRF Capacity Improvement,SEW-00363,0,0.0,General Fund,Completed,2024-05-01,530
+CIP-0119,2024,Southwest,Wastewater,I&I Reduction Program,SEW-00130,877222,831712.0,Revenue Bonds,Completed,2024-09-01,3968
+CIP-0120,2024,Southwest,Wastewater,CIPP Rehabilitation,SEW-02533,735054,757779.0,Utility Rates,Completed,2024-05-01,1030
+CIP-0121,2024,Southwest,Wastewater,I&I Reduction Program,SEW-01031,1019793,1036232.0,Utility Rates,Completed,2024-02-01,224
+CIP-0122,2024,Southwest,Wastewater,CIPP Rehabilitation,SEW-03148,128322,124382.0,EPA Grant,Completed,2024-10-01,1805
+CIP-0123,2024,Southwest,Wastewater,Trunk Sewer Upsizing,SEW-02625,50887,50718.0,General Fund,Completed,2024-10-01,1953
+CIP-0124,2024,Southwest,Wastewater,Lift Station Upgrade,SEW-03933,0,0.0,Revenue Bonds,Completed,2024-05-01,2224
+CIP-0125,2024,Southwest,Wastewater,WRF Capacity Improvement,SEW-01104,0,0.0,General Fund,Completed,2024-10-01,2531
+CIP-0126,2024,Southwest,Wastewater,Sewer Main Replacement,SEW-03647,0,0.0,EPA Grant,Completed,2024-10-01,2096
+CIP-0127,2024,Southwest,Wastewater,I&I Reduction Program,SEW-04028,0,0.0,SRF Loan,Completed,2024-04-01,4673
+CIP-0128,2024,Southwest,Wastewater,Manhole Rehabilitation,SEW-01399,0,0.0,General Fund,Completed,2024-07-01,1286
+CIP-0129,2024,Southwest,Wastewater,CIPP Rehabilitation,SEW-00374,0,0.0,EPA Grant,Completed,2024-07-01,1770
+CIP-0130,2024,Southwest,Wastewater,WRF Capacity Improvement,SEW-00451,0,0.0,EPA Grant,Completed,2024-10-01,1831
+CIP-0131,2024,Southwest,Wastewater,Sewer Main Replacement,SEW-00818,0,0.0,General Fund,Completed,2024-11-01,2592
+CIP-0132,2024,Southwest,Wastewater,Force Main Replacement,SEW-00552,0,0.0,Utility Rates,Completed,2024-11-01,4270
+CIP-0133,2024,West Boise,Wastewater,I&I Reduction Program,SEW-02367,1497847,1450518.0,General Fund,Completed,2024-02-01,4848
+CIP-0134,2024,West Boise,Wastewater,CIPP Rehabilitation,SEW-00493,817487,794674.0,Revenue Bonds,Completed,2024-08-01,1621
+CIP-0135,2024,West Boise,Wastewater,Force Main Replacement,SEW-03747,91679,98849.0,EPA Grant,Completed,2024-10-01,3211
+CIP-0136,2024,West Boise,Wastewater,Force Main Replacement,SEW-02911,124357,150394.0,EPA Grant,Completed,2024-03-01,4860
+CIP-0137,2024,West Boise,Wastewater,Manhole Rehabilitation,SEW-01212,64564,78302.0,SRF Loan,Completed,2024-06-01,4176
+CIP-0138,2024,West Boise,Wastewater,Lift Station Upgrade,SEW-03395,0,0.0,EPA Grant,Completed,2024-11-01,1052
+CIP-0139,2024,West Boise,Wastewater,Trunk Sewer Upsizing,SEW-02649,0,0.0,Revenue Bonds,Completed,2024-10-01,341
+CIP-0140,2025,North End,Wastewater,I&I Reduction Program,SEW-00008,1313726,1549708.0,SRF Loan,Completed,2025-04-01,1018
+CIP-0141,2025,North End,Wastewater,Force Main Replacement,SEW-02592,596674,674865.0,SRF Loan,Completed,2025-12-01,1598
+CIP-0142,2025,North End,Wastewater,Force Main Replacement,SEW-02571,1101483,1261451.0,Utility Rates,Completed,2025-03-01,2779
+CIP-0143,2025,North End,Wastewater,WRF Capacity Improvement,SEW-02556,108880,130513.0,SRF Loan,Completed,2025-01-01,1977
+CIP-0144,2025,North End,Wastewater,Force Main Replacement,SEW-02541,940562,1165689.0,EPA Grant,Completed,2025-03-01,892
+CIP-0145,2025,North End,Wastewater,CIPP Rehabilitation,SEW-02539,143047,127442.0,Utility Rates,Completed,2025-04-01,1778
+CIP-0146,2025,North End,Wastewater,Lift Station Upgrade,SEW-02537,0,0.0,Utility Rates,Completed,2025-08-01,4426
+CIP-0147,2025,North End,Wastewater,Sewer Main Replacement,SEW-02519,0,0.0,General Fund,Completed,2025-01-01,4137
+CIP-0148,2025,North End,Wastewater,Lift Station Upgrade,SEW-02513,0,0.0,Revenue Bonds,Completed,2025-12-01,650
+CIP-0149,2025,Downtown,Wastewater,WRF Capacity Improvement,SEW-00002,449201,483308.0,Revenue Bonds,Completed,2025-08-01,2788
+CIP-0150,2025,Downtown,Wastewater,Force Main Replacement,SEW-02208,731632,808873.0,EPA Grant,Completed,2025-12-01,942
+CIP-0151,2025,Downtown,Wastewater,Lift Station Upgrade,SEW-02210,1426378,1283301.0,Utility Rates,Completed,2025-05-01,4875
+CIP-0152,2025,Downtown,Wastewater,Force Main Replacement,SEW-02214,1422133,1480945.0,General Fund,Completed,2025-04-01,1574
+CIP-0153,2025,Downtown,Wastewater,WRF Capacity Improvement,SEW-02225,145099,134447.0,EPA Grant,Completed,2025-03-01,1756
+CIP-0154,2025,Downtown,Wastewater,Force Main Replacement,SEW-02227,137286,166391.0,General Fund,Completed,2025-09-01,3053
+CIP-0155,2025,Downtown,Wastewater,Manhole Rehabilitation,SEW-02257,307899,303626.0,EPA Grant,Completed,2025-08-01,1443
+CIP-0156,2025,East Bench,Geothermal,Pipeline Replacement,GEO-0248,570763,538627.0,Revenue Bonds,Completed,2025-09-01,1840
+CIP-0157,2025,East Bench,Wastewater,Sewer Main Replacement,SEW-02722,443802,531209.0,Revenue Bonds,Completed,2025-12-01,4456
+CIP-0158,2025,East Bench,Wastewater,Lift Station Upgrade,SEW-01335,88945,88655.0,EPA Grant,Completed,2025-03-01,4956
+CIP-0159,2025,East Bench,Geothermal,Well Rehabilitation,GEO-0212,626660,755145.0,Revenue Bonds,Completed,2025-07-01,3545
+CIP-0160,2025,East Bench,Wastewater,I&I Reduction Program,SEW-02774,434991,387706.0,Revenue Bonds,Completed,2025-06-01,3072
+CIP-0161,2025,East Bench,Geothermal,Well Rehabilitation,GEO-0214,60525,69420.0,SRF Loan,Completed,2025-10-01,1486
+CIP-0162,2025,East Bench,Geothermal,Injection Well Maintenance,GEO-0222,50381,55525.0,SRF Loan,Completed,2025-08-01,1932
+CIP-0163,2025,East Bench,Geothermal,Building Connection Extension,GEO-0044,0,0.0,SRF Loan,Completed,2025-04-01,3461
+CIP-0164,2025,East Bench,Geothermal,Building Connection Extension,GEO-0042,0,0.0,EPA Grant,Completed,2025-07-01,3963
+CIP-0165,2025,East Bench,Wastewater,I&I Reduction Program,SEW-01145,0,0.0,SRF Loan,Completed,2025-12-01,2162
+CIP-0166,2025,Southeast,Wastewater,Lift Station Upgrade,SEW-03786,254264,261626.0,Revenue Bonds,Completed,2025-12-01,3561
+CIP-0167,2025,Southeast,Wastewater,Lift Station Upgrade,SEW-03999,243229,215921.0,Revenue Bonds,Completed,2025-07-01,2664
+CIP-0168,2025,Southeast,Wastewater,CIPP Rehabilitation,SEW-00994,1023782,1273217.0,EPA Grant,Completed,2025-06-01,2129
+CIP-0169,2025,Southeast,Wastewater,Manhole Rehabilitation,SEW-01293,1456366,1394663.0,SRF Loan,Completed,2025-07-01,4405
+CIP-0170,2025,Southwest,Wastewater,Force Main Replacement,SEW-00130,799999,886405.0,SRF Loan,Completed,2025-10-01,1822
+CIP-0171,2025,Southwest,Wastewater,Sewer Main Replacement,SEW-02533,273584,258100.0,SRF Loan,Completed,2025-12-01,2942
+CIP-0172,2025,Southwest,Wastewater,Force Main Replacement,SEW-01031,92188,92988.0,EPA Grant,Completed,2025-09-01,3388
+CIP-0173,2025,Southwest,Wastewater,I&I Reduction Program,SEW-03148,128675,153372.0,SRF Loan,Completed,2025-10-01,4899
+CIP-0174,2025,Southwest,Wastewater,Manhole Rehabilitation,SEW-02625,1118553,998749.0,SRF Loan,Completed,2025-08-01,1238
+CIP-0175,2025,Southwest,Wastewater,Sewer Main Replacement,SEW-03933,1133918,1322243.0,General Fund,Completed,2025-09-01,637
+CIP-0176,2025,Southwest,Wastewater,Manhole Rehabilitation,SEW-01104,94283,107142.0,EPA Grant,Completed,2025-04-01,3088
+CIP-0177,2025,Southwest,Wastewater,WRF Capacity Improvement,SEW-03647,481649,566544.0,Utility Rates,Completed,2025-06-01,1295
+CIP-0178,2025,Southwest,Wastewater,CIPP Rehabilitation,SEW-04028,145646,134441.0,EPA Grant,Completed,2025-10-01,3897
+CIP-0179,2025,Southwest,Wastewater,CIPP Rehabilitation,SEW-01399,73898,74707.0,General Fund,Completed,2025-08-01,2862
+CIP-0180,2025,Southwest,Wastewater,Trunk Sewer Upsizing,SEW-00374,0,0.0,General Fund,Completed,2025-01-01,2618
+CIP-0181,2025,Southwest,Wastewater,I&I Reduction Program,SEW-00451,0,0.0,SRF Loan,Completed,2025-07-01,4443
+CIP-0182,2025,Southwest,Wastewater,I&I Reduction Program,SEW-00818,0,0.0,General Fund,Completed,2025-11-01,4655
+CIP-0183,2025,Southwest,Wastewater,I&I Reduction Program,SEW-00552,0,0.0,Revenue Bonds,Completed,2025-01-01,2473
+CIP-0184,2025,West Boise,Wastewater,WRF Capacity Improvement,SEW-02367,147758,147395.0,Utility Rates,Completed,2025-04-01,2207
+CIP-0185,2025,West Boise,Wastewater,Trunk Sewer Upsizing,SEW-00493,782460,855314.0,SRF Loan,Completed,2025-08-01,1580
+CIP-0186,2025,West Boise,Wastewater,CIPP Rehabilitation,SEW-03747,1344000,1219907.0,General Fund,Completed,2025-03-01,1706
+CIP-0187,2025,West Boise,Wastewater,Lift Station Upgrade,SEW-02911,724142,770358.0,SRF Loan,Completed,2025-02-01,4702
+CIP-0188,2025,West Boise,Wastewater,Force Main Replacement,SEW-01212,1073609,951944.0,EPA Grant,Completed,2025-04-01,3298
+CIP-0189,2025,West Boise,Wastewater,Sewer Main Replacement,SEW-03395,696959,625146.0,Revenue Bonds,Completed,2025-10-01,3788
+CIP-0190,2025,West Boise,Wastewater,Lift Station Upgrade,SEW-02649,0,0.0,SRF Loan,Completed,2025-10-01,358
+CIP-0191,2025,West Boise,Wastewater,Sewer Main Replacement,SEW-00719,0,0.0,SRF Loan,Completed,2025-05-01,3059
+CIP-0192,2025,West Boise,Wastewater,CIPP Rehabilitation,SEW-00992,0,0.0,Revenue Bonds,Completed,2025-10-01,2200
+CIP-0193,2025,West Boise,Wastewater,Force Main Replacement,SEW-01716,0,0.0,Revenue Bonds,Completed,2025-03-01,3341
+CIP-0194,2026,North End,Wastewater,CIPP Rehabilitation,SEW-00008,795068,,Revenue Bonds,Bid Phase,2026-04-01,1794
+CIP-0195,2026,North End,Wastewater,Force Main Replacement,SEW-02592,922505,,EPA Grant,Under Construction,2026-06-01,3090
+CIP-0196,2026,North End,Wastewater,I&I Reduction Program,SEW-02571,1275836,,SRF Loan,In Design,2026-05-01,1744
+CIP-0197,2026,North End,Wastewater,Trunk Sewer Upsizing,SEW-02556,1483258,,General Fund,Under Construction,2026-12-01,4411
+CIP-0198,2026,North End,Wastewater,Manhole Rehabilitation,SEW-02541,460644,,Utility Rates,Planned,2026-01-01,2273
+CIP-0199,2026,North End,Wastewater,Lift Station Upgrade,SEW-02539,220402,,EPA Grant,In Design,2026-04-01,3218
+CIP-0200,2026,North End,Wastewater,Force Main Replacement,SEW-02537,185491,,EPA Grant,Under Construction,2026-10-01,327
+CIP-0201,2026,North End,Wastewater,Manhole Rehabilitation,SEW-02519,101029,,EPA Grant,In Design,2026-04-01,4790
+CIP-0202,2026,North End,Wastewater,CIPP Rehabilitation,SEW-02513,54275,,General Fund,Planned,2026-02-01,1998
+CIP-0203,2026,Downtown,Wastewater,Trunk Sewer Upsizing,SEW-00002,293596,,Utility Rates,Bid Phase,2026-10-01,3667
+CIP-0204,2026,Downtown,Wastewater,I&I Reduction Program,SEW-02208,206083,,EPA Grant,Under Construction,2026-04-01,1356
+CIP-0205,2026,Downtown,Wastewater,Lift Station Upgrade,SEW-02210,364543,,SRF Loan,Bid Phase,2026-05-01,1307
+CIP-0206,2026,Downtown,Wastewater,Trunk Sewer Upsizing,SEW-02214,205457,,SRF Loan,In Design,2026-09-01,4292
+CIP-0207,2026,Downtown,Wastewater,CIPP Rehabilitation,SEW-02225,89466,,SRF Loan,Under Construction,2026-05-01,1633
+CIP-0208,2026,Downtown,Wastewater,Manhole Rehabilitation,SEW-02227,53610,,SRF Loan,Planned,2026-03-01,1951
+CIP-0209,2026,Downtown,Wastewater,Lift Station Upgrade,SEW-02257,0,,EPA Grant,Bid Phase,2026-07-01,4468
+CIP-0210,2026,East Bench,Geothermal,Pipeline Replacement,GEO-0248,1436865,,EPA Grant,Under Construction,2026-10-01,317
+CIP-0211,2026,East Bench,Wastewater,CIPP Rehabilitation,SEW-02722,592921,,General Fund,Planned,2026-08-01,4709
+CIP-0212,2026,East Bench,Wastewater,I&I Reduction Program,SEW-01335,411458,,EPA Grant,Bid Phase,2026-07-01,4973
+CIP-0213,2026,East Bench,Geothermal,BSU Campus Expansion,GEO-0212,80755,,Revenue Bonds,Bid Phase,2026-07-01,2238
+CIP-0214,2026,East Bench,Wastewater,Force Main Replacement,SEW-02774,156237,,SRF Loan,Bid Phase,2026-11-01,471
+CIP-0215,2026,East Bench,Geothermal,Insulation Upgrade,GEO-0214,0,,Revenue Bonds,In Design,2026-08-01,4646
+CIP-0216,2026,East Bench,Geothermal,BSU Campus Expansion,GEO-0222,0,,Utility Rates,Planned,2026-07-01,643
+CIP-0217,2026,East Bench,Geothermal,Pipeline Replacement,GEO-0044,0,,Revenue Bonds,Planned,2026-10-01,1817
+CIP-0218,2026,East Bench,Geothermal,Injection Well Maintenance,GEO-0042,0,,SRF Loan,Under Construction,2026-11-01,2600
+CIP-0219,2026,East Bench,Wastewater,Manhole Rehabilitation,SEW-01145,0,,SRF Loan,Bid Phase,2026-09-01,583
+CIP-0220,2026,East Bench,Wastewater,Lift Station Upgrade,SEW-02045,0,,Revenue Bonds,Planned,2026-10-01,4359
+CIP-0221,2026,East Bench,Geothermal,Building Connection Extension,GEO-0258,0,,Utility Rates,In Design,2026-06-01,4661
+CIP-0222,2026,East Bench,Wastewater,WRF Capacity Improvement,SEW-02715,0,,SRF Loan,Under Construction,2026-04-01,679
+CIP-0223,2026,East Bench,Geothermal,Insulation Upgrade,GEO-0261,0,,General Fund,Planned,2026-03-01,4953
+CIP-0224,2026,Southeast,Wastewater,I&I Reduction Program,SEW-03786,1288990,,SRF Loan,Under Construction,2026-07-01,3364
+CIP-0225,2026,Southeast,Wastewater,I&I Reduction Program,SEW-03999,1387757,,General Fund,Planned,2026-09-01,1782
+CIP-0226,2026,Southeast,Wastewater,Lift Station Upgrade,SEW-00994,1348017,,Revenue Bonds,Under Construction,2026-10-01,3176
+CIP-0227,2026,Southeast,Wastewater,Trunk Sewer Upsizing,SEW-01293,339858,,Revenue Bonds,Planned,2026-11-01,3772
+CIP-0228,2026,Southeast,Wastewater,WRF Capacity Improvement,SEW-00250,466101,,General Fund,In Design,2026-08-01,440
+CIP-0229,2026,Southeast,Wastewater,Lift Station Upgrade,SEW-04111,145076,,EPA Grant,Planned,2026-05-01,3747
+CIP-0230,2026,Southwest,Wastewater,Manhole Rehabilitation,SEW-00130,1391716,,SRF Loan,Planned,2026-12-01,2888
+CIP-0231,2026,Southwest,Wastewater,Manhole Rehabilitation,SEW-02533,542745,,SRF Loan,Planned,2026-09-01,2093
+CIP-0232,2026,Southwest,Wastewater,CIPP Rehabilitation,SEW-01031,1250878,,General Fund,Under Construction,2026-09-01,2355
+CIP-0233,2026,Southwest,Wastewater,Lift Station Upgrade,SEW-03148,79515,,Revenue Bonds,Under Construction,2026-11-01,323
+CIP-0234,2026,Southwest,Wastewater,CIPP Rehabilitation,SEW-02625,314695,,Utility Rates,Under Construction,2026-08-01,254
+CIP-0235,2026,Southwest,Wastewater,Manhole Rehabilitation,SEW-03933,114198,,Revenue Bonds,In Design,2026-06-01,1771
+CIP-0236,2026,Southwest,Wastewater,CIPP Rehabilitation,SEW-01104,0,,SRF Loan,In Design,2026-09-01,220
+CIP-0237,2026,West Boise,Wastewater,Lift Station Upgrade,SEW-02367,1144944,,SRF Loan,Planned,2026-02-01,1235
+CIP-0238,2026,West Boise,Wastewater,Trunk Sewer Upsizing,SEW-00493,154379,,EPA Grant,Under Construction,2026-04-01,2070
+CIP-0239,2026,West Boise,Wastewater,WRF Capacity Improvement,SEW-03747,363584,,General Fund,Bid Phase,2026-04-01,1323
+CIP-0240,2026,West Boise,Wastewater,I&I Reduction Program,SEW-02911,930984,,General Fund,In Design,2026-07-01,4381
+CIP-0241,2026,West Boise,Wastewater,Sewer Main Replacement,SEW-01212,152110,,Utility Rates,In Design,2026-02-01,4534
