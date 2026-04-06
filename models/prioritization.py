@@ -59,6 +59,7 @@ MODEL_ASSUMPTIONS = {
             "Concrete":         0.45, "Ductile Iron":     0.30,
             "PVC":              0.15, "HDPE":             0.10,
             "Reinforced Concrete Box": 0.40,
+            "PVC PR-SDR":      0.12, "PVC C900":         0.15,
         },
         "source": "AWWA-2023, Table 5-2: material-specific failure probability factors",
         "rationale": (
@@ -465,31 +466,37 @@ class PWISPrioritizationModel:
 
     def _recommend_action_code(self, row) -> str:
         """
-        Returns an action code based on condition_score and priority_tier.
+        Returns an action code driven primarily by priority_tier, with
+        condition_score used to refine within a tier.
+
+        The fundamental principle: if a pipe scores Critical, it needs
+        replacement. If it scores Low, it can be monitored. The priority
+        tier IS the action driver — that's the whole point of the scoring
+        model.
 
         Decision logic:
-          1. condition < 25: Structural failure — full replacement required
-          2. condition < 40: Major defects — rehabilitation (CIPP/slip-line)
-          3. condition < 55 AND tier is High/Critical: Trenchless lining window
-          4. condition < 65: Spot repair for localized defects
-          5. condition < 80: Routine monitoring
-          6. Otherwise: No action; monitor per schedule
+          Critical → REPLACE (these are the pipes that need replacement)
+          High     → REHABILITATE, or LINE if condition is still moderate
+          Medium   → REPAIR
+          Low      → MONITOR if condition < 80, else NO_ACTION
         """
         ci   = row.get("condition_score", 50)
         tier = str(row.get("priority_tier", "Low"))
 
-        if ci < 25:
+        if tier == "Critical":
             return ACTION_REPLACE
-        elif ci < 40:
-            return ACTION_REHABILITATE
-        elif ci < 55 and tier in ("High", "Critical"):
-            return ACTION_LINE
-        elif ci < 65:
+        elif tier == "High":
+            if ci < 40:
+                return ACTION_REHABILITATE
+            else:
+                return ACTION_LINE
+        elif tier == "Medium":
             return ACTION_REPAIR
-        elif ci < 80:
-            return ACTION_MONITOR
-        else:
-            return ACTION_NO_ACTION
+        else:  # Low
+            if ci < 80:
+                return ACTION_MONITOR
+            else:
+                return ACTION_NO_ACTION
 
     def _recommend_action(self, row) -> str:
         code = self._recommend_action_code(row)
@@ -615,7 +622,7 @@ class PWISPrioritizationModel:
             "score_criticality", "score_material", "score_age",
             "priority_score", "priority_tier", "district_rank",
             "score_confidence", "action_code", "recommended_action",
-            "estimated_replacement_cost_usd",
+            "estimated_replacement_cost_usd", "lat", "lon",
         ]
         output_cols = [c for c in cols if c in scored_df.columns]
         scored_df[output_cols].to_csv(path, index=False)
@@ -658,7 +665,7 @@ if __name__ == "__main__":
             print(f"  {tier:10s}: {count:4d} segments ({pct:.1f}%)")
 
     print(f"\nSystem Type Breakdown:")
-    for sys_type in ["Water", "Sewer", "Stormwater"]:
+    for sys_type in ["Water", "Sewer", "Stormwater", "Pressurized Irrigation"]:
         subset = results[results["system_type"] == sys_type]
         if len(subset) > 0:
             critical = (subset["priority_tier"] == "Critical").sum()

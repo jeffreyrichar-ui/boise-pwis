@@ -1,23 +1,26 @@
 """
-PWIS Synthetic Data Generator — Water / Sewer / Stormwater
-============================================================
+PWIS Synthetic Data Generator — Water / Sewer / Stormwater / Pressurized Irrigation
+=====================================================================================
 Generates realistic synthetic datasets for the Boise Public Works
-Water & Sewer Intelligence System (WSIS).
+Intelligence System (PWIS).
 
 Grounded in real Boise infrastructure:
   - 900+ miles of water distribution pipe (83 active wells, 2 WTPs)
   - 1,000+ miles of sanitary sewer pipe (2 water renewal facilities)
   - Stormwater collection across 6 drainage basins
+  - Pressurized irrigation system (non-potable Boise River water for
+    landscape irrigation, adopted 1997 for new development)
   - Pipe materials: ductile iron, PVC, cast iron, HDPE, asbestos cement,
-    concrete, vitrified clay, corrugated metal
-  - Service districts: West Boise, Bench, Northwest, Downtown/Central,
-    North End, Southeast
+    concrete, vitrified clay, corrugated metal, PVC PR-SDR (irrigation)
+  - Service districts: West Boise, East Bench, Downtown, North End,
+    Southeast, Southwest
 
 Sources:
-  City of Boise Public Works — Water / Sewer / Stormwater divisions
+  City of Boise Public Works — Water / Sewer / Stormwater / PI divisions
   Boise Open Data Portal (opendata.cityofboise.org)
   West Boise Water Renewal Facility capacity planning (2024)
   Lander Street Facility Improvement Plan ($265M, 2024-2029)
+  Boise Pressure Irrigation Design Standards (cityofboise.org)
 """
 
 import pandas as pd
@@ -91,83 +94,106 @@ STORMWATER_MATERIALS = {
     "Reinforced Concrete Box": {"era": (1960, 2020), "pct": 0.10, "fail_rate": "medium"},
 }
 
+# Pressurized Irrigation — Boise adopted PI requirement 1997 for new subdivisions.
+# Per Boise Pressure Irrigation Design Standards:
+#   - Mainline: PVC 1120, Class 200, SDR 21 (ASTM D2241), gasketed
+#   - Lateral/sleeve: 160 PSI PR-SDR PVC pipe
+#   - Some newer installs use HDPE for directional drills
+# Oldest PI dates to early 1990s pilot; bulk of system is post-1997.
+PI_MATERIALS = {
+    "PVC PR-SDR":     {"era": (1993, 2026), "pct": 0.75, "fail_rate": "low"},
+    "PVC C900":       {"era": (1997, 2026), "pct": 0.15, "fail_rate": "low"},
+    "HDPE":           {"era": (2005, 2026), "pct": 0.10, "fail_rate": "low"},
+}
+
 # Pipe diameters by system (inches)
+# Water: 4" service lines exist but distribution mains are 6-36"
 WATER_DIAMETERS   = [4, 6, 8, 10, 12, 16, 20, 24, 30, 36]
 SEWER_DIAMETERS   = [6, 8, 10, 12, 15, 18, 21, 24, 30, 36, 42, 48]
 STORM_DIAMETERS   = [12, 15, 18, 24, 30, 36, 42, 48, 60, 72]
+# PI mainlines are typically 4-12", per Boise design standards
+PI_DIAMETERS      = [4, 6, 8, 10, 12]
 
 # ─── REAL BOISE CORRIDOR CATALOG ─────────────────────────────────────────────
 # Each corridor represents a real Boise street where pipe infrastructure
 # runs.  Water, sewer, and stormwater are co-located along these corridors.
+# Pressurized irrigation (PI) was adopted in 1997 — only present in newer
+# subdivisions (primarily West Boise, newer Southwest, newer Southeast).
 # (corridor_name, district, anchor_lat, anchor_lon, orientation,
-#  has_water, has_sewer, has_storm, corridor_age_era)
+#  has_water, has_sewer, has_storm, has_pi, corridor_age_era)
 
 CORRIDOR_CATALOG = [
     # ── DOWNTOWN (oldest infrastructure, 1860s-1950s) ────────────────────────
     # Boise's original townsite platted 1863; centralized water 1890
-    ("Main St",          "Downtown",  43.615, -116.200, "EW",  True, True, True,  "old"),
-    ("Capitol Blvd",     "Downtown",  43.611, -116.201, "NS",  True, True, True,  "old"),
-    ("Front St",         "Downtown",  43.606, -116.205, "EW",  True, True, True,  "old"),
-    ("Bannock St",       "Downtown",  43.613, -116.200, "EW",  True, True, True,  "old"),
-    ("Idaho St",         "Downtown",  43.614, -116.202, "EW",  True, True, False, "old"),
-    ("Myrtle St",        "Downtown",  43.607, -116.200, "EW",  True, True, True,  "old"),
-    ("8th St",           "Downtown",  43.613, -116.197, "NS",  True, True, False, "old"),
-    ("9th St",           "Downtown",  43.613, -116.199, "NS",  True, True, False, "old"),
-    ("Jefferson St",     "Downtown",  43.616, -116.201, "EW",  True, True, True,  "old"),
-    ("Fairview Ave",     "Downtown",  43.616, -116.200, "EW",  True, True, True,  "old"),
-    ("Broadway Ave",     "Downtown",  43.612, -116.188, "NS",  True, True, True,  "mid"),
-    ("I-184 Corridor",   "Downtown",  43.609, -116.214, "EW",  False,False,True,  "mid"),
+    # No PI — pre-dates the program, fully built-out urban core
+    ("Main St",          "Downtown",  43.615, -116.200, "EW",  True, True, True,  False, "old"),
+    ("Capitol Blvd",     "Downtown",  43.611, -116.201, "NS",  True, True, True,  False, "old"),
+    ("Front St",         "Downtown",  43.606, -116.205, "EW",  True, True, True,  False, "old"),
+    ("Bannock St",       "Downtown",  43.613, -116.200, "EW",  True, True, True,  False, "old"),
+    ("Idaho St",         "Downtown",  43.614, -116.202, "EW",  True, True, False, False, "old"),
+    ("Myrtle St",        "Downtown",  43.607, -116.200, "EW",  True, True, True,  False, "old"),
+    ("8th St",           "Downtown",  43.613, -116.197, "NS",  True, True, False, False, "old"),
+    ("9th St",           "Downtown",  43.613, -116.199, "NS",  True, True, False, False, "old"),
+    ("Jefferson St",     "Downtown",  43.616, -116.201, "EW",  True, True, True,  False, "old"),
+    ("Fairview Ave",     "Downtown",  43.616, -116.200, "EW",  True, True, True,  False, "old"),
+    ("Broadway Ave",     "Downtown",  43.612, -116.188, "NS",  True, True, True,  False, "mid"),
+    ("I-184 Corridor",   "Downtown",  43.609, -116.214, "EW",  False,False,True,  False, "mid"),
 
     # ── NORTH END (1878-1950s, Boise's first residential neighborhood) ──────
     # Platted 1878; building boom 1891-1916; historic district
-    ("Harrison Blvd",    "North End", 43.643, -116.200, "NS",  True, True, True,  "old"),
-    ("Fort St",          "North End", 43.638, -116.205, "EW",  True, True, False, "old"),
-    ("Hill Rd",          "North End", 43.660, -116.215, "EW",  True, True, True,  "old"),
-    ("15th St",          "North End", 43.645, -116.208, "NS",  True, True, False, "old"),
-    ("Bogus Basin Rd",   "North End", 43.665, -116.195, "DIAG",True, True, False, "old"),
-    ("Eastman St",       "North End", 43.641, -116.203, "EW",  True, True, False, "old"),
+    # No PI — historic neighborhood, established before PI program
+    ("Harrison Blvd",    "North End", 43.643, -116.200, "NS",  True, True, True,  False, "old"),
+    ("Fort St",          "North End", 43.638, -116.205, "EW",  True, True, False, False, "old"),
+    ("Hill Rd",          "North End", 43.660, -116.215, "EW",  True, True, True,  False, "old"),
+    ("15th St",          "North End", 43.645, -116.208, "NS",  True, True, False, False, "old"),
+    ("Bogus Basin Rd",   "North End", 43.665, -116.195, "DIAG",True, True, False, False, "old"),
+    ("Eastman St",       "North End", 43.641, -116.203, "EW",  True, True, False, False, "old"),
 
     # ── EAST BENCH (1930s-1960s, post-WWII boom on the bench) ───────────────
     # Ridenbaugh Canal enabled development; major growth 1950s-1960s
-    ("Warm Springs Ave", "East Bench",43.608, -116.165, "EW",  True, True, True,  "old"),
-    ("Federal Way",      "East Bench",43.597, -116.158, "EW",  True, True, True,  "mid"),
-    ("Parkcenter Blvd",  "East Bench",43.597, -116.178, "NS",  True, True, True,  "mid"),
-    ("Boise Ave",        "East Bench",43.600, -116.172, "EW",  True, True, True,  "mid"),
-    ("Shaw Mountain Rd", "East Bench",43.605, -116.155, "DIAG",True, True, False, "mid"),
+    # No PI — developed before 1997 requirement
+    ("Warm Springs Ave", "East Bench",43.608, -116.165, "EW",  True, True, True,  False, "old"),
+    ("Federal Way",      "East Bench",43.597, -116.158, "EW",  True, True, True,  False, "mid"),
+    ("Parkcenter Blvd",  "East Bench",43.597, -116.178, "NS",  True, True, True,  False, "mid"),
+    ("Boise Ave",        "East Bench",43.600, -116.172, "EW",  True, True, True,  False, "mid"),
+    ("Shaw Mountain Rd", "East Bench",43.605, -116.155, "DIAG",True, True, False, False, "mid"),
 
     # ── SOUTHEAST (1890s original S. Boise + 1960s-1970s expansion) ─────────
     # Original South Boise platted 1890; annexed 1913; bulk development 1970s
-    ("Vista Ave",        "Southeast", 43.575, -116.207, "NS",  True, True, True,  "mid"),
-    ("Broadway Ave",     "Southeast", 43.568, -116.188, "NS",  True, True, True,  "mid"),
-    ("Overland Rd",      "Southeast", 43.588, -116.195, "EW",  True, True, True,  "mid"),
-    ("Milwaukee St",     "Southeast", 43.565, -116.210, "NS",  True, True, True,  "mid"),
-    ("Gowen Rd",         "Southeast", 43.543, -116.158, "EW",  True, True, True,  "new"),
-    ("Eisenman Rd",      "Southeast", 43.550, -116.170, "NS",  True, True, True,  "new"),
-    ("Victory Rd",       "Southeast", 43.570, -116.195, "EW",  True, True, True,  "mid"),
+    # PI only in newest subdivisions near Gowen/Eisenman (post-2000 growth)
+    ("Vista Ave",        "Southeast", 43.575, -116.207, "NS",  True, True, True,  False, "mid"),
+    ("Broadway Ave",     "Southeast", 43.568, -116.188, "NS",  True, True, True,  False, "mid"),
+    ("Overland Rd",      "Southeast", 43.588, -116.195, "EW",  True, True, True,  False, "mid"),
+    ("Milwaukee St",     "Southeast", 43.565, -116.210, "NS",  True, True, True,  False, "mid"),
+    ("Gowen Rd",         "Southeast", 43.543, -116.158, "EW",  True, True, True,  True,  "new"),
+    ("Eisenman Rd",      "Southeast", 43.550, -116.170, "NS",  True, True, True,  True,  "new"),
+    ("Victory Rd",       "Southeast", 43.570, -116.195, "EW",  True, True, True,  False, "mid"),
 
-    # ── SOUTHWEST (1960s-1980s suburban expansion) ───────────────────────────
+    # ── SOUTHWEST (1960s-1980s suburban expansion + newer infill) ────────────
     # Scattered development 1960s-1970s; ranch homes; moratorium in 1980s
-    ("Five Mile Rd",     "Southwest", 43.575, -116.295, "NS",  True, True, True,  "mid"),
-    ("Maple Grove Rd",   "Southwest", 43.575, -116.276, "NS",  True, True, True,  "mid"),
-    ("Cole Rd",          "Southwest", 43.572, -116.256, "NS",  True, True, True,  "mid"),
-    ("Overland Rd",      "Southwest", 43.588, -116.270, "EW",  True, True, True,  "mid"),
-    ("Orchard St",       "Southwest", 43.585, -116.232, "NS",  True, True, True,  "mid"),
-    ("Curtis Rd",        "Southwest", 43.580, -116.222, "NS",  True, True, False, "mid"),
-    ("Victory Rd",       "Southwest", 43.570, -116.280, "EW",  True, True, True,  "mid"),
-    ("Amity Rd",         "Southwest", 43.553, -116.275, "EW",  True, True, True,  "new"),
+    # PI in newer infill areas (Amity corridor, newer Five Mile subdivisions)
+    ("Five Mile Rd",     "Southwest", 43.575, -116.295, "NS",  True, True, True,  False, "mid"),
+    ("Maple Grove Rd",   "Southwest", 43.575, -116.276, "NS",  True, True, True,  False, "mid"),
+    ("Cole Rd",          "Southwest", 43.572, -116.256, "NS",  True, True, True,  False, "mid"),
+    ("Overland Rd",      "Southwest", 43.588, -116.270, "EW",  True, True, True,  False, "mid"),
+    ("Orchard St",       "Southwest", 43.585, -116.232, "NS",  True, True, True,  False, "mid"),
+    ("Curtis Rd",        "Southwest", 43.580, -116.222, "NS",  True, True, False, False, "mid"),
+    ("Victory Rd",       "Southwest", 43.570, -116.280, "EW",  True, True, True,  False, "mid"),
+    ("Amity Rd",         "Southwest", 43.553, -116.275, "EW",  True, True, True,  True,  "new"),
 
     # ── WEST BOISE (1970s-present, newest growth area) ───────────────────────
     # Primarily 1970s ranch homes; Ten Mile master-planned 2006; rapid growth
-    ("Fairview Ave",     "West Boise",43.616, -116.295, "EW",  True, True, True,  "new"),
-    ("Ustick Rd",        "West Boise",43.633, -116.300, "EW",  True, True, True,  "new"),
-    ("McMillan Rd",      "West Boise",43.643, -116.310, "EW",  True, True, True,  "new"),
-    ("Chinden Blvd",     "West Boise",43.653, -116.310, "EW",  True, True, True,  "new"),
-    ("State St",         "West Boise",43.637, -116.280, "EW",  True, True, True,  "new"),
-    ("Eagle Rd",         "West Boise",43.625, -116.354, "NS",  True, True, True,  "new"),
-    ("Cloverdale Rd",    "West Boise",43.620, -116.336, "NS",  True, True, True,  "new"),
-    ("Ten Mile Rd",      "West Boise",43.615, -116.316, "NS",  True, True, True,  "new"),
-    ("Cole Rd",          "West Boise",43.625, -116.256, "NS",  True, True, True,  "new"),
-    ("Franklin Rd",      "West Boise",43.607, -116.290, "EW",  True, True, True,  "new"),
+    # PI in all post-1997 subdivisions — the core of Boise's PI network
+    ("Fairview Ave",     "West Boise",43.616, -116.295, "EW",  True, True, True,  True,  "new"),
+    ("Ustick Rd",        "West Boise",43.633, -116.300, "EW",  True, True, True,  True,  "new"),
+    ("McMillan Rd",      "West Boise",43.643, -116.310, "EW",  True, True, True,  True,  "new"),
+    ("Chinden Blvd",     "West Boise",43.653, -116.310, "EW",  True, True, True,  True,  "new"),
+    ("State St",         "West Boise",43.637, -116.280, "EW",  True, True, True,  True,  "new"),
+    ("Eagle Rd",         "West Boise",43.625, -116.354, "NS",  True, True, True,  True,  "new"),
+    ("Cloverdale Rd",    "West Boise",43.620, -116.336, "NS",  True, True, True,  True,  "new"),
+    ("Ten Mile Rd",      "West Boise",43.615, -116.316, "NS",  True, True, True,  True,  "new"),
+    ("Cole Rd",          "West Boise",43.625, -116.256, "NS",  True, True, True,  False, "new"),
+    ("Franklin Rd",      "West Boise",43.607, -116.290, "EW",  True, True, True,  True,  "new"),
 ]
 
 # Era-to-install-year ranges matching real Boise development history
@@ -253,12 +279,15 @@ def _condition_from_material_age_soil(material, materials_dict, age, district):
 
 # ─── 1. PIPE SEGMENTS ────────────────────────────────────────────────────────
 def generate_pipe_segments(n=500):
-    """Generate water, sewer, and stormwater pipe segments along real Boise corridors."""
+    """Generate water, sewer, stormwater, and pressurized irrigation pipe segments
+    along real Boise corridors."""
     segments = []
     seg_id = 1
 
-    # Target mix: ~40% water, ~40% sewer, ~20% stormwater
-    system_weights = {"Water": 0.40, "Sewer": 0.40, "Stormwater": 0.20}
+    # Target mix: ~35% water, ~35% sewer, ~17% stormwater, ~13% pressurized irrigation
+    # PI is smaller because it only exists in post-1997 subdivisions
+    system_weights = {"Water": 0.35, "Sewer": 0.35, "Stormwater": 0.17,
+                      "Pressurized Irrigation": 0.13}
 
     for _ in range(n):
         # Pick system type
@@ -269,23 +298,29 @@ def generate_pipe_segments(n=500):
         valid = [c for c in CORRIDOR_CATALOG if
                  (system == "Water" and c[5]) or
                  (system == "Sewer" and c[6]) or
-                 (system == "Stormwater" and c[7])]
+                 (system == "Stormwater" and c[7]) or
+                 (system == "Pressurized Irrigation" and c[8])]
         corridor = random.choice(valid)
-        name, district, a_lat, a_lon, orient, _, _, _, era = corridor
+        name, district, a_lat, a_lon, orient, _, _, _, _, era = corridor
 
         # Install year from era
         yr_lo, yr_hi = ERA_INSTALL_RANGE[era]
+        # PI system didn't exist before 1993 (pilot) / 1997 (mandate)
+        if system == "Pressurized Irrigation":
+            yr_lo = max(yr_lo, 1993)
         install_year = random.randint(yr_lo, yr_hi)
         age = 2026 - install_year
 
         # Material
         mat_dict = {"Water": WATER_MATERIALS, "Sewer": SEWER_MATERIALS,
-                    "Stormwater": STORMWATER_MATERIALS}[system]
+                    "Stormwater": STORMWATER_MATERIALS,
+                    "Pressurized Irrigation": PI_MATERIALS}[system]
         material = _pick_material(mat_dict, install_year)
 
         # Diameter
         diam_list = {"Water": WATER_DIAMETERS, "Sewer": SEWER_DIAMETERS,
-                     "Stormwater": STORM_DIAMETERS}[system]
+                     "Stormwater": STORM_DIAMETERS,
+                     "Pressurized Irrigation": PI_DIAMETERS}[system]
         diameter = random.choice(diam_list)
 
         # Length
@@ -300,16 +335,18 @@ def generate_pipe_segments(n=500):
         # Soil corrosivity for this district
         soil_corrosivity = SOIL_CORROSIVITY[district]
 
-        # Depth
+        # Depth — PI is shallow (3-5ft), sewer deepest (gravity flow)
         depth_ft = {"Water": round(random.uniform(3, 7), 1),
                     "Sewer": round(random.uniform(5, 25), 1),
-                    "Stormwater": round(random.uniform(3, 15), 1)}[system]
+                    "Stormwater": round(random.uniform(3, 15), 1),
+                    "Pressurized Irrigation": round(random.uniform(2.5, 5), 1)}[system]
 
-        # Estimated replacement cost
+        # Estimated replacement cost — PI is cheapest (simpler pipe, no potable reqs)
         cost_per_ft = {
             "Water":      random.uniform(80, 350),
             "Sewer":      random.uniform(100, 500),
             "Stormwater": random.uniform(60, 250),
+            "Pressurized Irrigation": random.uniform(40, 150),
         }[system]
         # Larger diameter = more expensive
         diam_mult = 1.0 + (diameter - 12) * 0.03
@@ -333,10 +370,15 @@ def generate_pipe_segments(n=500):
         if condition > 85 and breaks_5yr > 2:
             breaks_5yr = random.randint(0, 1)
 
-        # Capacity utilization (sewer/storm only)
+        # Capacity utilization
+        # Sewer/storm: older = more stressed; PI: seasonal (high summer demand)
         if system in ("Sewer", "Stormwater"):
             capacity_pct = round(np.clip(np.random.normal(
                 {"old": 78, "mid": 60, "new": 40}[era], 18), 5, 100), 1)
+        elif system == "Pressurized Irrigation":
+            # PI usage is highly seasonal: ~80-100% capacity in July-Aug,
+            # near-zero in winter; annual average ~45-65%
+            capacity_pct = round(np.clip(np.random.normal(55, 15), 10, 95), 1)
         else:
             capacity_pct = None
 
@@ -352,12 +394,16 @@ def generate_pipe_segments(n=500):
         else:
             criticality = "Low"
         # Large-diameter transmission/trunk mains bump up one tier
+        bump = {"Low": "Medium", "Medium": "High", "High": "Critical", "Critical": "Critical"}
         if system == "Water" and diameter >= 20:
-            criticality = {"Low": "Medium", "Medium": "High", "High": "Critical", "Critical": "Critical"}[criticality]
+            criticality = bump[criticality]
         if system == "Sewer" and diameter >= 30:
-            criticality = {"Low": "Medium", "Medium": "High", "High": "Critical", "Critical": "Critical"}[criticality]
+            criticality = bump[criticality]
         if system == "Stormwater" and diameter >= 48:
-            criticality = {"Low": "Medium", "Medium": "High", "High": "Critical", "Critical": "Critical"}[criticality]
+            criticality = bump[criticality]
+        # PI: 12" mainlines serve entire subdivisions
+        if system == "Pressurized Irrigation" and diameter >= 12:
+            criticality = bump[criticality]
 
         segments.append({
             "segment_id":               f"PIPE-{str(seg_id).zfill(4)}",
@@ -382,7 +428,8 @@ def generate_pipe_segments(n=500):
             "inspection_method":        random.choice(
                 {"Water": ["Acoustic Leak Detection", "Visual", "Pressure Test", "Ultrasonic"],
                  "Sewer": ["CCTV", "Smoke Test", "Manhole Inspection", "Flow Monitoring"],
-                 "Stormwater": ["CCTV", "Visual", "Flow Monitoring", "Dye Test"]}[system]),
+                 "Stormwater": ["CCTV", "Visual", "Flow Monitoring", "Dye Test"],
+                 "Pressurized Irrigation": ["Pressure Test", "Visual", "Flow Monitoring", "Valve Inspection"]}[system]),
             "lat":                      lat,
             "lon":                      lon,
         })
@@ -399,6 +446,9 @@ WO_TYPES_BY_SYSTEM = {
               "CCTV Inspection", "Pipe Lining (CIPP)", "Bypass Pumping"],
     "Stormwater": ["Catch Basin Cleaning", "Pipe Repair", "Culvert Clearing",
                    "Detention Pond Maintenance", "Outfall Repair"],
+    "Pressurized Irrigation": ["Valve Repair", "Lateral Leak Repair", "Main Leak Repair",
+                               "Pressure Regulator Replacement", "Seasonal Startup",
+                               "Seasonal Shutdown", "Backflow Preventer Inspection"],
 }
 
 def generate_work_orders(segments_df, n=600):
@@ -447,6 +497,9 @@ REQUEST_TYPES = {
               "Slow Drain", "Root Intrusion Report"],
     "Stormwater": ["Street Flooding", "Clogged Drain", "Erosion Report",
                    "Standing Water", "Culvert Blockage"],
+    "Pressurized Irrigation": ["No Irrigation Pressure", "PI Leak Report",
+                                "Sprinkler Supply Issue", "Scheduled Watering Conflict",
+                                "Backflow Device Issue", "Brown Lawn / No Flow"],
 }
 
 def generate_service_requests(segments_df, n=900):
@@ -516,24 +569,48 @@ def generate_facilities():
          "capacity_mgd": 4.0, "avg_flow_mgd": 2.8, "built_year": 1975,
          "last_upgrade_year": 2019,
          "condition": "Fair", "lat": 43.658, "lon": -116.205},
+        # Pressurized Irrigation — Boise diverts from the Boise River via
+        # the New York Canal and city canals into PI pump stations
+        {"facility_id": "FAC-007", "facility_name": "West Boise PI Pump Station",
+         "facility_type": "PI Pump Station", "district": "West Boise",
+         "capacity_mgd": 8.0, "avg_flow_mgd": 5.0, "built_year": 2001,
+         "last_upgrade_year": 2020,
+         "condition": "Good", "lat": 43.620, "lon": -116.310},
+        {"facility_id": "FAC-008", "facility_name": "Southwest PI Diversion",
+         "facility_type": "PI Pump Station", "district": "Southwest",
+         "capacity_mgd": 3.5, "avg_flow_mgd": 2.0, "built_year": 2005,
+         "last_upgrade_year": 2022,
+         "condition": "Good", "lat": 43.560, "lon": -116.275},
     ])
 
 
 # ─── 5. FLOW MONITORING ──────────────────────────────────────────────────────
 def generate_flow_data(segments_df):
-    """Monthly flow/pressure monitoring for a subset of instrumented pipes."""
-    instrumented = segments_df[
-        segments_df["system_type"].isin(["Sewer", "Stormwater"])
-    ].sample(min(80, len(segments_df)), random_state=42)
+    """Monthly flow/pressure monitoring for a subset of instrumented pipes.
+    Includes sewer, stormwater, and pressurized irrigation (PI has strong
+    seasonal patterns — high summer, zero winter)."""
+    # Scale instrumented count with dataset size (~5% of non-water pipes)
+    monitored_systems = segments_df[
+        segments_df["system_type"].isin(["Sewer", "Stormwater", "Pressurized Irrigation"])
+    ]
+    sample_n = min(int(len(monitored_systems) * 0.15), len(monitored_systems))
+    instrumented = monitored_systems.sample(sample_n, random_state=42)
 
     records = []
     for _, seg in instrumented.iterrows():
         for month in range(1, 13):
             # Sewer flow is higher in winter (less evaporation, more infiltration)
             # Stormwater peaks in spring (snowmelt) and fall (rain)
+            # PI is highly seasonal: off Nov-Mar, ramps up Apr-May, peaks Jun-Sep
             if seg["system_type"] == "Sewer":
                 seasonal = 1.0 + 0.12 * np.cos((month - 1) * np.pi / 6)
-            else:
+            elif seg["system_type"] == "Pressurized Irrigation":
+                # PI season: Apr 15 - Oct 15 in Boise; peak Jun-Aug
+                pi_seasonal = {1: 0.0, 2: 0.0, 3: 0.0, 4: 0.3, 5: 0.7,
+                               6: 1.0, 7: 1.2, 8: 1.1, 9: 0.7, 10: 0.3,
+                               11: 0.0, 12: 0.0}
+                seasonal = pi_seasonal[month]
+            else:  # Stormwater
                 seasonal = 1.0 + 0.3 * (1 if month in (3,4,5,10,11) else 0)
             cap = seg["capacity_utilization_pct"] or 50
             flow_pct = round(cap * seasonal * random.uniform(0.85, 1.15), 1)
@@ -543,9 +620,9 @@ def generate_flow_data(segments_df):
                 "system_type":  seg["system_type"],
                 "year":         2025,
                 "month":        month,
-                "avg_flow_pct": round(min(flow_pct, 120), 1),
-                "peak_flow_pct":round(min(flow_pct * random.uniform(1.2, 1.8), 150), 1),
-                "inflow_infiltration_flag": flow_pct > 85,
+                "avg_flow_pct": round(min(max(flow_pct, 0), 120), 1),
+                "peak_flow_pct":round(min(max(flow_pct * random.uniform(1.2, 1.8), 0), 200), 1),
+                "inflow_infiltration_flag": flow_pct > 85 if seg["system_type"] != "Pressurized Irrigation" else False,
             })
     return pd.DataFrame(records)
 
@@ -585,17 +662,25 @@ CIP_PROJECT_TYPES = {
     "Stormwater": ["Storm Drain Replacement", "Detention Basin Construction",
                    "Outfall Rehabilitation", "Green Infrastructure Retrofit",
                    "Culvert Replacement"],
+    "Pressurized Irrigation": ["PI Main Extension", "PI Pump Station Upgrade",
+                                "PI Valve Replacement Program", "Canal Diversion Upgrade",
+                                "Backflow Prevention Program"],
 }
 
 def generate_budget():
     records = []
     for year in [2022, 2023, 2024, 2025, 2026]:
         for district in DISTRICTS:
-            # Water, sewer, stormwater budget split
+            # Water, sewer, stormwater, and PI budget split
             total_budget = random.randint(1_200_000, 6_500_000)
-            water_pct  = round(random.uniform(0.30, 0.45), 2)
-            sewer_pct  = round(random.uniform(0.30, 0.45), 2)
-            storm_pct  = round(1 - water_pct - sewer_pct, 2)
+            water_pct  = round(random.uniform(0.28, 0.40), 2)
+            sewer_pct  = round(random.uniform(0.28, 0.40), 2)
+            pi_pct     = round(random.uniform(0.05, 0.12), 2)
+            storm_pct  = round(1 - water_pct - sewer_pct - pi_pct, 2)
+            # Ensure no negative
+            if storm_pct < 0.05:
+                storm_pct = 0.05
+                pi_pct = round(1 - water_pct - sewer_pct - storm_pct, 2)
 
             records.append({
                 "fiscal_year":              year,
@@ -604,6 +689,7 @@ def generate_budget():
                 "water_budget_usd":         int(total_budget * water_pct),
                 "sewer_budget_usd":         int(total_budget * sewer_pct),
                 "stormwater_budget_usd":    int(total_budget * storm_pct),
+                "pi_budget_usd":            int(total_budget * pi_pct),
                 "funding_source":           random.choice(FUNDING_SOURCES),
                 "spent_budget_usd":         random.randint(int(total_budget * 0.6),
                                                            int(total_budget * 1.05)),
@@ -643,7 +729,7 @@ def generate_cip_projects(segments_df, budget_df):
                 system = pipe["system_type"]
             else:
                 seg_id = None
-                system = random.choice(["Water", "Sewer", "Stormwater"])
+                system = random.choice(["Water", "Sewer", "Stormwater", "Pressurized Irrigation"])
 
             project_cost = random.randint(50_000, min(remaining_budget, 1_500_000)) if remaining_budget > 50_000 else 0
             remaining_budget -= project_cost
@@ -672,20 +758,20 @@ def generate_cip_projects(segments_df, budget_df):
 
 
 # ─── GENERATE ALL & SAVE ──────────────────────────────────────────────────────
-print("Generating pipe segments (water / sewer / stormwater)...")
-pipes = generate_pipe_segments(500)
+print("Generating pipe segments (water / sewer / stormwater / pressurized irrigation)...")
+pipes = generate_pipe_segments(4847)
 pipes.to_csv(BASE_DIR / "pipe_segments.csv", index=False)
 print(f"  -> {len(pipes)} pipe segments saved")
 print(f"  Systems: {pipes['system_type'].value_counts().to_dict()}")
 print(f"  Districts: {pipes['district'].value_counts().to_dict()}")
 
 print("Generating work orders...")
-work_orders = generate_work_orders(pipes, 600)
+work_orders = generate_work_orders(pipes, 5800)
 work_orders.to_csv(BASE_DIR / "work_orders.csv", index=False)
 print(f"  -> {len(work_orders)} work orders saved")
 
 print("Generating service requests...")
-requests = generate_service_requests(pipes, 900)
+requests = generate_service_requests(pipes, 8700)
 requests.to_csv(BASE_DIR / "service_requests.csv", index=False)
 print(f"  -> {len(requests)} service requests saved")
 
@@ -700,7 +786,7 @@ flow.to_csv(BASE_DIR / "flow_monitoring.csv", index=False)
 print(f"  -> {len(flow)} flow records saved")
 
 print("Generating weather events...")
-weather = generate_weather(150)
+weather = generate_weather(300)
 weather.to_csv(BASE_DIR / "weather_events.csv", index=False)
 print(f"  -> {len(weather)} weather events saved")
 

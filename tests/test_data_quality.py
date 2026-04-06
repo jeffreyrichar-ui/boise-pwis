@@ -44,7 +44,7 @@ class TestPipeSegments:
         assert self.df["segment_id"].is_unique
 
     def test_system_types_valid(self):
-        valid = {"Water", "Sewer", "Stormwater"}
+        valid = {"Water", "Sewer", "Stormwater", "Pressurized Irrigation"}
         actual = set(self.df["system_type"].unique())
         assert actual.issubset(valid), f"Invalid system types: {actual - valid}"
 
@@ -76,11 +76,12 @@ class TestPipeSegments:
     def test_minimum_segment_count(self):
         assert len(self.df) >= 100, "Expected at least 100 pipe segments"
 
-    def test_all_three_systems_present(self):
+    def test_all_four_systems_present(self):
         systems = set(self.df["system_type"].unique())
         assert "Water" in systems
         assert "Sewer" in systems
         assert "Stormwater" in systems
+        assert "Pressurized Irrigation" in systems
 
 
 # ─── WORK ORDERS ──────────────────────────────────────────────────────────────
@@ -171,6 +172,13 @@ class TestFlowMonitoring:
         assert self.df["avg_flow_pct"].between(0, 200).all(), "avg_flow_pct out of range"
         assert self.df["peak_flow_pct"].between(0, 300).all(), "peak_flow_pct out of range"
 
+    def test_pi_seasonal_zero_in_winter(self):
+        """PI flow should be zero in Jan/Feb/Dec (system is shut down)."""
+        pi_flow = self.df[self.df["system_type"] == "Pressurized Irrigation"]
+        if len(pi_flow) > 0:
+            winter = pi_flow[pi_flow["month"].isin([1, 2, 12])]
+            assert (winter["avg_flow_pct"] <= 5).all(), "PI should have near-zero flow in winter"
+
 
 # ─── BUDGET CIP ──────────────────────────────────────────────────────────────
 
@@ -191,11 +199,12 @@ class TestBudgetCIP:
         assert (self.df["total_cip_budget_usd"] > 0).all()
 
     def test_budget_system_splits_sum(self):
-        """Water + sewer + stormwater budget dollars should sum to ~total budget."""
+        """Water + sewer + stormwater + PI budget dollars should sum to ~total budget."""
         total_parts = (
             self.df["water_budget_usd"]
             + self.df["sewer_budget_usd"]
             + self.df["stormwater_budget_usd"]
+            + self.df["pi_budget_usd"]
         )
         ratio = total_parts / self.df["total_cip_budget_usd"]
         assert ratio.between(0.95, 1.05).all(), "System budget splits don't sum to total"
