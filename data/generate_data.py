@@ -85,7 +85,7 @@ SEWER_MATERIALS = {
 
 STORMWATER_MATERIALS = {
     "Corrugated Metal":{"era": (1950, 1990), "pct": 0.25, "fail_rate": "high"},
-    "Concrete":        {"era": (1940, 2010), "pct": 0.35, "fail_rate": "medium"},
+    "Concrete":        {"era": (1920, 2010), "pct": 0.35, "fail_rate": "medium"},  # storm drains predate concrete sewer pipe
     "PVC":             {"era": (1985, 2026), "pct": 0.20, "fail_rate": "low"},
     "HDPE":            {"era": (2000, 2026), "pct": 0.10, "fail_rate": "low"},
     "Reinforced Concrete Box": {"era": (1960, 2020), "pct": 0.10, "fail_rate": "medium"},
