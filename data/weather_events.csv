@@ -1,301 +1,301 @@
 weather_event_id,event_date,event_type,duration_hours,precipitation_inches,min_temp_f,district_affected,sewer_overflows_reported
-WX-0001,2024-05-03,Freeze-Thaw,61.1,0.0,19.6,North End,0
-WX-0002,2023-06-23,Snow,50.4,3.85,7.5,Southwest,0
-WX-0003,2023-06-20,Thunderstorm,51.3,1.88,50.0,East Bench,5
-WX-0004,2023-09-08,Thunderstorm,53.4,0.35,53.9,Downtown,0
-WX-0005,2024-09-24,Ice Storm,26.6,0.0,24.8,West Boise,0
-WX-0006,2023-01-03,Rapid Snowmelt,33.3,2.69,48.0,North End,4
-WX-0007,2024-09-19,Rapid Snowmelt,11.1,0.68,38.9,East Bench,3
-WX-0008,2023-06-17,Thunderstorm,26.1,0.44,64.9,North End,2
-WX-0009,2024-06-11,Thunderstorm,31.1,3.79,52.9,East Bench,3
-WX-0010,2024-11-27,Heavy Rain,7.8,1.29,55.3,All,2
-WX-0011,2024-05-08,Rapid Snowmelt,45.1,1.63,52.5,Downtown,2
-WX-0012,2023-07-31,Rapid Snowmelt,24.2,2.38,37.7,Southeast,1
-WX-0013,2025-05-07,Ice Storm,31.0,0.0,19.0,All,0
-WX-0014,2023-11-10,Freeze-Thaw,34.3,0.0,16.2,Southwest,0
-WX-0015,2023-07-04,Snow,64.7,2.39,11.7,West Boise,0
-WX-0016,2025-07-27,Heavy Rain,16.7,2.7,45.1,North End,3
-WX-0017,2023-06-29,Freeze-Thaw,15.1,0.0,23.4,North End,0
-WX-0018,2025-11-13,Heavy Rain,4.0,3.21,60.1,All,3
-WX-0019,2023-09-11,Rapid Snowmelt,39.2,2.84,36.0,West Boise,4
-WX-0020,2024-03-27,Freeze-Thaw,3.7,0.0,24.4,Downtown,0
-WX-0021,2024-09-26,Freeze-Thaw,8.6,0.0,18.9,North End,0
-WX-0022,2024-07-01,Snow,17.3,3.34,22.2,East Bench,0
-WX-0023,2023-02-07,Ice Storm,51.3,0.0,15.9,Southeast,0
-WX-0024,2025-11-21,Ice Storm,44.9,0.0,23.3,North End,0
-WX-0025,2024-12-24,Freeze-Thaw,22.5,0.0,23.7,North End,0
-WX-0026,2023-06-12,Heavy Rain,1.8,3.58,44.3,Southeast,1
-WX-0027,2024-03-31,Ice Storm,36.8,0.0,14.8,Downtown,0
-WX-0028,2024-02-10,Ice Storm,49.7,0.0,9.3,Downtown,0
-WX-0029,2024-04-14,Heavy Rain,9.1,3.14,53.3,Southeast,5
-WX-0030,2024-03-03,Rapid Snowmelt,40.3,3.46,49.5,All,0
-WX-0031,2025-01-04,Thunderstorm,33.1,1.55,45.9,Downtown,0
-WX-0032,2024-05-10,Heavy Rain,51.5,3.98,33.9,North End,0
-WX-0033,2023-03-13,Freeze-Thaw,59.3,0.0,17.5,Downtown,0
-WX-0034,2025-04-28,Heavy Rain,61.8,1.74,37.0,West Boise,1
-WX-0035,2023-10-12,Thunderstorm,54.6,3.71,57.9,Southeast,2
-WX-0036,2023-02-28,Rapid Snowmelt,67.2,2.75,55.8,Downtown,4
-WX-0037,2023-09-11,Rapid Snowmelt,33.5,1.38,52.3,East Bench,5
-WX-0038,2025-01-10,Ice Storm,58.1,0.0,15.6,Southeast,0
-WX-0039,2024-06-25,Ice Storm,16.1,0.0,20.7,Southeast,0
-WX-0040,2025-03-10,Thunderstorm,14.3,0.61,57.6,West Boise,5
-WX-0041,2024-08-28,Snow,3.6,0.34,5.7,All,0
-WX-0042,2025-10-26,Freeze-Thaw,53.3,0.0,9.3,North End,0
-WX-0043,2023-08-15,Freeze-Thaw,3.6,0.0,15.6,East Bench,0
-WX-0044,2025-01-23,Thunderstorm,11.6,2.54,59.0,East Bench,5
-WX-0045,2025-08-28,Ice Storm,8.5,0.0,13.9,West Boise,0
-WX-0046,2024-11-03,Freeze-Thaw,27.3,0.0,16.4,West Boise,0
-WX-0047,2024-07-02,Thunderstorm,54.7,3.56,48.1,West Boise,2
-WX-0048,2023-12-11,Rapid Snowmelt,54.1,1.06,46.3,All,2
-WX-0049,2023-08-30,Rapid Snowmelt,66.7,3.32,37.4,Southwest,5
-WX-0050,2024-04-30,Heavy Rain,43.6,0.42,40.5,Southeast,0
-WX-0051,2024-04-30,Heavy Rain,53.1,1.0,46.9,West Boise,3
-WX-0052,2025-07-01,Snow,56.8,0.2,23.8,Downtown,0
-WX-0053,2025-07-27,Snow,68.2,2.17,10.2,Southeast,0
-WX-0054,2024-02-28,Freeze-Thaw,22.7,0.0,22.5,All,0
-WX-0055,2024-08-08,Snow,7.6,1.43,10.0,Southeast,0
-WX-0056,2025-05-19,Thunderstorm,70.1,0.78,51.9,Downtown,5
-WX-0057,2024-10-17,Snow,10.1,3.07,26.2,All,0
-WX-0058,2025-05-17,Thunderstorm,67.2,1.03,43.0,All,0
-WX-0059,2023-07-12,Snow,35.0,1.49,12.9,Southeast,0
-WX-0060,2024-10-19,Rapid Snowmelt,49.6,2.39,56.2,All,3
-WX-0061,2024-07-05,Freeze-Thaw,61.3,0.0,10.5,West Boise,0
-WX-0062,2023-01-10,Snow,34.9,1.86,5.8,Southeast,0
-WX-0063,2023-04-29,Snow,3.9,4.2,9.6,All,0
-WX-0064,2024-09-17,Freeze-Thaw,34.2,0.0,23.9,East Bench,0
-WX-0065,2024-02-29,Rapid Snowmelt,54.4,2.06,58.5,Southeast,2
-WX-0066,2024-12-03,Snow,61.8,0.85,22.4,East Bench,0
-WX-0067,2024-07-07,Snow,51.5,3.41,20.2,All,0
-WX-0068,2025-02-08,Rapid Snowmelt,8.3,0.66,60.0,Southwest,4
-WX-0069,2025-02-02,Snow,43.1,0.5,21.7,Southwest,0
-WX-0070,2025-02-28,Thunderstorm,51.9,3.68,64.8,All,4
-WX-0071,2025-02-17,Freeze-Thaw,43.0,0.0,8.0,North End,0
-WX-0072,2025-12-07,Ice Storm,69.7,0.0,23.8,East Bench,0
-WX-0073,2024-01-17,Thunderstorm,45.3,0.88,46.8,All,2
-WX-0074,2023-06-08,Ice Storm,49.2,0.0,15.7,West Boise,0
-WX-0075,2023-03-07,Freeze-Thaw,13.0,0.0,5.9,East Bench,0
-WX-0076,2023-09-02,Thunderstorm,62.4,1.03,41.2,Southwest,5
-WX-0077,2024-02-23,Thunderstorm,42.0,0.35,41.2,All,3
-WX-0078,2024-09-20,Rapid Snowmelt,50.3,3.58,43.6,All,3
-WX-0079,2024-04-02,Rapid Snowmelt,20.8,1.33,34.0,Southeast,4
-WX-0080,2024-11-26,Freeze-Thaw,25.5,0.0,26.5,North End,0
-WX-0081,2024-10-24,Heavy Rain,52.7,3.16,48.7,East Bench,5
-WX-0082,2025-04-19,Freeze-Thaw,5.8,0.0,21.9,All,0
-WX-0083,2023-10-18,Heavy Rain,54.3,3.57,46.3,Downtown,3
-WX-0084,2025-12-15,Thunderstorm,64.6,1.24,38.1,East Bench,0
-WX-0085,2024-07-22,Ice Storm,66.5,0.0,18.2,All,0
-WX-0086,2025-05-03,Thunderstorm,25.2,4.4,36.5,West Boise,1
-WX-0087,2024-03-30,Rapid Snowmelt,47.6,0.24,59.5,Southeast,1
-WX-0088,2024-05-02,Ice Storm,14.4,0.0,17.1,Southwest,0
-WX-0089,2023-02-08,Heavy Rain,27.5,1.34,63.0,West Boise,4
-WX-0090,2024-11-24,Freeze-Thaw,24.6,0.0,24.5,Southwest,0
-WX-0091,2024-11-23,Thunderstorm,40.4,4.12,42.5,North End,1
-WX-0092,2025-10-20,Rapid Snowmelt,27.8,1.67,62.5,Southwest,5
-WX-0093,2025-01-27,Heavy Rain,3.7,1.12,44.0,All,5
-WX-0094,2023-10-17,Heavy Rain,45.8,0.29,32.5,Southeast,0
-WX-0095,2023-05-11,Thunderstorm,43.9,1.06,33.5,Southeast,4
-WX-0096,2024-01-23,Ice Storm,45.3,0.0,6.7,Southwest,0
-WX-0097,2025-09-16,Snow,2.4,2.99,6.4,All,0
-WX-0098,2025-09-05,Heavy Rain,29.0,3.31,55.7,Downtown,0
-WX-0099,2023-10-30,Snow,31.5,2.48,6.4,Southwest,0
-WX-0100,2023-04-17,Rapid Snowmelt,25.8,3.59,48.5,All,5
-WX-0101,2024-02-27,Snow,55.4,1.2,11.3,Downtown,0
-WX-0102,2024-05-25,Rapid Snowmelt,63.5,3.71,61.1,Southwest,5
-WX-0103,2023-07-17,Thunderstorm,21.9,4.05,35.8,West Boise,3
-WX-0104,2023-10-02,Snow,8.7,4.34,19.7,Downtown,0
-WX-0105,2025-05-29,Ice Storm,48.2,0.0,22.8,West Boise,0
-WX-0106,2024-01-11,Rapid Snowmelt,35.6,4.25,33.0,Downtown,3
-WX-0107,2023-12-25,Heavy Rain,40.8,1.89,64.5,West Boise,5
-WX-0108,2023-08-05,Thunderstorm,7.9,2.33,37.0,Southeast,3
-WX-0109,2025-08-08,Snow,47.2,3.88,16.6,West Boise,0
-WX-0110,2024-12-15,Rapid Snowmelt,3.5,0.76,37.0,Southwest,0
-WX-0111,2023-04-08,Snow,25.3,0.96,27.3,Southeast,0
-WX-0112,2023-10-28,Heavy Rain,14.2,4.05,55.9,Southeast,5
-WX-0113,2024-06-28,Heavy Rain,27.4,1.54,32.1,North End,4
-WX-0114,2025-07-22,Thunderstorm,14.6,3.56,55.8,West Boise,1
-WX-0115,2023-05-12,Heavy Rain,10.3,0.44,64.2,East Bench,4
-WX-0116,2025-11-03,Ice Storm,16.1,0.0,7.4,All,0
-WX-0117,2023-06-02,Snow,25.0,1.99,8.2,North End,0
-WX-0118,2024-12-14,Freeze-Thaw,37.2,0.0,15.0,West Boise,0
-WX-0119,2024-02-13,Thunderstorm,62.2,4.32,54.2,Southeast,3
-WX-0120,2024-03-20,Ice Storm,21.5,0.0,12.0,West Boise,0
-WX-0121,2025-08-15,Rapid Snowmelt,3.7,4.4,47.7,Southeast,3
-WX-0122,2023-02-16,Snow,69.4,3.24,15.1,West Boise,0
-WX-0123,2025-05-06,Snow,63.5,0.9,5.8,Southwest,0
-WX-0124,2025-12-31,Heavy Rain,60.6,3.01,41.6,Southeast,5
-WX-0125,2025-10-29,Rapid Snowmelt,61.4,2.15,44.9,Downtown,4
-WX-0126,2024-02-25,Rapid Snowmelt,50.2,3.02,62.4,East Bench,1
-WX-0127,2025-07-03,Heavy Rain,59.6,2.72,48.7,Downtown,2
-WX-0128,2023-04-12,Freeze-Thaw,8.8,0.0,19.4,North End,0
-WX-0129,2025-06-29,Snow,31.0,0.67,6.2,North End,0
-WX-0130,2024-12-18,Freeze-Thaw,36.0,0.0,19.5,North End,0
-WX-0131,2023-05-09,Freeze-Thaw,27.2,0.0,8.5,Southwest,0
-WX-0132,2024-01-02,Freeze-Thaw,5.6,0.0,8.3,All,0
-WX-0133,2024-02-11,Thunderstorm,47.0,3.58,59.8,East Bench,3
-WX-0134,2023-01-20,Snow,17.3,0.45,14.2,Southwest,0
-WX-0135,2025-09-04,Rapid Snowmelt,23.0,0.51,59.7,Downtown,4
-WX-0136,2024-10-02,Snow,53.7,2.44,16.0,East Bench,0
-WX-0137,2024-04-25,Snow,4.6,0.37,22.4,Southeast,0
-WX-0138,2024-10-19,Snow,40.1,1.99,9.8,Southeast,0
-WX-0139,2024-02-17,Freeze-Thaw,13.8,0.0,20.6,Southwest,0
-WX-0140,2023-04-16,Heavy Rain,24.0,4.07,46.2,East Bench,0
-WX-0141,2025-08-10,Snow,35.6,1.76,5.4,West Boise,0
-WX-0142,2025-06-07,Thunderstorm,33.1,3.59,51.2,East Bench,5
-WX-0143,2024-02-29,Rapid Snowmelt,45.5,3.52,50.9,Downtown,2
-WX-0144,2023-01-24,Rapid Snowmelt,4.3,1.09,46.8,West Boise,4
-WX-0145,2024-02-16,Heavy Rain,19.1,2.09,56.2,West Boise,1
-WX-0146,2025-09-21,Snow,45.6,4.25,21.5,Southwest,0
-WX-0147,2023-03-20,Ice Storm,9.7,0.0,16.6,Downtown,0
-WX-0148,2024-08-02,Ice Storm,47.7,0.0,15.9,All,0
-WX-0149,2024-11-03,Freeze-Thaw,5.1,0.0,24.0,Downtown,0
-WX-0150,2025-01-30,Rapid Snowmelt,15.9,0.33,54.5,Downtown,4
-WX-0151,2024-06-26,Freeze-Thaw,5.4,0.0,17.4,North End,0
-WX-0152,2025-05-02,Heavy Rain,34.7,3.65,64.8,Downtown,5
-WX-0153,2023-04-06,Rapid Snowmelt,38.9,3.69,48.3,Southeast,2
-WX-0154,2024-06-01,Freeze-Thaw,26.5,0.0,17.5,All,0
-WX-0155,2023-11-05,Thunderstorm,14.1,3.11,53.1,Southwest,1
-WX-0156,2024-09-05,Rapid Snowmelt,53.7,2.06,44.5,East Bench,5
-WX-0157,2023-11-27,Snow,13.8,2.67,22.9,Southeast,0
-WX-0158,2024-01-01,Snow,26.0,0.75,11.6,All,0
-WX-0159,2023-04-20,Rapid Snowmelt,61.2,1.05,62.9,North End,2
-WX-0160,2023-06-15,Rapid Snowmelt,7.6,0.18,42.7,Southwest,2
-WX-0161,2025-05-27,Rapid Snowmelt,2.3,0.65,32.8,Downtown,3
-WX-0162,2025-03-05,Freeze-Thaw,44.3,0.0,25.8,East Bench,0
-WX-0163,2023-10-21,Freeze-Thaw,5.3,0.0,12.6,West Boise,0
-WX-0164,2025-05-05,Thunderstorm,51.5,4.24,50.8,Downtown,4
-WX-0165,2025-06-27,Snow,66.2,4.41,9.9,East Bench,0
-WX-0166,2024-08-28,Snow,31.7,4.02,15.0,Southeast,0
-WX-0167,2024-03-24,Rapid Snowmelt,70.2,2.12,38.6,Southeast,5
-WX-0168,2023-02-20,Freeze-Thaw,65.3,0.0,21.7,Southeast,0
-WX-0169,2025-11-09,Snow,48.1,4.08,27.9,West Boise,0
-WX-0170,2025-05-24,Freeze-Thaw,33.3,0.0,27.7,North End,0
-WX-0171,2024-06-20,Ice Storm,23.5,0.0,23.6,All,0
-WX-0172,2023-10-06,Ice Storm,55.6,0.0,22.7,West Boise,0
-WX-0173,2024-11-11,Ice Storm,65.5,0.0,20.8,Downtown,0
-WX-0174,2024-10-20,Thunderstorm,31.7,0.3,60.6,Southwest,0
-WX-0175,2023-02-18,Freeze-Thaw,53.9,0.0,22.6,North End,0
-WX-0176,2023-11-06,Freeze-Thaw,71.3,0.0,14.2,Southwest,0
-WX-0177,2024-11-04,Ice Storm,19.1,0.0,18.4,Southeast,0
-WX-0178,2025-08-21,Ice Storm,64.0,0.0,5.0,West Boise,0
-WX-0179,2024-06-03,Rapid Snowmelt,23.9,2.77,61.6,Southwest,1
-WX-0180,2025-07-10,Ice Storm,52.6,0.0,14.8,All,0
-WX-0181,2024-12-13,Ice Storm,26.0,0.0,20.8,West Boise,0
-WX-0182,2023-11-30,Rapid Snowmelt,17.5,1.37,32.7,North End,5
-WX-0183,2023-05-28,Snow,19.1,3.39,23.2,Southeast,0
-WX-0184,2023-10-02,Snow,34.7,3.13,16.7,North End,0
-WX-0185,2025-10-07,Freeze-Thaw,21.3,0.0,7.8,West Boise,0
-WX-0186,2024-07-07,Thunderstorm,20.6,3.22,59.9,North End,4
-WX-0187,2024-06-29,Ice Storm,69.1,0.0,25.5,Southeast,0
-WX-0188,2024-12-27,Rapid Snowmelt,21.5,1.65,50.5,North End,2
-WX-0189,2023-04-24,Heavy Rain,41.7,0.17,34.4,All,3
-WX-0190,2025-08-04,Snow,65.2,2.59,27.5,Downtown,0
-WX-0191,2024-09-14,Ice Storm,32.7,0.0,19.5,Downtown,0
-WX-0192,2024-04-23,Thunderstorm,29.7,2.84,56.9,East Bench,0
-WX-0193,2024-07-12,Thunderstorm,20.3,0.53,63.9,West Boise,4
-WX-0194,2023-09-23,Heavy Rain,67.3,3.28,42.6,Southeast,0
-WX-0195,2025-10-18,Snow,47.7,0.81,13.4,All,0
-WX-0196,2024-11-25,Heavy Rain,29.5,4.22,61.5,Southwest,5
-WX-0197,2023-07-13,Freeze-Thaw,65.2,0.0,18.9,Southeast,0
-WX-0198,2024-01-31,Thunderstorm,9.1,0.66,59.5,Southwest,5
-WX-0199,2023-11-28,Rapid Snowmelt,41.6,3.57,34.0,Downtown,5
-WX-0200,2023-03-04,Ice Storm,51.9,0.0,7.0,Southwest,0
-WX-0201,2024-07-11,Heavy Rain,15.1,4.32,58.2,West Boise,3
-WX-0202,2024-08-12,Ice Storm,14.7,0.0,5.3,East Bench,0
-WX-0203,2024-06-22,Snow,10.0,2.41,9.9,Downtown,0
-WX-0204,2024-01-11,Ice Storm,20.0,0.0,11.6,All,0
-WX-0205,2023-11-29,Snow,42.9,2.79,22.8,Southeast,0
-WX-0206,2023-10-24,Snow,27.5,4.29,5.6,Southwest,0
-WX-0207,2025-10-08,Freeze-Thaw,24.3,0.0,14.4,Southeast,0
-WX-0208,2024-09-16,Rapid Snowmelt,55.1,0.92,55.5,Southeast,5
-WX-0209,2024-04-15,Ice Storm,29.5,0.0,23.0,Southwest,0
-WX-0210,2023-11-29,Thunderstorm,23.2,2.51,38.8,All,1
-WX-0211,2024-02-23,Thunderstorm,63.9,1.4,59.3,West Boise,4
-WX-0212,2023-05-09,Heavy Rain,28.6,3.7,61.0,North End,4
-WX-0213,2024-05-20,Thunderstorm,11.9,3.83,38.8,East Bench,0
-WX-0214,2023-12-20,Heavy Rain,17.2,3.2,49.6,North End,3
-WX-0215,2024-02-27,Ice Storm,35.8,0.0,15.8,Southwest,0
-WX-0216,2024-06-18,Heavy Rain,52.8,0.64,49.5,North End,4
-WX-0217,2023-10-26,Rapid Snowmelt,28.9,0.79,49.7,All,5
-WX-0218,2024-07-08,Rapid Snowmelt,4.9,1.15,52.3,Downtown,0
-WX-0219,2025-02-22,Snow,60.3,4.48,15.0,All,0
-WX-0220,2024-05-30,Freeze-Thaw,20.8,0.0,19.9,East Bench,0
-WX-0221,2023-09-05,Ice Storm,30.6,0.0,20.5,Southwest,0
-WX-0222,2025-12-04,Heavy Rain,70.3,3.45,32.7,Downtown,0
-WX-0223,2023-11-07,Ice Storm,53.6,0.0,8.9,Downtown,0
-WX-0224,2024-01-04,Ice Storm,59.7,0.0,18.3,Downtown,0
-WX-0225,2025-03-22,Thunderstorm,38.3,3.7,58.4,East Bench,1
-WX-0226,2023-10-16,Thunderstorm,16.8,3.04,40.5,Southeast,1
-WX-0227,2023-06-21,Ice Storm,55.8,0.0,5.2,East Bench,0
-WX-0228,2023-02-20,Heavy Rain,17.3,2.16,34.1,West Boise,1
-WX-0229,2025-05-27,Snow,63.0,2.5,9.4,Downtown,0
-WX-0230,2024-09-22,Thunderstorm,62.0,1.88,38.5,West Boise,1
-WX-0231,2025-05-06,Rapid Snowmelt,4.2,2.7,63.5,Southwest,4
-WX-0232,2025-12-07,Heavy Rain,31.5,0.97,42.1,Southeast,1
-WX-0233,2023-04-21,Rapid Snowmelt,11.9,3.47,37.3,All,1
-WX-0234,2023-05-15,Ice Storm,43.8,0.0,13.0,North End,0
-WX-0235,2024-08-02,Rapid Snowmelt,4.3,0.11,43.7,All,5
-WX-0236,2023-04-14,Freeze-Thaw,47.0,0.0,12.6,West Boise,0
-WX-0237,2025-03-06,Ice Storm,23.5,0.0,26.9,West Boise,0
-WX-0238,2023-07-10,Freeze-Thaw,19.7,0.0,13.6,All,0
-WX-0239,2024-10-07,Ice Storm,70.8,0.0,22.3,Southeast,0
-WX-0240,2023-01-28,Heavy Rain,33.5,2.41,57.9,Southeast,2
-WX-0241,2025-05-04,Freeze-Thaw,8.0,0.0,15.5,Downtown,0
-WX-0242,2023-09-10,Snow,26.3,3.54,6.1,Southwest,0
-WX-0243,2023-06-18,Ice Storm,60.7,0.0,27.4,Downtown,0
-WX-0244,2025-03-13,Freeze-Thaw,59.8,0.0,6.4,North End,0
-WX-0245,2023-10-09,Snow,71.8,2.24,19.5,Southwest,0
-WX-0246,2023-06-18,Snow,36.5,1.51,23.1,Southeast,0
-WX-0247,2025-11-04,Ice Storm,10.1,0.0,17.5,Downtown,0
-WX-0248,2023-05-22,Heavy Rain,46.6,2.31,56.3,North End,1
-WX-0249,2024-03-10,Ice Storm,13.4,0.0,17.4,East Bench,0
-WX-0250,2024-05-20,Ice Storm,11.5,0.0,26.0,Downtown,0
-WX-0251,2025-01-28,Thunderstorm,71.5,0.47,53.0,Southeast,3
-WX-0252,2025-12-08,Rapid Snowmelt,39.6,3.65,62.3,Southwest,5
-WX-0253,2023-03-03,Rapid Snowmelt,35.4,4.07,61.1,North End,5
-WX-0254,2023-12-02,Freeze-Thaw,45.5,0.0,23.6,Southwest,0
-WX-0255,2025-06-17,Heavy Rain,20.3,0.18,59.4,East Bench,4
-WX-0256,2023-01-12,Thunderstorm,57.2,2.69,58.6,East Bench,5
-WX-0257,2023-07-16,Heavy Rain,10.3,3.09,58.8,West Boise,0
-WX-0258,2025-01-05,Freeze-Thaw,3.1,0.0,8.0,North End,0
-WX-0259,2023-06-15,Rapid Snowmelt,61.2,2.02,33.7,Downtown,5
-WX-0260,2023-06-26,Ice Storm,60.2,0.0,17.3,Southeast,0
-WX-0261,2024-03-21,Snow,51.9,1.35,14.1,All,0
-WX-0262,2025-02-23,Rapid Snowmelt,58.3,2.68,38.2,Downtown,5
-WX-0263,2024-09-13,Snow,71.3,1.51,11.5,Downtown,0
-WX-0264,2023-09-07,Ice Storm,14.5,0.0,25.9,Downtown,0
-WX-0265,2024-02-09,Ice Storm,28.5,0.0,9.0,North End,0
-WX-0266,2023-06-08,Ice Storm,17.1,0.0,7.0,Southeast,0
-WX-0267,2025-12-29,Heavy Rain,22.4,4.41,59.5,West Boise,1
-WX-0268,2024-08-12,Snow,8.7,1.88,5.6,West Boise,0
-WX-0269,2023-12-29,Ice Storm,25.8,0.0,25.8,West Boise,0
-WX-0270,2023-04-29,Heavy Rain,41.6,3.83,40.8,Southeast,4
-WX-0271,2025-12-10,Thunderstorm,51.5,2.85,58.2,North End,3
-WX-0272,2023-05-03,Rapid Snowmelt,51.0,0.9,59.1,Downtown,2
-WX-0273,2023-08-18,Thunderstorm,37.9,0.7,48.7,Southwest,3
-WX-0274,2023-02-19,Ice Storm,54.7,0.0,23.4,West Boise,0
-WX-0275,2023-06-10,Ice Storm,70.9,0.0,19.6,Southeast,0
-WX-0276,2024-06-23,Thunderstorm,11.5,4.33,42.0,East Bench,1
-WX-0277,2023-06-18,Heavy Rain,25.2,0.79,53.4,Downtown,0
-WX-0278,2023-09-01,Freeze-Thaw,31.7,0.0,26.4,East Bench,0
-WX-0279,2023-12-13,Thunderstorm,38.3,3.87,32.4,All,1
-WX-0280,2025-10-10,Thunderstorm,1.5,0.3,51.1,East Bench,4
-WX-0281,2024-02-02,Heavy Rain,56.8,4.14,36.1,East Bench,3
-WX-0282,2023-03-08,Heavy Rain,20.2,2.81,49.2,East Bench,2
-WX-0283,2025-08-26,Heavy Rain,66.1,0.78,39.3,East Bench,3
-WX-0284,2023-01-06,Heavy Rain,36.9,1.28,61.8,North End,2
-WX-0285,2023-10-11,Snow,20.1,4.27,20.0,North End,0
-WX-0286,2024-04-05,Freeze-Thaw,68.5,0.0,15.4,Southeast,0
-WX-0287,2024-10-21,Ice Storm,61.8,0.0,9.1,Downtown,0
-WX-0288,2024-05-12,Heavy Rain,3.9,3.77,58.9,Southeast,4
-WX-0289,2025-06-11,Ice Storm,40.7,0.0,9.6,All,0
-WX-0290,2024-10-14,Ice Storm,20.3,0.0,24.8,Southwest,0
-WX-0291,2023-04-27,Heavy Rain,64.6,0.93,41.5,Southeast,5
-WX-0292,2023-08-15,Thunderstorm,31.8,2.98,52.2,East Bench,0
-WX-0293,2025-12-25,Rapid Snowmelt,16.3,2.59,64.5,Southeast,2
-WX-0294,2024-01-19,Freeze-Thaw,59.3,0.0,17.8,North End,0
-WX-0295,2023-04-19,Snow,69.7,4.09,11.3,All,0
-WX-0296,2025-09-07,Freeze-Thaw,31.5,0.0,16.4,Southwest,0
-WX-0297,2024-06-08,Thunderstorm,27.8,0.49,45.3,East Bench,1
-WX-0298,2025-05-04,Heavy Rain,59.9,2.9,40.3,All,2
-WX-0299,2023-12-23,Rapid Snowmelt,15.2,0.63,63.6,East Bench,2
-WX-0300,2023-01-05,Heavy Rain,4.1,3.58,32.1,East Bench,2
+WX-0001,2024-11-29,Rapid Snowmelt,25.9,1.58,61.0,East Bench,3
+WX-0002,2025-08-17,Ice Storm,7.9,0.0,12.5,West Boise,0
+WX-0003,2024-09-07,Rapid Snowmelt,48.2,0.94,32.2,North End,2
+WX-0004,2025-10-01,Thunderstorm,42.9,0.68,34.1,Southeast,5
+WX-0005,2023-06-03,Rapid Snowmelt,3.0,2.64,61.5,West Boise,1
+WX-0006,2024-07-17,Heavy Rain,45.9,0.39,34.8,West Boise,4
+WX-0007,2023-08-10,Heavy Rain,40.0,0.47,55.4,Southeast,4
+WX-0008,2025-04-04,Freeze-Thaw,52.8,0.0,18.4,Southwest,0
+WX-0009,2023-04-27,Rapid Snowmelt,57.3,0.15,61.9,East Bench,3
+WX-0010,2025-01-09,Ice Storm,62.3,0.0,21.2,West Boise,0
+WX-0011,2025-07-20,Rapid Snowmelt,42.8,2.24,32.6,West Boise,5
+WX-0012,2024-09-19,Rapid Snowmelt,11.1,0.68,38.9,East Bench,3
+WX-0013,2023-06-17,Thunderstorm,26.1,0.44,64.9,North End,2
+WX-0014,2024-06-11,Thunderstorm,31.1,3.79,52.9,East Bench,3
+WX-0015,2024-11-27,Heavy Rain,7.8,1.29,55.3,All,2
+WX-0016,2024-05-08,Rapid Snowmelt,45.1,1.63,52.5,Downtown,2
+WX-0017,2023-07-31,Rapid Snowmelt,24.2,2.38,37.7,Southeast,1
+WX-0018,2025-05-07,Ice Storm,31.0,0.0,19.0,All,0
+WX-0019,2023-11-10,Freeze-Thaw,34.3,0.0,16.2,Southwest,0
+WX-0020,2023-07-04,Snow,64.7,2.39,11.7,West Boise,0
+WX-0021,2025-07-27,Heavy Rain,16.7,2.7,45.1,North End,3
+WX-0022,2023-06-29,Freeze-Thaw,15.1,0.0,23.4,North End,0
+WX-0023,2025-11-13,Heavy Rain,4.0,3.21,60.1,All,3
+WX-0024,2023-09-11,Rapid Snowmelt,39.2,2.84,36.0,West Boise,4
+WX-0025,2024-03-27,Freeze-Thaw,3.7,0.0,24.4,Downtown,0
+WX-0026,2024-09-26,Freeze-Thaw,8.6,0.0,18.9,North End,0
+WX-0027,2024-07-01,Snow,17.3,3.34,22.2,East Bench,0
+WX-0028,2023-02-07,Ice Storm,51.3,0.0,15.9,Southeast,0
+WX-0029,2025-11-21,Ice Storm,44.9,0.0,23.3,North End,0
+WX-0030,2024-12-24,Freeze-Thaw,22.5,0.0,23.7,North End,0
+WX-0031,2023-06-12,Heavy Rain,1.8,3.58,44.3,Southeast,1
+WX-0032,2024-03-31,Ice Storm,36.8,0.0,14.8,Downtown,0
+WX-0033,2024-02-10,Ice Storm,49.7,0.0,9.3,Downtown,0
+WX-0034,2024-04-14,Heavy Rain,9.1,3.14,53.3,Southeast,5
+WX-0035,2024-03-03,Rapid Snowmelt,40.3,3.46,49.5,All,0
+WX-0036,2025-01-04,Thunderstorm,33.1,1.55,45.9,Downtown,0
+WX-0037,2024-05-10,Heavy Rain,51.5,3.98,33.9,North End,0
+WX-0038,2023-03-13,Freeze-Thaw,59.3,0.0,17.5,Downtown,0
+WX-0039,2025-04-28,Heavy Rain,61.8,1.74,37.0,West Boise,1
+WX-0040,2023-10-12,Thunderstorm,54.6,3.71,57.9,Southeast,2
+WX-0041,2023-02-28,Rapid Snowmelt,67.2,2.75,55.8,Downtown,4
+WX-0042,2023-09-11,Rapid Snowmelt,33.5,1.38,52.3,East Bench,5
+WX-0043,2025-01-10,Ice Storm,58.1,0.0,15.6,Southeast,0
+WX-0044,2024-06-25,Ice Storm,16.1,0.0,20.7,Southeast,0
+WX-0045,2025-03-10,Thunderstorm,14.3,0.61,57.6,West Boise,5
+WX-0046,2024-08-28,Snow,3.6,0.34,5.7,All,0
+WX-0047,2025-10-26,Freeze-Thaw,53.3,0.0,9.3,North End,0
+WX-0048,2023-08-15,Freeze-Thaw,3.6,0.0,15.6,East Bench,0
+WX-0049,2025-01-23,Thunderstorm,11.6,2.54,59.0,East Bench,5
+WX-0050,2025-08-28,Ice Storm,8.5,0.0,13.9,West Boise,0
+WX-0051,2024-11-03,Freeze-Thaw,27.3,0.0,16.4,West Boise,0
+WX-0052,2024-07-02,Thunderstorm,54.7,3.56,48.1,West Boise,2
+WX-0053,2023-12-11,Rapid Snowmelt,54.1,1.06,46.3,All,2
+WX-0054,2023-08-30,Rapid Snowmelt,66.7,3.32,37.4,Southwest,5
+WX-0055,2024-04-30,Heavy Rain,43.6,0.42,40.5,Southeast,0
+WX-0056,2024-04-30,Heavy Rain,53.1,1.0,46.9,West Boise,3
+WX-0057,2025-07-01,Snow,56.8,0.2,23.8,Downtown,0
+WX-0058,2025-07-27,Snow,68.2,2.17,10.2,Southeast,0
+WX-0059,2024-02-28,Freeze-Thaw,22.7,0.0,22.5,All,0
+WX-0060,2024-08-08,Snow,7.6,1.43,10.0,Southeast,0
+WX-0061,2025-05-19,Thunderstorm,70.1,0.78,51.9,Downtown,5
+WX-0062,2024-10-17,Snow,10.1,3.07,26.2,All,0
+WX-0063,2025-05-17,Thunderstorm,67.2,1.03,43.0,All,0
+WX-0064,2023-07-12,Snow,35.0,1.49,12.9,Southeast,0
+WX-0065,2024-10-19,Rapid Snowmelt,49.6,2.39,56.2,All,3
+WX-0066,2024-07-05,Freeze-Thaw,61.3,0.0,10.5,West Boise,0
+WX-0067,2023-01-10,Snow,34.9,1.86,5.8,Southeast,0
+WX-0068,2023-04-29,Snow,3.9,4.2,9.6,All,0
+WX-0069,2024-09-17,Freeze-Thaw,34.2,0.0,23.9,East Bench,0
+WX-0070,2024-02-29,Rapid Snowmelt,54.4,2.06,58.5,Southeast,2
+WX-0071,2024-12-03,Snow,61.8,0.85,22.4,East Bench,0
+WX-0072,2024-07-07,Snow,51.5,3.41,20.2,All,0
+WX-0073,2025-02-08,Rapid Snowmelt,8.3,0.66,60.0,Southwest,4
+WX-0074,2025-02-02,Snow,43.1,0.5,21.7,Southwest,0
+WX-0075,2025-02-28,Thunderstorm,51.9,3.68,64.8,All,4
+WX-0076,2025-02-17,Freeze-Thaw,43.0,0.0,8.0,North End,0
+WX-0077,2025-12-07,Ice Storm,69.7,0.0,23.8,East Bench,0
+WX-0078,2024-01-17,Thunderstorm,45.3,0.88,46.8,All,2
+WX-0079,2023-06-08,Ice Storm,49.2,0.0,15.7,West Boise,0
+WX-0080,2023-03-07,Freeze-Thaw,13.0,0.0,5.9,East Bench,0
+WX-0081,2023-09-02,Thunderstorm,62.4,1.03,41.2,Southwest,5
+WX-0082,2024-02-23,Thunderstorm,42.0,0.35,41.2,All,3
+WX-0083,2024-09-20,Rapid Snowmelt,50.3,3.58,43.6,All,3
+WX-0084,2024-04-02,Rapid Snowmelt,20.8,1.33,34.0,Southeast,4
+WX-0085,2024-11-26,Freeze-Thaw,25.5,0.0,26.5,North End,0
+WX-0086,2024-10-24,Heavy Rain,52.7,3.16,48.7,East Bench,5
+WX-0087,2025-04-19,Freeze-Thaw,5.8,0.0,21.9,All,0
+WX-0088,2023-10-18,Heavy Rain,54.3,3.57,46.3,Downtown,3
+WX-0089,2025-12-15,Thunderstorm,64.6,1.24,38.1,East Bench,0
+WX-0090,2024-07-22,Ice Storm,66.5,0.0,18.2,All,0
+WX-0091,2025-05-03,Thunderstorm,25.2,4.4,36.5,West Boise,1
+WX-0092,2024-03-30,Rapid Snowmelt,47.6,0.24,59.5,Southeast,1
+WX-0093,2024-05-02,Ice Storm,14.4,0.0,17.1,Southwest,0
+WX-0094,2023-02-08,Heavy Rain,27.5,1.34,63.0,West Boise,4
+WX-0095,2024-11-24,Freeze-Thaw,24.6,0.0,24.5,Southwest,0
+WX-0096,2024-11-23,Thunderstorm,40.4,4.12,42.5,North End,1
+WX-0097,2025-10-20,Rapid Snowmelt,27.8,1.67,62.5,Southwest,5
+WX-0098,2025-01-27,Heavy Rain,3.7,1.12,44.0,All,5
+WX-0099,2023-10-17,Heavy Rain,45.8,0.29,32.5,Southeast,0
+WX-0100,2023-05-11,Thunderstorm,43.9,1.06,33.5,Southeast,4
+WX-0101,2024-01-23,Ice Storm,45.3,0.0,6.7,Southwest,0
+WX-0102,2025-09-16,Snow,2.4,2.99,6.4,All,0
+WX-0103,2025-09-05,Heavy Rain,29.0,3.31,55.7,Downtown,0
+WX-0104,2023-10-30,Snow,31.5,2.48,6.4,Southwest,0
+WX-0105,2023-04-17,Rapid Snowmelt,25.8,3.59,48.5,All,5
+WX-0106,2024-02-27,Snow,55.4,1.2,11.3,Downtown,0
+WX-0107,2024-05-25,Rapid Snowmelt,63.5,3.71,61.1,Southwest,5
+WX-0108,2023-07-17,Thunderstorm,21.9,4.05,35.8,West Boise,3
+WX-0109,2023-10-02,Snow,8.7,4.34,19.7,Downtown,0
+WX-0110,2025-05-29,Ice Storm,48.2,0.0,22.8,West Boise,0
+WX-0111,2024-01-11,Rapid Snowmelt,35.6,4.25,33.0,Downtown,3
+WX-0112,2023-12-25,Heavy Rain,40.8,1.89,64.5,West Boise,5
+WX-0113,2023-08-05,Thunderstorm,7.9,2.33,37.0,Southeast,3
+WX-0114,2025-08-08,Snow,47.2,3.88,16.6,West Boise,0
+WX-0115,2024-12-15,Rapid Snowmelt,3.5,0.76,37.0,Southwest,0
+WX-0116,2023-04-08,Snow,25.3,0.96,27.3,Southeast,0
+WX-0117,2023-10-28,Heavy Rain,14.2,4.05,55.9,Southeast,5
+WX-0118,2024-06-28,Heavy Rain,27.4,1.54,32.1,North End,4
+WX-0119,2025-07-22,Thunderstorm,14.6,3.56,55.8,West Boise,1
+WX-0120,2023-05-12,Heavy Rain,10.3,0.44,64.2,East Bench,4
+WX-0121,2025-11-03,Ice Storm,16.1,0.0,7.4,All,0
+WX-0122,2023-06-02,Snow,25.0,1.99,8.2,North End,0
+WX-0123,2024-12-14,Freeze-Thaw,37.2,0.0,15.0,West Boise,0
+WX-0124,2024-02-13,Thunderstorm,62.2,4.32,54.2,Southeast,3
+WX-0125,2024-03-20,Ice Storm,21.5,0.0,12.0,West Boise,0
+WX-0126,2025-08-15,Rapid Snowmelt,3.7,4.4,47.7,Southeast,3
+WX-0127,2023-02-16,Snow,69.4,3.24,15.1,West Boise,0
+WX-0128,2025-05-06,Snow,63.5,0.9,5.8,Southwest,0
+WX-0129,2025-12-31,Heavy Rain,60.6,3.01,41.6,Southeast,5
+WX-0130,2025-10-29,Rapid Snowmelt,61.4,2.15,44.9,Downtown,4
+WX-0131,2024-02-25,Rapid Snowmelt,50.2,3.02,62.4,East Bench,1
+WX-0132,2025-07-03,Heavy Rain,59.6,2.72,48.7,Downtown,2
+WX-0133,2023-04-12,Freeze-Thaw,8.8,0.0,19.4,North End,0
+WX-0134,2025-06-29,Snow,31.0,0.67,6.2,North End,0
+WX-0135,2024-12-18,Freeze-Thaw,36.0,0.0,19.5,North End,0
+WX-0136,2023-05-09,Freeze-Thaw,27.2,0.0,8.5,Southwest,0
+WX-0137,2024-01-02,Freeze-Thaw,5.6,0.0,8.3,All,0
+WX-0138,2024-02-11,Thunderstorm,47.0,3.58,59.8,East Bench,3
+WX-0139,2023-01-20,Snow,17.3,0.45,14.2,Southwest,0
+WX-0140,2025-09-04,Rapid Snowmelt,23.0,0.51,59.7,Downtown,4
+WX-0141,2024-10-02,Snow,53.7,2.44,16.0,East Bench,0
+WX-0142,2024-04-25,Snow,4.6,0.37,22.4,Southeast,0
+WX-0143,2024-10-19,Snow,40.1,1.99,9.8,Southeast,0
+WX-0144,2024-02-17,Freeze-Thaw,13.8,0.0,20.6,Southwest,0
+WX-0145,2023-04-16,Heavy Rain,24.0,4.07,46.2,East Bench,0
+WX-0146,2025-08-10,Snow,35.6,1.76,5.4,West Boise,0
+WX-0147,2025-06-07,Thunderstorm,33.1,3.59,51.2,East Bench,5
+WX-0148,2024-02-29,Rapid Snowmelt,45.5,3.52,50.9,Downtown,2
+WX-0149,2023-01-24,Rapid Snowmelt,4.3,1.09,46.8,West Boise,4
+WX-0150,2024-02-16,Heavy Rain,19.1,2.09,56.2,West Boise,1
+WX-0151,2025-09-21,Snow,45.6,4.25,21.5,Southwest,0
+WX-0152,2023-03-20,Ice Storm,9.7,0.0,16.6,Downtown,0
+WX-0153,2024-08-02,Ice Storm,47.7,0.0,15.9,All,0
+WX-0154,2024-11-03,Freeze-Thaw,5.1,0.0,24.0,Downtown,0
+WX-0155,2025-01-30,Rapid Snowmelt,15.9,0.33,54.5,Downtown,4
+WX-0156,2024-06-26,Freeze-Thaw,5.4,0.0,17.4,North End,0
+WX-0157,2025-05-02,Heavy Rain,34.7,3.65,64.8,Downtown,5
+WX-0158,2023-04-06,Rapid Snowmelt,38.9,3.69,48.3,Southeast,2
+WX-0159,2024-06-01,Freeze-Thaw,26.5,0.0,17.5,All,0
+WX-0160,2023-11-05,Thunderstorm,14.1,3.11,53.1,Southwest,1
+WX-0161,2024-09-05,Rapid Snowmelt,53.7,2.06,44.5,East Bench,5
+WX-0162,2023-11-27,Snow,13.8,2.67,22.9,Southeast,0
+WX-0163,2024-01-01,Snow,26.0,0.75,11.6,All,0
+WX-0164,2023-04-20,Rapid Snowmelt,61.2,1.05,62.9,North End,2
+WX-0165,2023-06-15,Rapid Snowmelt,7.6,0.18,42.7,Southwest,2
+WX-0166,2025-05-27,Rapid Snowmelt,2.3,0.65,32.8,Downtown,3
+WX-0167,2025-03-05,Freeze-Thaw,44.3,0.0,25.8,East Bench,0
+WX-0168,2023-10-21,Freeze-Thaw,5.3,0.0,12.6,West Boise,0
+WX-0169,2025-05-05,Thunderstorm,51.5,4.24,50.8,Downtown,4
+WX-0170,2025-06-27,Snow,66.2,4.41,9.9,East Bench,0
+WX-0171,2024-08-28,Snow,31.7,4.02,15.0,Southeast,0
+WX-0172,2024-03-24,Rapid Snowmelt,70.2,2.12,38.6,Southeast,5
+WX-0173,2023-02-20,Freeze-Thaw,65.3,0.0,21.7,Southeast,0
+WX-0174,2025-11-09,Snow,48.1,4.08,27.9,West Boise,0
+WX-0175,2025-05-24,Freeze-Thaw,33.3,0.0,27.7,North End,0
+WX-0176,2024-06-20,Ice Storm,23.5,0.0,23.6,All,0
+WX-0177,2023-10-06,Ice Storm,55.6,0.0,22.7,West Boise,0
+WX-0178,2024-11-11,Ice Storm,65.5,0.0,20.8,Downtown,0
+WX-0179,2024-10-20,Thunderstorm,31.7,0.3,60.6,Southwest,0
+WX-0180,2023-02-18,Freeze-Thaw,53.9,0.0,22.6,North End,0
+WX-0181,2023-11-06,Freeze-Thaw,71.3,0.0,14.2,Southwest,0
+WX-0182,2024-11-04,Ice Storm,19.1,0.0,18.4,Southeast,0
+WX-0183,2025-08-21,Ice Storm,64.0,0.0,5.0,West Boise,0
+WX-0184,2024-06-03,Rapid Snowmelt,23.9,2.77,61.6,Southwest,1
+WX-0185,2025-07-10,Ice Storm,52.6,0.0,14.8,All,0
+WX-0186,2024-12-13,Ice Storm,26.0,0.0,20.8,West Boise,0
+WX-0187,2023-11-30,Rapid Snowmelt,17.5,1.37,32.7,North End,5
+WX-0188,2023-05-28,Snow,19.1,3.39,23.2,Southeast,0
+WX-0189,2023-10-02,Snow,34.7,3.13,16.7,North End,0
+WX-0190,2025-10-07,Freeze-Thaw,21.3,0.0,7.8,West Boise,0
+WX-0191,2024-07-07,Thunderstorm,20.6,3.22,59.9,North End,4
+WX-0192,2024-06-29,Ice Storm,69.1,0.0,25.5,Southeast,0
+WX-0193,2024-12-27,Rapid Snowmelt,21.5,1.65,50.5,North End,2
+WX-0194,2023-04-24,Heavy Rain,41.7,0.17,34.4,All,3
+WX-0195,2025-08-04,Snow,65.2,2.59,27.5,Downtown,0
+WX-0196,2024-09-14,Ice Storm,32.7,0.0,19.5,Downtown,0
+WX-0197,2024-04-23,Thunderstorm,29.7,2.84,56.9,East Bench,0
+WX-0198,2024-07-12,Thunderstorm,20.3,0.53,63.9,West Boise,4
+WX-0199,2023-09-23,Heavy Rain,67.3,3.28,42.6,Southeast,0
+WX-0200,2025-10-18,Snow,47.7,0.81,13.4,All,0
+WX-0201,2024-11-25,Heavy Rain,29.5,4.22,61.5,Southwest,5
+WX-0202,2023-07-13,Freeze-Thaw,65.2,0.0,18.9,Southeast,0
+WX-0203,2024-01-31,Thunderstorm,9.1,0.66,59.5,Southwest,5
+WX-0204,2023-11-28,Rapid Snowmelt,41.6,3.57,34.0,Downtown,5
+WX-0205,2023-03-04,Ice Storm,51.9,0.0,7.0,Southwest,0
+WX-0206,2024-07-11,Heavy Rain,15.1,4.32,58.2,West Boise,3
+WX-0207,2024-08-12,Ice Storm,14.7,0.0,5.3,East Bench,0
+WX-0208,2024-06-22,Snow,10.0,2.41,9.9,Downtown,0
+WX-0209,2024-01-11,Ice Storm,20.0,0.0,11.6,All,0
+WX-0210,2023-11-29,Snow,42.9,2.79,22.8,Southeast,0
+WX-0211,2023-10-24,Snow,27.5,4.29,5.6,Southwest,0
+WX-0212,2025-10-08,Freeze-Thaw,24.3,0.0,14.4,Southeast,0
+WX-0213,2024-09-16,Rapid Snowmelt,55.1,0.92,55.5,Southeast,5
+WX-0214,2024-04-15,Ice Storm,29.5,0.0,23.0,Southwest,0
+WX-0215,2023-11-29,Thunderstorm,23.2,2.51,38.8,All,1
+WX-0216,2024-02-23,Thunderstorm,63.9,1.4,59.3,West Boise,4
+WX-0217,2023-05-09,Heavy Rain,28.6,3.7,61.0,North End,4
+WX-0218,2024-05-20,Thunderstorm,11.9,3.83,38.8,East Bench,0
+WX-0219,2023-12-20,Heavy Rain,17.2,3.2,49.6,North End,3
+WX-0220,2024-02-27,Ice Storm,35.8,0.0,15.8,Southwest,0
+WX-0221,2024-06-18,Heavy Rain,52.8,0.64,49.5,North End,4
+WX-0222,2023-10-26,Rapid Snowmelt,28.9,0.79,49.7,All,5
+WX-0223,2024-07-08,Rapid Snowmelt,4.9,1.15,52.3,Downtown,0
+WX-0224,2025-02-22,Snow,60.3,4.48,15.0,All,0
+WX-0225,2024-05-30,Freeze-Thaw,20.8,0.0,19.9,East Bench,0
+WX-0226,2023-09-05,Ice Storm,30.6,0.0,20.5,Southwest,0
+WX-0227,2025-12-04,Heavy Rain,70.3,3.45,32.7,Downtown,0
+WX-0228,2023-11-07,Ice Storm,53.6,0.0,8.9,Downtown,0
+WX-0229,2024-01-04,Ice Storm,59.7,0.0,18.3,Downtown,0
+WX-0230,2025-03-22,Thunderstorm,38.3,3.7,58.4,East Bench,1
+WX-0231,2023-10-16,Thunderstorm,16.8,3.04,40.5,Southeast,1
+WX-0232,2023-06-21,Ice Storm,55.8,0.0,5.2,East Bench,0
+WX-0233,2023-02-20,Heavy Rain,17.3,2.16,34.1,West Boise,1
+WX-0234,2025-05-27,Snow,63.0,2.5,9.4,Downtown,0
+WX-0235,2024-09-22,Thunderstorm,62.0,1.88,38.5,West Boise,1
+WX-0236,2025-05-06,Rapid Snowmelt,4.2,2.7,63.5,Southwest,4
+WX-0237,2025-12-07,Heavy Rain,31.5,0.97,42.1,Southeast,1
+WX-0238,2023-04-21,Rapid Snowmelt,11.9,3.47,37.3,All,1
+WX-0239,2023-05-15,Ice Storm,43.8,0.0,13.0,North End,0
+WX-0240,2024-08-02,Rapid Snowmelt,4.3,0.11,43.7,All,5
+WX-0241,2023-04-14,Freeze-Thaw,47.0,0.0,12.6,West Boise,0
+WX-0242,2025-03-06,Ice Storm,23.5,0.0,26.9,West Boise,0
+WX-0243,2023-07-10,Freeze-Thaw,19.7,0.0,13.6,All,0
+WX-0244,2024-10-07,Ice Storm,70.8,0.0,22.3,Southeast,0
+WX-0245,2023-01-28,Heavy Rain,33.5,2.41,57.9,Southeast,2
+WX-0246,2025-05-04,Freeze-Thaw,8.0,0.0,15.5,Downtown,0
+WX-0247,2023-09-10,Snow,26.3,3.54,6.1,Southwest,0
+WX-0248,2023-06-18,Ice Storm,60.7,0.0,27.4,Downtown,0
+WX-0249,2025-03-13,Freeze-Thaw,59.8,0.0,6.4,North End,0
+WX-0250,2023-10-09,Snow,71.8,2.24,19.5,Southwest,0
+WX-0251,2023-06-18,Snow,36.5,1.51,23.1,Southeast,0
+WX-0252,2025-11-04,Ice Storm,10.1,0.0,17.5,Downtown,0
+WX-0253,2023-05-22,Heavy Rain,46.6,2.31,56.3,North End,1
+WX-0254,2024-03-10,Ice Storm,13.4,0.0,17.4,East Bench,0
+WX-0255,2024-05-20,Ice Storm,11.5,0.0,26.0,Downtown,0
+WX-0256,2025-01-28,Thunderstorm,71.5,0.47,53.0,Southeast,3
+WX-0257,2025-12-08,Rapid Snowmelt,39.6,3.65,62.3,Southwest,5
+WX-0258,2023-03-03,Rapid Snowmelt,35.4,4.07,61.1,North End,5
+WX-0259,2023-12-02,Freeze-Thaw,45.5,0.0,23.6,Southwest,0
+WX-0260,2025-06-17,Heavy Rain,20.3,0.18,59.4,East Bench,4
+WX-0261,2023-01-12,Thunderstorm,57.2,2.69,58.6,East Bench,5
+WX-0262,2023-07-16,Heavy Rain,10.3,3.09,58.8,West Boise,0
+WX-0263,2025-01-05,Freeze-Thaw,3.1,0.0,8.0,North End,0
+WX-0264,2023-06-15,Rapid Snowmelt,61.2,2.02,33.7,Downtown,5
+WX-0265,2023-06-26,Ice Storm,60.2,0.0,17.3,Southeast,0
+WX-0266,2024-03-21,Snow,51.9,1.35,14.1,All,0
+WX-0267,2025-02-23,Rapid Snowmelt,58.3,2.68,38.2,Downtown,5
+WX-0268,2024-09-13,Snow,71.3,1.51,11.5,Downtown,0
+WX-0269,2023-09-07,Ice Storm,14.5,0.0,25.9,Downtown,0
+WX-0270,2024-02-09,Ice Storm,28.5,0.0,9.0,North End,0
+WX-0271,2023-06-08,Ice Storm,17.1,0.0,7.0,Southeast,0
+WX-0272,2025-12-29,Heavy Rain,22.4,4.41,59.5,West Boise,1
+WX-0273,2024-08-12,Snow,8.7,1.88,5.6,West Boise,0
+WX-0274,2023-12-29,Ice Storm,25.8,0.0,25.8,West Boise,0
+WX-0275,2023-04-29,Heavy Rain,41.6,3.83,40.8,Southeast,4
+WX-0276,2025-12-10,Thunderstorm,51.5,2.85,58.2,North End,3
+WX-0277,2023-05-03,Rapid Snowmelt,51.0,0.9,59.1,Downtown,2
+WX-0278,2023-08-18,Thunderstorm,37.9,0.7,48.7,Southwest,3
+WX-0279,2023-02-19,Ice Storm,54.7,0.0,23.4,West Boise,0
+WX-0280,2023-06-10,Ice Storm,70.9,0.0,19.6,Southeast,0
+WX-0281,2024-06-23,Thunderstorm,11.5,4.33,42.0,East Bench,1
+WX-0282,2023-06-18,Heavy Rain,25.2,0.79,53.4,Downtown,0
+WX-0283,2023-09-01,Freeze-Thaw,31.7,0.0,26.4,East Bench,0
+WX-0284,2023-12-13,Thunderstorm,38.3,3.87,32.4,All,1
+WX-0285,2025-10-10,Thunderstorm,1.5,0.3,51.1,East Bench,4
+WX-0286,2024-02-02,Heavy Rain,56.8,4.14,36.1,East Bench,3
+WX-0287,2023-03-08,Heavy Rain,20.2,2.81,49.2,East Bench,2
+WX-0288,2025-08-26,Heavy Rain,66.1,0.78,39.3,East Bench,3
+WX-0289,2023-01-06,Heavy Rain,36.9,1.28,61.8,North End,2
+WX-0290,2023-10-11,Snow,20.1,4.27,20.0,North End,0
+WX-0291,2024-04-05,Freeze-Thaw,68.5,0.0,15.4,Southeast,0
+WX-0292,2024-10-21,Ice Storm,61.8,0.0,9.1,Downtown,0
+WX-0293,2024-05-12,Heavy Rain,3.9,3.77,58.9,Southeast,4
+WX-0294,2025-06-11,Ice Storm,40.7,0.0,9.6,All,0
+WX-0295,2024-10-14,Ice Storm,20.3,0.0,24.8,Southwest,0
+WX-0296,2023-04-27,Heavy Rain,64.6,0.93,41.5,Southeast,5
+WX-0297,2023-08-15,Thunderstorm,31.8,2.98,52.2,East Bench,0
+WX-0298,2025-12-25,Rapid Snowmelt,16.3,2.59,64.5,Southeast,2
+WX-0299,2024-01-19,Freeze-Thaw,59.3,0.0,17.8,North End,0
+WX-0300,2023-04-19,Snow,69.7,4.09,11.3,All,0

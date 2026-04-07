@@ -120,10 +120,10 @@ class TestGeothermalSegments:
         actual = set(self.df["pipe_role"].unique())
         assert actual.issubset(valid)
 
-    def test_primarily_downtown_east_bench(self):
-        """Geothermal should be mostly in Downtown and East Bench."""
+    def test_primarily_downtown(self):
+        """City geothermal system is entirely Downtown (Capitol Mall + BSU)."""
         downtown_pct = (self.df["district"] == "Downtown").mean()
-        assert downtown_pct > 0.5, "Most geothermal should be Downtown"
+        assert downtown_pct > 0.95, "City geothermal system should be nearly all Downtown"
 
 
 # ─── PI SEGMENTS ────────────────────────────────────────────────────────────
